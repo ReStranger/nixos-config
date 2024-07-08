@@ -33,5 +33,7 @@
     rust-analyzer
     vscode
     hyprpicker
+    spotify
+    spicetify-cli
   ];
 }
