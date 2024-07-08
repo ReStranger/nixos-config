@@ -3,8 +3,6 @@
     config.allowUnfree = true;
     config.allowUnfreePerdicate = (_: true);
     overlays = [ 
-      (import ../nixpkgs/overlays/rust-overlay.nix) 
-      (import ../nixpkgs/overlays/firefox-overlay.nix)
     ];
   };
 
@@ -28,6 +26,7 @@
       glib
       polkit_gnome
       xdg-user-dirs
+      alacritty
   ];
 
   programs.zsh.enable = true;
