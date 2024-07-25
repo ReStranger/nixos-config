@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
-  nixpkgs = { 
+{ inputs, pkgs, config, ... }:
+{
+  nixpkgs = {
     config.allowUnfree = true;
     config.allowUnfreePerdicate = (_: true);
   };
@@ -9,7 +10,6 @@
     gnome-calculator
     gnome.gnome-clocks
     nekoray
-    alacritty
     wofi
     vesktop
     obsidian
@@ -24,16 +24,43 @@
     grimblast
     swww
     mako
-    lua-language-server
     lazygit
     btop
-    clang
-    clang-tools
-    marksman
-    rust-analyzer
     vscode
     hyprpicker
     spotify
     spicetify-cli
+    bun
+    fd
+    gjs
+    typescript
+    sassc
+    dart-sass
+    brightnessctl
+    lua-language-server
+    stylua
+    rust-analyzer
+    clang
+    clang-tools
+    marksman
+    unrar
+    alacritty
+    onlyoffice-bin_latest
   ];
+
+  imports = [ inputs.ags.homeManagerModules.default ];
+  programs.ags = {
+    enable = true;
+
+    # null or path, leave as null if you don't want hm to manage the config
+    #    configDir = ../ags;
+
+    # additional packages to add to gjs's runtime
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
+
 }
