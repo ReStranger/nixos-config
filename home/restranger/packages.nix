@@ -17,14 +17,21 @@
     wl-clipboard
     wl-clipboard-x11
 
+    ## system tools ##
+    unzip
+    unrar
+    p7zip
+
     ## shell ##
     fzf
     starship
     zoxide
     lsd
     bat
-
+    
+    ## tui ##
     yazi
+    lazygit
 
     ## fetch ##
     fastfetch
