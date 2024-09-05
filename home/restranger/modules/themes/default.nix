@@ -1,6 +1,10 @@
 {
   gtk = {
     enable = true;
+    theme = {
+        name = "Juno";
+        package = pkgs.juno-theme;
+    };
     iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
