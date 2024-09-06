@@ -16,6 +16,7 @@
     powertop
     wl-clipboard
     wl-clipboard-x11
+    hyprshade
 
     ## system tools ##
     unzip
