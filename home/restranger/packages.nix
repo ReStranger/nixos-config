@@ -29,7 +29,8 @@
     zoxide
     lsd
     bat
-    
+    ripgrep
+
     ## tui ##
     yazi
     lazygit
@@ -54,7 +55,7 @@
     waybar
     nwg-dock-hyprland
     grimblast
-    
+
     ## themes ##
     adwaita-icon-theme
 
@@ -71,7 +72,7 @@
     firefox
     obsidian
     vesktop
-    
+
     #############
     # dev tools #
     #############
