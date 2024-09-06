@@ -8,7 +8,7 @@
     git
     gcc
     clang
-    clang.tools
+    clang-tools
     rustc
     cargo
   ];
