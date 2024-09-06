@@ -4,6 +4,7 @@
     neovim
     tmux
     wget
+    coreutils
     home-manager
     git
     gcc
