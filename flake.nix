@@ -19,6 +19,11 @@
       system = "x86_64-linux";
     in
     {
+      nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
+        system = { inherit system; };
+        modules = [ ./hosts/pc ];
+      };
+
       nixosConfigurations.magicbook = nixpkgs.lib.nixosSystem {
         system = { inherit system; };
         modules = [ ./hosts/magicbook ];
