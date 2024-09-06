@@ -1,4 +1,4 @@
-{ pkgs,  ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     neovim
@@ -20,4 +20,11 @@
     liberation_ttf
     (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
   ];
+  environment.variables.XDG_CONFIG_DIRS = [ "/etc/xdg" ]; # we should probably have this in NixOS by default
+  environment.etc."xdg/mimeapps.list" = {
+    text = ''
+      [Default Applications]
+      mime/type=alacritty.desktop;
+    '';
+  };
 }
