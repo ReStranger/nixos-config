@@ -43,7 +43,7 @@
     ###########################
     # desktop envirement pkgs #
     ###########################
-    foot
+    alacritty
     wezterm
     nautilus
     gnome-clocks
