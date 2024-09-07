@@ -17,6 +17,11 @@
 
     };
     kernelModules = [ "kvm-amd" "amdgpu" ];
+    kernelParams = [
+      "quiet"
+      "splash"
+      "zswap.enabled=0"
+    ];
     extraModulePackages = [ ];
   };
 }
