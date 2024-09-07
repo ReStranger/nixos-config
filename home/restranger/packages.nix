@@ -73,6 +73,7 @@
     vesktop
     inputs.ayugram-desktop.packages.${pkgs.system}.default
     onlyoffice-bin
+    thunderbird-bin
 
     #############
     # dev tools #
