@@ -74,6 +74,7 @@
     inputs.ayugram-desktop.packages.${pkgs.system}.default
     onlyoffice-bin
     thunderbird-bin
+    xorg.xeyes
 
     #############
     # dev tools #
