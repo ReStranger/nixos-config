@@ -44,7 +44,6 @@
     # desktop envirement pkgs #
     ###########################
     kitty
-    wezterm
     nautilus
     gnome-clocks
     gnome-calculator
@@ -72,6 +71,7 @@
     firefox
     obsidian
     vesktop
+    onlyoffice-bin
 
     #############
     # dev tools #
