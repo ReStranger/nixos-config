@@ -21,10 +21,10 @@
     liberation_ttf
     (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
   ];
-  environment.etc."xdg/mimeapps.list" = {
-    text = ''
-      [Default Applications]
-      mime/type=alacritty.desktop;
-    '';
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "kitty.desktop" ];
+    };
   };
 }
