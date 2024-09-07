@@ -8,11 +8,6 @@
       ./packages.nix
     ];
 
-  users.users.restranger = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = [ "wheel" "input" "networkmanager" ];
-  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

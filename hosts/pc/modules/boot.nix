@@ -24,5 +24,4 @@
     ];
     extraModulePackages = [ ];
   };
-  kernelPackages = pkgs.linuxPackages_zen;
 }

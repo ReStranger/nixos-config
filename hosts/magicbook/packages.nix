@@ -12,6 +12,7 @@
     clang-tools
     rustc
     cargo
+    busybox
   ];
   programs.zsh.enable = true;
   fonts.packages = with pkgs; [
