@@ -26,5 +26,10 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+  fileSystems."/mnt/sda1" =
+    {
+      device = "/dev/sda1";
+      fsType = "btrfs";
+    };
   swapDevices = [ ];
 }
