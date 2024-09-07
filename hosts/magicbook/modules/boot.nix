@@ -19,5 +19,4 @@
     kernelModules = [ "kvm-amd" "amdgpu" ];
     extraModulePackages = [ ];
   };
-  kernelPackages = pkgs.linuxPackages_zen;
 }
