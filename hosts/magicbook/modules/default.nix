@@ -1,13 +1,18 @@
 {
   imports =
     [
-      ./boot.nix  
-      ./nix.nix  
-      ./pipewire.nix  
+      ./boot.nix
+      ./fstab.nix
+      ./locale.nix
+      ./networking.nix
+      ./nix.nix
+      ./pipewire.nix
       ./polkit.nix
       ./power-management
-      ./services.nix  
+      ./services.nix
+      ./timezone.nix
+      ./users.nix
       ./wayland.nix
-
+      ./zram.nix
     ];
 }

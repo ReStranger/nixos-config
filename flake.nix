@@ -11,10 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags.url = "github:Aylur/ags";
+    ayugram-desktop.url = "github:kaeeraa/ayugram-desktop/release?submodules=1";
 
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ayugram-desktop, ... }@inputs:
     let
       system = "x86_64-linux";
     in

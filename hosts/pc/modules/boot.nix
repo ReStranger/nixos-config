@@ -16,7 +16,12 @@
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    kernelParams = [
+      "quiet"
+      "splash"
+      "zswap.enabled=0"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    ];
     extraModulePackages = [ ];
   };
   kernelPackages = pkgs.linuxPackages_zen;

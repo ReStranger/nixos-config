@@ -71,6 +71,7 @@
     firefox
     obsidian
     vesktop
+    inputs.ayugram-desktop.packages.${pkgs.system}.default
     onlyoffice-bin
 
     #############
