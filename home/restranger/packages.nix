@@ -75,6 +75,7 @@
     onlyoffice-bin
     thunderbird-bin
     xorg.xeyes
+    kdePackages.kdeconnect-kde
 
     #############
     # dev tools #
