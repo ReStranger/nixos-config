@@ -55,7 +55,6 @@
     nwg-dock-hyprland
     grimblast
     rustdesk-flutter
-    syncthing
 
     ## themes ##
     adwaita-icon-theme
@@ -79,6 +78,7 @@
     xorg.xeyes
     kdePackages.kdeconnect-kde
     pika-backup
+    syncthing
 
     #############
     # dev tools #
