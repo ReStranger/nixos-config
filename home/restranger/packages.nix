@@ -54,6 +54,7 @@
     waybar
     nwg-dock-hyprland
     grimblast
+    rustdesk-flutter
 
     ## themes ##
     adwaita-icon-theme
@@ -75,6 +76,8 @@
     onlyoffice-bin
     thunderbird-bin
     xorg.xeyes
+    kdePackages.kdeconnect-kde
+    pika-backup
 
     #############
     # dev tools #
