@@ -12,6 +12,10 @@
     };
     ags.url = "github:Aylur/ags";
     ayugram-desktop.url = "github:kaeeraa/ayugram-desktop/release?submodules=1";
+    minimal-tmux = {
+      url = "github:niksingh710/minimal-tmux-status";
+      inputs.nixpkgs.follows = "nixpkgs";
+};
 
   };
 
