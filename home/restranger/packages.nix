@@ -55,6 +55,7 @@
     nwg-dock-hyprland
     grimblast
     rustdesk-flutter
+    syncthing
 
     ## themes ##
     adwaita-icon-theme
