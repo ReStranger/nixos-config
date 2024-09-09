@@ -62,8 +62,8 @@
     ################
     # settings app #
     ################
-    nwg-look
     pavucontrol
+    gnome3.dconf-editor
 
     ##############
     # usage pkgs #
