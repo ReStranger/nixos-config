@@ -1,9 +1,13 @@
+{ pkgs, ... }:
 {
-  services.gvfs.enable = true;
-  systemd.oomd.enable = true;
-  services.ananicy = {
-    enable = true;
-    package = pkgs.ananicy-cpp;
+  services = { 
+    gvfs.enable = true;
+      ananicy = {
+        enable = true;
+        package = pkgs.ananicy-cpp;
+      };
+    openssh.enable = true;
   };
-  services.openssh.enable = true;
+  systemd.oomd.enable = true;
+  security.duosec.allowTcpForwarding = true;
 }
