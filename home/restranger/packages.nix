@@ -54,7 +54,6 @@
     waybar
     nwg-dock-hyprland
     grimblast
-    rustdesk-flutter
 
     ## themes ##
     adwaita-icon-theme
@@ -78,6 +77,11 @@
     xorg.xeyes
     kdePackages.kdeconnect-kde
     pika-backup
+    spotify
+    spicetify-cli
+    syncthing
+    nekoray
+    rustdesk-flutter
 
     #############
     # dev tools #
