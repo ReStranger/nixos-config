@@ -82,6 +82,7 @@
     syncthing
     nekoray
     rustdesk-flutter
+    gnome-software
 
     #############
     # dev tools #
