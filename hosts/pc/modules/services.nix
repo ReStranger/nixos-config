@@ -9,5 +9,4 @@
     openssh.enable = true;
   };
   systemd.oomd.enable = true;
-  security.duosec.allowTcpForwarding = true;
 }
