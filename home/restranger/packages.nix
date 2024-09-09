@@ -54,7 +54,6 @@
     waybar
     nwg-dock-hyprland
     grimblast
-    polkit_gnome
 
     ## themes ##
     adwaita-icon-theme
