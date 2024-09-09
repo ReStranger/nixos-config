@@ -54,7 +54,7 @@
     waybar
     nwg-dock-hyprland
     grimblast
-    rustdesk-flutter
+    polkit_gnome
 
     ## themes ##
     adwaita-icon-theme
@@ -81,6 +81,8 @@
     spotify
     spicetify-cli
     syncthing
+    nekoray
+    rustdesk-flutter
 
     #############
     # dev tools #
