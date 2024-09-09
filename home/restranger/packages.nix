@@ -78,6 +78,8 @@
     xorg.xeyes
     kdePackages.kdeconnect-kde
     pika-backup
+    spotify
+    spicetify-cli
     syncthing
 
     #############
