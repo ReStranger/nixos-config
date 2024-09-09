@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
