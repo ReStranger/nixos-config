@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    polkit
+    polkit_gnome
+  ];
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
