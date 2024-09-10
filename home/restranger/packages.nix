@@ -46,7 +46,6 @@
     kitty
     gnome-clocks
     gnome-calculator
-    xdg-user-dirs
     wofi
     swww
     mako
@@ -82,7 +81,6 @@
     nekoray
     rustdesk-flutter
     gnome-software
-    nemo
 
     #############
     # dev tools #
