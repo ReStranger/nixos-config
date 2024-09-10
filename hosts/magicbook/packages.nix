@@ -18,7 +18,15 @@
     cargo
     busybox
   ];
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+    steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+    };
+  };
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
