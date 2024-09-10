@@ -3,6 +3,7 @@
     [
       ./boot.nix
       ./fstab.nix
+      # ./greetd.nix
       ./locale.nix
       ./networking.nix
       ./nix.nix
