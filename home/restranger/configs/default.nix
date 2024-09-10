@@ -5,6 +5,7 @@
     ./git
     ./nautilus
     ./tmux
+    ./zathura
     ./xdg-user-dirs
 
   ];
