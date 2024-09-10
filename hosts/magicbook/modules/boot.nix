@@ -9,8 +9,8 @@
       grub = {
         efiSupport = true;
         device = "nodev";
+        useOSProber = true;
       };
-      useOSProber = true;
     };
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
