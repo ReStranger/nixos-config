@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
     xdg-user-dirs
