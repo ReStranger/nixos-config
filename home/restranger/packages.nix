@@ -44,7 +44,6 @@
     # desktop envirement pkgs #
     ###########################
     kitty
-    nautilus
     gnome-clocks
     gnome-calculator
     xdg-user-dirs
@@ -63,7 +62,7 @@
     # settings app #
     ################
     pavucontrol
-    gnome3.dconf-editor
+    dconf-editor
 
     ##############
     # usage pkgs #
@@ -83,6 +82,7 @@
     nekoray
     rustdesk-flutter
     gnome-software
+    nemo
 
     #############
     # dev tools #
