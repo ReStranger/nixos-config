@@ -17,12 +17,18 @@
       kernelModules = [ ];
 
     };
-    kernelModules = [ "kvm-amd" "amdgpu" ];
+    kernelModules = [ "kvm-amd" ];
     kernelParams = [
       "quiet"
       "splash"
       "zswap.enabled=0"
+      "nmi_watchdog=0"
+      "usbcore.autosuspend=5"
     ];
+    kernel.sysctl = {
+      "vm.laptop_mode" = 5;
+    };
     extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
   };
 }
