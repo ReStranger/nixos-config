@@ -89,15 +89,6 @@
     pnpm
 
 
-    # Re:Nvim #
-    lua-language-server
-    rust-analyzer
-    bash-language-server
-    marksman
-    hyprls
-
-    stylua
-    nixpkgs-fmt
 
   ];
 }
