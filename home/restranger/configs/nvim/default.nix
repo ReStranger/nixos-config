@@ -1,46 +1,48 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    gcc
-    unzip
-    rustc
-    cargo
-    python
-    python312Packages.pip
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    extraLuaConfig = ''
+    '';
+    extraPackages = with pkgs; [
+      gcc
+      unzip
+      rustc
+      cargo
+      python312
+      python312Packages.pip
 
-    ### LSP ###
+      ### LSP ###
 
-    lua-language-server
-    nodePackages_latest.vscode-html-languageserver-bin
-    nodePackages_latest.vscode-css-languageserver-bin
-    nodePackages_latest.typescript-language-server
+      lua-language-server
+      vscode-langservers-extracted
+      nodePackages_latest.typescript-language-server
 
-    clang.tools
-    clang
+      rust-analyzer
 
-    rust-analyzer
+      pyright
+      ruff-lsp
 
-    pyright
-    ruff-lsp
+      bash-language-server
 
-    bash-language-server
+      marksman
 
-    marksman
+      nil
 
-    nil
+      hyprls
 
-    hyprls
+      ### TOOLS ###
+      stylua
 
-    ### TOOLS ###
-    stylua
+      prettierd
+      eslint_d
 
-    prettierd
-    eslint_d
+      black
+      mypy
+      python312Packages.debugpy
 
-    black
-    mypy
-    python312Packages.debugpy
-
-    nixpkgs-fmt
-  ];
+      nixpkgs-fmt
+    ];
+  };
 }

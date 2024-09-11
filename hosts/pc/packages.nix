@@ -8,14 +8,10 @@
     neovim
     tmux
     wget
-    coreutils
     home-manager
     git
-    gcc
     clang
     clang-tools
-    rustc
-    cargo
     busybox
   ];
   programs = {
