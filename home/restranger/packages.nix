@@ -79,6 +79,8 @@
     gnome-software
     krita
     inkscape
+    mpv
+    imv
 
     #############
     # dev tools #
@@ -87,8 +89,5 @@
     python312Packages.pip
     nodejs_22
     pnpm
-
-
-
   ];
 }
