@@ -4,6 +4,11 @@
     config.allowUnfree = true;
     config.allowUnfreePerdicate = (_: true);
   };
+  programs = {
+    imv.enable = true;
+    mpv.enable = true;
+  };
+
   home.packages = with pkgs; [
     #############
     # cli tools #
@@ -79,8 +84,6 @@
     gnome-software
     krita
     inkscape
-    mpv
-    imv
 
     #############
     # dev tools #
