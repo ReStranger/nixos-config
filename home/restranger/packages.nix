@@ -53,10 +53,6 @@
     nwg-dock-hyprland
     grimblast
 
-    ## themes ##
-    adwaita-icon-theme
-
-
     ################
     # settings app #
     ################
@@ -81,6 +77,8 @@
     nekoray
     rustdesk-flutter
     gnome-software
+    krita
+    inkscape
 
     #############
     # dev tools #
