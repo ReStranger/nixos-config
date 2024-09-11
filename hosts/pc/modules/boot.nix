@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   boot = {
     loader = {
@@ -23,7 +23,9 @@
       "zswap.enabled=0"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
-    extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
+    extraModulePackages = [
+    ];
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
+  powerManagement.cpuFreqGovernor = "performance";
 }
