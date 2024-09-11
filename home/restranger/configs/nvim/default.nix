@@ -1,5 +1,12 @@
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
+    gcc
+    unzip
+    rustc
+    cargo
+    python
+    python312Packages.pip
 
     ### LSP ###
 
