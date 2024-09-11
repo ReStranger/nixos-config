@@ -24,5 +24,6 @@
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
     extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
   };
 }
