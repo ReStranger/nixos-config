@@ -84,6 +84,7 @@
     gnome-software
     krita
     inkscape
+    android-studio
 
     #############
     # dev tools #
