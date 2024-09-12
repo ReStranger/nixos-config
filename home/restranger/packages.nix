@@ -22,6 +22,7 @@
     wl-clipboard
     wl-clipboard-x11
     hyprshade
+    spoofdpi
 
     ## system tools ##
     unzip
