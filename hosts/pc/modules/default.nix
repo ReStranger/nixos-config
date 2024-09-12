@@ -1,6 +1,7 @@
 {
   imports =
     [
+      ./adb.nix
       ./boot.nix
       ./fstab.nix
       ./locale.nix

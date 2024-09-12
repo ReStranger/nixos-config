@@ -1,6 +1,7 @@
 {
   imports =
     [
+      ./adb.nix
       ./boot.nix
       ./fstab.nix
       # ./greetd.nix
@@ -12,7 +13,7 @@
       ./power-management
       ./services.nix
       ./timezone.nix
-      ./udev.nix
+      # ./udev.nix
       ./users.nix
       ./wayland.nix
       ./zram.nix
