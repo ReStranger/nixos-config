@@ -69,13 +69,10 @@
     # usage pkgs #
     ##############
     firefox
-    obsidian
-    vesktop
     inputs.ayugram-desktop.packages.${pkgs.system}.default
     onlyoffice-bin
     thunderbird-bin
     xorg.xeyes
-    kdePackages.kdeconnect-kde
     pika-backup
     spotify
     spicetify-cli
@@ -85,7 +82,8 @@
     gnome-software
     krita
     inkscape
-    android-studio
+    androidStudioPackages.canary
+    transmission_4-gtk
 
     #############
     # dev tools #

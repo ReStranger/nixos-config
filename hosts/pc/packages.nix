@@ -13,6 +13,12 @@
     clang
     clang-tools
     busybox
+    (pkgs.writeShellScriptBin "vesktop" ''
+    exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform --ozone-platform=x11
+    '')
+    (pkgs.writeShellScriptBin "obsidian" ''
+    exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
+    '')
   ];
   programs = {
     zsh.enable = true;
