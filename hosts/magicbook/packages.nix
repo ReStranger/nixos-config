@@ -13,6 +13,8 @@
     clang
     clang-tools
     busybox
+    vesktop
+    obsidian
   ];
   programs = {
     zsh.enable = true;
