@@ -1,8 +1,11 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, ... }:
 {
   nixpkgs = {
     config.allowUnfree = true;
     config.allowUnfreePerdicate = (_: true);
+    overlays = [
+      (import ./overlays/alacritty-overlay.nix)
+    ];
   };
   programs = {
     imv.enable = true;
@@ -50,6 +53,7 @@
     # desktop envirement pkgs #
     ###########################
     kitty
+    # alacritty
     gnome-clocks
     gnome-calculator
     wofi
