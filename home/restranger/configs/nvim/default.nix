@@ -28,7 +28,7 @@
 
       marksman
 
-      nil
+      nixd
 
       hyprls
 
