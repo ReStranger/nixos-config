@@ -1,5 +1,12 @@
 { pkgs, ... }:
 {
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };
   gtk = {
     enable = true;
     theme = {
@@ -15,6 +22,10 @@
       package = pkgs.tela-circle-icon-theme.override {
         colorVariants = [ "dracula" ];
       };
+    };
+    font = {
+      name = "Comfortaa Regular";
+      size = 10;
     };
     gtk2.extraConfig =
       ''
