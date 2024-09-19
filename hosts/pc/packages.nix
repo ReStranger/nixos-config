@@ -19,6 +19,7 @@
     (pkgs.writeShellScriptBin "obsidian" ''
     exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
     '')
+    cudaPackages.cudatoolkit
   ];
   programs = {
     zsh.enable = true;
