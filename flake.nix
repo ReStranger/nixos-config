@@ -1,5 +1,5 @@
 {
-  description = "My system configuration";
+  description = "ReStranger's nix system configuration";
 
   inputs = {
 
@@ -15,8 +15,7 @@
     minimal-tmux = {
       url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
-};
-
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ayugram-desktop, ... }@inputs:
