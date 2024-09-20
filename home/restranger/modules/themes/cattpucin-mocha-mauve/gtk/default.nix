@@ -24,7 +24,7 @@
       };
     };
     font = {
-      name = "Comfortaa Regular";
+      name = "Comfortaa Medium";
       size = 10;
     };
     gtk2.extraConfig =
