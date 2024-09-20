@@ -53,7 +53,8 @@
     # desktop envirement pkgs #
     ###########################
     kitty
-    # alacritty
+    alacritty
+    # alacritty-smooth-cursor
     gnome-clocks
     gnome-calculator
     wofi
