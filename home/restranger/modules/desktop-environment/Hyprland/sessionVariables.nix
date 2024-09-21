@@ -1,7 +1,7 @@
 { config, osConfig, ... }:
 {
   home.sessionVariables =
-  if ( osConfig.networking.hostname == "pc") then
+  if ( osConfig != null && osConfig.networking.hostname == "pc") then
     {
       NIXOS_OZONE_WL = "0";
       LIBVA_DRIVER_NAME = "nvidia";

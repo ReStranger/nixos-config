@@ -7,7 +7,8 @@ let
 in 
 {
   imports = [
-    # ./system
+    ./monitor.nix
+    ./sessionVariables.nix
   ];
 
   home.packages = with pkgs; [
@@ -43,6 +44,8 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
+    systemd.enable = true;
     settings = {
       exec-once = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
