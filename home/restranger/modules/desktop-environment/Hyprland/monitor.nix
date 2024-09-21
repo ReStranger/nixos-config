@@ -1,7 +1,7 @@
 { osConfig, ... }:
 {
   wayland.windowManager.hyprland.settings = 
-    if ( osConfig.networking.hostname == "pc") then
+    if ( osConfig != null && osConfig.networking.hostname == "pc") then
       {
         monitor = [
           "HDMI-A-1, 1920x1080@75, 0x0, 1"
@@ -9,7 +9,7 @@
           "DVI-D-1,disable"
         ];
       }
-    else if ( osConfig.networking.hostname == "magicbook" ) then 
+    else if ( osConfig != null && osConfig.networking.hostname == "magicbook" ) then 
       {
         monitor = [
           "HDMI-A-1, 1920x1080@75, 0x0, 1"
