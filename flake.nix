@@ -45,19 +45,19 @@
           ];
         };
 
-      magicbook = nixpkgs.lib.nixosSystem {
-        system = { inherit system; };
-        modules = [ 
-          ./hosts/magicbook 
-          home-manager.nixosModules.home-manager {
-            home-manager = {
-              useUserPackages = true;
-              users.restranger = import ./home/restranger;
-              extraSpecialArgs = { inherit inputs; };
-            };
-          }
-        ];
+        magicbook = nixpkgs.lib.nixosSystem {
+          system = { inherit system; };
+          modules = [ 
+            ./hosts/magicbook 
+            home-manager.nixosModules.home-manager {
+              home-manager = {
+                useUserPackages = true;
+                users.restranger = import ./home/restranger;
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+          ];
+        };
       };
     };
-  };
 }
