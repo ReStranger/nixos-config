@@ -58,14 +58,12 @@ in
       monitor = if ( osConfig != null && osConfig.networking.hostName == "pc" ) then
         [
           "HDMI-A-1, 1920x1080@75, 0x0, 1"
-          "DVI-D-1, 1366x768@60, 1920x220, 1"
+          # "DVI-D-1, 1366x768@60, 1920x220, 1"
           "DVI-D-1,disable"
         ]
       else if ( osConfig != null && osConfig.networking.hostName == "magicbook" ) then 
         [
-          "HDMI-A-1, 1920x1080@75, 0x0, 1"
-          # "DVI-D-1, 1366x768@60, 1920x220, 1"
-          "DVI-D-1,disable"
+          "eDP-1, 1920x1080@60, 0x0, 1.25"
         ]
       else
         [
