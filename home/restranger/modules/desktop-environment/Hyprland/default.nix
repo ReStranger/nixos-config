@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ osConfig, pkgs, ... }:
 let
   terminal = "alacritty";
   fileManager = "nemo";
@@ -7,7 +7,6 @@ let
 in 
 {
   imports = [
-    ./monitor.nix
     ./sessionVariables.nix
   ];
 
@@ -15,6 +14,15 @@ in
     grimblast
     nwg-dock-hyprland
   ];
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config.common.default = "*";
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
 
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";
@@ -47,6 +55,23 @@ in
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
+      monitor = if ( osConfig != null && osConfig.networking.hostName == "pc" ) then
+        [
+          "HDMI-A-1, 1920x1080@75, 0x0, 1"
+          "DVI-D-1, 1366x768@60, 1920x220, 1"
+          "DVI-D-1,disable"
+        ]
+      else if ( osConfig != null && osConfig.networking.hostName == "magicbook" ) then 
+        [
+          "HDMI-A-1, 1920x1080@75, 0x0, 1"
+          # "DVI-D-1, 1366x768@60, 1920x220, 1"
+          "DVI-D-1,disable"
+        ]
+      else
+        [
+          ", preferred, auto, 1"
+        ];
+
       exec-once = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "swww-daemon"
@@ -54,7 +79,7 @@ in
       ];
       exec = [
         "alsactl init"
-        "pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
+        "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"
         "pactl set-sink-volume alsa_output.pci-0000_0a_00.4.analog-stereo 50%"
         "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
         "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl"
