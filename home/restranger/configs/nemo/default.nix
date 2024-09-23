@@ -9,7 +9,7 @@
       start-with-menu-bar = false;
     };
     settings."org/cinnamon/desktop/default-applications/terminal" = {
-      exec = "kitty";
+      exec = "alacritty -e";
       exec-arg = "";
     };
   };
