@@ -43,6 +43,7 @@
 
     ## tui ##
     yazi
+    ueberzugpp
     lazygit
 
     ## fetch ##
