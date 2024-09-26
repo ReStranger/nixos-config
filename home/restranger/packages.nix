@@ -91,7 +91,6 @@
     inkscape
     androidStudioPackages.canary
     transmission_4-gtk
-    reaper
     qpwgraph
     file-roller
 
