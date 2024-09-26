@@ -14,7 +14,7 @@
     clang
     busybox
     (pkgs.writeShellScriptBin "vesktop" ''
-    exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform --ozone-platform=x11
+    exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
     '')
     (pkgs.writeShellScriptBin "obsidian" ''
     exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11

@@ -30,19 +30,19 @@
     {
       device = "/dev/sda1";
       fsType = "btrfs";
-      options = [ "x-gvfs-name=HDD%201" ];
+      options = [ "x-gvfs-show" "x-gvfs-name=HDD%201" ];
     };
   fileSystems."/mnt/win" =
     {
       device = "/dev/nvme0n1p5";
       fsType = "ntfs-3g";
-      options = [ "x-gvfs-name=Win11" "x-gvfs-icon=windows" "x-gvfs-symbolic-icon=windows" ];
+      options = [ "x-gvfs-show" "x-gvfs-name=Win11" "x-gvfs-icon=windows" "x-gvfs-symbolic-icon=windows" ];
     };
   fileSystems."/mnt/win_hdd" =
     {
       device = "/dev/sda2";
       fsType = "ntfs-3g";
-      options = [ "x-gvfs-name=WinHDD" ];
+      options = [ "x-gvfs-show" "x-gvfs-name=WinHDD" ];
     };
   swapDevices = [
     {
