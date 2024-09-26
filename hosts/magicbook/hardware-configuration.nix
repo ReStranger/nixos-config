@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, modulesPath, ... }:
 
 {
   imports =
@@ -9,6 +9,8 @@
   hardware.graphics = {
     enable = true;
   };
+
+  services.xserver.videoDrivers=["amdgpu"];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
