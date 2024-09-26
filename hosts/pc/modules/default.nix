@@ -4,6 +4,7 @@
       ./adb.nix
       ./boot.nix
       ./fstab.nix
+      ./greetd-tui.nix
       ./hyprland.nix
       ./locale.nix
       ./networking.nix
@@ -12,6 +13,7 @@
       ./polkit.nix
       ./services.nix
       ./timezone.nix
+      ./tty.nix
       ./users.nix
       ./zram.nix
     ];

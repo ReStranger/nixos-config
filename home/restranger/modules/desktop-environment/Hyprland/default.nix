@@ -179,19 +179,32 @@ in
       xwayland = {
         force_zero_scaling = true;
       };
-
-      workspace = [
-        "1,monitor:HDMI-A-1,default:true"
-        "2,monitor:HDMI-A-1"
-        "3,monitor:HDMI-A-1"
-        "4,monitor:HDMI-A-1"
-        "5,monitor:HDMI-A-1"
-        "6,monitor:HDMI-A-1"
-        "7,monitor:DVI-D-1,default:true"
-        "8,monitor:DVI-D-1"
-        "9,monitor:DVI-D-1"
-        "0,monitor:DVI-D-1"
-      ];
+      workspace = if ( osConfig != null && osConfig.networking.hostName == "pc" ) then
+        [
+          "1,monitor:HDMI-A-1,default:true"
+          "2,monitor:HDMI-A-1"
+          "3,monitor:HDMI-A-1"
+          "4,monitor:HDMI-A-1"
+          "5,monitor:HDMI-A-1"
+          "6,monitor:HDMI-A-1"
+          "7,monitor:DVI-D-1,default:true"
+          "8,monitor:DVI-D-1"
+          "9,monitor:DVI-D-1"
+          "0,monitor:DVI-D-1"
+        ]
+      else if ( osConfig != null && osConfig.networking.hostName == "magicbook" ) then 
+        [
+          "1,monitor:eDP-1,default:true"
+          "2,monitor:eDP-1"
+          "3,monitor:eDP-1"
+          "4,monitor:eDP-1"
+          "5,monitor:eDP-1"
+          "6,monitor:eDP-1"
+          "7,monitor:eDP-1"
+        ]
+      else
+        [
+        ];
 
       windowrulev2 = [
 
@@ -354,6 +367,22 @@ in
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+
+        "$mod, Control_L, movewindow"
+        "$mod, mouse:273, resizewindow"
+        "$mod, ALT_L, resizewindow"
+      ];
+      bindel = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5++%-"
+      ];
+      bindl = [
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
       ];
     };
   };
