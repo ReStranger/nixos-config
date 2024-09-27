@@ -6,8 +6,7 @@
     ./nemo
     ./nvim
     ./tmux
-    ./zathura
     ./xdg-user-dirs
-
+    ./zathura
   ];
 }
