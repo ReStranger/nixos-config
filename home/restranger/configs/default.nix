@@ -1,6 +1,7 @@
 {
   imports = [
     ./ags
+    ./alacritty
     ./dconf
     ./git
     ./nemo
