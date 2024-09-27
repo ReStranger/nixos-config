@@ -1,7 +1,7 @@
 {
   imports = [
     ./desktop-environment
-    ./enviroments
+    ./environments
     ./themes
   ];
 }
