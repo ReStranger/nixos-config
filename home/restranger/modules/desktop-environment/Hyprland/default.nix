@@ -115,9 +115,9 @@ in
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        # col.active_border = rgba(f5c2e7ee) rgba(cba6f7ee) 45deg;
-        # col.active_border = "rgba(cba6f7ee)";
-        # col.inactive_border = "rgba(595959aa)";
+        # "col.active_border" = "rgba(f5c2e7ee) rgba(cba6f7ee) 45deg";
+        "col.active_border" = "rgba(cba6f7ee)";
+        "col.inactive_border" = "rgba(595959aa)";
 
         layout = "dwindle";
 
@@ -134,12 +134,14 @@ in
           ignore_opacity = true;
           xray = false;
         };
-        #layerrule = blur,rofi
-        #layerrule = ignorealpha [1],rofi
+        layerrule = [
+          "blur,rofi"
+          "ignorealpha [1],rofi"
+        ];
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
-        # col.shadow = "rgba(1a1a1aee)";
+        "col.shadow" = "rgba(1a1a1aee)";
         dim_inactive = false;
       };
 
