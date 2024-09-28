@@ -1,3 +1,4 @@
+{ osConfig, ... }:
 {
   programs.alacritty = {
     enable = true;
@@ -18,13 +19,15 @@
         # bold = { family = "JetBrains Mono Nerd Font"; style = "Bold" };
         # italic = { family = "JetBrains Mono Nerd Font"; style = "Italic" };
         # bold_italic = { family = "JetBrains Mono Nerd Font"; style = "BoldItalic" };
+        # size = if ( osConfig != null && osConfig.networking.hostName == "pc") then 10 else if ( osConfig != null && osConfig.networking.hostName == "magicbook") then 11 else 10;
 
         normal = { family = "Operator Mono"; style = "Regular"; };
         bold = { family = "Operator Mono"; style = "Bold"; };
         italic = { family = "Operator Mono"; style = "Italic"; };
         bold_italic = { family = "Operator Mono"; style = "BoldItalic"; };
 
-        size = 11;
+        size = if ( osConfig != null && osConfig.networking.hostName == "pc") then 11 else if ( osConfig != null && osConfig.networking.hostName == "magicbook") then 13 else 11;
+
 
         builtin_box_drawing = true;
       };
