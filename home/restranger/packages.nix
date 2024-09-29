@@ -80,7 +80,6 @@
     onlyoffice-bin
     thunderbird-bin
     xorg.xeyes
-    pika-backup
     spotify
     spicetify-cli
     syncthing
