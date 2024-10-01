@@ -43,6 +43,7 @@
 
     ## tui ##
     yazi
+    ueberzugpp
     lazygit
 
     ## fetch ##
@@ -90,6 +91,8 @@
     inkscape
     androidStudioPackages.canary
     transmission_4-gtk
+    qpwgraph
+    file-roller
 
     #############
     # dev tools #
