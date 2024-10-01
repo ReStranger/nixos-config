@@ -1,6 +1,9 @@
 { lib, ... }:
 {
-  networking.hostName = "magicbook";
-  networking.networkmanager.enable = true;
-  networking.useDHCP = lib.mkDefault true;
+  networking = {
+    hostName = "magicbook";
+    networkmanager.enable = true;
+    firewall.enable = false;
+    useDHCP = lib.mkDefault true;
+  };
 }
