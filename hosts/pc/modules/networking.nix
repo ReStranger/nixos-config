@@ -1,6 +1,9 @@
 { lib, ... }:
 {
-  networking.hostName = "pc";
-  networking.networkmanager.enable = true;
-  networking.useDHCP = lib.mkDefault true;
+  networking = {
+    hostName = "pc";
+    networkmanager.enable = true;
+    firewall.enable = false;
+    useDHCP = lib.mkDefault true;
+  };
 }
