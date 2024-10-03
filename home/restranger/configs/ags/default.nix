@@ -14,6 +14,8 @@
     pavucontrol
     networkmanager
     gtk3
+    adw-gtk3
+    morewaita-icon-theme
   ];
 
   programs.ags = {
