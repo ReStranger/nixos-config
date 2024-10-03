@@ -23,6 +23,7 @@
       system = "x86_64-linux";
       home-manager-module = home-manager.nixosModules.home-manager {
         home-manager = {
+          backupFileExtension = "backup";
           useUserPackages = true;
             users.restranger = import ./home/restranger;
             extraSpecialArgs = { inherit inputs; };
@@ -37,6 +38,7 @@
             ./hosts/pc
             home-manager.nixosModules.home-manager {
               home-manager = {
+                backupFileExtension = "backup";
                 useUserPackages = true;
                 users.restranger = import ./home/restranger;
                 extraSpecialArgs = { inherit inputs; };
@@ -51,6 +53,7 @@
             ./hosts/magicbook 
             home-manager.nixosModules.home-manager {
               home-manager = {
+                backupFileExtension = "backup";
                 useUserPackages = true;
                 users.restranger = import ./home/restranger;
                 extraSpecialArgs = { inherit inputs; };
