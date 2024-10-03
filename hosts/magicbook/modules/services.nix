@@ -1,11 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services = { 
     gvfs.enable = true;
-      ananicy = {
-        enable = true;
-        package = pkgs.ananicy-cpp;
-      };
     openssh.enable = true;
     zerotierone = {
       enable = true;
