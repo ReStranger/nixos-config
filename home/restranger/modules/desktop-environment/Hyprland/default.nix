@@ -1,6 +1,6 @@
 { osConfig, pkgs, ... }:
 let
-  terminal = "alacritty";
+  terminal = "kitty";
   fileManager = "nemo";
   menu = "ags -t launcher";
   vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
