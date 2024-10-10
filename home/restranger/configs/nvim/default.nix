@@ -32,6 +32,8 @@
 
       hyprls
 
+      codeium
+
       ### TOOLS ###
       stylua
 
