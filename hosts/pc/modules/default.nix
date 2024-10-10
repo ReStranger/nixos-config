@@ -15,6 +15,7 @@
       ./timezone.nix
       ./tty.nix
       ./users.nix
+      ./zapret.nix
       ./zram.nix
     ];
 }

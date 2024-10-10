@@ -25,7 +25,6 @@
     wl-clipboard
     wl-clipboard-x11
     hyprshade
-    spoofdpi
     pulseaudio
 
     ## system tools ##
@@ -55,7 +54,7 @@
     # desktop envirement pkgs #
     ###########################
     kitty
-    alacritty
+    # alacritty
     # alacritty-smooth-cursor
     gnome-clocks
     gnome-calculator
