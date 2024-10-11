@@ -23,6 +23,10 @@
     cudaPackages.cudatoolkit
   ];
   programs = {
+    nix-ld = {
+      enable = true;
+      libraries = [];
+    };
     zsh.enable = true;
     steam = {
       enable = true;
