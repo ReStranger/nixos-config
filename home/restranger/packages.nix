@@ -91,6 +91,7 @@
     transmission_4-gtk
     qpwgraph
     file-roller
+    figma-linux
 
     #############
     # dev tools #
