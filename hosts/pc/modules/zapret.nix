@@ -1,63 +1,131 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
-  cfg = config.module.zapret;
-in {
-  options = {
-    module.zapret = {
-      enable = mkEnableOption "Enables zapret";
+  cfg = config.services.zapret;
+in
+{
+  options.services.zapret = {
+    enable = mkEnableOption "DPI bypass multi platform service";
 
-      wan = mkOption {
-        type = types.str;
-        default = "eth0";
-        description = "";
-      };
+    package = mkPackageOption pkgs "zapret" { };
 
-      qnum = mkOption {
-        type = types.int;
-        default = 200;
-        description = "";
-      };
+    settings = mkOption {
+      type = types.lines;
+      default = "";
+
+      example = ''
+        TPWS_OPT="--hostspell=HOST --split-http-req=method --split-pos=3 --oob"
+        NFQWS_OPT_DESYNC="--dpi-desync-ttl=5"
+      '';
+
+      description = ''
+        Rules for zapret to work. Run ```nix-shell -p zapret --command blockcheck``` to get values to pass here.
+
+        Config example can be found here https://github.com/bol-van/zapret/blob/master/config.default
+      '';
+    };
+
+    firewallType = mkOption {
+      type = types.enum [
+        "iptables"
+        "nftables"
+      ];
+      default = "iptables";
+      description = ''
+        Which firewall zapret should use
+      '';
+    };
+
+    disableIpv6 = mkOption {
+      type = types.bool;
+      # recommended by upstream
+      default = true;
+      description = ''
+        Disable or enable usage of IpV6 by zapret
+      '';
+    };
+
+    mode = mkOption {
+      type = types.enum [
+        "tpws"
+        "tpws-socks"
+        "nfqws"
+        "filter"
+        "custom"
+      ];
+      default = "tpws";
+      description = ''
+        Which mode zapret should use
+      '';
     };
   };
 
   config = mkIf cfg.enable {
-    boot.kernel.sysctl = {
-      "net.ipv4.conf.all.src_valid_mark" = 1;
-      "net.ipv4.ip_forward" = 1;
+    users.users.tpws = {
+      isSystemUser = true;
+      group = "tpws";
     };
 
-    networking = {
-      firewall = {
-        extraCommands = ''
-          iptables -t mangle -I POSTROUTING -o "${cfg.wan}" -p tcp -m multiport --dports 80,443 -m connbytes --connbytes-dir=original --connbytes-mode=packets --connbytes 1:6 -m mark ! --mark 0x40000000/0x40000000 -j NFQUEUE --queue-num ${toString cfg.qnum} --queue-bypass
-        '';
+    users.groups.tpws = { };
+
+    systemd.services.zapret = {
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
+
+      path = with pkgs; [
+        (if cfg.firewallType == "iptables" then iptables else nftables)
+        gawk
+        ipset
+      ];
+
+      serviceConfig = {
+        Type = "forking";
+        Restart = "no";
+        TimeoutSec = "30sec";
+        IgnoreSIGPIPE = "no";
+        KillMode = "none";
+        GuessMainPID = "no";
+        RemainAfterExit = "no";
+        ExecStart = "${cfg.package}/bin/zapret start";
+        ExecStop = "${cfg.package}/bin/zapret stop";
+
+        EnvironmentFile = pkgs.writeText "${cfg.package.pname}-environment" (concatStrings [
+          ''
+            MODE=${cfg.mode}
+            FWTYPE=${cfg.firewallType}
+            DISABLE_IPV6=${if cfg.disableIpv6 then "1" else "0"}
+
+          ''
+          cfg.settings
+        ]);
+
+        # hardening
+        DevicePolicy = "closed";
+        KeyringMode = "private";
+        PrivateTmp = true;
+        PrivateMounts = true;
+        ProtectHome = true;
+        ProtectHostname = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectSystem = "strict";
+        ProtectProc = "invisible";
+        RemoveIPC = true;
+        RestrictNamespaces = true;
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        SystemCallArchitectures = "native";
       };
     };
 
-    systemd = {
-      services = {
-        zapret = {
-          description = "gigi za shagi";
-          wantedBy = [ "multi-user.target" ];
-          requires = [ "network.target" ];
-
-          serviceConfig = {
-            ExecStart = "${pkgs.zapret}/bin/nfqws --pidfile=/run/nfqws.pid --dpi-desync=fake --dpi-desync=disorder --dpi-desync=split2 --dpi-desync-ttl=1 --dpi-desync-repeats=6 --dpi-desync-autottl=3 --wssize 1:6 --dpi-desync-fake-tls=0x00000000 --dpi-desync-split-pos=1 --qnum=${toString cfg.qnum}";
-            Type = "forking";
-            PIDFile = "/run/nfqws.pid";
-            ExecReload = "/bin/kill -HUP $MAINPID";
-            Restart = "always";
-            RestartSec = "5s";
-          };
-        };
-      };
-    };
+    meta.maintainers = with maintainers; [ nishimara ];
   };
 }
