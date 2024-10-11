@@ -74,7 +74,7 @@
 
         DISABLE_IPV6=1
 
-        GETLIST=get_antifilter_ipsmart.sh
+        GETLIST=get_antifilter_domains.sh
         '';
       };
     };
