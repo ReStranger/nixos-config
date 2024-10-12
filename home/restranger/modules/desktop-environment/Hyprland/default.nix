@@ -83,8 +83,6 @@ in
         "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl"
         "ags"
         "/home/restranger/.config/nwg-dock-hyprland/nwg-dock-hyprland.sh"
-        "syncthing -no-browser -no-restart -logflags=0"
-        "/mnt/sda1/bypass/spoofdpi.sh"
       ];
       input = {
         kb_layout = "us,ru";
@@ -300,6 +298,9 @@ in
         "float,class:^(Rofi)$"
         "pin,class:^(Rofi)$"
         "stayfocused,class:^(Rofi)$"
+
+        # Fix xwayland
+        "noblur,class:^()$,class:^()$"
       ];
 
       "$mod" = "SUPER";
