@@ -92,6 +92,7 @@
     qpwgraph
     file-roller
     figma-linux
+    anytype
 
     #############
     # dev tools #
