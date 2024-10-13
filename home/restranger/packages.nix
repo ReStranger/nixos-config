@@ -81,7 +81,6 @@
     xorg.xeyes
     spotify
     spicetify-cli
-    syncthing
     nekoray
     rustdesk-flutter
     gnome-software
