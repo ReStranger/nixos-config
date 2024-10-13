@@ -44,6 +44,7 @@
     ];
     extraModulePackages = [
     ];
+    supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
   powerManagement.cpuFreqGovernor = "performance";
