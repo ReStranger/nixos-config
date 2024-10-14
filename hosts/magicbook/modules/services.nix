@@ -6,7 +6,7 @@
     zerotierone = {
       enable = true;
       joinNetworks = [
-        "0cccb752f7c9e833"
+        "e3918db48305d83a"
       ];
     };
     flatpak.enable = true;
