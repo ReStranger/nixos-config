@@ -9,8 +9,10 @@
       start-with-menu-bar = false;
     };
     settings."org/cinnamon/desktop/default-applications/terminal" = {
-      exec = "alacritty -e";
-      exec-arg = "";
+      exec = "kitty";
+    };
+    settings."org/nemo/desktop" = {
+      show-desktop-icons = false;
     };
   };
 }
