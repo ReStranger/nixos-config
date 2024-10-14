@@ -6,5 +6,6 @@
     ./mpv
     ./qt
     ./yazi
+    ./zathura
   ];
 }
