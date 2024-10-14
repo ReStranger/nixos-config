@@ -45,7 +45,7 @@
       sigint_symbol = "󰂭 ";
       signal_symbol = "󱑽 ";
       success_symbol = "";
-      format = "[$symbol](fg:red)";
+      format = "[ $symbol](fg:red)";
       map_symbol = true;
       disabled = false;
     };
