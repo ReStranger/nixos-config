@@ -5,5 +5,6 @@
     ./imv
     ./mpv
     ./qt
+    ./yazi
   ];
 }
