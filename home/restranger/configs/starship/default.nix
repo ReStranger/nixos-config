@@ -55,10 +55,10 @@
     };
     nix_shell = {
       disabled = false;
-      impure_msg = "[impure shell]";
+      impure_msg = "[impure shell](bold blue)";
       pure_msg = "[pure shell](bold green)";
       unknown_msg = "[unknown shell](bold yellow)";
-      format = "[$state( \($name\))] [${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white)";
+      format = "[$state( \($name\)) ](fg:blue)[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white)";
     };
     container = {
       symbol = " 󰏖";
