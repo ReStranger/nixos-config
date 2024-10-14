@@ -44,8 +44,9 @@
     ];
     kernel.sysctl = {
       "vm.laptop_mode" = 5;
+      "net.ipv4.ip_default_ttl" = 65;
     };
     extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 }
