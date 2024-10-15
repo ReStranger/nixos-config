@@ -14,7 +14,6 @@
   settings = {
     add_newline = true;
     format = builtins.concatStringsSep "" [
-      "$nix_shell"
       "$os"
       "$directory"
       "$container"
@@ -27,6 +26,7 @@
       "$c"
       "$golang"
       "$cmd_duration"
+      "$nix_shell"
       "$status"
       "$line_break"
       "[❯](bold purple)"
@@ -45,7 +45,7 @@
       sigint_symbol = "󰂭 ";
       signal_symbol = "󱑽 ";
       success_symbol = "";
-      format = "[$symbol](fg:red)";
+      format = "[ $symbol](fg:red)";
       map_symbol = true;
       disabled = false;
     };
@@ -55,7 +55,10 @@
     };
     nix_shell = {
       disabled = false;
-      format = "[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white) ";
+      impure_msg = "[impure shell](bold blue)";
+      pure_msg = "[pure shell](bold green)";
+      unknown_msg = "[unknown shell](bold yellow)";
+      format = "[$state( \($name\)) ](fg:blue)[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white)";
     };
     container = {
       symbol = " 󰏖";
