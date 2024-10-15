@@ -44,6 +44,11 @@
       fsType = "ntfs-3g";
       options = [ "rw" "uid=1000" "x-gvfs-show" "x-gvfs-name=WinHDD" ];
     };
+  fileSystems."/mnt/ccache" = 
+    {
+      device = "/home/restranger/.cache/ccahe";
+      options = [ "defaults" "bind" "users" "noauto" ];
+    };
   swapDevices = [
     {
       device = "/swap/swapfile";
