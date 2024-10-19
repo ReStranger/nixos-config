@@ -10,8 +10,6 @@
     wget
     home-manager
     git
-    clang-tools
-    clang
     busybox
     vesktop
     obsidian

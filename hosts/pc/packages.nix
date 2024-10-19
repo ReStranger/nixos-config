@@ -10,8 +10,6 @@
     wget
     home-manager
     git
-    clang-tools
-    clang
     busybox
     (pkgs.writeShellScriptBin "vesktop" ''
     exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
