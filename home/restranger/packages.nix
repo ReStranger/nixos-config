@@ -75,7 +75,7 @@
     # usage pkgs #
     ##############
     firefox
-    inputs.ayugram-desktop.packages.${pkgs.system}.default
+    # inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
     onlyoffice-bin
     thunderbird-bin
     xorg.xeyes
@@ -86,12 +86,13 @@
     gnome-software
     krita
     inkscape
-    androidStudioPackages.canary
+    # androidStudioPackages.canary
     transmission_4-gtk
     qpwgraph
     file-roller
     figma-linux
     anytype
+    obs-studio
 
     #############
     # dev tools #
