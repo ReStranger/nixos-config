@@ -5,6 +5,7 @@
       ./boot.nix
       ./fstab.nix
       ./greetd-tui.nix
+      ./nh.nix
       ./hyprland.nix
       ./locale.nix
       ./networking.nix
@@ -15,7 +16,6 @@
       ./timezone.nix
       ./tty.nix
       ./users.nix
-      ./zapret.nix
       ./zram.nix
     ];
 
