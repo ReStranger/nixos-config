@@ -15,7 +15,7 @@
     };
     flatpak.enable = true;
     zapret = {
-      enable = true;
+      enable = false;
       params = [
           "--qnum=0"
           "--filter-udp=443" 
