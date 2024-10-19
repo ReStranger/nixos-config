@@ -47,6 +47,7 @@
       "net.ipv4.ip_default_ttl" = 65;
     };
     extraModulePackages = [ ];
+    plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };
 }
