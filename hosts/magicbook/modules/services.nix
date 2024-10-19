@@ -1,8 +1,5 @@
 { ... }:
 {
-  imports = [
-    ./zapret.nix
-  ];
   services = { 
     gvfs.enable = true;
     openssh.enable = true;
