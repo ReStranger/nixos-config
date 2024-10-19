@@ -10,8 +10,6 @@
     wget
     home-manager
     git
-    clang-tools
-    clang
     busybox
     (pkgs.writeShellScriptBin "vesktop" ''
     exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
@@ -49,13 +47,13 @@
     };
   };
   nix = {
-  settings = {
-    substituters = [
-      "https://cache.garnix.io"
-    ];
-    trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
+    settings = {
+      substituters = [
+        "https://cache.garnix.io"
+      ];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      ];
+    };
   };
-};
 }
