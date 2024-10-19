@@ -1,4 +1,5 @@
 {
+
   fileSystems."/" =
     {
       device = "/dev/nvme0n1p2";
