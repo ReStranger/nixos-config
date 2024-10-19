@@ -3,6 +3,7 @@
     [
       ./adb.nix
       ./boot.nix
+      ./default.nix
       ./fstab.nix
       ./greetd-tui.nix
       ./hyprland.nix
