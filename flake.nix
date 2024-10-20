@@ -14,6 +14,7 @@
       x86_64 = "x86_64-linux";
       aarch64 = "aarch64-linux";
     in flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
       flake = {
         nixosConfigurations = {
           pc = nixpkgs.lib.nixosSystem {
