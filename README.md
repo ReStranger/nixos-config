@@ -1,6 +1,6 @@
 <div  align="center">
     <img
-      src="./assets/img/nixos-logo.png"
+      src="./assets/github/img/nixos-logo.png"
       alt="Re:NixOS Logo"
     />
 </div>
