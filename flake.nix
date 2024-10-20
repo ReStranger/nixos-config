@@ -11,43 +11,18 @@
       , ...
     }@inputs:
     let
-      x86_64 = "x86_64-linux";
-      aarch64 = "aarch64-linux";
+      hosts = import ./hosts.nix;
+      libx = import ./lib.nix { inherit self inputs; };
     in flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = inputs.nixpkgs.lib.systems.flakeExposed;
-      flake = {
-        nixosConfigurations = {
-          pc = nixpkgs.lib.nixosSystem {
-            system = { inherit x86_64; };
-            modules = [
-              ./hosts/pc
-              home-manager.nixosModules.home-manager {
-                home-manager = {
-                  backupFileExtension = "backup";
-                  useUserPackages = true;
-                  users.restranger = import ./home/restranger;
-                  extraSpecialArgs = { inherit inputs; };
-                };
-              }
-            ];
-          };
+      systems = libx.forAllSystems;
 
-          magicbook = nixpkgs.lib.nixosSystem {
-            system = { inherit x86_64; };
-            modules = [
-              ./hosts/magicbook
-              home-manager.nixosModules.home-manager {
-                home-manager = {
-                  backupFileExtension = "backup";
-                  useUserPackages = true;
-                  users.restranger = import ./home/restranger;
-                  extraSpecialArgs = { inherit inputs; };
-                };
-              }
-            ];
-          };
+      import = [
+        # ./parts
+        # ./docs
+      ];
+      flake = {
+        nixosConfigurations = libx.genNixos hosts.nixos;
       };
-    };
   };
 
   inputs = {
