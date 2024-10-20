@@ -11,19 +11,19 @@
   commonModules       = "${self}/modules";
 
   mkHost = machineDir:
-    { username ? "restranger"
+    { username ? "user"
     , stateVersion ? "24.05"
     , platform ? "x86_64-linux" 
     , hostname ? machineDir
     , isWorkstation ? false
-    , de ? null
+    , wm ? null
     }:
     let
       machineConfigurationPath      = "${self}/system/machine/${machineDir}";
       machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
       machineModulesPath            = "${self}/system/machine/${machineDir}/modules";
       machineModulesPathExist       = builtins.pathExists machineModulesPath;
-      hyprlandEnable = de == "hyprland";
+      hyprlandEnable = wm == "hyprland";
       deEnable       = hyprlandEnable;
     in inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
@@ -36,7 +36,7 @@
           platform
           machineDir
           isWorkstation
-          de
+          wm
           homeModules
           commonModules
           systemModules
@@ -52,10 +52,32 @@
         "${homeConfiguration}"
       ];
     };
+  mkHostDarwin = hostname:
+    { username ? "user"
+    , stateVersion ? 6
+    , platform ? "aarch64-darwin" 
+    }:
+    inputs.darwin.lib.darwinSystem {
+      specialArgs = {
+        inherit 
+          inputs
+          self
+          hostname
+          username
+          platform
+          stateVersion
+          systemModules
+          commonModules;
+      };
 
-
+      modules = [
+        "${systemConfiguration}"
+        "${homeConfiguration}"
+      ];
+    };
 in {
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
   genNixos  = builtins.mapAttrs mkHost;
+  genDarwin = builtins.mapAttrs mkHostDarwin;
 }

@@ -3,20 +3,16 @@
 
   outputs = {
         self
-      , nixpkgs
-      , nixpkgs-stable
       , flake-parts
-      , home-manager
-      , ayugram-desktop
       , ...
     }@inputs:
     let
       hosts = import ./hosts.nix;
-      libx = import ./lib.nix { inherit self inputs; };
+      libx = import ./lib { inherit self inputs; };
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = libx.forAllSystems;
 
-      import = [
+      imports = [
         # ./parts
         # ./docs
       ];
@@ -34,6 +30,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -44,6 +45,9 @@
       url = "github:oddlama/nix-topology";
     };
 
+    impermanence = {
+      url = "github:/nix-community/impermanence";
+    };
 
     ags.url = "github:Aylur/ags";
 
