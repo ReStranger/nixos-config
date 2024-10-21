@@ -11,12 +11,12 @@ let
 in {
   options.modules.zram = {
     enable = mkEnableOption "Enable zram";
-      deviceNumber = mkOption {
-        type = types.number;
-        default = 1;
-        description = ''
-          Change number of ram devices
-        '';
+    deviceNumber = mkOption {
+      type = types.number;
+      default = 1;
+      description = ''
+        Change number of ram devices
+      '';
     };
   };
   config = mkIf cfg.enable {

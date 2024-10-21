@@ -5,10 +5,10 @@
 }:
 with lib;
 let
-  cfg = config.module.pipewire;
+  cfg = config.module.sound;
 in {
   options = {
-    modules.pipewire = {
+    modules.sound = {
       enable = mkEnableOption "Enable pipewire as backend sound server";
       rtkit = mkOption {
         type = types.bool;
