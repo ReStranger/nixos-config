@@ -75,7 +75,7 @@
     # usage pkgs #
     ##############
     firefox
-    # inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
+    inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
     onlyoffice-bin
     thunderbird-bin
     xorg.xeyes
