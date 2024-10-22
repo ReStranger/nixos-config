@@ -51,14 +51,14 @@
 
     ags.url = "github:Aylur/ags";
 
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland";
-    };
-
-    xdghypr = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "git+https://github.com/hyprwm/Hyprland";
+    # };
+    #
+    # xdghypr = {
+    #   url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     ayugram-desktop.url = "github:kaeeraa/ayugram-desktop/release?submodules=1";
 

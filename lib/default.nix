@@ -88,7 +88,7 @@
           hostname
           username
           platform
-          stateVersion
+          # stateVersion
           systemModules
           commonModules;
       };
