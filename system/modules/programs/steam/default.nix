@@ -1,4 +1,5 @@
 { lib
+, pkgs
 , config
 , ...
 }:
@@ -8,21 +9,19 @@ with lib;
 let
   cfg = config.module.programs.steam;
 in {
-  options = {
-    module.programs.steam = {
-      enable = mkEnableOption "Enable steam client";
-      proton-ge = mkOption {
-        type = types.bool;
-        default = true;
-        description = ''
-          Enable proton-ge
-        '';
-      };
+  options.module.programs.steam = {
+    enable = mkEnableOption "Enable steam client";
+    proton-ge = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Enable proton-ge
+      '';
     };
   };
 
   config = mkIf cfg.enable {
-    steam = {
+    programs.steam = {
       enable = true;
       extraCompatPackages = 
       (

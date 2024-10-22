@@ -7,13 +7,13 @@
 with lib;
 
 let
-  cfg = config.module.services.openssh;
+  cfg = config.module.services.gvfs;
 in {
-  options.modules.openssh = {
+  options.module.services.gvfs = {
     enable = mkEnableOption "Enable openssh";
   };
   config = mkIf cfg.enable {
-    gvfs.enable = true;
+    services.gvfs.enable = true;
   };
 }
 

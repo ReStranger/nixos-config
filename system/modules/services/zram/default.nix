@@ -9,7 +9,7 @@ with lib;
 let
   cfg = config.module.services.zram;
 in {
-  options.modules.zram = {
+  options.module.services.zram = {
     enable = mkEnableOption "Enable zram";
     deviceNumber = mkOption {
       type = types.number;

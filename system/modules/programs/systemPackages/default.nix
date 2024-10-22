@@ -9,9 +9,7 @@ with lib;
 let
   cfg = config.module.programs.systemPackages;
 in {
-  options = {
-    module.programs.systemPackages.enable = mkEnableOption "Enable System Software";
-  };
+  options.module.programs.systemPackages.enable = mkEnableOption "Enable System Software";
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [

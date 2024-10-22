@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.services.zapret-config;
+  cfg = config.module.services.zapret-config;
 in
 {
-  options.services.zapret-config = {
+  options.module.services.zapret-config = {
     enable = mkEnableOption "DPI bypass multi platform service";
     package = mkPackageOption pkgs "zapret" { };
     settings = mkOption {

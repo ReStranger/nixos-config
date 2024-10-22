@@ -9,10 +9,10 @@
 with lib;
 
 let
-  cfg = config.module.greetd;
+  cfg = config.module.services.greetd;
 in {
   options = {
-    module.greetd = {
+    module.services.greetd = {
       enable = mkEnableOption "Enable Greetd login manager";
       frontend = mkOption {
         type = types.enum [
