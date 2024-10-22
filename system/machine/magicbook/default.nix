@@ -23,6 +23,7 @@
       polkit.enable = true;
       power-profiles-daemon.enable = true;
       systemd-oomd.enable = true;
+      upower.enable = true;
       zapret-config.enable = true;
       zerotier-one.enable = true;
       zram = {
