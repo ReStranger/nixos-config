@@ -27,7 +27,7 @@
       deEnable       = hyprlandEnable;
     in inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit 
+        inherit
           inputs
           self
           hostname
@@ -59,7 +59,30 @@
     }:
     inputs.darwin.lib.darwinSystem {
       specialArgs = {
-        inherit 
+        inherit
+          inputs
+          self
+          hostname
+          username
+          platform
+          stateVersion
+          systemModules
+          commonModules;
+      };
+
+      modules = [
+        "${systemConfiguration}"
+        "${homeConfiguration}"
+      ];
+    };
+  mkHostAndroid = hostname:
+    { username ? "user"
+    # , stateVersion ? 6
+    , platform ? "aarch64" 
+    }:
+    inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+      specialArgs = {
+        inherit
           inputs
           self
           hostname
@@ -80,4 +103,5 @@ in {
 
   genNixos  = builtins.mapAttrs mkHost;
   genDarwin = builtins.mapAttrs mkHostDarwin;
+  genAndroid = builtins.mapAttrs mkHostAndroid;
 }
