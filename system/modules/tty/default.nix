@@ -5,9 +5,9 @@
 }:
 with lib;
 let
-  cfg = config.services.zapret;
+  cfg = config.module.tty;
 in {
-  options.modules.tty.enable = mkEnableOption "Enable TTY setup module";
+  options.module.tty.enable = mkEnableOption "Enable TTY setup module";
   config = mkIf cfg.enable {
     console = {
       earlySetup = true;
