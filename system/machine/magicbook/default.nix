@@ -1,54 +1,38 @@
-{ config
-, ...
+{ ...
 }:
-# TODO переделать под себя
 {
   module = {
-    pipewire.enable       = true;
-    boot.enable           = true;
-    bluetooth.enable      = true;
-    locales.enable        = true;
-    network.enable        = true;
-    timedate.enable       = true;
-    users.enable          = true;
-    variables.enable      = true;
-    virtualisation.enable = true;
-    plymouth.enable       = true;
+    adb.enable = true;
+    boot.enable = true;
+    plymouth.enable = true;
+    sound.enable = true;
+    timezone.enable = true;
+    users.enable = true;
 
 
-    security = {
-      enable            = true;
-      enableBootOptions = true;
-      disableIPV6       = true;
-    };
 
     services = {
-      bolt.enable       = true;
-      fwupd.enable      = true;
-      polkit.enable     = true;
-      printing.enable   = true;
-      syncthing.enable  = true;
-      udev.enable       = true;
-      greetd.enable     = true;
-      qmk.enable        = true;
-      netbird.enable    = true;
-
-      ollama = {
-        enable            = true;
-        gpuSupport.enable = config.services.ollama.enable;
+      greetd = {
+        enable = true;
+        frontend = "tui";
+      };
+      network.enable = true;
+      polkit.enable = true;
+      zapret-config.enable = true;
+      zram = {
+        enable = true;
+        deviceNumber = 2;
       };
     };
 
     programs = {
-      dconf.enable          = true;
-      gnupg.enable          = true;
-      hm.enable             = true;
-      nh.enable             = true;
-      kdeconnect.enable     = true;
-      mtr.enable            = true;
-      xdg-portal.enable     = true;
-      zsh.enable            = true;
-      fish.enable           = true;
+      dconf.enable = true;
+      gnupg.enable = true;
+      home-manager.enable = true;
+      hyprland.enable = true;
+      kdeconnect.enable = true;
+      nix-helper.enable = true;
+      zsh.enable = true;
       systemPackages.enable = true;
     };
   };
