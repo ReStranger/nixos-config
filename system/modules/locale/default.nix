@@ -10,7 +10,7 @@ in
   options.module.locale = {
     enable = mkEnableOption "Set system locale";
     locale = mkOption {
-      type = types.string;
+      type = types.str;
       default = "ru_RU.UTF-8";
       description = ''
         Set system locale

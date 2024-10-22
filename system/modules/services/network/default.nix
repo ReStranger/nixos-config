@@ -30,7 +30,7 @@ in
         '';
       };
       macAddress = mkOption {
-        type = types.string;
+        type = types.str;
         default = "preserve";
         example = ''
           "00:11:22:33:44:55", "permanent", "preserve", "random", "stable", "stable-ssid"
