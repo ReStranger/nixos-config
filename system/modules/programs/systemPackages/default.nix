@@ -26,6 +26,8 @@ in {
       wget
       jq
       lsd
+      ripgrep
+      tmux
 
       # Hardware utils
       glxinfo
