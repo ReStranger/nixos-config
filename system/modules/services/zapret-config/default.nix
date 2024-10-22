@@ -6,7 +6,7 @@
 }:
 with lib;
 let
-  cfg = config.services.zapret;
+  cfg = config.services.zapret-config;
 in
 {
   options.services.zapret-config = {
