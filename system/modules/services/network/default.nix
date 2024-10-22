@@ -5,10 +5,10 @@
 }:
 with lib;
 let
-  cfg = config.modules.services.network;
+  cfg = config.module.services.network;
 in
 {
-  options.modules.services.network = {
+  options.module.services.network = {
     enable = mkEnableOption "Enable network service configuration";
     package = mkPackageOption pkgs "networkmanager" { };
     wifi = {
@@ -17,7 +17,7 @@ in
           "wpa_supplicant"
           "iwd"
         ];
-        default = "networkmanager";
+        default = "wpa_supplicant";
         description = ''
           Select default networkmanager of internet configuration
         '';
@@ -47,8 +47,8 @@ in
       hostName = "${hostname}";
       networkmanager = {
         enable = true;
-        wifi.backend = cfg.backend;
-        wifi.macAddress = cfg.macAddress;
+        wifi.backend = cfg.wifi.backend;
+        wifi.macAddress = cfg.wifi.macAddress;
       };
       firewall.enable = false;
       useDHCP = lib.mkDefault true;

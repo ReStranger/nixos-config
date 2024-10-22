@@ -4,10 +4,10 @@
 }:
 with lib;
 let
-  cfg = config.modules.services.network;
+  cfg = config.module.locale;
 in
 {
-  options.modules.locale = {
+  options.module.locale = {
     enable = mkEnableOption "Set system locale";
     locale = mkOption {
       type = types.string;
@@ -18,7 +18,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    i18n.defaultLocale = "${cfg.locale}.UTF-8";
+    i18n.defaultLocale = "${cfg.locale}";
     i18n.extraLocaleSettings = {
       LANG = "${cfg.locale}";
       LC_ADDRESS = "${cfg.locale}";

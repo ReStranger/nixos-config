@@ -7,11 +7,9 @@
 with lib;
 
 let
-  cfg = config.module.programs.systemPackages;
+  cfg = config.module.programs.fonts;
 in {
-  options = {
-    module.programs.systemPackages.enable = mkEnableOption "Enable System fonts";
-  };
+  options.module.programs.fonts.enable = mkEnableOption "Enable System fonts";
 
   config = mkIf cfg.enable {
     fonts.packages = with pkgs; [

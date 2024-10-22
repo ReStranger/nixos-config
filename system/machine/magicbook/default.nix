@@ -20,9 +20,9 @@
       };
       gvfs.enable = true;
       network.enable = true;
-      oomd.enable = true;
       openssh.enable = true;
       polkit.enable = true;
+      systemd-oomd.enable = true;
       zapret-config.enable = true;
       zerotier-one.enable = true;
       zram = {

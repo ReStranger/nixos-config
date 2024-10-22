@@ -9,11 +9,9 @@ with lib;
 let
   cfg = config.module.services.openssh;
 in {
-  options.modules.gvfs = {
-    enable = mkEnableOption "Enable openssh";
-  };
+  options.module.services.openssh.enable = mkEnableOption "Enable openssh";
   config = mkIf cfg.enable {
-    openssh.enable = true;
+    services.openssh.enable = true;
   };
 }
 

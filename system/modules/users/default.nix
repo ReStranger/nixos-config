@@ -10,10 +10,7 @@ with lib;
 let
   cfg = config.module.users;
 in {
-  options = {
-    module.users.enable = mkEnableOption "Enables users";
-  };
-
+  options.module.users.enable = mkEnableOption "Enables users";
   config = mkIf cfg.enable {
     users = {
       mutableUsers = false;

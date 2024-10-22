@@ -4,12 +4,10 @@
 }:
 with lib;
 let
-  cfg = config.modules.boot;
+  cfg = config.module.boot;
 in
 {
-  options.modules.boot = {
-    enable = mkEnableOption "Enable boot module";
-  };
+  options.module.boot.enable = mkEnableOption "Enable boot module";
   config = mkIf cfg.enable {
     boot = {
       loader = {
