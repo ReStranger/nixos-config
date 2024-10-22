@@ -8,6 +8,7 @@
     plymouth.enable = true;
     sound.enable = true;
     timezone.enable = true;
+    tty.enable = true;
     users.enable = true;
 
     services = {
