@@ -60,7 +60,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    ayugram-desktop.url = "github:kaeeraa/ayugram-desktop/release?submodules=1";
+    ayugram-desktop.url = "github:ayugram-port/ayugram-desktop/release?submodules=1";
 
     minimal-tmux = {
       url = "github:niksingh710/minimal-tmux-status";
