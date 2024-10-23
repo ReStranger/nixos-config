@@ -44,6 +44,7 @@ in {
 
       # Utils
       dconf-editor
+      xorg.xhost
     ];
   };
 }
