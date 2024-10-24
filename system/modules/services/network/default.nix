@@ -11,6 +11,13 @@ in
   options.module.services.network = {
     enable = mkEnableOption "Enable network service configuration";
     package = mkPackageOption pkgs "networkmanager" { };
+    firewall = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable firewall
+      '';
+    };
     wifi = {
       backend = mkOption {
         type = types.enum [
@@ -20,13 +27,6 @@ in
         default = "wpa_supplicant";
         description = ''
           Select default networkmanager of internet configuration
-        '';
-      };
-      firewall = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Enable firewall
         '';
       };
       macAddress = mkOption {
@@ -50,7 +50,7 @@ in
         wifi.backend = cfg.wifi.backend;
         wifi.macAddress = cfg.wifi.macAddress;
       };
-      firewall.enable = false;
+      firewall.enable = cfg.firewall;
       useDHCP = lib.mkDefault true;
     };
   };
