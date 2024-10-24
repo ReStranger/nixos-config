@@ -1,4 +1,5 @@
 { lib
+, pkgs
 , config
 , ...
 }:
@@ -13,7 +14,10 @@ in {
     programs = {
         nix-ld = {
           enable = true;
-          libraries = [];
+          libraries = with pkgs; [
+            libxcrypt-legacy
+            zlib
+          ];
       };
     };
   };
