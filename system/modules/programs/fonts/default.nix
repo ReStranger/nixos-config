@@ -17,6 +17,8 @@ in {
       noto-fonts-cjk-sans
       noto-fonts-emoji
       liberation_ttf
+      corefonts
+      vistafonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
     ];
   };
