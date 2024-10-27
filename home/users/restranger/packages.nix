@@ -5,6 +5,7 @@
     config.allowUnfreePerdicate = (_: true);
     overlays = [
       (import ./overlays/alacritty-overlay.nix)
+      (import ../../overlays/freesmlauncher-unwrapped)
     ];
   };
   programs = {
@@ -99,6 +100,7 @@
     (pkgs.writeShellScriptBin "obsidian" ''
     exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
     '')
+    # freesmlauncher
 
 
     #############
