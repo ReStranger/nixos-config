@@ -7,7 +7,7 @@
     };
     mappings = {
       "<C-l> feedkeys" = ":blist <Tab>";
-      "<C-m> feedkeys" = ":bmark";
+      "<C-m> feedkeys" = ":bmark ";
       "<C-u> feedkeys" = ":bdelete ";
       i = "recolor";
     };
