@@ -51,6 +51,9 @@ in
         wifi.macAddress = cfg.wifi.macAddress;
       };
       firewall.enable = cfg.firewall;
+      hosts = {
+          "127.0.0.1" = [ "pc.local" ];
+      };
       useDHCP = lib.mkDefault true;
     };
   };
