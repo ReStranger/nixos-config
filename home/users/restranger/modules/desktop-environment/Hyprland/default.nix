@@ -1,4 +1,8 @@
-{ osConfig, pkgs, ... }:
+{ osConfig
+, pkgs
+, inputs
+, ... 
+}:
 let
   terminal = "kitty";
   fileManager = "nemo";
@@ -18,9 +22,9 @@ in
     enable = true;
     xdgOpenUsePortal = true;
     config.common.default = "gtk";
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -73,7 +77,7 @@ in
       exec-once = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "swww-daemon"
-        "swww img /home/restranger/Pictures/Wallpapers/Catppuccin/Rwf1tsDXJtI.jpg --transition-type center"
+        "swww img /home/restranger/.config/hypr/wallpaper --transition-type center"
       ];
       exec = [
         "alsactl init"
