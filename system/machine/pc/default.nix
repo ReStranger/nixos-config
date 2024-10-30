@@ -5,6 +5,7 @@
     adb.enable = true;
     boot.enable = true;
     locale.enable = true;
+    minimal.enable = true;
     plymouth.enable = true;
     sound.enable = true;
     timezone.enable = true;
