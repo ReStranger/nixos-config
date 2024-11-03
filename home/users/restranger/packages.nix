@@ -100,6 +100,7 @@
     (pkgs.writeShellScriptBin "obsidian" ''
     exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
     '')
+    zed-editor
     # freesmlauncher
 
 
