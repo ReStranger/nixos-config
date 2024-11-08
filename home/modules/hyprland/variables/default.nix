@@ -45,7 +45,7 @@ let
       __GL_VRR_ALLOWED = 0;
 
       EGL_PLATFORM = "wayland";
-      __EGL_VENDOR_LIBRARY_FILENAMES = "${config.boot.kernelPackages.nvidiaPackages.stable}/share/glvnd/egl_vendor.d/10_nvidia.json";
+      # __EGL_VENDOR_LIBRARY_FILENAMES = "${config.boot.kernelPackages.nvidiaPackages.stable}/share/glvnd/egl_vendor.d/10_nvidia.json";
     }
     else 
     {

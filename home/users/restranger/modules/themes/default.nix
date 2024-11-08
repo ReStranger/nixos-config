@@ -1,5 +1,0 @@
-{
-  imports = [
-    ./cattpucin-mocha-mauve
-  ];
-}

@@ -101,7 +101,7 @@
 in {
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
-  genNixos  = builtins.mapAttrs mkHost;
-  genDarwin = builtins.mapAttrs mkHostDarwin;
-  genAndroid = builtins.mapAttrs mkHostAndroid;
+  genNixos    = builtins.mapAttrs mkHost;
+  genDarwin   = builtins.mapAttrs mkHostDarwin;
+  genAndroid  = builtins.mapAttrs mkHostAndroid;
 }

@@ -47,7 +47,7 @@ in
     home.packages = with pkgs; [
       grimblast
       kitty
-      nemo
+      nemo-with-extensions
       hyprshade
       hyprpicker
       brightnessctl

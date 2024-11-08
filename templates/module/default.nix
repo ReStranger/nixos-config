@@ -6,14 +6,12 @@
 with lib;
 
 let
-  cfg = config.module;
+  cfg = config.module.name;
 in {
-  options.module = {
-    enable = mkEnableOption "Enable module";
+  options.module.name = {
+    enable = mkEnableOption "Enable name module";
   };
 
   config = mkIf cfg.enable {
   };
 }
-
-
