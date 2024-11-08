@@ -17,6 +17,10 @@ in {
       enable = true;
 
       defaultApplications = {
+
+        "inode/directory"                  = "nemo.desktop";
+        "application/x-gnome-saved-search" = "nemo.desktop";
+
         "text/markdown" = "nvim.desktop";
         "text/plain"    = "nvim.desktop";
 
