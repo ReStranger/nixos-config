@@ -16,7 +16,7 @@
     xdg-user-dirs.enable       = isLinux && isWorkstation;
 
     nemo.enable       = hyprlandEnable && isLinux && isWorkstation;
-    ags.enable = hyprlandEnable && isLinux && isWorkstation;
+    ags.enable        = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable   = hyprlandEnable && isLinux && isWorkstation;
 
     git.enable           = true;
@@ -37,7 +37,7 @@
     };
 
     user = {
-      # xdg.enable          = isLinux && isWorkstation;
+      xdg.enable          = isLinux && isWorkstation;
 
       packages.enable = true;
     };
