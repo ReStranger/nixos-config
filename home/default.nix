@@ -55,6 +55,8 @@ in {
         # inputs.impermanence.nixosModules.home-manager.impermanence
         # inputs.sops-nix.homeManagerModules.sops
         # inputs.nur.nixosModules.nur
+       inputs.ags.homeManagerModules.default
+
 
         "${commonModules}"
         "${homeModules}"

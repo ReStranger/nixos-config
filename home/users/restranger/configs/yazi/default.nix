@@ -1,5 +1,0 @@
-{
-  programs.yazi = {
-    enable = true;
-  };
-}

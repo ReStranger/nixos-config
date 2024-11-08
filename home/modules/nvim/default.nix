@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.modules.nvim;
+  cfg = config.module.nvim;
 in {
   options = {
-    modules.nvim = {
+    module.nvim = {
       enable = mkEnableOption "Enable re:nvim module";
 
       lua = mkOption {
