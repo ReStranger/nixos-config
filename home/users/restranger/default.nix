@@ -10,6 +10,7 @@
 
   module = {
     alacritty.enable = isWorkstation;
+    wezterm.enable = isWorkstation;
     zathura.enable   = isWorkstation;
 
     dconf.enable               = isLinux && isWorkstation;
