@@ -9,7 +9,7 @@
 with lib;
 let
   cfg = config.module.hyprland;
-  terminal = "kitty";
+  terminal = "wezterm";
   fileManager = "nemo";
   menu = "ags -t launcher";
   vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
