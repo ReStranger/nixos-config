@@ -62,6 +62,8 @@
 
     ayugram-desktop.url = "github:ayugram-port/ayugram-desktop/release?submodules=1";
 
+    wezterm.url = "github:wez/wezterm?dir=nix";
+
     minimal-tmux = {
       url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
