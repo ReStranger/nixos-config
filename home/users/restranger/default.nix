@@ -27,10 +27,10 @@
     
     theme = {
       cattpucin-mocha-mauve = {
-        alacritty.enable = true;
         gtk.enable = true;
         imv.enable = true;
         mpv.enable = true;
+        # wezterm.enable = true;
         yazi.enable = true;
         zathura.enable = true;
       };
