@@ -127,7 +127,7 @@ in {
       wl-clipboard-x11
       pulseaudio
     ] ++ lib.optionals hyprlandEnable [
-      # alacritty
+      inputs.wezterm.packages.${pkgs.system}.default
       # alacritty-smooth-cursor
       gnome-clocks
       gnome-calculator
