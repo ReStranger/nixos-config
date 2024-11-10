@@ -8,7 +8,7 @@ with lib;
 
 let
   cfg = config.module.starship;
-    lang = icon: color: {
+  lang = icon: color: {
     symbol = icon;
     format = "[$symbol ](${color})";
   };
@@ -43,7 +43,7 @@ let
       format = " ";
     };
     continuation_prompt = "∙  ┆ ";
-    line_break = {disabled = false;};
+    line_break = { disabled = false; };
     status = {
       symbol = "✗";
       not_found_symbol = "󰍉 Not Found";
@@ -115,8 +115,9 @@ let
     dart = lang "" "blue";
     elixir = lang "" "purple";
   };
-  tomlFormat = pkgs.formats.toml {};
-in {
+  tomlFormat = pkgs.formats.toml { };
+in
+{
   options.module.starship = {
     enable = mkEnableOption "Enable starship module";
   };

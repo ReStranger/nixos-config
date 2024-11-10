@@ -1,13 +1,14 @@
 { config
-  , lib
-  , ... 
+, lib
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.theme.cattpucin-mocha-mauve.zathura;
-in {
+in
+{
   options.module.theme.cattpucin-mocha-mauve.zathura = {
     enable = mkEnableOption "Enable zathura cattpucin-mocha-mauve theme";
   };

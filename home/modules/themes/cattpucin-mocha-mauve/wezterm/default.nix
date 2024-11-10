@@ -7,9 +7,10 @@ with lib;
 
 let
   cfg = config.module.theme.cattpucin-mocha-mauve.wezterm;
-in {
+in
+{
   options.module.theme.cattpucin-mocha-mauve.wezterm = {
-  enable = mkEnableOption "Enable wezterm cattpucin-mocha-mauve theme";
+    enable = mkEnableOption "Enable wezterm cattpucin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {

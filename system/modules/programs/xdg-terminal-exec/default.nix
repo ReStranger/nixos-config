@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.programs.xdg-terminal-exec;
-in {
+in
+{
   options.module.programs.xdg-terminal-exec = {
     enable = mkEnableOption "Enable xdg-terminal-exec program";
   };

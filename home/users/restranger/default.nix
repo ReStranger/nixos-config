@@ -5,27 +5,27 @@
 }:
 
 {
-  nixpkgs.overlays = [  ];
+  nixpkgs.overlays = [ ];
 
 
   module = {
     # wezterm.enable   = isWorkstation;
-    zathura.enable   = isWorkstation;
+    zathura.enable = isWorkstation;
 
-    dconf.enable               = isLinux && isWorkstation;
-    xdg-user-dirs.enable       = isLinux && isWorkstation;
+    dconf.enable = isLinux && isWorkstation;
+    xdg-user-dirs.enable = isLinux && isWorkstation;
 
-    nemo.enable       = hyprlandEnable && isLinux && isWorkstation;
-    ags.enable        = hyprlandEnable && isLinux && isWorkstation;
-    hyprland.enable   = hyprlandEnable && isLinux && isWorkstation;
+    nemo.enable = hyprlandEnable && isLinux && isWorkstation;
+    ags.enable = hyprlandEnable && isLinux && isWorkstation;
+    hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
 
-    btop.enable          = true;
-    git.enable           = true;
-    nvim.enable          = true;
-    starship.enable      = true;
-    tmux.enable          = true;
-    yazi.enable          = true;
-    
+    btop.enable = true;
+    git.enable = true;
+    nvim.enable = true;
+    starship.enable = true;
+    tmux.enable = true;
+    yazi.enable = true;
+
     theme = {
       cattpucin-mocha-mauve = {
         gtk.enable = true;
@@ -38,7 +38,7 @@
     };
 
     user = {
-      xdg.enable          = isLinux && isWorkstation;
+      xdg.enable = isLinux && isWorkstation;
 
       packages.enable = true;
     };

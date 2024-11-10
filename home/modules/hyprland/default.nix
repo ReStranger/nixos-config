@@ -1,10 +1,10 @@
 { lib
-  , config
-  , pkgs
-  , homeModules
-  , hostname
-  , username
-  , ...
+, config
+, pkgs
+, homeModules
+, hostname
+, username
+, ...
 }:
 with lib;
 let
@@ -97,7 +97,7 @@ in
           sensitivity = 0;
           accel_profile = "flat";
         };
-        device  = {
+        device = {
           name = "2.4g-2.4g-wireless-device-mouse";
           sensitivity = 0;
           accel_profile = "flat";
@@ -121,7 +121,7 @@ in
         };
         decoration = {
           rounding = 15;
-      
+
           blur = {
             enabled = true;
             size = 6;
@@ -187,9 +187,9 @@ in
           "workspace 5 silent, title:^(Spotify Free)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
 
-#fixes
+          #fixes
 
-#Сохранение файла в firefox
+          #Сохранение файла в firefox
           "workspace [w], title:^(Сохранить файл)$, class:^(firefox)$"
           "size 900 590, itle:^(Сохранить файл)$, class:^(firefox)$"
           "center, title:^(Сохранить файл)$, class:^(firefox)$"

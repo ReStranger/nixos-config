@@ -1,41 +1,41 @@
-{
-  lib
-  , config
-  , ...
+{ lib
+, config
+, ...
 }:
 with lib;
 let
   cfg = config.module.sound;
-in {
+in
+{
   options.module.sound = {
     enable = mkEnableOption "Enable pipewire as backend sound server";
     rtkit = mkOption {
       type = types.bool;
-        default = true;
-        description = ''
-          Enable rtkit support for pipewire
-        '';
+      default = true;
+      description = ''
+        Enable rtkit support for pipewire
+      '';
     };
     alsa = mkOption {
       type = types.bool;
-        default = true;
-        description = ''
-          Enable alsa support for pipewire
-        '';
+      default = true;
+      description = ''
+        Enable alsa support for pipewire
+      '';
     };
     pulse = mkOption {
       type = types.bool;
-        default = true;
-        description = ''
-          Enable pulse support for pipewire
-        '';
+      default = true;
+      description = ''
+        Enable pulse support for pipewire
+      '';
     };
     clock-rate = mkOption {
       type = types.enum [ 44100 48000 88200 96000 ];
-        default = 96000;
-        description = ''
-          Select default clock rate for pipewire device
-        '';
+      default = 96000;
+      description = ''
+        Select default clock rate for pipewire device
+      '';
     };
   };
   config = mkIf cfg.enable {

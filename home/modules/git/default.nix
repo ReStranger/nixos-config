@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.git;
-in {
+in
+{
   options.module.git = {
     enable = mkEnableOption "Enable git module";
   };
@@ -16,7 +17,7 @@ in {
     programs.git = {
       enable = true;
       lfs.enable = true;
-      userName  = "ReStranger";
+      userName = "ReStranger";
       userEmail = "strengerplayr@gmail.com";
       extraConfig = {
         init.defaultBranch = "main";

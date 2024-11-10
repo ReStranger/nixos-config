@@ -7,11 +7,11 @@ with lib;
 
 let
   cfg = config.module.name;
-in {
+in
+{
   options.module.name = {
     enable = mkEnableOption "Enable name module";
   };
 
-  config = mkIf cfg.enable {
-  };
+  config = mkIf cfg.enable { };
 }

@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.zathura;
-in {
+in
+{
   options.module.zathura = {
     enable = mkEnableOption "Enable zathura module";
   };

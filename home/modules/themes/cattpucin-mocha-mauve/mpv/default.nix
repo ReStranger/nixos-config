@@ -1,13 +1,14 @@
 { config
-  , lib
-  , ... 
+, lib
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.theme.cattpucin-mocha-mauve.mpv;
-in {
+in
+{
   options.module.theme.cattpucin-mocha-mauve.mpv = {
     enable = mkEnableOption "Enable mpv cattpucin-mocha-mauve theme";
   };
