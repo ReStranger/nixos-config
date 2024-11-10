@@ -43,6 +43,7 @@
       nix-helper.enable = true;
       nix-ld.enable = true;
       steam.enable = true;
+      xdg-terminal-exec.enable = true;
       zsh.enable = true;
       systemPackages.enable = true;
     };
