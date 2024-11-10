@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.plymouth;
-in {
+in
+{
   options.module.plymouth.enable = mkEnableOption "Enables plymouth";
 
   config = mkIf cfg.enable {

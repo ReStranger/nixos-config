@@ -8,7 +8,8 @@ with lib;
 
 let
   cfg = config.module.nemo;
-in {
+in
+{
   options.module.nemo = {
     enable = mkEnableOption "Enable nemo module";
   };

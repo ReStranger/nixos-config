@@ -9,13 +9,14 @@ with lib;
 
 let
   cfg = config.module.users;
-in {
+in
+{
   options.module.users.enable = mkEnableOption "Enables users";
   config = mkIf cfg.enable {
     users = {
       mutableUsers = false;
 
-      groups = { 
+      groups = {
         ${username} = {
           gid = 1000;
         };
@@ -23,14 +24,14 @@ in {
 
       users = {
         ${username} = {
-          uid                = 1000;
-          home               = "/home/${username}";
-          shell              = pkgs.zsh;
-          group              = "${username}";
-          createHome         = true;
-          description        = "${username}";
-          isSystemUser       = true;
-          hashedPassword     = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
+          uid = 1000;
+          home = "/home/${username}";
+          shell = pkgs.zsh;
+          group = "${username}";
+          createHome = true;
+          description = "${username}";
+          isSystemUser = true;
+          hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
 
           extraGroups = [
             "audio"
@@ -43,7 +44,7 @@ in {
 
         root = {
           shell = pkgs.zsh;
-          hashedPassword     = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
+          hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
         };
       };
     };

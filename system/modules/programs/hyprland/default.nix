@@ -9,7 +9,8 @@ with lib;
 
 let
   cfg = config.module.programs.hyprland;
-in {
+in
+{
   options.module.programs.hyprland.enable = mkEnableOption "Enables hyprland";
   config = mkIf cfg.enable {
     programs.hyprland = {

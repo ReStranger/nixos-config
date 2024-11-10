@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.ccache;
-in {
+in
+{
   options.module.ccache = {
     enable = mkEnableOption "Enable ccache module";
   };

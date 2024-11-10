@@ -1,14 +1,14 @@
-{
-  lib
-  , config
-  , ...
+{ lib
+, config
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.gvfs;
-in {
+in
+{
   options.module.services.gvfs = {
     enable = mkEnableOption "Enable gvfs";
   };

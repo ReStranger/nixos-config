@@ -1,4 +1,3 @@
-
 { lib
 , pkgs
 , config
@@ -10,7 +9,8 @@ with lib;
 
 let
   cfg = config.module.services.greetd;
-in {
+in
+{
   options = {
     module.services.greetd = {
       enable = mkEnableOption "Enable Greetd login manager";

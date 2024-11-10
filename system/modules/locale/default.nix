@@ -1,6 +1,6 @@
 { lib
-  , config
-  , ...
+, config
+, ...
 }:
 with lib;
 let

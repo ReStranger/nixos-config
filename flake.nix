@@ -1,15 +1,16 @@
 {
   description = "ReStranger's nix system configuration";
 
-  outputs = {
-        self
-      , flake-parts
-      , ...
+  outputs =
+    { self
+    , flake-parts
+    , ...
     }@inputs:
     let
       hosts = import ./hosts.nix;
       libx = import ./lib { inherit self inputs; };
-    in flake-parts.lib.mkFlake { inherit inputs; } {
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = libx.forAllSystems;
 
       imports = [
@@ -19,7 +20,7 @@
       flake = {
         nixosConfigurations = libx.genNixos hosts.nixos;
       };
-  };
+    };
 
   inputs = {
 
@@ -30,7 +31,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

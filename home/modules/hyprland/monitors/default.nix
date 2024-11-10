@@ -9,12 +9,12 @@ with lib;
 let
   cfg = config.module.hyprland.monitors;
 
-  monitorsSettings = 
+  monitorsSettings =
     if hostname == "pc" then [ "HDMI-A-1, 1920x1080@75, 0x0, 1" "DVI-D-1,disable" ]
     else if hostname == "magicbook" then [ "eDP-1, 1920x1080@60, 0x0, 1.25" ]
     else [ ", preferred, auto, 1" ];
 
-  workspacesSettings = 
+  workspacesSettings =
     if hostname == "pc" then
       [
         "1,monitor:HDMI-A-1,default:true"
@@ -28,7 +28,7 @@ let
         "9,monitor:DVI-D-1"
         "0,monitor:DVI-D-1"
       ]
-    else if hostname == "magicbook" then 
+    else if hostname == "magicbook" then
       [
         "1,monitor:eDP-1,default:true"
         "2,monitor:eDP-1"
@@ -38,8 +38,9 @@ let
         "6,monitor:eDP-1"
         "7,monitor:eDP-1"
       ]
-    else [];
-in {
+    else [ ];
+in
+{
   options = {
     module.hyprland.monitors.enable = mkEnableOption "Enables monitors in Hyprland";
   };

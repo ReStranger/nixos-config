@@ -1,14 +1,15 @@
 { config
-  , lib
-  , pkgs
-  , ... 
+, lib
+, pkgs
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.theme.cattpucin-mocha-mauve.gtk;
-in {
+in
+{
   options.module.theme.cattpucin-mocha-mauve.gtk = {
     enable = mkEnableOption "Enable gtk cattpucin-mocha-mauve theme";
   };

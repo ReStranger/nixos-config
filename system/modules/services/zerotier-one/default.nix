@@ -1,14 +1,14 @@
-{
-  lib
-  , config
-  , ...
+{ lib
+, config
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.zerotier-one;
-in {
+in
+{
   options.module.services.zerotier-one = {
     enable = mkEnableOption "Enable zerotier-one";
     sshd_network = mkOption {

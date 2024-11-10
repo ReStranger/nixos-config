@@ -8,7 +8,8 @@ with lib;
 
 let
   cfg = config.module.ags;
-in {
+in
+{
   options.module.ags = {
     enable = mkEnableOption "Enable ags module";
   };

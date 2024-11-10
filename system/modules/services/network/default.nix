@@ -1,7 +1,7 @@
 { lib
-  , config
-  , hostname
-  , ...
+, config
+, hostname
+, ...
 }:
 with lib;
 let
@@ -38,7 +38,7 @@ in
         description = ''
           Set the MAC address of the interface
         '';
-        
+
       };
     };
   };
@@ -52,7 +52,7 @@ in
       };
       firewall.enable = cfg.firewall;
       hosts = {
-          "127.0.0.1" = [ "pc.local" ];
+        "127.0.0.1" = [ "pc.local" ];
       };
       useDHCP = lib.mkDefault true;
     };

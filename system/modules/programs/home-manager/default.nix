@@ -8,7 +8,8 @@ with lib;
 
 let
   cfg = config.module.programs.home-manager;
-in {
+in
+{
   options.module.programs.home-manager.enable = mkEnableOption "Enable Home Manager";
 
   config = mkIf cfg.enable {

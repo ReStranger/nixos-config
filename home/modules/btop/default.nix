@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.btop;
-in {
+in
+{
   options.module.btop = {
     enable = mkEnableOption "Enable btop module";
   };
