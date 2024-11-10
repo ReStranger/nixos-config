@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.dconf;
-in {
+in
+{
   options.module.dconf = {
     enable = mkEnableOption "Enable dconf module";
   };

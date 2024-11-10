@@ -1,31 +1,32 @@
-{
-  self
-  , inputs
-  , ...
-}: let
-  homeConfiguration   = "${self}/home";
+{ self
+, inputs
+, ...
+}:
+let
+  homeConfiguration = "${self}/home";
   systemConfiguration = "${self}/system";
 
-  homeModules         = "${homeConfiguration}/modules";
-  systemModules       = "${systemConfiguration}/modules";
-  commonModules       = "${self}/modules";
+  homeModules = "${homeConfiguration}/modules";
+  systemModules = "${systemConfiguration}/modules";
+  commonModules = "${self}/modules";
 
   mkHost = machineDir:
     { username ? "user"
     , stateVersion ? "24.05"
-    , platform ? "x86_64-linux" 
+    , platform ? "x86_64-linux"
     , hostname ? machineDir
     , isWorkstation ? false
     , wm ? null
     }:
     let
-      machineConfigurationPath      = "${self}/system/machine/${machineDir}";
+      machineConfigurationPath = "${self}/system/machine/${machineDir}";
       machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
-      machineModulesPath            = "${self}/system/machine/${machineDir}/modules";
-      machineModulesPathExist       = builtins.pathExists machineModulesPath;
+      machineModulesPath = "${self}/system/machine/${machineDir}/modules";
+      machineModulesPathExist = builtins.pathExists machineModulesPath;
       hyprlandEnable = wm == "hyprland";
-      deEnable       = hyprlandEnable;
-    in inputs.nixpkgs.lib.nixosSystem {
+      deEnable = hyprlandEnable;
+    in
+    inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit
           inputs
@@ -55,7 +56,7 @@
   mkHostDarwin = hostname:
     { username ? "user"
     , stateVersion ? 6
-    , platform ? "aarch64-darwin" 
+    , platform ? "aarch64-darwin"
     }:
     inputs.darwin.lib.darwinSystem {
       specialArgs = {
@@ -77,8 +78,8 @@
     };
   mkHostAndroid = hostname:
     { username ? "user"
-    # , stateVersion ? 6
-    , platform ? "aarch64" 
+      # , stateVersion ? 6
+    , platform ? "aarch64"
     }:
     inputs.nix-on-droid.lib.nixOnDroidConfiguration {
       specialArgs = {
@@ -98,10 +99,11 @@
         "${homeConfiguration}"
       ];
     };
-in {
+in
+{
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
-  genNixos    = builtins.mapAttrs mkHost;
-  genDarwin   = builtins.mapAttrs mkHostDarwin;
-  genAndroid  = builtins.mapAttrs mkHostAndroid;
+  genNixos = builtins.mapAttrs mkHost;
+  genDarwin = builtins.mapAttrs mkHostDarwin;
+  genAndroid = builtins.mapAttrs mkHostAndroid;
 }

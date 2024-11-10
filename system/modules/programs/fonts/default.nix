@@ -8,7 +8,8 @@ with lib;
 
 let
   cfg = config.module.programs.fonts;
-in {
+in
+{
   options.module.programs.fonts.enable = mkEnableOption "Enable System fonts";
 
   config = mkIf cfg.enable {

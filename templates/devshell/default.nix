@@ -16,9 +16,10 @@
             allowUnfree = true;
           };
         };
-      in {
+      in
+      {
         devShell = with pkgs; mkShell {
-          buildInputs = [  ];
+          buildInputs = [ ];
         };
       }
     );

@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.services.polkit;
-in {
+in
+{
   options.module.services.polkit.enable = mkEnableOption "Enable polkit";
   config = mkIf cfg.enable {
     security.polkit.extraConfig = ''

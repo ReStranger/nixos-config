@@ -9,7 +9,8 @@ with lib;
 
 let
   cfg = config.module.nix-config;
-in {
+in
+{
   options = {
     module.nix-config = {
       enable = mkEnableOption "Enables nix-config";

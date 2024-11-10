@@ -1,13 +1,14 @@
 { config
-  , lib
-  , ... 
+, lib
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.theme.cattpucin-mocha-mauve.yazi;
-in {
+in
+{
   options.module.theme.cattpucin-mocha-mauve.yazi = {
     enable = mkEnableOption "Enable yazi cattpucin-mocha-mauve theme";
   };
@@ -63,20 +64,20 @@ in {
 
       input = {
         border = { fg = "#89b4fa"; };
-        title = {};
-        value = {};
+        title = { };
+        value = { };
         selected = { reversed = true; };
       };
 
       select = {
         border = { fg = "#89b4fa"; };
         active = { fg = "#f5c2e7"; };
-        inactive = {};
+        inactive = { };
       };
 
       tasks = {
         border = { fg = "#89b4fa"; };
-        title = {};
+        title = { };
         hovered = { underline = true; };
       };
 

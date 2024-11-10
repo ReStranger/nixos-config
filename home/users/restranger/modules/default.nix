@@ -6,7 +6,8 @@
 
 let
   userModules = "${self}/home/users/${username}/modules";
-in {
+in
+{
   imports = builtins.filter (module: lib.pathIsDirectory module) (
     map (module: "${userModules}/${module}") (builtins.attrNames (builtins.readDir userModules))
   );
