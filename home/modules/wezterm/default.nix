@@ -20,6 +20,8 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       package = inputs.wezterm.packages.${pkgs.system}.default;
+      extraConfig = ''
+      '';
     };
   };
 }
