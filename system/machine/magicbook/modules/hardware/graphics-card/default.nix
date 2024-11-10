@@ -4,5 +4,5 @@
   hardware.graphics = {
     enable = true;
   };
-  services.xserver.videoDrivers=["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 }

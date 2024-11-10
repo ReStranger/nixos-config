@@ -1,9 +1,9 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
-    home.packages = with pkgs; [
-      libsForQt5.qtstyleplugin-kvantum
-      libsForQt5.lightly
-    ];
+  home.packages = with pkgs; [
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.lightly
+  ];
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "gtk";
   };

@@ -8,7 +8,8 @@ with lib;
 
 let
   cfg = config.module.xdg-user-dirs;
-in {
+in
+{
   options.module.xdg-user-dirs = {
     enable = mkEnableOption "Enable xdg-user-dirs module";
   };

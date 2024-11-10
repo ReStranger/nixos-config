@@ -1,14 +1,14 @@
-{
-  lib
-  , config
-  , ...
+{ lib
+, config
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.auto-cpufreq;
-in {
+in
+{
   options.module.services.auto-cpufreq.enable = mkEnableOption "Enable auto-cpufreq";
   config = mkIf cfg.enable {
     services.auto-cpufreq.enable = true;

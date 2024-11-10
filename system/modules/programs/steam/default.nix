@@ -8,7 +8,8 @@ with lib;
 
 let
   cfg = config.module.programs.steam;
-in {
+in
+{
   options.module.programs.steam = {
     enable = mkEnableOption "Enable steam client";
     proton-ge = mkOption {
@@ -23,13 +24,13 @@ in {
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      extraCompatPackages = 
-      (
-        if cfg.proton-ge then with pkgs; [
-          proton-ge-bin
-        ]
-        else []
-      );
+      extraCompatPackages =
+        (
+          if cfg.proton-ge then with pkgs; [
+            proton-ge-bin
+          ]
+          else [ ]
+        );
     };
   };
 }

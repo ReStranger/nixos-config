@@ -7,9 +7,10 @@ with lib;
 
 let
   cfg = config.module.theme.cattpucin-mocha-mauve.alacritty;
-in {
+in
+{
   options.module.theme.cattpucin-mocha-mauve.alacritty = {
-  enable = mkEnableOption "Enable alacritty cattpucin-mocha-mauve theme";
+    enable = mkEnableOption "Enable alacritty cattpucin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {

@@ -1,14 +1,14 @@
-{
-  lib
-  , config
-  , ...
+{ lib
+, config
+, ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.zram;
-in {
+in
+{
   options.module.services.zram = {
     enable = mkEnableOption "Enable zram";
     deviceNumber = mkOption {

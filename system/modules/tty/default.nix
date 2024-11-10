@@ -1,12 +1,13 @@
 { lib
-  , config
-  , pkgs
-  , ...
+, config
+, pkgs
+, ...
 }:
 with lib;
 let
   cfg = config.module.tty;
-in {
+in
+{
   options.module.tty.enable = mkEnableOption "Enable TTY setup module";
   config = mkIf cfg.enable {
     console = {

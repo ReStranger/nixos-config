@@ -12,7 +12,8 @@ with lib;
 let
   inherit (pkgs.stdenv) isLinux;
   cfg = config.module.user.packages;
-in {
+in
+{
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
   };
@@ -54,12 +55,12 @@ in {
       cava
 
       ## dev tools ##
-      lua-language-server 
-      stylua 
+      lua-language-server
+      stylua
 
-      rustc 
-      cargo 
-      rust-analyzer 
+      rustc
+      cargo
+      rust-analyzer
 
       clang-tools
       clang
@@ -70,7 +71,7 @@ in {
       ruff-lsp
       black
       mypy
-      python312Packages.debugpy 
+      python312Packages.debugpy
 
       nodejs_22
       pnpm
@@ -107,10 +108,10 @@ in {
       # androidStudioPackages.canary
       transmission_4-gtk
       (pkgs.writeShellScriptBin "vesktop" ''
-      exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
+        exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
       '')
       (pkgs.writeShellScriptBin "obsidian" ''
-      exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
+        exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
       '')
       zed-editor
       davinci-resolve
