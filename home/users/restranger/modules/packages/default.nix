@@ -93,7 +93,6 @@ in {
       (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
     ] ++ lib.optionals isWorkstation [
       kitty
-      btop
       firefox
       anytype
       onlyoffice-bin
