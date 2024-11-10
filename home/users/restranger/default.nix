@@ -19,6 +19,7 @@
     ags.enable        = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable   = hyprlandEnable && isLinux && isWorkstation;
 
+    btop.enable          = true;
     git.enable           = true;
     nvim.enable          = true;
     starship.enable      = true;
