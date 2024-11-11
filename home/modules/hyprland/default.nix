@@ -91,6 +91,7 @@ in
           follow_mouse = 1;
 
           touchpad = {
+            middle_button_emulation = true;
             natural_scroll = true;
           };
 
