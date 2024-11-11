@@ -105,7 +105,7 @@ in
       rustdesk-flutter
       krita
       inkscape
-      # androidStudioPackages.canary
+      androidStudioPackages.canary
       transmission_4-gtk
       (pkgs.writeShellScriptBin "vesktop" ''
         exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
