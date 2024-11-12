@@ -4,6 +4,7 @@
   module = {
     adb.enable = true;
     boot.enable = true;
+    ccache.enable = true;
     locale.enable = true;
     minimal.enable = true;
     plymouth.enable = true;

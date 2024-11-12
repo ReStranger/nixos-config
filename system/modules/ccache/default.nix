@@ -14,6 +14,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.ccache.enable = true;
+    programs.ccache = {
+      enable = true;
+      cacheDir = "/mnt/ccache";
+    };
   };
 }
