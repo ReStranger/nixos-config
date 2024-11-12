@@ -7,6 +7,10 @@
     locale.enable = true;
     minimal.enable = true;
     plymouth.enable = true;
+    security = {
+      enable = true;
+      enableBootOptions = true;
+    };
     sound.enable = true;
     timezone.enable = true;
     tty.enable = true;
