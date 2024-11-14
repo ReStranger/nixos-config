@@ -18,6 +18,10 @@ in
         libraries = with pkgs; [
           libxcrypt-legacy
           zlib
+          libcxx
+          readline
+          iconv
+          iconv.dev
         ];
       };
     };
