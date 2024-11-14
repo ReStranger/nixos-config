@@ -16,6 +16,8 @@ in
   config = mkIf cfg.enable {
     programs.ccache = {
       enable = true;
+      owner = "$(whoami)";
+      group = "users";
       cacheDir = "/mnt/ccache";
     };
   };
