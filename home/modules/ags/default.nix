@@ -1,6 +1,7 @@
 { config
 , pkgs
 , lib
+, inputs
 , ...
 }:
 
@@ -18,11 +19,11 @@ in
     home.packages = with pkgs; [
       bun
       dart-sass
-      sassc
-      fd
+      # sassc
+      # fd
       brightnessctl
       swww
-      slurp
+      # slurp
       hyprpicker
       pavucontrol
       networkmanager
@@ -35,14 +36,23 @@ in
       enable = true;
 
       # null or path, leave as null if you don't want hm to manage the config
-      configDir = ../ags;
+      # configDir = /home/${username}/.config/my-ags;
 
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
-        gtksourceview
-        webkitgtk_6_0
-        accountsservice
-      ];
+        fzf
+        wrapGAppsHook
+        gobject-introspection
+      ] ++ (with inputs.astal.packages.${pkg.system}; [
+        io
+        astal3
+        apps
+        battery
+        hyprland
+        network
+        powerprofiles
+        tray
+      ]);
     };
   };
 }
