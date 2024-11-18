@@ -11,7 +11,7 @@ let
   cfg = config.module.hyprland;
   terminal = "wezterm";
   fileManager = "nemo";
-  menu = "ags -t launcher";
+  menu = "ags toggle AppLauncher --instance astal";
   vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
 in
 {
@@ -79,7 +79,7 @@ in
           "pactl set-sink-volume alsa_output.pci-0000_0a_00.4.analog-stereo 50%"
           "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
           "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl"
-          "ags"
+          "ags run"
           "/home/restranger/.config/nwg-dock-hyprland/nwg-dock-hyprland.sh"
         ];
         input = {
@@ -113,7 +113,7 @@ in
           gaps_out = 10;
           border_size = 2;
           # "col.active_border" = "rgba(f5c2e7ee) rgba(cba6f7ee) 45deg";
-          "col.active_border" = "rgba(cba6f7ee)";
+          "col.active_border" = "rgba(f5c2e7ee) rgba(cba6f7ee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
 
           layout = "dwindle";
@@ -286,7 +286,7 @@ in
           "CTRL SHIFT, Print, exec, hyprshade off; grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d')-screenshot.png; ${vibrance}"
 
           "$mod ALT, R, exec, hyprctl reload"
-          "$mod ALT, W, exec, ags -q; ags"
+          "$mod ALT, W, exec, ags quit; ags run"
 
           "$mod, R, togglesplit, # dwindle"
           "$mod SHIFT, F, togglefloating, "
