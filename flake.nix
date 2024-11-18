@@ -50,7 +50,15 @@
       url = "github:/nix-community/impermanence";
     };
 
-    ags.url = "github:Aylur/ags";
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland";
