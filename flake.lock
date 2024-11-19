@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1731590200,
-        "narHash": "sha256-fLJNq7MWHP3pSSa4kxZ4fz+Mw0THT+dGqnJyGY5Gb1Y=",
+        "lastModified": 1731689198,
+        "narHash": "sha256-XMFaDht3RHtlwZ7NQKbz2Cd0e4oDMB7syyOd9ifbn98=",
         "owner": "Aylur",
         "repo": "ags",
-        "rev": "d8c2748d231464f40e62bafbdc87298b566aa026",
+        "rev": "3e270c8172ae7b61c5e5f24aea69985f792aa000",
         "type": "github"
       },
       "original": {
@@ -362,11 +362,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1731526492,
-        "narHash": "sha256-tzWLCOcIxvJvxB25kC0Q371pc5wBBzbzwSlSNc4L8gw=",
+        "lastModified": 1731631654,
+        "narHash": "sha256-3BrzIc6CzuOVdhbRuKguIdG6IqfLbvNbYXqhmMWkxwY=",
         "ref": "refs/heads/main",
-        "rev": "3fb47372b79265ebdabeeefdad10359d5b18377a",
-        "revCount": 5451,
+        "rev": "098e491a43e8b26f4382b48651a4131464bf6a2f",
+        "revCount": 5456,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
       },
@@ -969,11 +969,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1730734444,
-        "narHash": "sha256-lNgCAphrq3/bYGjgDxEl2rVcer6GnmfWXDhxc+kdYOk=",
+        "lastModified": 1731625276,
+        "narHash": "sha256-NbgX4nfGJYFflQauJZMTJrpgTD5oY3hgs+KNE3JJgSc=",
         "owner": "wez",
         "repo": "wezterm",
-        "rev": "51c794ac500a2033b9dc570c71810518bfa667a9",
+        "rev": "979df7826965348345a3305ed889a4b9aef838e1",
         "type": "github"
       },
       "original": {
