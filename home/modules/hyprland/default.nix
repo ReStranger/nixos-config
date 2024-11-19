@@ -274,6 +274,10 @@ in
 
           # Fix xwayland
           "noblur,class:^()$,class:^()$"
+          "nofocus,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
+          "noshadow,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
+          "noborder,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
+          "float,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
         ];
 
         "$mod" = "SUPER";
