@@ -22,7 +22,7 @@ in
         liberation_ttf
         corefonts
         vistafonts
-        (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
+        (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" "Inconsolata" "FiraCode" "Hack" ]; })
       ];
     };
   };
