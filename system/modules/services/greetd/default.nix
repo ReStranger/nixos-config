@@ -50,7 +50,7 @@ in
         initial_session = mkIf cfg.autologin {
           command = (
             if wm == "hyprland" then
-              "${pkgs.hyprland}/bin/hyprland"
+              "${pkgs.hyprland}/bin/hyprland > /tmp/hypland-start.log"
             else
               "${pkgs.greetd}/bin/agreety --cmd $SHELL"
           );
