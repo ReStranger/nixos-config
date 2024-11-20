@@ -15,6 +15,7 @@
     ];
 
   };
+  nix.settings.cores = 10;
   #   services.udev.extraRules = ''
   # ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="/usr/bin/iw dev $name set power_save on"
   # SUBSYSTEM=="pci", ATTR{power/control}="auto"
