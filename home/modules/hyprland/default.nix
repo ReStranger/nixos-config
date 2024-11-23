@@ -71,7 +71,7 @@ in
         exec-once = [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
-          "swww img /home/${username}/Pictures/Wallpapers/Catppuccin/Rwf1tsDXJtI.jpg --transition-type center"
+          "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
         ];
         exec = [
           "alsactl init"
@@ -122,7 +122,13 @@ in
         };
         decoration = {
           rounding = 15;
-
+          shadow = {
+            enabled = true;
+            range = 30;
+            offset = "2 3";
+            render_power = 3;
+            color = "rgba(00000066)";
+          };
           blur = {
             enabled = true;
             size = 6;
