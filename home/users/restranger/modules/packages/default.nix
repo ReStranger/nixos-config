@@ -52,7 +52,7 @@ in
 
       ## fetch ##
       fastfetch
-      cava
+      # cava
 
       ## dev tools ##
       lua-language-server
