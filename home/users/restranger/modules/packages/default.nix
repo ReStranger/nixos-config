@@ -113,7 +113,6 @@ in
       (pkgs.writeShellScriptBin "obsidian" ''
         exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
       '')
-      zed-editor
       davinci-resolve
     ] ++ lib.optionals (isLinux && isWorkstation) [
       inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
