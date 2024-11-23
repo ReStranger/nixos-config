@@ -37,12 +37,10 @@ window {
   padding-top: 8px;
   border-radius: 15px;
   margin: 8px;
+  margin-top: 0px;
 }
 
 #active {
-  /* This is to underline the button representing the currently active window */
-  border-bottom: solid 1px;
-  border-color: rgba(203, 166, 147, 0.3);
 }
 
 button,
