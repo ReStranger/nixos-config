@@ -26,6 +26,15 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-  swapDevices = [ ];
-
+  fileSystems."/mnt/ccache" =
+    {
+      device = "/home/restranger/.cache/ccahe";
+      options = [ "defaults" "bind" "users" "noauto" ];
+    };
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      priority = 1;
+    }
+  ];
 }
