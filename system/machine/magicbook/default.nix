@@ -16,6 +16,13 @@
     timezone.enable = true;
     tty.enable = true;
     users.enable = true;
+    virtualisation = {
+      enable = true;
+      docker.enable = true;
+      podman.enable = false;
+      libvirtd.enable = false;
+      virtualbox.enable = false;
+    };
 
     services = {
       bluetooth.enable = true;
