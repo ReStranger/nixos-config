@@ -16,6 +16,13 @@
     timezone.enable = true;
     tty.enable = true;
     users.enable = true;
+    virtualisation = {
+      enable = true;
+      docker.enable = true;
+      podman.enable = false;
+      libvirtd.enable = true;
+      virtualbox.enable = false;
+    };
 
     services = {
       flatpak.enable = true;
