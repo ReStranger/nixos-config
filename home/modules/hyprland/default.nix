@@ -217,6 +217,10 @@ in
           "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
           "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
 
+          "workspace [w], class:^(firefox)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
+          "float, class:^(firefox)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
+          "size 720 260, class:^(firefox)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
+
           # Картинка в картинке в firefox
           #Сохранение файла в firefox
           "workspace [w], title:^(Сохранить файл)$, class:^(firefox)$"
