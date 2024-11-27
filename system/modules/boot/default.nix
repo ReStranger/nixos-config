@@ -13,14 +13,15 @@ in
       loader = {
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot/efi";
         };
         grub = {
-          efiSupport = true;
+          enable = true;
           device = "nodev";
+          efiSupport = true;
           useOSProber = true;
         };
       };
+      initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
     };
   };
 }
