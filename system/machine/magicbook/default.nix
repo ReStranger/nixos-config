@@ -34,6 +34,7 @@
       gvfs.enable = true;
       network.enable = true;
       openssh.enable = true;
+      opentablet.enable = true;
       polkit.enable = true;
       power-profiles-daemon.enable = true;
       systemd-oomd.enable = true;
