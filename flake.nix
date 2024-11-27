@@ -14,7 +14,7 @@
       systems = libx.forAllSystems;
 
       imports = [
-        # ./parts
+        ./parts
         # ./docs
       ];
       flake = {
