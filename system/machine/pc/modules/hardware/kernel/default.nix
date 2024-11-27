@@ -4,7 +4,13 @@
 {
   boot = {
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+      availableKernelModules = [ 
+        "nvme" 
+        "xhci_pci" 
+        "usb_storage" 
+        "sd_mod" 
+        "cryptd" 
+      ];
       kernelModules = [ ];
     };
     kernelModules = [ "amdgpu" "kvm-amd" ];
@@ -29,6 +35,8 @@
       "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
       "hpet=disable"
       "zswap.enabled=0"
+      "root=/dev/mapper/nixos-root"
+      "cryptdevice=/dev/nvme0n1p2:luks_lvm"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
       "nvidia_drm.modeset=1"
       "nvidia_drm.fbdev=1"
