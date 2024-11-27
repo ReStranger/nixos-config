@@ -1,36 +1,38 @@
 { username
 , ...
 }:{
+
+  boot.initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
   fileSystems."/" =
     {
-      device = "/div/disk/by-label/nixos";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/home" =
     {
-      device = "/div/disk/by-label/nixos";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
   fileSystems."/var/log" =
     {
-      device = "/div/disk/by-label/nixos";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [ "subvol=@log" "noatime" ];
     };
 
   fileSystems."/nix" =
     {
-      device = "/div/disk/by-label/nixos";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [ "subvol=@nix" "noatime" ];
     };
 
   fileSystems."/.snapshots" =
     {
-      device = "/div/disk/by-label/nixos";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [ "subvol=@.snapshots" ];
     };

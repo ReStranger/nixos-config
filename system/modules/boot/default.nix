@@ -21,7 +21,6 @@ in
           useOSProber = true;
         };
       };
-      initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
     };
   };
 }
