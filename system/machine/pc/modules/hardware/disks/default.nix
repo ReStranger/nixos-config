@@ -1,4 +1,6 @@
-{
+{ username
+, ...
+}:{
   fileSystems."/" =
     {
       device = "/dev/nvme0n1p2";
@@ -46,7 +48,7 @@
     };
   fileSystems."/mnt/ccache" =
     {
-      device = "/home/restranger/.cache/ccahe";
+      device = "/home/${username}/.cache/ccahe";
       options = [ "defaults" "bind" "users" "noauto" ];
     };
   swapDevices = [
