@@ -94,7 +94,7 @@ in
       (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
     ] ++ lib.optionals isWorkstation [
       kitty
-      firefox
+      firefox-devedition-bin
       anytype
       onlyoffice-bin
       thunderbird-bin
