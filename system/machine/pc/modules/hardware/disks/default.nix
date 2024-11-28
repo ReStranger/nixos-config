@@ -2,7 +2,10 @@
 , ...
 }:{
 
-  boot.initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
+  boot.initrd.luks.devices = {
+    cryptroot.device = "/dev/disk/by-id/nvme-eui.002538da11b3a04c-part2";
+    cryptstorage.device = "/dev/disk/by-id/wwn-0x50014ee2153e7621-part1";
+  };
   fileSystems."/" =
     {
       device = "/dev/disk/by-label/nixos";
@@ -43,12 +46,12 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-  # fileSystems."/mnt/sda1" =
-  #   {
-  #     device = "/dev/sda1";
-  #     fsType = "btrfs";
-  #     options = [ "x-gvfs-show" "x-gvfs-name=HDD%201" ];
-  #   };
+  fileSystems."/mnt/sda1" =
+    {
+      device = "/dev/disk/by-label/STORAGE";
+      fsType = "btrfs";
+      options = [ "x-gvfs-show" "x-gvfs-name=HDD%201" ];
+    };
   # fileSystems."/mnt/win" =
   #   {
   #     device = "/dev/nvme0n1p5";
@@ -61,15 +64,15 @@
   #     fsType = "ntfs-3g";
   #     options = [ "rw" "uid=1000" "x-gvfs-show" "x-gvfs-name=WinHDD" ];
   #   };
-  # fileSystems."/mnt/ccache" =
-  #   {
-  #     device = "/home/${username}/.cache/ccahe";
-  #     options = [ "defaults" "bind" "users" "noauto" ];
-  #   };
-  # swapDevices = [
-  #   {
-  #     device = "/swap/swapfile";
-  #     priority = 1;
-  #   }
-  # ];
+  fileSystems."/mnt/ccache" =
+    {
+      device = "/home/${username}/.cache/ccahe";
+      options = [ "defaults" "bind" "users" "noauto" ];
+    };
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      priority = 1;
+    }
+  ];
 }
