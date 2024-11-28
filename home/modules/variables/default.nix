@@ -16,7 +16,7 @@ in
   config = mkIf cfg.enable {
     home.sessionVariables = {
       EDITOR = "nvim";
-      BROWSER = "firefox";
+      BROWSER = "firefox-developer-edition.desktop";
       TERMINAL = "alacritty";
     };
   };
