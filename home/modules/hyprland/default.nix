@@ -187,7 +187,7 @@ in
 
         windowrulev2 = [
 
-          "workspace 1 silent, class:^(firefox)$"
+          "workspace 1 silent, initialTitle:^(initialTitle: Firefox Developer Edition)$"
           "workspace 2 silent, class:^(obsidian)$"
           "workspace 3 silent, class:^(vesktop)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
@@ -197,15 +197,15 @@ in
           #fixes
 
           #Сохранение файла в firefox
-          "workspace [w], title:^(Сохранить файл)$, class:^(firefox)$"
-          "size 900 590, itle:^(Сохранить файл)$, class:^(firefox)$"
-          "center, title:^(Сохранить файл)$, class:^(firefox)$"
-          "workspace [w], title:^(Enter name of file to save to…)$, class:^(firefox)$"
-          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(firefox)$"
-          "center, title:^(Enter name of file to save to…)$, class:^(firefox)$"
-          "workspace [w], title:^(Введите имя файла для сохранения…)$, class:^(firefox)$"
-          "size 900 590, title:^(Введите имя файла для сохранения…)$, class:^(firefox)$"
-          "center, title:^(Введите имя файла для сохранения…)$, class:^(firefox)$"
+          "workspace [w], title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "size 900 590, itle:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "center, title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "workspace [w], title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "size 900 590, itle:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "center, title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "workspace [w], title:^(Введите имя файла для сохранения…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "size 900 590, title:^(Введите имя файла для сохранения…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "center, title:^(Введите имя файла для сохранения…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
           "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
           "center, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
           "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
@@ -217,18 +217,18 @@ in
           "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
           "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
 
-          "workspace [w], class:^(firefox)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
-          "float, class:^(firefox)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
-          "size 720 260, class:^(firefox)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
+          "workspace [w], initialTitle:^(initialTitle: Firefox Developer Edition)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
+          "float, initialTitle:^(initialTitle: Firefox Developer Edition)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
+          "size 720 260, initialTitle:^(initialTitle: Firefox Developer Edition)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
 
           # Картинка в картинке в firefox
           #Сохранение файла в firefox
-          "workspace [w], title:^(Сохранить файл)$, class:^(firefox)$"
-          "size 900 590, itle:^(Сохранить файл)$, class:^(firefox)$"
-          "center, title:^(Сохранить файл)$, class:^(firefox)$"
-          "workspace [w], title:^(Enter name of file to save to…)$, class:^(firefox)$"
-          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(firefox)$"
-          "center, title:^(Enter name of file to save to…)$, class:^(firefox)$"
+          "workspace [w], title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "size 900 590, itle:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "center, title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "workspace [w], title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "size 900 590, title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "center, title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
 
           # Просмотр медиа в telegram
           "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
@@ -308,7 +308,7 @@ in
           "$mod SHIFT, P, pseudo, # dwindle"
 
           "$mod, C, exec, hyprshade off; hyprpicker --autocopy; ${vibrance}"
-          "$mod ALT, O, exec, firefox & obsidian & ayugram-desktop -- %u & vesktop & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
+          "$mod ALT, O, exec, firefox-developer-edition & obsidian & ayugram-desktop -- %u & vesktop & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
           "$mod ALT, P, exec, ags -t powermenu"
 
           "$mod, L, movefocus, r"
