@@ -118,6 +118,7 @@ in
       inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
       xorg.xeyes
       gnome-software
+      filelight
       qpwgraph
       file-roller
       figma-linux
