@@ -48,8 +48,10 @@ in
       hostName = "${hostname}";
       networkmanager = {
         enable = true;
-        wifi.backend = cfg.wifi.backend;
-        wifi.macAddress = cfg.wifi.macAddress;
+        wifi = {
+          backend = cfg.wifi.backend;
+          macAddress = cfg.wifi.macAddress;
+        };
       };
       firewall.enable = cfg.firewall;
       hosts = {
