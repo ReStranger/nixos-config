@@ -91,7 +91,12 @@ in
 
       ## Fonts ##
       corefonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.inconsolata
+      nerd-fonts.fira-code
+      nerd-fonts.hack
+
     ] ++ lib.optionals isWorkstation [
       kitty
       firefox-devedition-bin
