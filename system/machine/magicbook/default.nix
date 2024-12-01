@@ -32,7 +32,13 @@
         frontend = "tui";
       };
       gvfs.enable = true;
-      network.enable = true;
+      network = {
+        enable = true;
+        wifi = {
+          backend = "iwd";
+          macAddress = "random";
+        };
+      };
       openssh.enable = true;
       opentablet.enable = true;
       polkit.enable = true;

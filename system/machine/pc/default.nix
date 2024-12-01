@@ -31,7 +31,10 @@
         frontend = "tui";
       };
       gvfs.enable = true;
-      network.enable = true;
+      network = {
+        enable = true;
+        wifi.backend = "iwd";
+      };
       openssh.enable = true;
       opentablet.enable = true;
       polkit.enable = true;
