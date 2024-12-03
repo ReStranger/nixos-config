@@ -46,6 +46,25 @@ in
       # Utils
       dconf-editor
       xorg.xhost
+
+      (prismlauncher.override {
+        additionalLibs = [
+          
+        ];
+        additionalPrograms = [
+          glfw3-minecraft
+          (if (hostname == "pc") then config.boot.kernelPackages.nvidiaPackages.stable else null)
+          ffmpeg
+        ];
+
+        jdks = [
+          graalvm-ce
+          zulu8
+          zulu17
+          zulu
+        ];
+      })
+
     ];
   };
 }
