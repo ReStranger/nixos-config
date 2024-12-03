@@ -21,21 +21,26 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Virtualization settings
-    environment.systemPackages = with pkgs; [
-      virt-manager
-    ];
 
     users.extraGroups.vboxusers.members = [ username ];
+
+    programs.virt-manager.enable = cfg.libvirtd.enable;
 
     virtualisation = {
       docker = {
         enable = cfg.docker.enable;
         enableOnBoot = false;
-        storageDriver = "btrfs";
       };
       podman.enable = cfg.podman.enable;
-      libvirtd.enable = cfg.libvirtd.enable;
+      libvirtd = {
+        enable = cfg.libvirtd.enable;
+        qemu = {
+          package = pkgs.qemu_kvm;
+          runAsRoot = true;
+          swtpm.enable = true;
+          ovmf.enable = true;
+        };
+      };
       virtualbox.host.enable = cfg.virtualbox.enable;
     };
   };
