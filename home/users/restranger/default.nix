@@ -5,7 +5,9 @@
 }:
 
 {
-  nixpkgs.overlays = [ ];
+  nixpkgs.overlays = [
+    (import ../../overlays/catppuccin-qt5ct)
+  ];
 
 
   module = {
@@ -34,6 +36,7 @@
         gtk.enable = true;
         imv.enable = true;
         mpv.enable = true;
+        qt.enable = true;
         # wezterm.enable = true;
         yazi.enable = true;
         zathura.enable = true;
