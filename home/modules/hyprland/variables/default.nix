@@ -29,10 +29,9 @@ let
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_DISABLE_RDD_SANDBOX = "1";
 
-        QT_AUTO_SCREEN_SCALE_FACTOR = "1 ";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         QT_QPA_PLATFORM = "wayland;xcb ";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1 ";
-        QT_QPA_PLATFORMTHEME = "gtk";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
         XCURSOR_SIZE = "24";
         HYPRCURSOR_SIZE = "24";
@@ -64,10 +63,9 @@ let
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_DISABLE_RDD_SANDBOX = "1";
 
-        QT_AUTO_SCREEN_SCALE_FACTOR = "1 ";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         QT_QPA_PLATFORM = "wayland;xcb ";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1 ";
-        QT_QPA_PLATFORMTHEME = "gtk";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
         XCURSOR_SIZE = "24";
         HYPRCURSOR_SIZE = "24";
