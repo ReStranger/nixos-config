@@ -39,14 +39,11 @@ in
         };
       };
       font = {
-        name = "Gabarito";
+        name = "Google Sans";
         size = 10;
       };
       gtk2.extraConfig =
         ''
-          gtk-font-name="Gabarito 10"
-          gtk-cursor-theme-name="Bibata-Modern-Classic"
-          gtk-cursor-theme-size=24
           gtk-toolbar-style=GTK_TOOLBAR_ICONS
           gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
           gtk-button-images=0
@@ -60,9 +57,6 @@ in
         '';
       gtk3.extraConfig = {
         Settings = ''
-          gtk-font-name=Gabarito 10
-          gtk-cursor-theme-name=Bibata-Modern-Classic
-          gtk-cursor-theme-size=24
           gtk-toolbar-style=GTK_TOOLBAR_ICONS
           gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
           gtk-button-images=0
@@ -79,9 +73,6 @@ in
 
       gtk4.extraConfig = {
         Settings = ''
-          gtk-font-name=Gabarito 10
-          gtk-cursor-theme-name=Bibata-Modern-Classic
-          gtk-cursor-theme-size=24
           gtk-toolbar-style=GTK_TOOLBAR_ICONS
           gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
           gtk-button-images=0
