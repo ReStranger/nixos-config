@@ -31,8 +31,8 @@ standard_dialogs=gtk3
 style=Fusion
 
 [Fonts]
-fixed="Gabarito,10,-1,5,50,0,0,0,0,0,Regular"
-general="Gabarito,10,-1,5,50,0,0,0,0,0,Regular"
+fixed="Google Sans,10,-1,5,50,0,0,0,0,0,Regular"
+general="Google Sans,10,-1,5,50,0,0,0,0,0,Regular"
 
 [Interface]
 activate_item_on_single_click=1
