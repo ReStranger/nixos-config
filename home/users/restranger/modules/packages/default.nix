@@ -55,39 +55,13 @@ in
       # cava
 
       ## dev tools ##
-      lua-language-server
-      stylua
-
-      rustc
-      cargo
-      rust-analyzer
-
+      nodejs_22
       clang-tools
       clang
-
-      python312
-      python312Packages.pip
-      pyright
-      ruff-lsp
-      black
-      mypy
-      python312Packages.debugpy
-
-      nodejs_22
-      pnpm
-      vscode-langservers-extracted
-      nodePackages_latest.typescript-language-server
-      prettierd
-      eslint_d
+      cargo
+      rustc
 
       ## LSP ##
-      bash-language-server
-      marksman
-      nixd
-      hyprls
-      codeium
-      ## TOOLS ##
-      nixpkgs-fmt
 
       ## Fonts ##
       corefonts
