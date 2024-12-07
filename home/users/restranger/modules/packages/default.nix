@@ -56,6 +56,8 @@ in
 
       ## dev tools ##
       nodejs_22
+      python312
+      python312Packages.pip
       clang-tools
       clang
       cargo
