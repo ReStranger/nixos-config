@@ -58,6 +58,8 @@ in
       nodejs_22
       python312
       python312Packages.pip
+      poetry
+      uv
       clang-tools
       clang
       cargo
