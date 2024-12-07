@@ -35,6 +35,14 @@ in
 
         # Linters
         clippy
+        eslint_d
+        mypy
+
+        # formatters
+        stylua
+        prettierd
+        black
+        nixpkgs-fmt
 
         # Debuggers
         lldb
