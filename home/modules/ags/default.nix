@@ -52,6 +52,7 @@ in
         network
         powerprofiles
         tray
+        mpris
       ]);
     };
   };
