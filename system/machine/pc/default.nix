@@ -25,6 +25,7 @@
     };
 
     services = {
+      bluetooth.enable = true;
       flatpak.enable = true;
       greetd = {
         enable = true;
