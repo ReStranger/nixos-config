@@ -27,7 +27,7 @@ window {
 }
 
 #box {
-  background: #171717;
+  background: #11111b;
   border-style: none;
   border-width: 1px;
   box-shadow:
@@ -60,7 +60,7 @@ button {
 }
 
 button:hover {
-  background-color: rgba(238, 238, 238, 0.06);
+  background-color: rgba(17, 17, 28, 0.06);
   box-shadow: 0 0 0 1px rgba(238, 238, 238, 0.04) inset;
   border-radius: 15px;
 }
