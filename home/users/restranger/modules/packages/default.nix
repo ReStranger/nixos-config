@@ -115,6 +115,7 @@ in
       # alacritty-smooth-cursor
       gnome-clocks
       gnome-calculator
+      overskride
       wofi
       swww
       mako
