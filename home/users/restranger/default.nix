@@ -32,7 +32,7 @@
     yazi.enable = true;
 
     theme = {
-      cattpucin-mocha-mauve = {
+      catppuccin-mocha-mauve = {
         gtk.enable = true;
         imv.enable = true;
         mpv.enable = true;
