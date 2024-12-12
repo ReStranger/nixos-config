@@ -7,11 +7,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.qt;
+  cfg = config.module.theme.catppuccin-mocha-mauve.qt;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.qt = {
-    enable = mkEnableOption "Enable qt cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.qt = {
+    enable = mkEnableOption "Enable qt catppuccin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {

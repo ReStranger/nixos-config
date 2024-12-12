@@ -4,7 +4,7 @@
 }:
 
 let
-  homeThemesCattpucinMochaMauvePath = "${homeModules}/themes/cattpucin-mocha-mauve";
+  homeThemesCattpucinMochaMauvePath = "${homeModules}/themes/catppuccin-mocha-mauve";
 in
 {
   # Read all directories from homeModules

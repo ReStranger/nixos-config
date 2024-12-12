@@ -6,11 +6,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.alacritty;
+  cfg = config.module.theme.catppuccin-mocha-mauve.alacritty;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.alacritty = {
-    enable = mkEnableOption "Enable alacritty cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.alacritty = {
+    enable = mkEnableOption "Enable alacritty catppuccin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {

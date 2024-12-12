@@ -6,11 +6,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.zathura;
+  cfg = config.module.theme.catppuccin-mocha-mauve.zathura;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.zathura = {
-    enable = mkEnableOption "Enable zathura cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.zathura = {
+    enable = mkEnableOption "Enable zathura catppuccin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {

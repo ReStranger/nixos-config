@@ -7,11 +7,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.gtk;
+  cfg = config.module.theme.catppuccin-mocha-mauve.gtk;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.gtk = {
-    enable = mkEnableOption "Enable gtk cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.gtk = {
+    enable = mkEnableOption "Enable gtk catppuccin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {
