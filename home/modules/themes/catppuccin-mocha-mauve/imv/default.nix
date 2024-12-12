@@ -6,11 +6,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.imv;
+  cfg = config.module.theme.catppuccin-mocha-mauve.imv;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.imv = {
-    enable = mkEnableOption "Enable imv cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.imv = {
+    enable = mkEnableOption "Enable imv catppuccin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {
