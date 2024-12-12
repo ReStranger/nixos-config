@@ -6,11 +6,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.mpv;
+  cfg = config.module.theme.catppuccin-mocha-mauve.mpv;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.mpv = {
-    enable = mkEnableOption "Enable mpv cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.mpv = {
+    enable = mkEnableOption "Enable mpv catppuccin-mocha-mauve theme";
   };
   config = mkIf cfg.enable {
     programs.mpv = {

@@ -6,11 +6,11 @@
 with lib;
 
 let
-  cfg = config.module.theme.cattpucin-mocha-mauve.yazi;
+  cfg = config.module.theme.catppuccin-mocha-mauve.yazi;
 in
 {
-  options.module.theme.cattpucin-mocha-mauve.yazi = {
-    enable = mkEnableOption "Enable yazi cattpucin-mocha-mauve theme";
+  options.module.theme.catppuccin-mocha-mauve.yazi = {
+    enable = mkEnableOption "Enable yazi catppuccin-mocha-mauve theme";
   };
 
   config = mkIf cfg.enable {
