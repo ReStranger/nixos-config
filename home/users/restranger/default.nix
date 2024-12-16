@@ -17,7 +17,7 @@
     dconf.enable = isLinux && isWorkstation;
     xdg-user-dirs.enable = isLinux && isWorkstation;
 
-    nemo.enable = hyprlandEnable && isLinux && isWorkstation;
+    nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
     ags.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     nwg-dock.enable = hyprlandEnable && isLinux && isWorkstation;

@@ -10,7 +10,7 @@ with lib;
 let
   cfg = config.module.hyprland;
   terminal = "wezterm";
-  fileManager = "nemo";
+  fileManager = "nautilus -w";
   menu = "ags toggle AppLauncher --instance astal";
   vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
 in
