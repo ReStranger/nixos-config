@@ -49,10 +49,11 @@ in
         apps
         battery
         hyprland
+        mpris
         network
+        notifd
         powerprofiles
         tray
-        mpris
       ]);
     };
   };
