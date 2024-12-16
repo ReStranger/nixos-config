@@ -69,6 +69,13 @@ button:focus {
   box-shadow: none;
 }
     '';
+    home.file.".config/${if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock"}/nwg-dock".text = /*bash*/ ''
+#!/usr/bin/env bash
+
+while true; do
+    nwg-dock-hyprland -nolauncher -x
+done
+    '';
   };
 }
 
