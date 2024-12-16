@@ -88,7 +88,7 @@ in
           "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
           "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl"
           "ags run"
-          "nwg-dock-hyprland --nolauncher -x"
+          "bash /home/${username}/.config/nwg-dock-hyprland/nwg-dock"
         ];
         input = {
           kb_layout = "us,ru";
