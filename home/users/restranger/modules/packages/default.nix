@@ -56,12 +56,14 @@ in
 
       ## dev tools ##
       nodejs_22
+      vscode-js-debug
       python312
       python312Packages.pip
       poetry
       uv
       clang-tools
       clang
+      lldb
       cargo
       rustc
 
