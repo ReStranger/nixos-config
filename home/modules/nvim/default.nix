@@ -46,6 +46,7 @@ in
 
         # Debuggers
         lldb
+        vscode-js-debug
       ];
     };
   };
