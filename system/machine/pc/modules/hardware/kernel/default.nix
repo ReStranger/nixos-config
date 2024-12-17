@@ -42,6 +42,9 @@
       "nvidia_drm.fbdev=1"
     ];
     extraModulePackages = [ ];
+    extraModprobeConfig = ''
+        options nvidia NVreg_MemoryPoolSize=8
+    '';
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
