@@ -1,6 +1,6 @@
 { username
 , ...
-}:{
+}: {
   boot.initrd.luks.devices = {
     cryptroot.device = "/dev/disk/by-id/nvme-KBG50ZNV512G_KIOXIA_935C961QECJX_1-part2";
   };
