@@ -4,12 +4,12 @@
 {
   boot = {
     initrd = {
-      availableKernelModules = [ 
-        "nvme" 
-        "xhci_pci" 
-        "usb_storage" 
-        "sd_mod" 
-        "cryptd" 
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "usb_storage"
+        "sd_mod"
+        "cryptd"
       ];
       kernelModules = [ ];
     };
@@ -43,7 +43,7 @@
     ];
     extraModulePackages = [ ];
     extraModprobeConfig = ''
-        options nvidia NVreg_MemoryPoolSize=8
+              options nvidia NVreg_MemoryPoolSize=8
     '';
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;

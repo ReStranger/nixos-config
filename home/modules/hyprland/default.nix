@@ -59,7 +59,7 @@ in
       comment = "Gnome Control Center";
       icon = "org.gnome.Settings";
       exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-      categories = ["X-Preferences"];
+      categories = [ "X-Preferences" ];
       terminal = false;
     };
     xdg.portal = {

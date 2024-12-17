@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.module.figma-linux;
-in {
+in
+{
   options.module.figma-linux = {
     enable = mkEnableOption "Enable figma-linux module";
   };

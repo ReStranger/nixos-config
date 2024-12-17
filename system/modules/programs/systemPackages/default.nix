@@ -50,7 +50,7 @@ in
 
       (prismlauncher.override {
         additionalLibs = [
-          
+
         ];
         additionalPrograms = [
           glfw3-minecraft
