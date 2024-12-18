@@ -102,13 +102,13 @@
       "locked": {
         "lastModified": 1734522318,
         "narHash": "sha256-vF6jBnRhqSvxnlqCz3TG1ad9zOt3qTRneXpHdYq7LCU=",
-        "owner": "ayugram-port",
+        "owner": "ndfined-crp",
         "repo": "ayugram-desktop",
         "rev": "79a272079424c0826382745ba09ddd73a0f9e84b",
         "type": "github"
       },
       "original": {
-        "owner": "ayugram-port",
+        "owner": "ndfined-crp",
         "ref": "release",
         "repo": "ayugram-desktop",
         "type": "github"
