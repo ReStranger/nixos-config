@@ -30,6 +30,8 @@ in
       gtk3
       adw-gtk3
       morewaita-icon-theme
+      inputs.matugen.packages.${pkg.system}.default
+      material-symbols
     ];
 
     programs.ags = {
