@@ -62,6 +62,7 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen.url = "github:InioX/Matugen?rev=0bd628f263b1d97f238849315f2ce3ab4439784e";
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland";
