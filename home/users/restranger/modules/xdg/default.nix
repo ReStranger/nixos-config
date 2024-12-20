@@ -19,8 +19,8 @@ in
 
       defaultApplications = {
 
-        "inode/directory" = "nemo.desktop";
-        "application/x-gnome-saved-search" = "nemo.desktop";
+        "inode/directory" = "org.gnome.Nautilus.desktop";
+        "application/x-gnome-saved-search" = "org.gnome.Nautilus.desktop";
 
         "text/markdown" = "nvim.desktop";
         "text/plain" = "nvim.desktop";
