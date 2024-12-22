@@ -56,6 +56,7 @@ in
         notifd
         powerprofiles
         tray
+        wireplumber
       ]);
     };
   };
