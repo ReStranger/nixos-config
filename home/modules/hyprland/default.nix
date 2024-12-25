@@ -46,8 +46,6 @@ in
     };
     home.packages = with pkgs; [
       grimblast
-      kitty
-      nemo-with-extensions
       hyprshade
       hyprpicker
       brightnessctl
