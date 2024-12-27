@@ -62,8 +62,8 @@ in
       poetry
       uv
       clang-tools
-      clang
-      lldb
+      llvmPackages_latest.clang
+      llvmPackages_latest.lldb
       cargo
       rustc
 
