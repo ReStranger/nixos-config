@@ -24,7 +24,7 @@ in
         vscode-langservers-extracted
         typescript-language-server
         clang-tools
-        clang
+        llvmPackages_latest.clang
         rust-analyzer
         pyright
         ruff
@@ -45,7 +45,7 @@ in
         nixpkgs-fmt
 
         # Debuggers
-        lldb
+        llvmPackages_latest.lldb
         vscode-js-debug
       ];
     };
