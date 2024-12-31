@@ -48,6 +48,10 @@ in
       dconf-editor
       xorg.xhost
 
+      python312
+      python312Packages.nvidia-ml-py
+      python312Packages.pynvml
+
       (prismlauncher.override {
         additionalLibs = [
 
