@@ -78,7 +78,9 @@ in
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
-        ];
+        ] ++ (if hostname == "pc" then [
+          "sudo /root/nvgpu-overclock/run-nvgpu-overclock"
+        ] else [ ]);
         exec = [
           "alsactl init"
           "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"
