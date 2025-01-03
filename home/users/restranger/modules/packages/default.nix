@@ -56,6 +56,7 @@ in
 
       ## dev tools ##
       nodejs_22
+      pnpm
       vscode-js-debug
       python312
       python312Packages.pip
@@ -66,6 +67,7 @@ in
       llvmPackages_latest.lldb
       cargo
       rustc
+      nixpkgs-fmt
 
       ## LSP ##
 
