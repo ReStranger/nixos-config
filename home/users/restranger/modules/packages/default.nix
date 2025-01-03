@@ -79,7 +79,6 @@ in
 
     ] ++ lib.optionals isWorkstation [
       kitty
-      firefox-devedition-bin
       anytype
       onlyoffice-bin
       thunderbird-bin
