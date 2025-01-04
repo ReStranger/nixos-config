@@ -11,7 +11,7 @@
 
 
   module = {
-    # wezterm.enable   = isWorkstation;
+    firefox.enable = isWorkstation;
     zathura.enable = isWorkstation;
 
     dconf.enable = isLinux && isWorkstation;
