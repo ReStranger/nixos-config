@@ -50,6 +50,7 @@
     programs = {
       dconf.enable = true;
       fonts.enable = true;
+      gamemode.enable = true;
       gnupg.enable = true;
       home-manager.enable = true;
       hyprland.enable = true;
