@@ -56,6 +56,7 @@
       dconf.enable = true;
       fonts.enable = true;
       gnupg.enable = true;
+      gamemode.enable = true;
       home-manager.enable = true;
       hyprland.enable = true;
       kdeconnect.enable = true;
