@@ -23,7 +23,6 @@ in
     zramSwap = {
       enable = true;
       priority = 32767;
-      memoryPercent = 100;
       swapDevices = cfg.deviceNumber;
     };
     boot.kernelParams = [
