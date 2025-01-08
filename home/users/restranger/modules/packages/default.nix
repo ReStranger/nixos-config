@@ -65,6 +65,7 @@ in
       clang-tools
       llvmPackages_latest.clang
       llvmPackages_latest.lldb
+      gnumake
       cargo
       rustc
       nixpkgs-fmt
