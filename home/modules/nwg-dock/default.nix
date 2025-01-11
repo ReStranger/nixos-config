@@ -28,7 +28,7 @@ in
       }
 
       #box {
-        background: #171717;
+        background: #11111b;
         border-style: none;
         border-width: 1px;
         box-shadow:
