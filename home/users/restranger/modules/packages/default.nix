@@ -114,6 +114,7 @@ in
       wl-clipboard-x11
       pulseaudio
       lunar-client
+      libnotify
     ] ++ lib.optionals hyprlandEnable [
       inputs.wezterm.packages.${pkgs.system}.default
       # alacritty-smooth-cursor
