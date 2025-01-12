@@ -10,34 +10,34 @@
     {
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "rw" "relatime" "ssd_spread" "max_inline=256" "commit=300" ];
     };
 
   fileSystems."/home" =
     {
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "rw" "relatime" "ssd_spread" "max_inline=256" "commit=300" ];
     };
   fileSystems."/var/log" =
     {
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
-      options = [ "subvol=@log" "noatime" ];
+      options = [ "subvol=@log" "noatime" "rw" "relatime" "ssd_spread" "max_inline=256" "commit=300" ];
     };
 
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" ];
+      options = [ "subvol=@nix" "noatime" "rw" "relatime" "ssd_spread" "max_inline=256" "commit=300" ];
     };
 
   fileSystems."/.snapshots" =
     {
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
-      options = [ "subvol=@.snapshots" ];
+      options = [ "subvol=@.snapshots" "rw" "relatime" "ssd_spread" "max_inline=256" "commit=300" ];
     };
 
   fileSystems."/boot" =
@@ -50,7 +50,7 @@
     {
       device = "/dev/disk/by-label/STORAGE";
       fsType = "btrfs";
-      options = [ "x-gvfs-show" "x-gvfs-name=HDD%201" ];
+      options = [ "x-gvfs-show" "x-gvfs-name=HDD%201" "rw" "relatime" "max_inline=256" "commit=300" "autodefrag" ];
     };
   # fileSystems."/mnt/win" =
   #   {
