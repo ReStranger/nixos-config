@@ -57,6 +57,7 @@
       kdeconnect.enable = true;
       nix-helper.enable = true;
       nix-ld.enable = true;
+      tmate.enable = true;
       steam.enable = true;
       xdg-terminal-exec.enable = true;
       zsh.enable = true;
