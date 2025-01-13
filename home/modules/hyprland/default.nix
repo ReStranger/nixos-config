@@ -111,9 +111,6 @@ in
           sensitivity = 0;
           accel_profile = "flat";
         };
-        cursor = {
-          no_hardware_cursors = if hostname == "pc" then true else false;
-        };
 
         general = {
 
