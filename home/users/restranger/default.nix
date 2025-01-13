@@ -7,6 +7,7 @@
 {
   nixpkgs.overlays = [
     (import ../../overlays/catppuccin-qt5ct)
+    (import ../../overlays/nwg-dock-hyprland)
   ];
 
 
