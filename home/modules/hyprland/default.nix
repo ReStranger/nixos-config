@@ -99,7 +99,7 @@ in
           follow_mouse = 1;
 
           touchpad = {
-            middle_button_emulation = true;
+            middle_button_emulation = if hostname == "magicbook" then true else false;
             natural_scroll = true;
           };
 
