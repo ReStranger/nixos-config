@@ -46,6 +46,6 @@
       options nvidia NVreg_MemoryPoolSize=8
     '';
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
   };
 }
