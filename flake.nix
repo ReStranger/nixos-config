@@ -36,6 +36,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
