@@ -17,6 +17,7 @@
     inputs.home-manager.nixosModules.home-manager
     # inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
+    inputs.chaotic.nixosModules.default
     inputs.nix-topology.nixosModules.default
     # inputs.nur.nixosModules.nur
 
