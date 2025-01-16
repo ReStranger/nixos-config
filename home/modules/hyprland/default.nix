@@ -50,7 +50,6 @@ in
       hyprpicker
       brightnessctl
       playerctl
-      nwg-dock-hyprland
     ];
     xdg.desktopEntries."org.gnome.Settings" = {
       name = "Settings";
