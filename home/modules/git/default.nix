@@ -18,7 +18,7 @@ in
       enable = true;
       lfs.enable = true;
       userName = "ReStranger";
-      userEmail = "strengerplayr@gmail.com";
+      userEmail = "restranger@disroot.org";
       extraConfig = {
         init.defaultBranch = "main";
         http = {
