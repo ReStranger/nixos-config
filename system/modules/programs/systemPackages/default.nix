@@ -22,14 +22,9 @@ in
       home-manager
       git
       busybox
-      nvd
-      nix-output-monitor
       curl
-      wget
-      jq
       lsd
       ripgrep
-      tmux
 
       # Hardware utils
       glxinfo
@@ -58,7 +53,7 @@ in
         ];
         additionalPrograms = [
           glfw3-minecraft
-          (if (hostname == "pc") then config.boot.kernelPackages.nvidiaPackages.stable else null)
+          (if (hostname == "pc") then config.boot.kernelPackages.nvidiaPackages.boot else null)
           ffmpeg
         ];
 
