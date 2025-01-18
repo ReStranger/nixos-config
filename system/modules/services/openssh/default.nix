@@ -14,5 +14,3 @@ in
     services.openssh.enable = true;
   };
 }
-
-

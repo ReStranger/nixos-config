@@ -19,9 +19,6 @@
     virtualisation = {
       enable = true;
       docker.enable = true;
-      podman.enable = false;
-      libvirtd.enable = true;
-      virtualbox.enable = false;
     };
 
     services = {
