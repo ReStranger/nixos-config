@@ -191,48 +191,21 @@ in
 
         windowrulev2 = [
 
-          "workspace 1 silent, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "workspace 1 silent, class:^(firefox-aurora)$"
           "workspace 2 silent, class:^(obsidian)$"
           "workspace 3 silent, class:^(vesktop)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
           "workspace 5 silent, title:^(Spotify Free)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
 
-          #fixes
-
           #Сохранение файла в firefox
-          "workspace [w], title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "size 900 590, itle:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "center, title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "workspace [w], title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "size 900 590, itle:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "center, title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "workspace [w], title:^(Введите имя файла для сохранения…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "size 900 590, title:^(Введите имя файла для сохранения…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "center, title:^(Введите имя файла для сохранения…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "center, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "workspace [w], class:^(vesktop)$, title:^(.*blob.*)$"
-          "float, class:^(vesktop)$, title:^(.*blob.*)$"
-          "size 900 590, class:^(vesktop)$, title:^(.*blob.*)$"
-          "center, class:^(vesktop)$, title:^(.*blob.*)$"
-          "workspace [w], class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-          "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-          "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
+          "workspace [w], title:^(Save Image)$, class:^(firefox-aurora)$"
+          "size 900 590, itle:^(Save Image)$, class:^(firefox-aurora)$"
+          "center, title:^(Save Image)$, class:^(firefox-aurora)$"
 
-          "workspace [w], initialTitle:^(initialTitle: Firefox Developer Edition)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
-          "float, initialTitle:^(initialTitle: Firefox Developer Edition)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
-          "size 720 260, initialTitle:^(initialTitle: Firefox Developer Edition)$, title:^(Расширение: (Multithread DM) - Изменить задачу загрузки - Multithread DM — Mozilla Firefox)$"
-
-          # Картинка в картинке в firefox
-          #Сохранение файла в firefox
-          "workspace [w], title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "size 900 590, itle:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "center, title:^(Сохранить файл)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "workspace [w], title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "size 900 590, title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
-          "center, title:^(Enter name of file to save to…)$, initialTitle:^(initialTitle: Firefox Developer Edition)$"
+          "workspace [w], title:^(Enter name of file to save to…)$, class:^(firefox-aurora)$"
+          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(firefox-aurora)$"
+          "center, title:^(Enter name of file to save to…)$, class:^(firefox-aurora)$"
 
           # Просмотр медиа в telegram
           "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
@@ -240,16 +213,16 @@ in
           "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
 
           #Сохранение файла в vesktop
-          "workspace [w], class:^(vesktop)$, title:^(.*blob.*)$"
-          "float, class:^(vesktop)$, title:^(.*blob.*)$"
-          "size 900 590, class:^(vesktop)$, title:^(.*blob.*)$"
-          "center, class:^(vesktop)$, title:^(.*blob.*)$"
-
-          # Fix xdg opening files
-          "workspace [w], class:^(xdg-desktop-portal-gtk)$, title:^(Открытие файлов)$"
-          "float, class:^(xdg-desktop-portal-gtk)$, title:^(Открытие файлов)$ "
-          "size 900 590, class:^(xdg-desktop-portal-gtk)$, title:^(Открытие файлов)$ "
-          "center, class:^(xdg-desktop-portal-gtk)$, title:^(Открытие файлов)$"
+          "workspace [w], class:^(Electron)$, title:^(.*blob.*)$"
+          "float, class:^(Electron)$, title:^(.*blob.*)$"
+          "size 900 590, class:^(Electron)$, title:^(.*blob.*)$"
+          "center, class:^(Electron)$, title:^(.*blob.*)$"
+            
+          # Отправка файла в vesktop
+          "workspace [w], class:^(Electron)$, title:^(Открытие файлов)$"
+          "float, class:^(Electron)$, title:^(Открытие файлов)$ "
+          "size 900 590, class:^(Electron)$, title:^(Открытие файлов)$ "
+          "center, class:^(Electron)$, title:^(Открытие файлов)$"
 
           # Fix sharing video
           "workspace [w], class:^(hyprland-share-picker)$, title:^(MainPicker)$"
@@ -259,32 +232,28 @@ in
           # Картинка в картинке в firefox
 
           # ru_RU-UTF-8
-          "workspace [w], class:^(firefox)$, title:^(Картинка в картинке)$"
-          "float,class:^(firefox)$, title:^(Картинка в картинке)$"
-          "size 427 277,class:^(firefox)$, title:^(Картинка в картинке)$"
-          "pin,class:^(firefox)$, title:^(Картинка в картинке)$"
+          "workspace [w], class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
+          "float,class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
+          "size 427 277,class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
+          "pin,class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
           # en_US-UTF-8
-          "workspace [w], class:^(firefox)$, title:^(Picture-in-Picture)$"
-          "float,class:^(firefox)$, title:^(Picture-in-Picture)$"
-          "size 427 277,class:^(firefox)$, title:^(Picture-in-Picture)$"
-          "pin,class:^(firefox)$, title:^(Picture-in-Picture)$"
+          "workspace [w], class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
+          "float,class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
+          "size 427 277,class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
+          "pin,class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
 
           "workspace [w], class:^(org.pulseaudio.pavucontrol)$, title:^(Громкость)$"
 
+          # Calculator
           "float, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
           "size 334 494, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
           "pin, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
           "workspace [w], class:^(polkit-gnome-authentication-agent-1)$"
 
-          "tile,class:^(Alacritty)$"
-
+          # Popup imv
           "float,class:^(imv)$"
           "size 960 540,class:^(imv)$"
           "center,class:^(imv)$"
-
-          "float,class:^(Rofi)$"
-          "pin,class:^(Rofi)$"
-          "stayfocused,class:^(Rofi)$"
 
           # Fix xwayland
           "noblur,class:^()$,class:^()$"
