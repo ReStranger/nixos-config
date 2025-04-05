@@ -20,37 +20,13 @@ in
     # "${homeModules}/hyprland/syles"
     "${homeModules}/hyprland/variables"
   ];
-  options.module.hyprland = {
-    enable = mkEnableOption "Enable Hyprland";
-    # style = mkOption {
-    #   type = types.enum [ "default" "minimal" ];
-    #   default = "default";
-    #   description = ''
-    #     Style settings for the Hyprland window manager
-    #   '';
-    # };
-    low-power = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        For low-power devices, enable the low-power mode
-      '';
-    };
-  };
+  options.module.hyprland.enable = mkEnableOption "Enable Hyprland";
 
   config = mkIf cfg.enable {
     module.hyprland = {
-      # style = mkDefault cfg.enable;
       monitors.enable = mkDefault cfg.enable;
       variables.enable = mkDefault cfg.enable;
     };
-    home.packages = with pkgs; [
-      grimblast
-      hyprshade
-      hyprpicker
-      brightnessctl
-      playerctl
-    ];
     xdg.desktopEntries."org.gnome.Settings" = {
       name = "Settings";
       comment = "Gnome Control Center";
@@ -73,13 +49,12 @@ in
       xwayland.enable = true;
       systemd.enable = true;
       settings = {
+        ecosystem = { no_update_news = true; };
         exec-once = [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
-        ] ++ (if hostname == "pc" then [
-          "sudo /root/nvgpu-overclock/run-nvgpu-overclock"
-        ] else [ ]);
+        ];
         exec = [
           "alsactl init"
           "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"

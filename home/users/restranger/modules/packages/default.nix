@@ -47,7 +47,6 @@ in
 
       ## tui ##
       yazi
-      ueberzugpp
       lazygit
 
       ## fetch ##
@@ -60,7 +59,6 @@ in
       vscode-js-debug
       python312
       python312Packages.pip
-      poetry
       uv
       clang-tools
       llvmPackages_latest.clang
@@ -81,43 +79,29 @@ in
       nerd-fonts.hack
 
     ] ++ lib.optionals isWorkstation [
-      kitty
-      anytype
       onlyoffice-bin
       thunderbird-bin
       obs-studio
       spotify
       spicetify-cli
       nekoray
-      rustdesk-flutter
       krita
-      inkscape
-      androidStudioPackages.canary
       transmission_4-gtk
-      (pkgs.writeShellScriptBin "vesktop" ''
-        exec ${pkgs.vesktop}/bin/vesktop --enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder --ozone-platform=x11
-      '')
-      (pkgs.writeShellScriptBin "obsidian" ''
-        exec ${pkgs.obsidian}/bin/obsidian --enable-features=UseOzonePlatform --ozone-platform=x11
-      '')
-      davinci-resolve
+      obsidian
+      discord
     ] ++ lib.optionals (isLinux && isWorkstation) [
       inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
       xorg.xeyes
       gnome-software
-      filelight
       qpwgraph
       file-roller
       figma-linux
-      powertop
       wl-clipboard
       wl-clipboard-x11
       pulseaudio
-      lunar-client
       libnotify
     ] ++ lib.optionals hyprlandEnable [
       inputs.wezterm.packages.${pkgs.system}.default
-      # alacritty-smooth-cursor
       gnome-clocks
       gnome-calculator
       overskride
@@ -129,7 +113,7 @@ in
       grimblast
       pavucontrol
       dconf-editor
-      hyprshade
+      hyprpicker
       brightnessctl
       playerctl
     ];
