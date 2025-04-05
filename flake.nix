@@ -36,6 +36,11 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+    };
+
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };

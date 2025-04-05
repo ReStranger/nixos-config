@@ -8,6 +8,7 @@ with lib;
 
 let
   cfg = config.module.alacritty;
+  inherit (lib) mkEnableOption mkOption mkIf;
 in
 {
   options.module.alacritty = {
