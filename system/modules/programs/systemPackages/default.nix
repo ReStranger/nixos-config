@@ -21,42 +21,23 @@ in
       wget
       home-manager
       git
-      busybox
+      coreutils
       curl
       lsd
       ripgrep
 
       # Hardware utils
-      glxinfo
-      pciutils
-      usbutils
-      powertop
-      lm_sensors
-      strace
-      ltrace
-      lsof
-      sysstat
       cpufetch
-      sbctl
 
       # Utils
       dconf-editor
       xorg.xhost
 
-      python312
-      python312Packages.nvidia-ml-py
-      python312Packages.pynvml
-
       (prismlauncher.override {
-        additionalLibs = [
-
-        ];
         additionalPrograms = [
           glfw3-minecraft
-          (if (hostname == "pc") then config.boot.kernelPackages.nvidiaPackages.boot else null)
           ffmpeg
         ];
-
         jdks = [
           graalvm-ce
           zulu8
@@ -64,7 +45,6 @@ in
           zulu
         ];
       })
-
     ];
   };
 }
