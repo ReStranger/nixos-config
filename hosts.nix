@@ -6,6 +6,7 @@
       stateVersion = "24.05";
       isWorkstation = true;
       wm = "hyprland";
+      theme = "catppuccin-mocha";
     };
     magicbook = {
       username = "restranger";
@@ -13,6 +14,7 @@
       stateVersion = "24.05";
       isWorkstation = true;
       wm = "hyprland";
+      theme = "touka";
     };
   };
 }

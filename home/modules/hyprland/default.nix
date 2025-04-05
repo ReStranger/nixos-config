@@ -1,7 +1,7 @@
-{ lib
+{ self
+, lib
 , config
 , pkgs
-, homeModules
 , hostname
 , username
 , ...
@@ -11,14 +11,14 @@ let
   cfg = config.module.hyprland;
   terminal = "wezterm";
   fileManager = "nautilus -w";
-  menu = "ags toggle AppLauncher --instance astal";
+  menu = "wofi --show drun -I -a";
   vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
 in
 {
   imports = [
-    "${homeModules}/hyprland/monitors"
+    "${self}/home/modules/hyprland/monitors"
     # "${homeModules}/hyprland/syles"
-    "${homeModules}/hyprland/variables"
+    "${self}/home/modules/hyprland/variables"
   ];
   options.module.hyprland.enable = mkEnableOption "Enable Hyprland";
 
@@ -32,7 +32,7 @@ in
       comment = "Gnome Control Center";
       icon = "org.gnome.Settings";
       exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-      categories = [ "X-Preferences" ];
+      categories = ["X-Preferences"];
       terminal = false;
     };
     xdg.portal = {
@@ -91,9 +91,6 @@ in
           gaps_in = 5;
           gaps_out = 10;
           border_size = 2;
-          # "col.active_border" = "rgba(f5c2e7ee) rgba(cba6f7ee) 45deg";
-          "col.active_border" = "rgba(f5c2e7ee) rgba(cba6f7ee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
 
           layout = "dwindle";
 
@@ -106,7 +103,6 @@ in
             range = 30;
             offset = "2 3";
             render_power = 3;
-            color = "rgba(00000066)";
           };
           blur = {
             enabled = true;

@@ -5,10 +5,10 @@
 , ...
 }:
 
-with lib;
 
 let
   cfg = config.module.ags;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.ags = {
@@ -17,21 +17,13 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      bun
       dart-sass
-      # sassc
-      # fd
       brightnessctl
       swww
-      # slurp
       hyprpicker
-      pavucontrol
       networkmanager
-      gtk3
       adw-gtk3
       morewaita-icon-theme
-      inputs.matugen.packages.${pkg.system}.default
-      material-symbols
     ];
 
     programs.ags = {
@@ -43,7 +35,6 @@ in
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
         fzf
-        wrapGAppsHook
         gobject-introspection
       ] ++ (with inputs.astal.packages.${pkg.system}; [
         io

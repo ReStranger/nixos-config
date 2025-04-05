@@ -1,42 +1,36 @@
-{ lib
-, inputs
-, self
-, commonModules
-, systemModules
-, machineConfigurationPath
-, machineConfigurationPathExist
-, machineModulesPath
-, machineModulesPathExist
-, platform ? null
-, stateVersion ? null
-, ...
-}:
-
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    # inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModules.disko
-    inputs.chaotic.nixosModules.default
-    inputs.nix-topology.nixosModules.default
-    # inputs.nur.nixosModules.nur
+  self,
+  lib,
+  inputs,
+  machineDir,
+  hostType,
+  platform ? null,
+  stateVersion ? null,
+  ...
+}: let
+  inherit (lib) optional;
 
-    "${commonModules}"
-    "${systemModules}"
-    "${self}/overlays/nixpkgs"
-  ]
-  ++ lib.optional machineConfigurationPathExist machineConfigurationPath
-  ++ lib.optional machineModulesPathExist machineModulesPath;
+  machineConfigurationPath = "${self}/system/machine/${machineDir}";
+  machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
+  machineModulesPath = "${self}/system/machine/${machineDir}/modules";
+  machineModulesPathExist = builtins.pathExists machineModulesPath;
+in {
+  imports =
+    [
+      "${self}/modules"
+      "${self}/overlays/nixpkgs"
+      "${self}/system/${hostType}/modules"
+    ]
+    ++ optional machineConfigurationPathExist machineConfigurationPath
+    ++ optional machineModulesPathExist machineModulesPath;
 
   module.nix-config.enable = true;
+  system = {inherit stateVersion;};
 
-  # System version
-  system = { inherit stateVersion; };
-  # HostPlatform
   nixpkgs = {
+    hostPlatform = platform;
+
     overlays = [
     ];
-
-    hostPlatform = platform;
   };
 }

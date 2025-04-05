@@ -19,11 +19,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePerdicate = (_: true);
-    };
-
     fonts.fontconfig.enable = true;
 
     programs = {
