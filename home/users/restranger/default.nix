@@ -5,20 +5,25 @@
 }:
 
 {
-  nixpkgs.overlays = [
-    (import ../../overlays/catppuccin-qt5ct)
-  ];
+  # nixpkgs.overlays = [
+  #   (import ../../overlays/catppuccin-qt5ct)
+  # ];
 
-
+  stylix.targets = {
+    neovim.enable = false;
+  };
   module = {
     firefox.enable = isWorkstation;
     zathura.enable = isWorkstation;
+    stylix.enable = isWorkstation;
+
 
     dconf.enable = isLinux && isWorkstation;
     xdg-user-dirs.enable = isLinux && isWorkstation;
+    gtk.enable = isLinux && isWorkstation;
 
-    nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
     ags.enable = hyprlandEnable && isLinux && isWorkstation;
+    nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
 
     nix.enable = true;
@@ -29,18 +34,6 @@
     starship.enable = true;
     tmux.enable = true;
     yazi.enable = true;
-
-    theme = {
-      catppuccin-mocha-mauve = {
-        gtk.enable = true;
-        imv.enable = true;
-        mpv.enable = true;
-        qt.enable = true;
-        # wezterm.enable = true;
-        yazi.enable = true;
-        zathura.enable = true;
-      };
-    };
 
     user = {
       xdg.enable = isLinux && isWorkstation;

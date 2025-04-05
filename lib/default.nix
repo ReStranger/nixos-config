@@ -6,6 +6,17 @@ let
 
   defaultStateVersion = "24.11";
 
+  constructors = [
+    "${self}/home"
+    "${self}/system"
+  ];
+    allDirs =
+    dirName:
+    builtins.filter (
+      module: ((builtins.pathExists module) && ((builtins.readFileType module) == "directory"))
+    ) (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
+
+
   mkHost = machineDir:
     { username ? "user"
     , stateVersion ? defaultStateVersion
@@ -14,6 +25,8 @@ let
     , hostname ? machineDir
     , isWorkstation ? false
     , wm ? null
+    , theme ? "catppuccin-mocha"
+    , hostType ? "nixos"
     }:
     let
       hyprlandEnable = wm == "hyprland";
@@ -28,6 +41,7 @@ let
         inherit
           inputs
           self
+          allDirs
           hostname
           username
           stateVersion
@@ -36,18 +50,17 @@ let
           machineDir
           isWorkstation
           wm
+          theme
           hyprlandEnable
-          deEnable;
+          deEnable
+          hostType;
       };
       modules = [
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
         inputs.chaotic.nixosModules.default
-        inputs.nur.modules.nixos.default
-        "${self}/system/nixos/modules"
-        "${self}/system"
-        "${self}/home"
-      ];
+        # inputs.nur.modules.nixos.default
+      ] ++ constructors;
     };
   mkHostDarwin = machineDir:
     { username ? "user"
@@ -57,6 +70,8 @@ let
     , platform ? "aarch64-darwin"
     , isWorkstation ? false
     , wm ? null
+    , theme ? "catppuccin-mocha"
+    , hostType ? "darwin"
     }:
     let
       hyprlandEnable = wm == "hyprland";
@@ -66,6 +81,7 @@ let
         inherit
           inputs
           self
+          allDirs
           hostname
           username
           platform
@@ -74,17 +90,16 @@ let
           stateVersion
           hmStateVersion
           wm
+          theme
           hyprlandEnable
-          deEnable;
+          deEnable
+          hostType;
       };
 
       modules = [
         inputs.home-manager.darwinModules.home-manager
         inputs.stylix.darwinModules.stylix
-        "${self}/system/darwin/modules"
-        "${self}/system"
-        "${self}/home"
-      ];
+      ] ++ constructors;
     };
   mkHostAndroid = hostname:
     { username ? "user"
@@ -96,9 +111,10 @@ let
         inherit
           inputs
           self
+          allDirs
           hostname
           username
-          platform
+          platform;
           # stateVersion
       };
 
