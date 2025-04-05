@@ -3,30 +3,27 @@
 , ...
 }:
 let
-  homeConfiguration = "${self}/home";
-  systemConfiguration = "${self}/system";
 
-  homeModules = "${homeConfiguration}/modules";
-  systemModules = "${systemConfiguration}/modules";
-  commonModules = "${self}/modules";
+  defaultStateVersion = "24.11";
 
   mkHost = machineDir:
     { username ? "user"
-    , stateVersion ? "24.05"
+    , stateVersion ? defaultStateVersion
+    , hmStateVersion ? stateVersion
     , platform ? "x86_64-linux"
     , hostname ? machineDir
     , isWorkstation ? false
     , wm ? null
     }:
     let
-      machineConfigurationPath = "${self}/system/machine/${machineDir}";
-      machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
-      machineModulesPath = "${self}/system/machine/${machineDir}/modules";
-      machineModulesPathExist = builtins.pathExists machineModulesPath;
       hyprlandEnable = wm == "hyprland";
       deEnable = hyprlandEnable;
+      nixosSystem =
+          if stateVersion == defaultStateVersion
+          then inputs.stable.lib.nixosSystem
+          else inputs.nixpkgs.lib.nixosSystem;
     in
-    inputs.nixpkgs.lib.nixosSystem {
+    nixosSystem {
       specialArgs = {
         inherit
           inputs
@@ -34,31 +31,37 @@ let
           hostname
           username
           stateVersion
+          hmStateVersion
           platform
           machineDir
           isWorkstation
           wm
-          homeModules
-          commonModules
-          systemModules
-          machineConfigurationPath
-          machineConfigurationPathExist
-          machineModulesPath
-          machineModulesPathExist
           hyprlandEnable
           deEnable;
       };
       modules = [
-        "${systemConfiguration}"
-        "${homeConfiguration}"
+        inputs.home-manager.nixosModules.home-manager
+        inputs.stylix.nixosModules.stylix
+        inputs.chaotic.nixosModules.default
+        inputs.nur.modules.nixos.default
+        "${self}/system/nixos/modules"
+        "${self}/system"
+        "${self}/home"
       ];
     };
-  mkHostDarwin = hostname:
+  mkHostDarwin = machineDir:
     { username ? "user"
     , stateVersion ? 6
+    , hmStateVersion ? defaultStateVersion
+    , hostname ? machineDir
     , platform ? "aarch64-darwin"
+    , isWorkstation ? false
+    , wm ? null
     }:
-    inputs.darwin.lib.darwinSystem {
+    let
+      hyprlandEnable = wm == "hyprland";
+      deEnable       = hyprlandEnable;
+    in inputs.darwin.lib.darwinSystem {
       specialArgs = {
         inherit
           inputs
@@ -66,14 +69,21 @@ let
           hostname
           username
           platform
+          isWorkstation
+          machineDir
           stateVersion
-          systemModules
-          commonModules;
+          hmStateVersion
+          wm
+          hyprlandEnable
+          deEnable;
       };
 
       modules = [
-        "${systemConfiguration}"
-        "${homeConfiguration}"
+        inputs.home-manager.darwinModules.home-manager
+        inputs.stylix.darwinModules.stylix
+        "${self}/system/darwin/modules"
+        "${self}/system"
+        "${self}/home"
       ];
     };
   mkHostAndroid = hostname:
@@ -90,13 +100,9 @@ let
           username
           platform
           # stateVersion
-          systemModules
-          commonModules;
       };
 
       modules = [
-        "${systemConfiguration}"
-        "${homeConfiguration}"
       ];
     };
 in
