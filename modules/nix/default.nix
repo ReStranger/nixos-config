@@ -53,6 +53,7 @@ in
           "https://hyprland.cachix.org"
           "https://nyx.chaotic.cx"
           "https://wezterm.cachix.org"
+          "https://anyrun.cachix.org"
         ];
 
         trusted-public-keys = [
@@ -61,6 +62,7 @@ in
 
           "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
           "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
+          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
         ];
       };
       gc = {
