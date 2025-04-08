@@ -86,7 +86,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop/release?submodules=1";
+    ayugram-desktop = {
+      type = "git";
+      submodules = true;
+      url = "https://github.com/ndfined-crp/ayugram-desktop/";
+    };
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 
