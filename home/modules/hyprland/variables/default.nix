@@ -29,6 +29,8 @@ let
     QT_QPA_PLATFORM = "wayland;xcb ";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
+    GTK_USE_PORTAL = "1";
+
     XCURSOR_SIZE = "24";
     HYPRCURSOR_SIZE = "24";
   };
