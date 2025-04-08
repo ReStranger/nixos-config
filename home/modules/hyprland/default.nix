@@ -11,7 +11,7 @@ let
   cfg = config.module.hyprland;
   terminal = "wezterm";
   fileManager = "nautilus -w";
-  menu = "wofi --show drun -I -a";
+  menu = "anyrun";
   vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
 in
 {

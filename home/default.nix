@@ -66,6 +66,7 @@ in {
         [
           # inputs.impermanence.nixosModules.home-manager.impermanence
           inputs.ags.homeManagerModules.default
+          inputs.anyrun.homeManagerModules.default
           # inputs.sops-nix.homeManagerModules.sops
           # inputs.nur.modules.homeManager.default
           # inputs.nvf.homeManagerModules.default
