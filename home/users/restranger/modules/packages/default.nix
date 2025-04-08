@@ -67,6 +67,7 @@ in
 
       ## Fonts ##
       corefonts
+      vistafonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.caskaydia-cove
       nerd-fonts.inconsolata

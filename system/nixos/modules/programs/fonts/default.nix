@@ -22,7 +22,6 @@ in
         liberation_ttf
         corefonts
         vistafonts
-        corefonts
         nerd-fonts.jetbrains-mono
         nerd-fonts.caskaydia-cove
         nerd-fonts.inconsolata
