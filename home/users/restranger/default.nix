@@ -32,6 +32,7 @@
     nix.enable = true;
 
     btop.enable = true;
+    fzf.enable = true;
     git.enable = true;
     lazygit.enable = true;
     lsd.enable = true;

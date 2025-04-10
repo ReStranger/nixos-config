@@ -33,7 +33,6 @@ in
       p7zip
 
       ## shell ##
-      fzf
       starship
       zoxide
       bat
