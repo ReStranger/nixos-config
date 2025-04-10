@@ -6,13 +6,12 @@
 , username
 , ...
 }:
-with lib;
 let
   cfg = config.module.hyprland;
+  inherit (lib) mkEnableOption mkIf mkDefault;
   terminal = "wezterm";
   fileManager = "nautilus -w";
   menu = "anyrun";
-  vibrance = "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl";
 in
 {
   imports = [
@@ -54,6 +53,7 @@ in
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
+          "/home/${username}/.local/share/bin/kidex"
         ];
         exec = [
           "alsactl init"
@@ -116,10 +116,6 @@ in
             "blur,rofi"
             "ignorealpha [1],rofi"
           ];
-          # drop_shadow = true;
-          # shadow_range = 4;
-          # shadow_render_power = 3;
-          # "col.shadow" = "rgba(1a1a1aee)";
           dim_inactive = false;
         };
 
@@ -162,21 +158,21 @@ in
 
         windowrulev2 = [
 
-          "workspace 1 silent, class:^(firefox-aurora)$"
+          "workspace 1 silent, class:^(firefox)$"
           "workspace 2 silent, class:^(obsidian)$"
-          "workspace 3 silent, class:^(vesktop)$"
+          "workspace 3 silent, class:^(discord)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
           "workspace 5 silent, title:^(Spotify Free)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
 
           #Сохранение файла в firefox
-          "workspace [w], title:^(Save Image)$, class:^(firefox-aurora)$"
-          "size 900 590, itle:^(Save Image)$, class:^(firefox-aurora)$"
-          "center, title:^(Save Image)$, class:^(firefox-aurora)$"
+          "workspace [w], title:^(Save Image)$, class:^(firefox)$"
+          "size 900 590, itle:^(Save Image)$, class:^(firefox)$"
+          "center, title:^(Save Image)$, class:^(firefox)$"
 
-          "workspace [w], title:^(Enter name of file to save to…)$, class:^(firefox-aurora)$"
-          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(firefox-aurora)$"
-          "center, title:^(Enter name of file to save to…)$, class:^(firefox-aurora)$"
+          "workspace [w], title:^(Enter name of file to save to…)$, class:^(firefox)$"
+          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(firefox)$"
+          "center, title:^(Enter name of file to save to…)$, class:^(firefox)$"
 
           # Просмотр медиа в telegram
           "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
@@ -203,15 +199,15 @@ in
           # Картинка в картинке в firefox
 
           # ru_RU-UTF-8
-          "workspace [w], class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
-          "float,class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
-          "size 427 277,class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
-          "pin,class:^(firefox-aurora)$, title:^(Картинка в картинке)$"
+          "workspace [w], class:^(firefox)$, title:^(Картинка в картинке)$"
+          "float,class:^(firefox)$, title:^(Картинка в картинке)$"
+          "size 427 277,class:^(firefox)$, title:^(Картинка в картинке)$"
+          "pin,class:^(firefox)$, title:^(Картинка в картинке)$"
           # en_US-UTF-8
-          "workspace [w], class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
-          "float,class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
-          "size 427 277,class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
-          "pin,class:^(firefox-aurora)$, title:^(Picture-in-Picture)$"
+          "workspace [w], class:^(firefox)$, title:^(Picture-in-Picture)$"
+          "float,class:^(firefox)$, title:^(Picture-in-Picture)$"
+          "size 427 277,class:^(firefox)$, title:^(Picture-in-Picture)$"
+          "pin,class:^(firefox)$, title:^(Picture-in-Picture)$"
 
           "workspace [w], class:^(org.pulseaudio.pavucontrol)$, title:^(Громкость)$"
 
@@ -238,10 +234,11 @@ in
         bind = [
           "$mod, T, exec, ${terminal}"
           "$mod, Q, killactive,"
+          "$mod SHIFT, Q, exec, kill -9 $(hyprctl activewindow -j | jq -r .pid)"
           "$mod, E, exec, ${fileManager}"
           "$mod, D, exec, ${menu}"
-          "CTRL, Print, exec, hyprshade off; grimblast --notify --freeze copy area; ${vibrance}"
-          "CTRL SHIFT, Print, exec, hyprshade off; grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d')-screenshot.png; ${vibrance}"
+          "CTRL, Print, exec, grimblast --notify --freeze copy area"
+          "CTRL SHIFT, Print, exec, grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
 
           "$mod ALT, R, exec, hyprctl reload"
           "$mod ALT, W, exec, ags quit; ags run"
@@ -251,8 +248,8 @@ in
           "$mod, F, fullscreen,"
           "$mod SHIFT, P, pseudo, # dwindle"
 
-          "$mod, C, exec, hyprshade off; hyprpicker --autocopy; ${vibrance}"
-          "$mod ALT, O, exec, firefox-developer-edition & obsidian & ayugram-desktop -- %u & vesktop & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
+          "$mod, C, exec, hyprpicker --autocopy"
+          "$mod ALT, O, exec, firefox & obsidian & ayugram-desktop -- %u & discord & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
           "$mod ALT, P, exec, ags -t powermenu"
 
           "$mod, L, movefocus, r"
