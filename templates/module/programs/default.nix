@@ -3,10 +3,10 @@
 , ...
 }:
 
-with lib;
 
 let
   cfg = config.module.programs.name;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.programs.name = {
