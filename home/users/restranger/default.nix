@@ -33,6 +33,7 @@
 
     btop.enable = true;
     git.enable = true;
+    lsd.enable = true;
     nvim.enable = true;
     starship.enable = true;
     tmux.enable = true;
