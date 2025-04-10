@@ -36,6 +36,7 @@
     lazygit.enable = true;
     lsd.enable = true;
     nvim.enable = true;
+    ripgrep.enable = true;
     starship.enable = true;
     tmux.enable = true;
     yazi.enable = true;
