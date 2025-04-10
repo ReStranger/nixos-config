@@ -37,7 +37,6 @@ in
       starship
       zoxide
       bat
-      ripgrep
 
       ## tui ##
       yazi
