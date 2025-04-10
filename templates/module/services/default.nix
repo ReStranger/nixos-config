@@ -3,10 +3,9 @@
 , ...
 }:
 
-with lib;
-
 let
   cfg = config.module.service.name;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.service.name = {
