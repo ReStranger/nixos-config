@@ -16,6 +16,7 @@
     firefox.enable = isWorkstation;
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
+    zsh.enable = isWorkstation;
 
 
     dconf.enable = isLinux && isWorkstation;
