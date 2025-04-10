@@ -36,7 +36,6 @@ in
       fzf
       starship
       zoxide
-      lsd
       bat
       ripgrep
 
