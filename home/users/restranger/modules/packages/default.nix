@@ -41,7 +41,6 @@ in
 
       ## tui ##
       yazi
-      lazygit
 
       ## fetch ##
       fastfetch
