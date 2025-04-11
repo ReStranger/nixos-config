@@ -19,8 +19,11 @@ in
       lfs.enable = true;
       userName = "ReStranger";
       userEmail = "restranger@disroot.org";
+      difftastic.enable = true;
       extraConfig = {
+      color.ui = true;
         init.defaultBranch = "main";
+        safe.directory = "/etc/nixos";
         http = {
           postBuffer = 524288000;
           lowSpeedLimit = 0;
