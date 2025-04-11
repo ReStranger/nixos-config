@@ -32,16 +32,6 @@ in
         enable = true;
         execWheelOnly = true;
         wheelNeedsPassword = true;
-        extraRules = [{
-          commands = if (hostname == "pc") then [
-            {
-              command = "/root/nvgpu-overclock/run-nvgpu-overclock";
-              options = [ "NOPASSWD" ];
-            }
-          ] else [];
-          users = [ "restranger" ];
-          groups = [ "wheel" ];
-        }];
       };
     };
 
