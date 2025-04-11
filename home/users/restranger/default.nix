@@ -34,6 +34,7 @@
 
     btop.enable = true;
     fzf.enable = true;
+    fd.enable = true;
     git.enable = true;
     lazygit.enable = true;
     lsd.enable = true;
