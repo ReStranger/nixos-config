@@ -34,7 +34,6 @@ in
 
       ## shell ##
       starship
-      zoxide
       bat
 
       ## tui ##

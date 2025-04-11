@@ -43,6 +43,7 @@
     starship.enable = true;
     tmux.enable = true;
     yazi.enable = true;
+    zoxide.enable = true;
 
     user = {
       xdg.enable = isLinux && isWorkstation;
