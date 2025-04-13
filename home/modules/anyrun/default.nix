@@ -124,7 +124,7 @@ in
 box#main {
   padding: 10px;
   margin-top: 160px;
-  box-shadow: 1 1 3 1px #1c1d1d;
+  box-shadow: 1px 1px 3px 1px #1c1d1d;
   background: #${base00};
   border-radius: 14px;
 }
