@@ -24,7 +24,7 @@ in
         vscode-langservers-extracted
         typescript-language-server
         clang-tools
-        llvmPackages_latest.clang
+        cmake-language-server
         rust-analyzer
         pyright
         ruff
