@@ -103,5 +103,42 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zsh-autosuggestions = {
+      url = "github:zsh-users/zsh-autosuggestions";
+      flake = false;
+    };
+
+    zsh-completions = {
+      url = "github:zsh-users/zsh-completions";
+      flake = false;
+    };
+
+    zsh-syntax-highlighting = {
+      url = "github:zsh-users/zsh-syntax-highlighting";
+      flake = false;
+    };
+    fzf-tab = {
+      url = "github:Aloxaf/fzf-tab";
+      flake = false;
+    };
+
+    fzf-zsh-completions = {
+      url = "github:chitoku-k/fzf-zsh-completions";
+      flake = false;
+    };
+
+    zsh-history-substring-search = {
+      url = "github:zsh-users/zsh-history-substring-search";
+      flake = false;
+    };
+
+    zsh-autopair = {
+      url = "github:hlissner/zsh-autopair";
+      flake = false;
+    };
+    zsh-vi-mode = {
+      url = "github:jeffreytse/zsh-vi-mode";
+      flake = false;
+    };
   };
 }
