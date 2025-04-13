@@ -39,6 +39,7 @@
     lsd.enable = true;
     nvim.enable = true;
     ripgrep.enable = true;
+    sops.enable = true;
     starship.enable = true;
     tmux.enable = true;
     yazi.enable = true;
