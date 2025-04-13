@@ -520,6 +520,38 @@
         "type": "github"
       }
     },
+    "fzf-tab": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744166198,
+        "narHash": "sha256-zc9Sc1WQIbJ132hw73oiS1ExvxCRHagi6vMkCLd4ZhI=",
+        "owner": "Aloxaf",
+        "repo": "fzf-tab",
+        "rev": "2abe1f2f1cbcb3d3c6b879d849d683de5688111f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Aloxaf",
+        "repo": "fzf-tab",
+        "type": "github"
+      }
+    },
+    "fzf-zsh-completions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732180489,
+        "narHash": "sha256-yCTARZMiJzmdPChGRy84Rr/hP9B0yIDt5fZ3fjKHa3s=",
+        "owner": "chitoku-k",
+        "repo": "fzf-zsh-completions",
+        "rev": "4093db491207cd30b8780668cc2c1cbbac3a283e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chitoku-k",
+        "repo": "fzf-zsh-completions",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": [
@@ -1467,6 +1499,8 @@
         "chaotic": "chaotic",
         "disko": "disko",
         "flake-parts": "flake-parts_2",
+        "fzf-tab": "fzf-tab",
+        "fzf-zsh-completions": "fzf-zsh-completions",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
@@ -1479,7 +1513,13 @@
         "stylix": "stylix",
         "treefmt-nix": "treefmt-nix_2",
         "wezterm": "wezterm",
-        "xdghypr": "xdghypr"
+        "xdghypr": "xdghypr",
+        "zsh-autopair": "zsh-autopair",
+        "zsh-autosuggestions": "zsh-autosuggestions",
+        "zsh-completions": "zsh-completions",
+        "zsh-history-substring-search": "zsh-history-substring-search",
+        "zsh-syntax-highlighting": "zsh-syntax-highlighting",
+        "zsh-vi-mode": "zsh-vi-mode"
       }
     },
     "rust-analyzer-src": {
@@ -1906,6 +1946,102 @@
         "owner": "madler",
         "ref": "v1.3.1",
         "repo": "zlib",
+        "type": "github"
+      }
+    },
+    "zsh-autopair": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720984677,
+        "narHash": "sha256-3zvOgIi+q7+sTXrT+r/4v98qjeiEL4Wh64rxBYnwJvQ=",
+        "owner": "hlissner",
+        "repo": "zsh-autopair",
+        "rev": "449a7c3d095bc8f3d78cf37b9549f8bb4c383f3d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hlissner",
+        "repo": "zsh-autopair",
+        "type": "github"
+      }
+    },
+    "zsh-autosuggestions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732590459,
+        "narHash": "sha256-85aw9OM2pQPsWklXjuNOzp9El1MsNb+cIiZQVHUzBnk=",
+        "owner": "zsh-users",
+        "repo": "zsh-autosuggestions",
+        "rev": "0e810e5afa27acbd074398eefbe28d13005dbc15",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsh-users",
+        "repo": "zsh-autosuggestions",
+        "type": "github"
+      }
+    },
+    "zsh-completions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744348258,
+        "narHash": "sha256-cowscXUIpm6OviEPc4m4Nizl8Tv57Y8DQ2wohY5FWgE=",
+        "owner": "zsh-users",
+        "repo": "zsh-completions",
+        "rev": "e5507e0d0c8879f960f4b8e7c6ddb813608d95ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsh-users",
+        "repo": "zsh-completions",
+        "type": "github"
+      }
+    },
+    "zsh-history-substring-search": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717563893,
+        "narHash": "sha256-1+w0AeVJtu1EK5iNVwk3loenFuIyVlQmlw8TWliHZGI=",
+        "owner": "zsh-users",
+        "repo": "zsh-history-substring-search",
+        "rev": "87ce96b1862928d84b1afe7c173316614b30e301",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsh-users",
+        "repo": "zsh-history-substring-search",
+        "type": "github"
+      }
+    },
+    "zsh-syntax-highlighting": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732201766,
+        "narHash": "sha256-KRsQEDRsJdF7LGOMTZuqfbW6xdV5S38wlgdcCM98Y/Q=",
+        "owner": "zsh-users",
+        "repo": "zsh-syntax-highlighting",
+        "rev": "5eb677bb0fa9a3e60f0eff031dc13926e093df92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsh-users",
+        "repo": "zsh-syntax-highlighting",
+        "type": "github"
+      }
+    },
+    "zsh-vi-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719915553,
+        "narHash": "sha256-UQo9shimLaLp68U3EcsjcxokJHOTGhOjDw4XDx6ggF4=",
+        "owner": "jeffreytse",
+        "repo": "zsh-vi-mode",
+        "rev": "cd730cd347dcc0d8ce1697f67714a90f07da26ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffreytse",
+        "repo": "zsh-vi-mode",
         "type": "github"
       }
     }
