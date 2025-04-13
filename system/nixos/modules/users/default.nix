@@ -39,6 +39,7 @@ in
             "wheel"
             "docker"
             "libvirtd"
+            "dialout"
           ];
         };
 
