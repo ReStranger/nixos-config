@@ -30,6 +30,10 @@ in
         "ЖЙ"="exit";
         "find.trash"="sudo find / | grep -vE '/home/${username}/.cache|/home/${username}/.icons|/root/.cache|/root/.icons|/var/log|/tmp' | rg";
       };
+      sessionVariables = {
+        EDITOR = "nvim";
+        OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai_key".path})";
+      };
     };
   };
 }
