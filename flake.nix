@@ -61,6 +61,10 @@
       url = "github:/nix-community/impermanence";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
+
     astal = {
       url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
