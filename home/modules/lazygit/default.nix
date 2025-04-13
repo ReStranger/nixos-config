@@ -11,7 +11,14 @@ in
   options.module.lazygit.enable = mkEnableOption "Enable lazygit module";
 
   config = mkIf cfg.enable {
-    programs.lazygit.enable = true;
+    programs.lazygit = {
+        enable = true;
+        settings = {
+            git.commit = {
+                signOff = true;
+            };
+        };
+    };
   };
 }
 
