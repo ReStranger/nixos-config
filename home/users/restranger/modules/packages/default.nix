@@ -22,8 +22,22 @@ in
     fonts.fontconfig.enable = true;
 
     programs = {
+      fd.enable = true;
+      fzf = {
+          enable = true;
+          enableZshIntegration = true;
+      };
       imv.enable = true;
+      lsd = {
+        enable = true;
+        enableAliases = true;
+      };
       mpv.enable = true;
+      ripgrep.enable = true;
+      zoxide = {
+          enable = true;
+          enableZshIntegration = true;
+      };
     };
 
     home.packages = with pkgs; [
