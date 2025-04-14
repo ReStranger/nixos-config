@@ -1,26 +1,18 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }:
 {
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      cudaPackages.cudatoolkit
-    ];
+        rocmPackages.clr.icd
+        amdvlk
+      ];
+    extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
   };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-
-    modesetting.enable = true;
-    powerManagement.enable = true;
-
-    powerManagement.finegrained = false;
-
-    open = false;
-    nvidiaSettings = false;
-
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
+  services.xserver.videoDrivers = [ "amdgpu" ];
 }
+

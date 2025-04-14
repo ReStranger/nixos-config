@@ -34,14 +34,8 @@
       "zswap.enabled=0"
       "root=/dev/mapper/nixos-root"
       "cryptdevice=/dev/nvme0n1p2:luks_lvm"
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-      "nvidia_drm.modeset=1"
-      "nvidia_drm.fbdev=1"
     ];
     extraModulePackages = [ ];
-    extraModprobeConfig = ''
-      options nvidia NVreg_MemoryPoolSize=8
-    '';
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_cachyos;
   };
