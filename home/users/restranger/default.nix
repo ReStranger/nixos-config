@@ -32,18 +32,13 @@
     nix.enable = true;
 
     btop.enable = true;
-    fzf.enable = true;
-    fd.enable = true;
     git.enable = true;
     lazygit.enable = true;
-    lsd.enable = true;
     nvim.enable = true;
-    ripgrep.enable = true;
     sops.enable = true;
     starship.enable = true;
     tmux.enable = true;
     yazi.enable = true;
-    zoxide.enable = true;
 
     user = {
       xdg.enable = isLinux && isWorkstation;
