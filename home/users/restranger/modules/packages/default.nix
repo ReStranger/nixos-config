@@ -28,6 +28,7 @@ in
           enableZshIntegration = true;
       };
       imv.enable = true;
+      jq.enable = true;
       lsd = {
         enable = true;
         enableAliases = true;
