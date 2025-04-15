@@ -37,6 +37,7 @@ in
         hideIcons = false;
         layer = "overlay";
         maxEntries = 6;
+        width = { fraction = 0.27; };
       };
       extraConfigFiles = {
          "applications.ron".text = ''
