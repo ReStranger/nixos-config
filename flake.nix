@@ -98,6 +98,8 @@
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 
+    kidex.url = "github:ReStranger/kidex?ref=nix";
+
     minimal-tmux = {
       url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
