@@ -46,6 +46,7 @@ in
       unzip
       unrar
       p7zip
+      inputs.kidex.packages.${pkgs.system}.default
 
       ## shell ##
       starship
