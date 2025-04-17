@@ -53,7 +53,7 @@ in
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
-          "/home/${username}/.local/share/bin/kidex"
+          "kidex"
         ];
         exec = [
           "alsactl init"
