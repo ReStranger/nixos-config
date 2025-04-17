@@ -22,6 +22,7 @@ in
     fonts.fontconfig.enable = true;
 
     programs = {
+      cava.enable = true;
       fd.enable = true;
       fzf = {
           enable = true;
@@ -49,15 +50,11 @@ in
       inputs.kidex.packages.${pkgs.system}.default
 
       ## shell ##
-      starship
       bat
-
-      ## tui ##
-      yazi
 
       ## fetch ##
       fastfetch
-      # cava
+      cava
 
       ## dev tools ##
       nodejs_22
@@ -109,7 +106,6 @@ in
       pulseaudio
       libnotify
     ] ++ lib.optionals hyprlandEnable [
-      inputs.wezterm.packages.${pkgs.system}.default
       gnome-clocks
       gnome-calculator
       overskride
@@ -127,4 +123,3 @@ in
     ];
   };
 }
-
