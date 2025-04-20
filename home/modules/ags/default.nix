@@ -42,6 +42,7 @@ in
         astal4
         apps
         battery
+        bluetooth
         hyprland
         mpris
         network
