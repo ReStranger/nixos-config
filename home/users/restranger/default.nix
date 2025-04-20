@@ -10,6 +10,7 @@
   # ];
 
   stylix.targets = {
+    firefox.profileNames = [ "default" ];
     neovim.enable = false;
   };
   module = {
