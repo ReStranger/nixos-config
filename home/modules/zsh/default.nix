@@ -72,6 +72,7 @@ in
       };
       sessionVariables = {
         EDITOR = "nvim";
+        VISUAL = "nvim";
         OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai_key".path})";
       };
       initExtra =
@@ -99,6 +100,8 @@ in
 
           export AUTO_NOTIFY_THRESHOLD=300
           AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy")
+          export EDITOR=nvim
+          export VISUAL=nvim
 
           HISTDUP=erase
           HISTFILE=~/.local/share/.zsh_history
