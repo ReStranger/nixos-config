@@ -134,6 +134,11 @@
       flake = false;
     };
 
+    zsh-auto-notify = {
+      url = "github:MichaelAquilina/zsh-auto-notify";
+      flake = false;
+    };
+
     zsh-autopair = {
       url = "github:hlissner/zsh-autopair";
       flake = false;
