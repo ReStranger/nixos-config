@@ -1,8 +1,8 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
-
 
 let
   cfg = config.module.programs.name;

@@ -1,7 +1,8 @@
-{ self
-, machineDir
-, allDirs
-, ...
+{
+  self,
+  machineDir,
+  allDirs,
+  ...
 }:
 
 let
@@ -10,4 +11,3 @@ in
 {
   imports = allDirs hardwareModulesPath;
 }
-

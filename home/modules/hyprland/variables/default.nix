@@ -1,7 +1,7 @@
-{ config
-, lib
-, hostname
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
@@ -36,8 +36,8 @@ let
   };
 
   hostSpecificVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    NIXOS_OZONE_WL = "1";
+  };
 
   sessionVariables = commonSessionVariables // hostSpecificVariables;
 

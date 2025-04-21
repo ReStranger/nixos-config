@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 let
@@ -12,13 +13,12 @@ in
 
   config = mkIf cfg.enable {
     programs.lazygit = {
-        enable = true;
-        settings = {
-            git.commit = {
-                signOff = true;
-            };
+      enable = true;
+      settings = {
+        git.commit = {
+          signOff = true;
         };
+      };
     };
   };
 }
-

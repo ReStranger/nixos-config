@@ -1,7 +1,8 @@
-{ self
-, machineDir
-, allDirs
-, ...
+{
+  self,
+  machineDir,
+  allDirs,
+  ...
 }:
 
 let

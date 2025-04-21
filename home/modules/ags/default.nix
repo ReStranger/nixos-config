@@ -1,10 +1,10 @@
-{ config
-, pkgs
-, lib
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
 }:
-
 
 let
   cfg = config.module.ags;
@@ -33,24 +33,27 @@ in
       # configDir = /home/${username}/.config/my-ags;
 
       # additional packages to add to gjs's runtime
-      extraPackages = with pkgs; [
-        fzf
-        gobject-introspection
-      ] ++ (with inputs.astal.packages.${pkg.system}; [
-        io
-        astal3
-        astal4
-        apps
-        battery
-        bluetooth
-        hyprland
-        mpris
-        network
-        notifd
-        powerprofiles
-        tray
-        wireplumber
-      ]);
+      extraPackages =
+        with pkgs;
+        [
+          fzf
+          gobject-introspection
+        ]
+        ++ (with inputs.astal.packages.${pkg.system}; [
+          io
+          astal3
+          astal4
+          apps
+          battery
+          bluetooth
+          hyprland
+          mpris
+          network
+          notifd
+          powerprofiles
+          tray
+          wireplumber
+        ]);
     };
   };
 }

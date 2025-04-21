@@ -1,9 +1,10 @@
-{ inputs
-, lib
-, config
-, pkgs
-, username
-, ...
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  username,
+  ...
 }:
 
 with lib;
@@ -28,7 +29,7 @@ in
     # Nixpkgs config
     nixpkgs.config = {
       allowUnfree = true;
-      allowUnfreePerdicate = (_: true);
+      allowUnfreePerdicate = _: true;
     };
 
     # Nix package manager settings
@@ -37,11 +38,14 @@ in
       registry.s.flake = inputs.self;
 
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         auto-optimise-store = true;
         builders-use-substitutes = true;
 
-        allowed-users = ["@wheel"];
+        allowed-users = [ "@wheel" ];
 
         trusted-users = [
           "root"

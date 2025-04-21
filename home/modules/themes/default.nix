@@ -1,6 +1,7 @@
-{ self
-, allDirs
-, ...
+{
+  self,
+  allDirs,
+  ...
 }:
 
 {

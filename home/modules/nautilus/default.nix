@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -24,7 +25,6 @@ in
       NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
     };
 
-
     dconf = {
       settings."org/gnome/nautilus/icon-view" = {
         default-zoom-level = "small-plus";
@@ -32,4 +32,3 @@ in
     };
   };
 }
-

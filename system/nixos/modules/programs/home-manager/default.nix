@@ -1,7 +1,8 @@
-{ inputs
-, lib
-, config
-, ...
+{
+  inputs,
+  lib,
+  config,
+  ...
 }:
 
 with lib;
@@ -15,7 +16,7 @@ in
   config = mkIf cfg.enable {
     home-manager = {
       # useGlobalPkgs = true;
-      # useUserPackages = true; 
+      # useUserPackages = true;
       extraSpecialArgs = {
         inherit inputs;
       };

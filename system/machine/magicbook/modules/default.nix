@@ -1,12 +1,13 @@
-{ self
-, machineDir
-, allDirs
-, ...
+{
+  self,
+  machineDir,
+  allDirs,
+  ...
 }:
 
 let
   modules = "${self}/system/machine/${machineDir}/modules";
-in 
+in
 {
   imports = allDirs modules;
 }

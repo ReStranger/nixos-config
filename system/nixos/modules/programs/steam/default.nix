@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }:
 
 with lib;
@@ -25,12 +26,13 @@ in
     programs.steam = {
       enable = true;
       extraCompatPackages =
-        (
-          if cfg.proton-ge then with pkgs; [
+        if cfg.proton-ge then
+          with pkgs;
+          [
             proton-ge-bin
           ]
-          else [ ]
-        );
+        else
+          [ ];
     };
   };
 }

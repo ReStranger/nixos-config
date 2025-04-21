@@ -1,7 +1,8 @@
-{ config
-, inputs
-, lib
-, ...
+{
+  config,
+  inputs,
+  lib,
+  ...
 }:
 
 with lib;

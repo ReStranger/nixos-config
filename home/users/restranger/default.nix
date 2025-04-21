@@ -1,7 +1,8 @@
-{ isWorkstation
-, isLinux
-, hyprlandEnable ? false
-, ...
+{
+  isWorkstation,
+  isLinux,
+  hyprlandEnable ? false,
+  ...
 }:
 
 {
@@ -18,7 +19,6 @@
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
     zsh.enable = isWorkstation;
-
 
     dconf.enable = isLinux && isWorkstation;
     xdg-user-dirs.enable = isLinux && isWorkstation;

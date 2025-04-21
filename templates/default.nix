@@ -1,5 +1,6 @@
-{ self
-, ...
+{
+  self,
+  ...
 }:
 {
   devshell = {

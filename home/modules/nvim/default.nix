@@ -1,7 +1,8 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 with lib;
 let
@@ -18,7 +19,7 @@ in
       enable = true;
       defaultEditor = true;
       viAlias = true;
-      extraPackages = with pkgs;  [
+      extraPackages = with pkgs; [
         # LSP
         lua-language-server
         vscode-langservers-extracted

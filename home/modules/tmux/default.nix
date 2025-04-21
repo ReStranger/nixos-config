@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, inputs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
 }:
 
 with lib;
@@ -34,29 +35,29 @@ in
       extraConfig = ''
               set-option -ga terminal-overrides ",$TERM:Tc"
               set -g default-terminal "$TERM"
-        
+
               # Основной префикс
               set -g prefix C-a
-        
+
               # Сортировка по имени
               bind s choose-tree -sZ -O name
-        
+
               # Изменение индексов
               set -g base-index 1
               setw -g pane-base-index 1
-        
+
               # Переназначение клавиш
               unbind %
               bind b split-window -h 
-        
+
               unbind '"'
               bind v split-window -v
-        
+
               bind -r j resize-pane -D 5
               bind -r k resize-pane -U 5
               bind -r l resize-pane -R 5
               bind -r h resize-pane -L 5
-        
+
               bind -r m resize-pane -Z
 
               set -g mouse on

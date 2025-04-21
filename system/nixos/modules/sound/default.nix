@@ -1,6 +1,7 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 with lib;
 let
@@ -31,7 +32,12 @@ in
       '';
     };
     clock-rate = mkOption {
-      type = types.enum [ 44100 48000 88200 96000 ];
+      type = types.enum [
+        44100
+        48000
+        88200
+        96000
+      ];
       default = 96000;
       description = ''
         Select default clock rate for pipewire device
@@ -48,7 +54,12 @@ in
       extraConfig.pipewire = {
         "context.properties" = {
           "default.clock.rate" = cfg.clock-rate;
-          "default.clock.allowed-rates" = [ 44100 48000 88200 96000 ];
+          "default.clock.allowed-rates" = [
+            44100
+            48000
+            88200
+            96000
+          ];
           "default.clock.min-quantum" = 2048;
           "default.clock.quantum" = 4096;
           "default.clock.max-quantum" = 8192;

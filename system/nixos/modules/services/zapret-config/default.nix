@@ -1,7 +1,8 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 with lib;
 let
@@ -94,7 +95,9 @@ in
     };
   };
   config = mkIf cfg.enable {
-    boot.kernel.sysctl = { "net.netfilter.nf_conntrack_tcp_be_liberal" = 1; };
+    boot.kernel.sysctl = {
+      "net.netfilter.nf_conntrack_tcp_be_liberal" = 1;
+    };
     users.users.tpws = {
       isSystemUser = true;
       group = "tpws";

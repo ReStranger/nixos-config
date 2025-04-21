@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 {
   boot = {
@@ -13,7 +14,10 @@
       ];
       kernelModules = [ ];
     };
-    kernelModules = [ "amdgpu" "kvm-amd" ];
+    kernelModules = [
+      "amdgpu"
+      "kvm-amd"
+    ];
     kernelParams = [
       "loglevel=3"
       "quiet"

@@ -1,5 +1,5 @@
-self: super: {
-  alacritty-smooth-cursor = super.alacritty.overrideAttrs (oldAttrs: {
+_self: super: {
+  alacritty-smooth-cursor = super.alacritty.overrideAttrs (_oldAttrs: {
     src = super.fetchFromGitHub {
       owner = "GregTheMadMonk";
       repo = "alacritty-smooth-cursor";
