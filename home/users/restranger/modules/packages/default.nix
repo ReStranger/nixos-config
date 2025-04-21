@@ -70,7 +70,7 @@ in
       cmake
       cargo
       rustc
-      nixpkgs-fmt
+      nixfmt-rfc-style
 
       ## LSP ##
 
