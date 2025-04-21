@@ -1,13 +1,13 @@
 {
   pkgs,
   lib,
-  self,
   config,
   hostname,
   theme,
   stateVersion,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib) optionalAttrs;
   inherit (lib.types) bool;
@@ -17,13 +17,15 @@
   fontSize = if hostname == "magicbook" then 12 else 10;
 
   terminessPackage =
-    if stateVersion == "24.11"
-    then pkgs.nerdfonts.override {fonts = ["Terminess"];}
-    else pkgs.nerd-fonts.terminess-ttf;
+    if stateVersion == "24.11" then
+      pkgs.nerdfonts.override { fonts = [ "Terminess" ]; }
+    else
+      pkgs.nerd-fonts.terminess-ttf;
   jbPackage =
-    if stateVersion == "24.11"
-    then pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];}
-    else pkgs.nerd-fonts.iosevka;
+    if stateVersion == "24.11" then
+      pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }
+    else
+      pkgs.nerd-fonts.iosevka;
 
   themes = {
     catppuccin-mocha = {
@@ -85,7 +87,8 @@
       };
     };
   };
-in {
+in
+{
   options = {
     module.stylix = {
       enable = mkEnableOption "Enables stylix";

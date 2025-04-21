@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, theme
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  theme,
+  ...
 }:
 
 let
@@ -19,18 +20,24 @@ in
 
     gtk = {
       enable = true;
-      iconTheme = if theme == "catppuccin-mocha" then {
-        name = "Tela-circle-dracula-dark";
-        package = pkgs.tela-circle-icon-theme.override {
-          colorVariants = [ "dracula" ];
-        };
-      } else if theme == "touka" then {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      } else {
-        name = "MoreWaita";
-        package = pkgs.morewaita-icon-theme;
-      };
+      iconTheme =
+        if theme == "catppuccin-mocha" then
+          {
+            name = "Tela-circle-dracula-dark";
+            package = pkgs.tela-circle-icon-theme.override {
+              colorVariants = [ "dracula" ];
+            };
+          }
+        else if theme == "touka" then
+          {
+            name = "Papirus-Dark";
+            package = pkgs.papirus-icon-theme;
+          }
+        else
+          {
+            name = "MoreWaita";
+            package = pkgs.morewaita-icon-theme;
+          };
     };
   };
 }

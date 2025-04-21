@@ -1,13 +1,22 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 {
   boot = {
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "usb_storage"
+        "sd_mod"
+      ];
       kernelModules = [ "amdgpu" ];
     };
-    kernelModules = [ "amdgpu" "kvm-amd" ];
+    kernelModules = [
+      "amdgpu"
+      "kvm-amd"
+    ];
     kernelParams = [
       "loglevel=3"
       "quiet"

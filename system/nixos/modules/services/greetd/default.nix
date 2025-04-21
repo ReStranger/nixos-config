@@ -1,8 +1,9 @@
-{ lib
-, pkgs
-, config
-, username
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  username,
+  ...
 }:
 
 with lib;
@@ -39,21 +40,19 @@ in
       enable = true;
       settings = {
         default_session = {
-          command = (
+          command =
             if cfg.frontend == "tui" then
               "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session"
             else
-              "${pkgs.greetd}/bin/agreety --cmd $SHELL"
-          );
+              "${pkgs.greetd}/bin/agreety --cmd $SHELL";
           user = "greeter";
         };
         initial_session = mkIf cfg.autologin {
-          command = (
+          command =
             if wm == "hyprland" then
               "${pkgs.hyprland}/bin/hyprland &> /tmp/hypland-start.log"
             else
-              "${pkgs.greetd}/bin/agreety --cmd $SHELL"
-          );
+              "${pkgs.greetd}/bin/agreety --cmd $SHELL";
           user = "${username}";
         };
       };

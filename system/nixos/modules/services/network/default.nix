@@ -1,8 +1,9 @@
-{ lib
-, config
-, pkgs
-, hostname
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  hostname,
+  ...
 }:
 with lib;
 let
@@ -49,8 +50,8 @@ in
       networkmanager = {
         enable = true;
         wifi = {
-          backend = cfg.wifi.backend;
-          macAddress = cfg.wifi.macAddress;
+          inherit (cfg.wifi) backend;
+          inherit (cfg.wifi) macAddress;
         };
       };
       firewall.enable = cfg.firewall;

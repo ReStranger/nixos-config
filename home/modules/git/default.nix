@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
@@ -21,7 +22,7 @@ in
       userEmail = "restranger@disroot.org";
       difftastic.enable = true;
       extraConfig = {
-      color.ui = true;
+        color.ui = true;
         init.defaultBranch = "main";
         safe.directory = "/etc/nixos";
         http = {

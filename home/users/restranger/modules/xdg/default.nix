@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
@@ -43,7 +44,6 @@ in
 
         "x-scheme-handler/tg" = "com.ayugram.desktop.desktop";
         "x-scheme-handler/tonsite" = "com.ayugram.desktop.desktop";
-
 
         "x-scheme-handler/obsidian" = "obsidian.desktop";
         "x-scheme-handler/anytype" = "anytype.desktop";

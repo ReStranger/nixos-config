@@ -2,9 +2,10 @@
   description = "ReStranger's nix system configuration";
 
   outputs =
-    { self
-    , flake-parts
-    , ...
+    {
+      self,
+      flake-parts,
+      ...
     }@inputs:
     let
       hosts = import ./hosts.nix;

@@ -1,4 +1,9 @@
-{ config, lib, hostname, ... }:
+{
+  config,
+  lib,
+  hostname,
+  ...
+}:
 
 with lib;
 

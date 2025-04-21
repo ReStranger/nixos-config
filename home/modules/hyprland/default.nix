@@ -1,10 +1,11 @@
-{ self
-, lib
-, config
-, pkgs
-, hostname
-, username
-, ...
+{
+  self,
+  lib,
+  config,
+  pkgs,
+  hostname,
+  username,
+  ...
 }:
 let
   cfg = config.module.hyprland;
@@ -31,7 +32,7 @@ in
       comment = "Gnome Control Center";
       icon = "org.gnome.Settings";
       exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-      categories = ["X-Preferences"];
+      categories = [ "X-Preferences" ];
       terminal = false;
     };
     xdg.portal = {
@@ -48,7 +49,9 @@ in
       xwayland.enable = true;
       systemd.enable = true;
       settings = {
-        ecosystem = { no_update_news = true; };
+        ecosystem = {
+          no_update_news = true;
+        };
         exec-once = [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
@@ -123,7 +126,6 @@ in
           enabled = true;
           first_launch_animation = true;
 
-
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
           animation = [
@@ -184,7 +186,7 @@ in
           "float, class:^(Electron)$, title:^(.*blob.*)$"
           "size 900 590, class:^(Electron)$, title:^(.*blob.*)$"
           "center, class:^(Electron)$, title:^(.*blob.*)$"
-            
+
           # Отправка файла в vesktop
           "workspace [w], class:^(Electron)$, title:^(Открытие файлов)$"
           "float, class:^(Electron)$, title:^(Открытие файлов)$ "

@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
@@ -17,4 +18,3 @@ in
     xdg.terminal-exec.enable = true;
   };
 }
-

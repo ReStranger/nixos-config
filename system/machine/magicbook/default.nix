@@ -1,6 +1,4 @@
-{ ...
-}:
-{
+_: {
   module = {
     adb.enable = true;
     boot.enable = true;

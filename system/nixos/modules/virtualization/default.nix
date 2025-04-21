@@ -1,8 +1,9 @@
-{ lib
-, config
-, username
-, pkgs
-, ...
+{
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -29,12 +30,12 @@ in
 
     virtualisation = {
       docker = {
-        enable = cfg.docker.enable;
+        inherit (cfg.docker) enable;
         enableOnBoot = false;
       };
       podman.enable = cfg.podman.enable;
       libvirtd = {
-        enable = cfg.libvirtd.enable;
+        inherit (cfg.libvirtd) enable;
         qemu = {
           package = pkgs.qemu_kvm;
           runAsRoot = true;

@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
@@ -15,8 +16,7 @@ in
 
   config = mkIf cfg.enable {
     programs.wezterm = {
-      extraConfig = ''
-      '';
+      extraConfig = '''';
     };
   };
 }

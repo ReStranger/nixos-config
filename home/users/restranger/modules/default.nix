@@ -1,7 +1,8 @@
-{ self
-, username
-, allDirs
-, ...
+{
+  self,
+  username,
+  allDirs,
+  ...
 }:
 
 let
