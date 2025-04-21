@@ -57,6 +57,7 @@ in
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
           "kidex"
+          "bash /home/${username}/.config/nwg-dock-hyprland/nwg-dock"
         ];
         exec = [
           "alsactl init"
@@ -65,7 +66,6 @@ in
           "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
           "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl"
           "ags run"
-          "bash /home/${username}/.config/nwg-dock-hyprland/nwg-dock"
         ];
         input = {
           kb_layout = "us,ru";
