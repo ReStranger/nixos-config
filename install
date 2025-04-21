@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+host="$1"
+repo="github:ReStranger/nixos-config"
+ref="$repo#$host"
+
+rm -f /etc/nix/nix.conf
+nix build \
+    -o /etc/nix/nix.conf \
+    --extra-experimental-features 'nix-command flakes' \
+    "${repo}#nixosConfigurations.${host}.config.environment.etc.\"nix/nix.conf\".source"
+systemctl restart nix-daemon.service
+
+nixos-install --flake "$ref"
+
+unmnt="umount -R /mnt"
+echo unmount: "$unmnt"
+eval "$unmnt"
