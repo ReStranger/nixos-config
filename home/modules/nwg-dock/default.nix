@@ -2,14 +2,16 @@
   config,
   lib,
   pkgs,
+  hostname,
   hyprlandEnable,
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.nwg-dock;
+  inherit (lib) mkEnableOption mkIf;
+  nwg-dock-name = if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock";
+  nwg-dock-options = if hostname == "pc" then "-nolauncher -mb 5 -x" else "-nolauncher -mb 10 -d";
 in
 {
   options.module.nwg-dock = {
@@ -26,14 +28,15 @@ in
         [
           pkgs.nwg-dock
         ];
-    home.file.".config/${if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock"}/style.css".text = # css
+    home.file.".config/${if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock"}/style.css".text =
+      with config.lib.stylix.colors; # css
       ''
         window {
           background-color: transparent;
         }
 
         #box {
-          background: #11111b;
+          background: #${base00};
           border-style: none;
           border-width: 1px;
           box-shadow:
@@ -54,14 +57,14 @@ in
           background: none;
           border-style: none;
           box-shadow: none;
-          color: #999;
+          color: #${base04};
         }
 
         button {
           padding: 4px;
           margin-left: 4px;
           margin-right: 4px;
-          color: #eee;
+          color: #${base05};
           font-size: 12px;
         }
 
@@ -75,13 +78,15 @@ in
           box-shadow: none;
         }
       '';
-    home.file.".config/${if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock"}/nwg-dock".text = # bash
-      ''
-        #!/usr/bin/env bash
+    xdg.configFile = {
+      "${nwg-dock-name}/nwg-dock".text = # bash
+        ''
+          #!/usr/bin/env bash
 
-        while true; do
-            nwg-dock-hyprland -nolauncher -x
-        done
-      '';
+          while true; do
+              ${nwg-dock-name} ${nwg-dock-options}
+          done
+        '';
+    };
   };
 }
