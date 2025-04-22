@@ -5,10 +5,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.nix;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.nix = {

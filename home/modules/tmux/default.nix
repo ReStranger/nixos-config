@@ -6,10 +6,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.tmux;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.tmux = {

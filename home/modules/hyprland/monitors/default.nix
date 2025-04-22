@@ -5,10 +5,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.hyprland.monitors;
+  inherit (lib) mkEnableOption mkIf;
 
   commonMonitorSettings = [ ", preferred, auto, 1" ];
 

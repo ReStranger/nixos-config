@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.btop;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.btop = {

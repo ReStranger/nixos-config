@@ -7,11 +7,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.wezterm;
-
+  inherit (lib) mkEnableOption mkIf;
   font = if theme == "touka" then "Caskaydia Cove Nerd Font" else config.stylix.fonts.serif.name;
 in
 {

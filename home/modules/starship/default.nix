@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.starship;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.starship = {
