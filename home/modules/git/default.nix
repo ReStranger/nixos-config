@@ -4,10 +4,10 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.git;
+  inherit (lib) mkEnableOption mkIf;
+
 in
 {
   options.module.git = {

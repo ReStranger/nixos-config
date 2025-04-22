@@ -6,10 +6,6 @@
 }:
 
 {
-  # nixpkgs.overlays = [
-  #   (import ../../overlays/catppuccin-qt5ct)
-  # ];
-
   stylix.targets = {
     firefox.profileNames = [ "default" ];
     neovim.enable = false;
@@ -44,7 +40,6 @@
 
     user = {
       xdg.enable = isLinux && isWorkstation;
-
       packages.enable = true;
     };
   };

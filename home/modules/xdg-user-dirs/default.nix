@@ -5,10 +5,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.xdg-user-dirs;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.xdg-user-dirs = {

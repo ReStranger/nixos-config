@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.hyprland.variables;
+  inherit (lib) mkEnableOption mkIf;
 
   commonSessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";

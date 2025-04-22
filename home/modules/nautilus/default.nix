@@ -5,10 +5,10 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.nautilus;
+  inherit (lib) mkEnableOption mkIf;
+
 in
 {
   options.module.nautilus = {

@@ -8,11 +8,11 @@
   ...
 }:
 
-with lib;
-
 let
-  inherit (pkgs.stdenv) isLinux;
   cfg = config.module.user.packages;
+  inherit (pkgs.stdenv) isLinux;
+  inherit (lib) mkEnableOption mkIf;
+
 in
 {
   options.module.user.packages = {

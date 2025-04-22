@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.yazi;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.yazi = {
