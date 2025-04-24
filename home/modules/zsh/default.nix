@@ -99,7 +99,7 @@ in
           export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${base03}"
 
           export AUTO_NOTIFY_THRESHOLD=300
-          AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy")
+          AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy" "tmux" "tmate" "nix-shell")
           export EDITOR=nvim
           export VISUAL=nvim
 
