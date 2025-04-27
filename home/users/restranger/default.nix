@@ -19,6 +19,7 @@
     dconf.enable = isLinux && isWorkstation;
     xdg-user-dirs.enable = isLinux && isWorkstation;
     gtk.enable = isLinux && isWorkstation;
+    kdeconnect.enable = isLinux && isWorkstation;
     wezterm.enable = isLinux && isWorkstation;
 
     ags.enable = hyprlandEnable && isLinux && isWorkstation;
