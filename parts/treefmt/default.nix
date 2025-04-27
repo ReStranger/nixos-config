@@ -8,19 +8,17 @@
     inputs.treefmt-nix.flakeModule
   ];
 
-  perSystem =
-    { config, ... }:
-    {
-      # For nix fmt
-      treefmt.config = {
-        projectRootFile = "flake.nix";
+  perSystem = _: {
+    # For nix fmt
+    treefmt.config = {
+      projectRootFile = "flake.nix";
 
-        programs = {
-          deadnix.enable = true;
-          nixfmt-rfc-style.enable = true;
-          statix.enable = true;
-          terraform.enable = true;
-        };
+      programs = {
+        deadnix.enable = true;
+        nixfmt.enable = true;
+        statix.enable = true;
+        terraform.enable = true;
       };
     };
+  };
 }

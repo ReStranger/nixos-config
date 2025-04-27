@@ -1,18 +1,10 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.module.nvim;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options = {
-    module.nvim = {
-      enable = mkEnableOption "Enable re:nvim module";
-    };
+    module.nvim = { enable = mkEnableOption "Enable re:nvim module"; };
   };
   config = mkIf cfg.enable {
     programs.neovim = {
