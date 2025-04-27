@@ -50,7 +50,6 @@ _: {
       gnupg.enable = true;
       home-manager.enable = true;
       hyprland.enable = true;
-      kdeconnect.enable = true;
       nix-helper.enable = true;
       nix-ld.enable = true;
       tmate.enable = true;
