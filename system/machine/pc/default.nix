@@ -11,6 +11,7 @@ _: {
       enableBootOptions = true;
     };
     sound.enable = true;
+    stylix.enable = true;
     timezone.enable = true;
     tty.enable = true;
     users.enable = true;
