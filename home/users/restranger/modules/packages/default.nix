@@ -1,20 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  isWorkstation,
-  hyprlandEnable,
-  ...
-}:
+{ config, lib, pkgs, inputs, isWorkstation, hyprlandEnable, ... }:
 
 let
   cfg = config.module.user.packages;
   inherit (pkgs.stdenv) isLinux;
   inherit (lib) mkEnableOption mkIf;
 
-in
-{
+in {
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
   };
@@ -43,8 +34,7 @@ in
       };
     };
 
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         ## system tools ##
         unzip
@@ -86,8 +76,7 @@ in
         nerd-fonts.fira-code
         nerd-fonts.hack
 
-      ]
-      ++ lib.optionals isWorkstation [
+      ] ++ lib.optionals isWorkstation [
         onlyoffice-bin
         thunderbird-bin
         obs-studio
@@ -98,8 +87,7 @@ in
         transmission_4-gtk
         obsidian
         discord
-      ]
-      ++ lib.optionals (isLinux && isWorkstation) [
+      ] ++ lib.optionals (isLinux && isWorkstation) [
         inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
         xorg.xeyes
         gnome-software
@@ -110,8 +98,7 @@ in
         wl-clipboard-x11
         pulseaudio
         libnotify
-      ]
-      ++ lib.optionals hyprlandEnable [
+      ] ++ lib.optionals hyprlandEnable [
         gnome-clocks
         gnome-calculator
         overskride
