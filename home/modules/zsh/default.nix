@@ -75,7 +75,7 @@ in
         VISUAL = "nvim";
         OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai_key".path})";
       };
-      initExtra =
+      initContent =
         with config.lib.stylix.colors; # zsh
         ''
           export KEYTIMEOUT=1
