@@ -103,6 +103,7 @@ in
         libnotify
       ]
       ++ lib.optionals hyprlandEnable [
+        inputs.quickshell.packages.${pkgs.system}.default
         gnome-clocks
         gnome-calculator
         overskride
