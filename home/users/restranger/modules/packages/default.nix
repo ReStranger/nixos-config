@@ -16,22 +16,13 @@ in {
     programs = {
       cava.enable = true;
       fd.enable = true;
-      fzf = {
-        enable = true;
-        enableZshIntegration = true;
-      };
+      fzf.enable = true;
       imv.enable = true;
       jq.enable = true;
-      lsd = {
-        enable = true;
-        enableAliases = true;
-      };
+      lsd.enable = true;
       mpv.enable = true;
       ripgrep.enable = true;
-      zoxide = {
-        enable = true;
-        enableZshIntegration = true;
-      };
+      zoxide.enable = true;
     };
 
     home.packages = with pkgs;
