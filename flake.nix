@@ -105,6 +105,7 @@
     wezterm.url = "github:wez/wezterm?dir=nix";
 
     kidex.url = "github:ReStranger/kidex?ref=nix";
+    nekoflake.url = "git+https://github.com/s0me1newithhand7s/nekoflake.git";
 
     minimal-tmux = {
       url = "github:niksingh710/minimal-tmux-status";
