@@ -5,11 +5,14 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.alacritty;
-  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    types
+    ;
 in
 {
   options.module.alacritty = {

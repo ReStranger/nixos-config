@@ -4,10 +4,14 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.zram;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
   options.module.services.zram = {

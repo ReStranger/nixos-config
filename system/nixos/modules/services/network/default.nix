@@ -5,9 +5,15 @@
   hostname,
   ...
 }:
-with lib;
 let
   cfg = config.module.services.network;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkPackageOption
+    mkOption
+    types
+    ;
 in
 {
   options.module.services.network = {

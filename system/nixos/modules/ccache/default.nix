@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.ccache;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.ccache = {

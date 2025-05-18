@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.polkit;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.services.polkit.enable = mkEnableOption "Enable polkit";

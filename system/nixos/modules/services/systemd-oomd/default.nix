@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.systemd-oomd;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.services.systemd-oomd.enable = mkEnableOption "Enable systemd-oomd";

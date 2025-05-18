@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.bluetooth;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.services.bluetooth = {

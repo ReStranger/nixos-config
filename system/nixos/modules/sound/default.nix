@@ -3,9 +3,14 @@
   config,
   ...
 }:
-with lib;
 let
   cfg = config.module.sound;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
   options.module.sound = {

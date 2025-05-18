@@ -5,10 +5,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.programs.systemPackages;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.programs.systemPackages.enable = mkEnableOption "Enable System Software";

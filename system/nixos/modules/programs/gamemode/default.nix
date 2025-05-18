@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.programs.gamemode;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.programs.gamemode = {

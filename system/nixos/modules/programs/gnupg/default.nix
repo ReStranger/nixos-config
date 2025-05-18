@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.programs.gnupg;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.programs.gnupg.enable = mkEnableOption "Enables GnuPG";
