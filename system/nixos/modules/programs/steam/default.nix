@@ -5,10 +5,14 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.programs.steam;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
   options.module.programs.steam = {

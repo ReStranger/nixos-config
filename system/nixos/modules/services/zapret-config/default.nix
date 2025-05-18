@@ -4,9 +4,17 @@
   pkgs,
   ...
 }:
-with lib;
 let
   cfg = config.module.services.zapret-config;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkPackageOption
+    mkOption
+    types
+    concatStrings
+    maintainers
+    ;
 in
 {
   options.module.services.zapret-config = {

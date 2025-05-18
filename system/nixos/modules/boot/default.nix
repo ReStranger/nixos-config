@@ -3,9 +3,9 @@
   config,
   ...
 }:
-with lib;
 let
   cfg = config.module.boot;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.boot.enable = mkEnableOption "Enable boot module";

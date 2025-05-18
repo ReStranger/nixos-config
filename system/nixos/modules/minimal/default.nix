@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.minimal;
+  inherit (lib) mkEnableOption mkIf mkDefault;
 in
 {
   options = {

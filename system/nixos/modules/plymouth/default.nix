@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.plymouth;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.plymouth.enable = mkEnableOption "Enables plymouth";

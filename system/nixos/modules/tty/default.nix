@@ -4,9 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
 let
   cfg = config.module.tty;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.tty.enable = mkEnableOption "Enable TTY setup module";

@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.upower;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.services.upower.enable = mkEnableOption "Enable upower";

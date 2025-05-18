@@ -4,10 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.auto-cpufreq;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.services.auto-cpufreq.enable = mkEnableOption "Enable auto-cpufreq";

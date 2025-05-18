@@ -5,10 +5,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.programs.fonts;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.programs.fonts.enable = mkEnableOption "Enable System fonts";

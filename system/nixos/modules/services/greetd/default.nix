@@ -3,13 +3,18 @@
   pkgs,
   config,
   username,
+  wm,
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.services.greetd;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
   options = {

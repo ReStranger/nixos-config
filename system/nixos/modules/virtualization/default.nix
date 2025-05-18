@@ -6,10 +6,9 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.module.virtualisation;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options = {
