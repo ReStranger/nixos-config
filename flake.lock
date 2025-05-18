@@ -3,22 +3,20 @@
     "ags": {
       "inputs": {
         "astal": "astal",
-        "gjsx": "gjsx",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1744999273,
-        "narHash": "sha256-lO5MWLdOtK8IPOGnp9TP/UzsmEZWTWpX6g7LZr77t8A=",
+        "lastModified": 1744557573,
+        "narHash": "sha256-XAyj0iDuI51BytJ1PwN53uLpzTDdznPDQFG4RwihlTQ=",
         "owner": "aylur",
         "repo": "ags",
-        "rev": "a0c5df1d96b5303c1aa53e1e7dd06e19e8fc9c24",
+        "rev": "3ed9737bdbc8fc7a7c7ceef2165c9109f336bff6",
         "type": "github"
       },
       "original": {
         "owner": "aylur",
-        "ref": "v3",
         "repo": "ags",
         "type": "github"
       }
@@ -699,22 +697,6 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
-        "type": "github"
-      }
-    },
-    "gjsx": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1744557420,
-        "narHash": "sha256-OVRTPDS8yDYcB83uz/rhuDpBdpPtRKmJKSeGaf7KQgI=",
-        "owner": "aylur",
-        "repo": "gjsx",
-        "rev": "af30f82e2ed686f7acde6dec2f66ff98e6d21eaf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aylur",
-        "repo": "gjsx",
         "type": "github"
       }
     },
