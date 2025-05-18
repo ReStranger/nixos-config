@@ -72,7 +72,7 @@
     };
 
     ags = {
-      url = "github:aylur/ags?ref=v3";
+      url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun = {
