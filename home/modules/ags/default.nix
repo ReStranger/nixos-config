@@ -42,7 +42,6 @@ in
         ++ (with inputs.astal.packages.${pkg.system}; [
           io
           astal3
-          astal4
           apps
           battery
           bluetooth
