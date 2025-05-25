@@ -109,6 +109,7 @@ in
         autoEnable = true;
         polarity = "dark";
         base16Scheme = themes.${theme}.scheme;
+        enableReleaseChecks = false;
 
         opacity = {
           applications = 1.0;
