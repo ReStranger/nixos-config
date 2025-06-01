@@ -9,7 +9,7 @@ ref="$repo#$host"
 rm -f /etc/nix/nix.conf
 nix build \
     -o /etc/nix/nix.conf \
-    --extra-experimental-features 'nix-command flakes' \
+    --extra-experimental-features 'nix-command flakes repl-flake' \
     "${repo}#nixosConfigurations.${host}.config.environment.etc.\"nix/nix.conf\".source"
 systemctl restart nix-daemon.service
 
