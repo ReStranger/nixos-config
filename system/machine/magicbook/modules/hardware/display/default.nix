@@ -1,6 +1,7 @@
 { username, ... }:
 let
   settings = {
+    fontSize = 12;
     hyprland = {
       monitor = [ "eDP-1, 1920x1080@60, 0x0, 1.25" ];
 
@@ -17,6 +18,12 @@ let
   };
 in
 {
+  stylix.fonts.sizes = with settings; {
+    applications = fontSize;
+    terminal = fontSize;
+    popups = fontSize;
+    desktop = fontSize;
+  };
   home-manager.users.${username}.wayland.windowManager = {
     hyprland.settings = settings.hyprland;
   };

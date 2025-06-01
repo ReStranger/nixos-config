@@ -14,8 +14,6 @@ let
 
   cfg = config.module.stylix;
 
-  fontSize = if hostname == "magicbook" then 12 else 10;
-
   terminessPackage =
     if stateVersion == "24.11" then
       pkgs.nerdfonts.override { fonts = [ "Terminess" ]; }
@@ -119,12 +117,6 @@ in
         };
 
         fonts = {
-          sizes = {
-            applications = fontSize;
-            terminal = fontSize;
-            popups = fontSize;
-            desktop = fontSize;
-          };
 
           serif = {
             inherit (themes.${theme}.font) package name;
