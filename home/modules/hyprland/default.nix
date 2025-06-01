@@ -16,15 +16,12 @@ let
 in
 {
   imports = [
-    "${self}/home/modules/hyprland/monitors"
-    # "${homeModules}/hyprland/syles"
     "${self}/home/modules/hyprland/variables"
   ];
   options.module.hyprland.enable = mkEnableOption "Enable Hyprland";
 
   config = mkIf cfg.enable {
     module.hyprland = {
-      monitors.enable = mkDefault cfg.enable;
       variables.enable = mkDefault cfg.enable;
     };
     xdg.desktopEntries."org.gnome.Settings" = {
