@@ -84,7 +84,7 @@ in
         obs-studio
         spotify
         spicetify-cli
-        inputs.nekoflake.packages.${pkgs.system}.nekoray
+        nekoray
         krita
         transmission_4-gtk
         obsidian
