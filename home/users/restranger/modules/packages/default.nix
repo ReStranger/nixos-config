@@ -52,6 +52,7 @@ in
 
         ## dev tools ##
         nodejs_22
+        bun
         pnpm
         vscode-js-debug
         python312
