@@ -36,8 +36,6 @@
       "preempt=none"
       "hpet=disable"
       "zswap.enabled=0"
-      "root=/dev/mapper/nixos-root"
-      "cryptdevice=/dev/nvme0n1p2:luks_lvm"
     ];
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
