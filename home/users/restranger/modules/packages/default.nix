@@ -89,7 +89,10 @@ in
         krita
         transmission_4-gtk
         obsidian
-        discord
+        (discord.override {
+          withOpenASAR = true;
+          withVencord = true;
+        })
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
         inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
