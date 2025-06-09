@@ -72,6 +72,8 @@ in
         ## Fonts ##
         corefonts
         vistafonts
+        ubuntu-sans
+        cantarell-fonts
         nerd-fonts.jetbrains-mono
         nerd-fonts.caskaydia-cove
         nerd-fonts.inconsolata
