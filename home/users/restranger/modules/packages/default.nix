@@ -73,6 +73,7 @@ in
         corefonts
         vistafonts
         ubuntu-sans
+        rubik
         cantarell-fonts
         nerd-fonts.jetbrains-mono
         nerd-fonts.caskaydia-cove
