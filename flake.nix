@@ -82,15 +82,6 @@
 
     matugen.url = "github:InioX/Matugen?rev=0bd628f263b1d97f238849315f2ce3ab4439784e";
 
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland";
-    };
-
-    xdghypr = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ayugram-desktop = {
       type = "git";
       submodules = true;
