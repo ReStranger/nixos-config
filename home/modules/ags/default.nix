@@ -19,6 +19,7 @@ in
     home.packages = with pkgs; [
       dart-sass
       brightnessctl
+      playerctl
       swww
       hyprpicker
       networkmanager
