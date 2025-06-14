@@ -110,6 +110,7 @@ in
         libnotify
       ]
       ++ lib.optionals hyprlandEnable [
+        gnome-control-center
         gnome-clocks
         gnome-calculator
         overskride
