@@ -86,8 +86,6 @@ in
         onlyoffice-bin
         thunderbird-bin
         obs-studio
-        spotify
-        spicetify-cli
         nekoray
         krita
         transmission_4-gtk
@@ -99,9 +97,6 @@ in
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
         inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
-        xorg.xeyes
-        gnome-software
-        qpwgraph
         file-roller
         figma-linux
         wl-clipboard
@@ -113,18 +108,11 @@ in
         gnome-control-center
         gnome-clocks
         gnome-calculator
-        overskride
-        wofi
         swww
-        mako
-        waybar
         nwg-dock-hyprland
         grimblast
-        pavucontrol
         dconf-editor
         hyprpicker
-        brightnessctl
-        playerctl
       ];
   };
 }
