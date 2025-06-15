@@ -18,7 +18,7 @@ in
       enable = true;
       enableZshIntegration = true;
       settings = {
-        manager.show_symlink = true;
+        mgr.show_symlink = true;
       };
     };
   };
