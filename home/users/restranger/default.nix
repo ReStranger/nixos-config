@@ -9,6 +9,7 @@
   stylix.targets = {
     firefox.profileNames = [ "default" ];
     neovim.enable = false;
+    neovide.enable = false;
   };
   module = {
     firefox.enable = isWorkstation;
