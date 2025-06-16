@@ -29,21 +29,17 @@ in
         pkgs.tmuxPlugins.continuum
         pkgs.tmuxPlugins.sessionist
         { plugin = inputs.minimal-tmux.packages.${pkgs.system}.default; }
-
       ];
+      baseIndex = 1;
+      mouse = true;
+      keyMode = "vi";
+      shortcut = "a";
       extraConfig = ''
               set-option -ga terminal-overrides ",$TERM:Tc"
               set -g default-terminal "$TERM"
 
-              # Основной префикс
-              set -g prefix C-a
-
               # Сортировка по имени
               bind s choose-tree -sZ -O name
-
-              # Изменение индексов
-              set -g base-index 1
-              setw -g pane-base-index 1
 
               # Переназначение клавиш
               unbind %
@@ -59,9 +55,6 @@ in
 
               bind -r m resize-pane -Z
 
-              set -g mouse on
-
-              set-window-option -g mode-keys vi
               is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
             | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
               bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
@@ -79,7 +72,7 @@ in
               bind-key -T copy-mode-vi 'C-l' select-pane -R
               bind-key -T copy-mode-vi 'C-\' select-pane -l
               bind-key -T copy-mode-vi 'v' send -X begin-selection 
-        bind-key -T copy-mode-vi 'y' send -X copy-selection 
+              bind-key -T copy-mode-vi 'y' send -X copy-selection 
 
               unbind -T copy-mode-vi MouseDragEnd1Pane
 
