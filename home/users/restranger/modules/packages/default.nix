@@ -72,7 +72,6 @@ in
         ## Fonts ##
         corefonts
         vistafonts
-        ubuntu-sans
         rubik
         cantarell-fonts
         nerd-fonts.jetbrains-mono
@@ -80,6 +79,7 @@ in
         nerd-fonts.inconsolata
         nerd-fonts.fira-code
         nerd-fonts.hack
+        nerd-fonts.ubuntu
 
       ]
       ++ lib.optionals isWorkstation [
