@@ -39,6 +39,7 @@ in
         [
           fzf
           gobject-introspection
+          inputs.matugen.packages.${system}.default
         ]
         ++ (with inputs.astal.packages.${pkg.system}; [
           io
