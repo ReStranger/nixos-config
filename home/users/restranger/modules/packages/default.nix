@@ -89,6 +89,8 @@ in
         obs-studio
         nekoray
         krita
+        davinci-resolve
+        reaper
         transmission_4-gtk
         obsidian
         (discord.override {
