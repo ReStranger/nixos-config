@@ -699,6 +699,27 @@
         "type": "github"
       }
     },
+    "home-manager_4": {
+      "inputs": {
+        "nixpkgs": [
+          "zen-browser",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743604125,
+        "narHash": "sha256-ZD61DNbsBt1mQbinAaaEqKaJk2RFo9R/j+eYWeGMx7A=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "180fd43eea296e62ae68e079fcf56aba268b9a1a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -1118,6 +1139,7 @@
         "stylix": "stylix",
         "treefmt-nix": "treefmt-nix_2",
         "wezterm": "wezterm",
+        "zen-browser": "zen-browser",
         "zsh-auto-notify": "zsh-auto-notify",
         "zsh-autopair": "zsh-autopair",
         "zsh-autosuggestions": "zsh-autosuggestions",
@@ -1483,6 +1505,27 @@
         "dir": "nix",
         "owner": "wez",
         "repo": "wezterm",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": "home-manager_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751656595,
+        "narHash": "sha256-W8uTfv+XXSupH4IFIV+SjTCCQXBiHtxTRkuypuDhlV4=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "565138cfe80944643770b6b4f4ac849dc94ab343",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     },

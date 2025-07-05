@@ -31,6 +31,7 @@ in
       lsd.enable = true;
       mpv.enable = true;
       ripgrep.enable = true;
+      zen-browser.enable = true;
       zoxide.enable = true;
     };
 

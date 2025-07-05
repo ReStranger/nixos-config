@@ -87,6 +87,10 @@
       submodules = true;
       url = "https://github.com/ndfined-crp/ayugram-desktop/";
     };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 
