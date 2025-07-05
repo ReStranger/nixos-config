@@ -227,6 +227,8 @@ in
           "noshadow,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
           "noborder,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
           "float,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
+
+          "opacity 0.89, class: ^(org.gnome.Nautilus)$"
         ];
 
         "$mod" = "SUPER";
