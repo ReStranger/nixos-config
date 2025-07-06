@@ -150,6 +150,7 @@ in
 
         misc = {
           force_default_wallpaper = 0;
+          middle_click_paste = false;
         };
         xwayland = {
           force_zero_scaling = true;
