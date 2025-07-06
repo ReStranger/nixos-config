@@ -25,11 +25,11 @@ in
         "text/markdown" = "nvim.desktop";
         "text/plain" = "nvim.desktop";
 
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
+        "text/html" = "zen-twilight.desktop";
+        "x-scheme-handler/http" = "zen-twilight.desktop";
+        "x-scheme-handler/https" = "zen-twilight.desktop";
+        "x-scheme-handler/about" = "zen-twilight.desktop";
+        "x-scheme-handler/unknown" = "zen-twilight.desktop";
 
         "image/png" = "imv.desktop";
         "image/jpeg" = "imv.desktop";
