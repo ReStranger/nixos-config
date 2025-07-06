@@ -84,6 +84,34 @@ let
         package = pkgs.bibata-cursors;
       };
     };
+    zen = {
+      scheme = {
+        base00 = "#171717";
+        base01 = "#1F1F1F";
+        base02 = "#2A2A2A";
+        base03 = "#333333";
+        base04 = "#363636";
+        base05 = "#D1CFC0";
+        base06 = "#D1CFC0";
+        base07 = "#D1CFC0";
+        base08 = "#F44336";
+        base09 = "#F76F53";
+        base0A = "#F76F53";
+        base0B = "#55b682";
+        base0C = "#2B7FFF";
+        base0D = "#f17ac6";
+        base0E = "#B87AFF";
+        base0F = "#9595ab";
+      };
+      font = {
+        package = pkgs.comfortaa;
+        name = "Comfortaa";
+      };
+      cursor = {
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
+      };
+    };
   };
 in
 {
