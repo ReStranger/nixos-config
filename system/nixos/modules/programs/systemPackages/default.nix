@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   config,
   ...
 }:
@@ -14,6 +15,8 @@ in
 
   config = mkIf cfg.enable {
     programs.nano.enable = false;
+    qt.enable = true;
+
     environment.systemPackages = with pkgs; [
       # Utils
       neovim
@@ -39,6 +42,7 @@ in
           ffmpeg
         ];
       })
+      inputs.quickshell.packages.${pkgs.system}.default
     ];
   };
 }
