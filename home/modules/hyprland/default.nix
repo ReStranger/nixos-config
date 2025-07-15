@@ -61,8 +61,6 @@ in
           "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"
           "pactl set-sink-volume alsa_output.pci-0000_0a_00.4.analog-stereo 50%"
           "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
-          "hyprshade on ~/.config/hyprshade/shaders/vibrance.glsl"
-          "ags run"
         ];
         input = {
           kb_layout = "us,ru";
