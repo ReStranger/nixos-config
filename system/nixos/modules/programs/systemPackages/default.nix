@@ -43,6 +43,7 @@ in
         ];
       })
       inputs.quickshell.packages.${pkgs.system}.default
+      qt6.qtdeclarative
     ];
   };
 }
