@@ -104,11 +104,19 @@ in
           };
           blur = {
             enabled = true;
-            size = 6;
+            size = 14;
             passes = 3;
+            brightness = 1;
+            noise = 0.01;
+            contrast = 1;
+            popups = true;
+            popups_ignorealpha = 0.6;
+            input_methods = true;
+            input_methods_ignorealpha = 0.8;
             new_optimizations = true;
             ignore_opacity = true;
             xray = false;
+            special = false;
           };
           layerrule = [
             "blur,rofi"
