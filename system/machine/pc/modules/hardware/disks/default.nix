@@ -16,7 +16,6 @@
       "rw"
       "relatime"
       "ssd_spread"
-      "max_inline=256"
       "commit=300"
     ];
   };
@@ -29,7 +28,6 @@
       "rw"
       "relatime"
       "ssd_spread"
-      "max_inline=256"
       "commit=300"
     ];
   };
@@ -40,9 +38,7 @@
       "subvol=@log"
       "noatime"
       "rw"
-      "relatime"
       "ssd_spread"
-      "max_inline=256"
       "commit=300"
     ];
   };
@@ -54,9 +50,7 @@
       "subvol=@nix"
       "noatime"
       "rw"
-      "relatime"
       "ssd_spread"
-      "max_inline=256"
       "commit=300"
     ];
   };
@@ -69,7 +63,6 @@
       "rw"
       "relatime"
       "ssd_spread"
-      "max_inline=256"
       "commit=300"
     ];
   };
@@ -90,7 +83,6 @@
       "x-gvfs-name=HDD%201"
       "rw"
       "relatime"
-      "max_inline=256"
       "commit=300"
       "autodefrag"
     ];
