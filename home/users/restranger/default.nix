@@ -7,11 +7,9 @@
 
 {
   stylix.targets = {
-    firefox.profileNames = [ "default" ];
     neovim.enable = false;
   };
   module = {
-    firefox.enable = isWorkstation;
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
     zsh.enable = isWorkstation;
@@ -22,10 +20,8 @@
     kdeconnect.enable = isLinux && isWorkstation;
     wezterm.enable = isLinux && isWorkstation;
 
-    ags.enable = hyprlandEnable && isLinux && isWorkstation;
     anyrun.enable = hyprlandEnable && isLinux && isWorkstation;
     nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
-    nwg-dock.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
 
     nix.enable = true;
