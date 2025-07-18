@@ -66,6 +66,8 @@
       url = "github:Mic92/sops-nix";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     astal = {
       url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
