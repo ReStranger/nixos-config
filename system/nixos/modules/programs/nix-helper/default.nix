@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     programs.nh = {
       enable = true;
-      flake = "/home/${username}/.config/nix";
+      flake = "/home/${username}/.config/nixos";
     };
   };
 }
