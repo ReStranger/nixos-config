@@ -42,7 +42,7 @@
       "net.ipv4.ip_default_ttl" = 65;
     };
     extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
   };
   services.scx = {
     enable = true;
