@@ -2,6 +2,7 @@
   self,
   lib,
   config,
+  inputs,
   pkgs,
   hostname,
   username,
@@ -38,7 +39,6 @@ in
       config.common.default = "gtk";
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
       ];
     };
     wayland.windowManager.hyprland = {
