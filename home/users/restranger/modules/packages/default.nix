@@ -111,6 +111,8 @@ in
         gnome-control-center
         gnome-clocks
         gnome-calculator
+        brightnessctl
+        playerctl
         swww
         nwg-dock-hyprland
         grimblast
