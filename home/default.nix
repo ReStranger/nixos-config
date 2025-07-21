@@ -69,7 +69,7 @@ in
         [
           # inputs.impermanence.nixosModules.home-manager.impermanence
           inputs.ags.homeManagerModules.default
-          inputs.zen-browser.homeModules.twilight
+          inputs.zen-browser.homeModules.beta
           inputs.sops-nix.homeManagerModules.sops
           # inputs.nur.modules.homeManager.default
           # inputs.nvf.homeManagerModules.default

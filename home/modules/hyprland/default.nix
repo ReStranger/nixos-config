@@ -164,21 +164,21 @@ in
 
         windowrulev2 = [
 
-          "workspace 1 silent, class:^(zen-twilight)$"
+          "workspace 1 silent, class:^(zen-beta)$"
           "workspace 2 silent, class:^(obsidian)$"
           "workspace 3 silent, class:^(discord)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
           "workspace 5 silent, title:^(Spotify Free)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
 
-          #Сохранение файла в zen-twilight
-          "workspace [w], title:^(Save Image)$, class:^(zen-twilight)$"
-          "size 900 590, itle:^(Save Image)$, class:^(zen-twilight)$"
-          "center, title:^(Save Image)$, class:^(zen-twilight)$"
+          #Сохранение файла в zen-beta
+          "workspace [w], title:^(Save Image)$, class:^(zen-beta)$"
+          "size 900 590, itle:^(Save Image)$, class:^(zen-beta)$"
+          "center, title:^(Save Image)$, class:^(zen-beta)$"
 
-          "workspace [w], title:^(Enter name of file to save to…)$, class:^(zen-twilight)$"
-          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(zen-twilight)$"
-          "center, title:^(Enter name of file to save to…)$, class:^(zen-twilight)$"
+          "workspace [w], title:^(Enter name of file to save to…)$, class:^(zen-beta)$"
+          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(zen-beta)$"
+          "center, title:^(Enter name of file to save to…)$, class:^(zen-beta)$"
 
           # Просмотр медиа в telegram
           "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
@@ -202,18 +202,18 @@ in
           "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
           "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
 
-          # Картинка в картинке в zen-twilight
+          # Картинка в картинке в zen-beta
 
           # ru_RU-UTF-8
-          "workspace [w], class:^(zen-twilight)$, title:^(Картинка в картинке)$"
-          "float,class:^(zen-twilight)$, title:^(Картинка в картинке)$"
-          "size 427 277,class:^(zen-twilight)$, title:^(Картинка в картинке)$"
-          "pin,class:^(zen-twilight)$, title:^(Картинка в картинке)$"
+          "workspace [w], class:^(zen-beta)$, title:^(Картинка в картинке)$"
+          "float,class:^(zen-beta)$, title:^(Картинка в картинке)$"
+          "size 427 277,class:^(zen-beta)$, title:^(Картинка в картинке)$"
+          "pin,class:^(zen-beta)$, title:^(Картинка в картинке)$"
           # en_US-UTF-8
-          "workspace [w], class:^(zen-twilight)$, title:^(Picture-in-Picture)$"
-          "float,class:^(zen-twilight)$, title:^(Picture-in-Picture)$"
-          "size 427 277,class:^(zen-twilight)$, title:^(Picture-in-Picture)$"
-          "pin,class:^(zen-twilight)$, title:^(Picture-in-Picture)$"
+          "workspace [w], class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+          "float,class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+          "size 427 277,class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+          "pin,class:^(zen-beta)$, title:^(Picture-in-Picture)$"
 
           "workspace [w], class:^(org.pulseaudio.pavucontrol)$, title:^(Громкость)$"
 
