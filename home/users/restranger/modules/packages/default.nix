@@ -75,6 +75,7 @@ in
         vistafonts
         rubik
         cantarell-fonts
+        material-symbols
         nerd-fonts.jetbrains-mono
         nerd-fonts.caskaydia-cove
         nerd-fonts.inconsolata
