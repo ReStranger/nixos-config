@@ -10,13 +10,23 @@
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=@" ];
+    options = [
+      "subvol=@"
+      "discard=async"
+      "ssd"
+      "ssd_spread"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=@home" ];
+    options = [
+      "subvol=@home"
+      "discard=async"
+      "ssd"
+      "ssd_spread"
+    ];
   };
   fileSystems."/var/log" = {
     device = "/dev/disk/by-label/nixos";
@@ -24,6 +34,9 @@
     options = [
       "subvol=@log"
       "noatime"
+      "discard=async"
+      "ssd"
+      "ssd_spread"
     ];
   };
 
@@ -33,13 +46,21 @@
     options = [
       "subvol=@nix"
       "noatime"
+      "discard=async"
+      "ssd"
+      "ssd_spread"
     ];
   };
 
   fileSystems."/.snapshots" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "btrfs";
-    options = [ "subvol=@.snapshots" ];
+    options = [
+      "subvol=@.snapshots"
+      "discard=async"
+      "ssd"
+      "ssd_spread"
+    ];
   };
 
   fileSystems."/boot" = {

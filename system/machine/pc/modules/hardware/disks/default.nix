@@ -13,10 +13,9 @@
     fsType = "btrfs";
     options = [
       "subvol=@"
-      "rw"
-      "relatime"
+      "discard=async"
+      "ssd"
       "ssd_spread"
-      "commit=300"
     ];
   };
 
@@ -25,10 +24,9 @@
     fsType = "btrfs";
     options = [
       "subvol=@home"
-      "rw"
-      "relatime"
+      "discard=async"
+      "ssd"
       "ssd_spread"
-      "commit=300"
     ];
   };
   fileSystems."/var/log" = {
@@ -37,9 +35,9 @@
     options = [
       "subvol=@log"
       "noatime"
-      "rw"
+      "discard=async"
+      "ssd"
       "ssd_spread"
-      "commit=300"
     ];
   };
 
@@ -49,9 +47,9 @@
     options = [
       "subvol=@nix"
       "noatime"
-      "rw"
+      "discard=async"
+      "ssd"
       "ssd_spread"
-      "commit=300"
     ];
   };
 
@@ -60,10 +58,9 @@
     fsType = "btrfs";
     options = [
       "subvol=@.snapshots"
-      "rw"
-      "relatime"
+      "discard=async"
+      "ssd"
       "ssd_spread"
-      "commit=300"
     ];
   };
 
@@ -81,9 +78,6 @@
     options = [
       "x-gvfs-show"
       "x-gvfs-name=HDD%201"
-      "rw"
-      "relatime"
-      "commit=300"
       "autodefrag"
     ];
   };
