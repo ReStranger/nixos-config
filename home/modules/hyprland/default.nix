@@ -2,7 +2,6 @@
   self,
   lib,
   config,
-  inputs,
   pkgs,
   hostname,
   username,
@@ -53,15 +52,20 @@ in
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
+          "qs"
           "kidex"
           "bash /home/${username}/.config/nwg-dock-hyprland/nwg-dock"
         ];
-        exec = [
-          "alsactl init"
-          "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"
-          "pactl set-sink-volume alsa_output.pci-0000_0a_00.4.analog-stereo 50%"
-          "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
-        ];
+        exec =
+          if hostname == "pc" then
+            [
+              "alsactl init"
+              "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"
+              "pactl set-sink-volume alsa_output.pci-0000_0a_00.4.analog-stereo 50%"
+              "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
+            ]
+          else
+            [ ];
         input = {
           kb_layout = "us,ru";
           kb_model = "pc105+inet";
@@ -88,7 +92,7 @@ in
 
           gaps_in = 5;
           gaps_out = 10;
-          border_size = 1;
+          border_size = 2;
 
           layout = "dwindle";
 
@@ -163,7 +167,6 @@ in
         };
 
         windowrulev2 = [
-
           "workspace 1 silent, class:^(zen-beta)$"
           "workspace 2 silent, class:^(obsidian)$"
           "workspace 3 silent, class:^(discord)$"
