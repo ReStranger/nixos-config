@@ -165,6 +165,11 @@ in
         xwayland = {
           force_zero_scaling = true;
         };
+        workspace = [
+          "w[t1], gapsout:0, gapsin:0"
+          "w[tg1], gapsout:0, gapsin:0"
+          "f[1], gapsout:0, gapsin:0"
+        ];
 
         windowrulev2 = [
           "workspace 1 silent, class:^(zen-beta)$"
@@ -240,6 +245,13 @@ in
 
           "opacity 0.89 override 0.89 override, class:.*"
           "opacity 1.0 override 1.0 override, fullscreen:1"
+
+          "bordersize 0, floating:0, onworkspace:w[t1]"
+          "rounding 0, floating:0, onworkspace:w[t1]"
+          "bordersize 0, floating:0, onworkspace:w[tg1]"
+          "rounding 0, floating:0, onworkspace:w[tg1]"
+          "bordersize 0, floating:0, onworkspace:f[1]"
+          "rounding 0, floating:0, onworkspace:f[1]"
         ];
 
         "$mod" = "SUPER";
