@@ -100,7 +100,7 @@ in
         })
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
-        inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
+        ayugram-desktop
         file-roller
         figma-linux
         wl-clipboard
