@@ -91,7 +91,9 @@ in
         nekoray
         krita
         davinci-resolve
+        audacity
         reaper
+        amberol
         transmission_4-gtk
         obsidian
         (discord.override {
