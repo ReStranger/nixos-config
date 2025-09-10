@@ -42,10 +42,6 @@
       "net.ipv4.ip_default_ttl" = 65;
     };
     extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxPackages_zen;
-  };
-  services.scx = {
-    enable = true;
-    scheduler = "scx_lavd";
+    kernelPackages = pkgs.linuxPackages;
   };
 }
