@@ -65,20 +65,28 @@ in
     };
 
     users.${username} = {
-      imports =
-        [
-          # inputs.impermanence.nixosModules.home-manager.impermanence
-          inputs.ags.homeManagerModules.default
-          inputs.zen-browser.homeModules.beta
-          inputs.sops-nix.homeManagerModules.sops
-          # inputs.nur.modules.homeManager.default
-          # inputs.nvf.homeManagerModules.default
+      imports = [
+        (
+          { modulesPath, ... }:
+          {
+            # Important! We disable home-manager's module to avoid option
+            # definition collisions
+            disabledModules = [ "${modulesPath}/programs/anyrun.nix" ];
+          }
+        )
+        # inputs.impermanence.nixosModules.home-manager.impermanence
+        inputs.ags.homeManagerModules.default
+        inputs.anyrun.homeManagerModules.default
+        inputs.zen-browser.homeModules.beta
+        inputs.sops-nix.homeManagerModules.sops
+        # inputs.nur.modules.homeManager.default
+        # inputs.nvf.homeManagerModules.default
 
-          "${self}/modules"
-          "${self}/home/modules"
-        ]
-        ++ optional userConfigurationPathExist userConfigurationPath
-        ++ optional userModulesPathExist userModulesPath;
+        "${self}/modules"
+        "${self}/home/modules"
+      ]
+      ++ optional userConfigurationPathExist userConfigurationPath
+      ++ optional userModulesPathExist userModulesPath;
 
       home = {
         inherit username;
