@@ -118,7 +118,7 @@ in
 
           text {
             min-height: 30px;
-            padding: 5px;
+            padding: 2px 5px;
             border-radius: 5px;
           }
 
@@ -149,7 +149,7 @@ in
 
           .match {
             background: transparent;
-            padding: 3px;
+            padding: 1px 3px;
             margin: 3px 0;
             border-radius: 9px;
           }
