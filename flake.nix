@@ -97,7 +97,7 @@
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 
-    kidex.url = "github:ReStranger/kidex?ref=nix";
+    kidex.url = "github:Kirottu/kidex";
 
     minimal-tmux = {
       url = "github:niksingh710/minimal-tmux-status";
