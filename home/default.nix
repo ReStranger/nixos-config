@@ -77,6 +77,7 @@ in
         # inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.ags.homeManagerModules.default
         inputs.anyrun.homeManagerModules.default
+        inputs.kidex.homeModules.kidex
         inputs.zen-browser.homeModules.beta
         inputs.sops-nix.homeManagerModules.sops
         # inputs.nur.modules.homeManager.default
