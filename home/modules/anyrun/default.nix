@@ -55,11 +55,10 @@ in
             prefix: ":emo",
 
             symbols: {
-              // "name": "text to be copied"
               "shrug": "¯\\_(ツ)_/¯",
             },
 
-            max_entries: 4,
+            max_entries: 6,
           )
         '';
 
@@ -91,7 +90,7 @@ in
         '';
         "dictionary.ron".text = ''
           Config(
-            prefix: ":def",
+            prefix: ":dic",
             max_entries: 4,
           )
         '';
@@ -100,38 +99,74 @@ in
         with config.lib.stylix.colors; # css
         ''
           * {
-            font-family: ${config.stylix.fonts.serif.name};
-            font-size: 1.1rem;
-            font-weight: 600;
+          font-family: ${config.stylix.fonts.serif.name};
           }
 
-          #window,
-          #match,
-          #plugin,
-          #main {
+          window {
             background: transparent;
           }
 
-          #match:selected {
-            background: #${base03};}
-
-          #match {
-            padding: 3px;
-            margin: 2px 0;
-            border-radius: 9px;
-          }
-
-          #entry,
-          #plugin:hover {
-            border-radius: 9px;
-          }
-
-          box#main {
-            padding: 10px;
+          box.main {
+            padding: 5px;
+            margin: 10px;
             margin-top: 160px;
+            border-radius: 15px;
+            border: 2px solid #${base0D};
+            background-color: #${base00};
             box-shadow: 1px 1px 3px 1px #1c1d1d;
-            background: #${base00};
-            border-radius: 14px;
+          }
+
+          text {
+            min-height: 30px;
+            padding: 5px;
+            border-radius: 5px;
+          }
+
+          .matches {
+            background-color: rgba(0, 0, 0, 0);
+            border-radius: 10px;
+          }
+
+          box.plugin:first-child {
+            margin-top: 5px;
+          }
+
+          box.plugin.info {
+            min-width: 200px;
+          }
+
+          list.plugin {
+            background-color: rgba(0, 0, 0, 0);
+          }
+
+          label.match.description {
+            font-size: 10px;
+          }
+
+          label.plugin.info {
+            font-size: 14px;
+          }
+
+          .match {
+            background: transparent;
+            padding: 3px;
+            margin: 3px 0;
+            border-radius: 9px;
+          }
+
+          .match:selected {
+            background: #${base03};
+            animation: fade 0.1s linear;
+          }
+
+          @keyframes fade {
+            0% {
+              opacity: 0;
+            }
+
+            100% {
+              opacity: 1;
+            }
           }
         '';
     };
