@@ -131,7 +131,6 @@ in
 
         animations = {
           enabled = true;
-          first_launch_animation = true;
 
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
@@ -152,10 +151,6 @@ in
 
         master = {
           new_status = "master";
-        };
-
-        gestures = {
-          workspace_swipe = true;
         };
 
         misc = {
