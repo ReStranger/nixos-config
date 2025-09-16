@@ -28,6 +28,7 @@ in
       fzf.enable = true;
       imv.enable = true;
       jq.enable = true;
+      lazydocker.enable = true;
       lsd.enable = true;
       mpv.enable = true;
       ripgrep.enable = true;
