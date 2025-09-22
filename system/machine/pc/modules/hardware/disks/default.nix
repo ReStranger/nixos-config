@@ -81,12 +81,12 @@
       "autodefrag"
     ];
   };
-  # fileSystems."/mnt/win" =
-  #   {
-  #     device = "/dev/nvme0n1p5";
-  #     fsType = "ntfs-3g";
-  #     options = [ "rw" "uid=1000" "x-gvfs-show" "x-gvfs-name=Win11" "x-gvfs-icon=windows" "x-gvfs-symbolic-icon=windows" ];
-  #   };
+  fileSystems."/mnt/win" =
+    {
+      device = "/dev/nvme0n1p4";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000" "x-gvfs-show" "x-gvfs-name=Win10" "x-gvfs-icon=windows" "x-gvfs-symbolic-icon=windows" ];
+    };
   # fileSystems."/mnt/win_hdd" =
   #   {
   #     device = "/dev/sda2";
