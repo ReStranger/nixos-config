@@ -24,14 +24,6 @@ in
     module.hyprland = {
       variables.enable = mkDefault cfg.enable;
     };
-    xdg.desktopEntries."org.gnome.Settings" = {
-      name = "Settings";
-      comment = "Gnome Control Center";
-      icon = "org.gnome.Settings";
-      exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-      categories = [ "X-Preferences" ];
-      terminal = false;
-    };
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;

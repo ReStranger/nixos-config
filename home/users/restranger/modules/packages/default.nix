@@ -111,11 +111,11 @@ in
         libnotify
       ]
       ++ lib.optionals hyprlandEnable [
-        gnome-control-center
         gnome-clocks
         gnome-calculator
         brightnessctl
         playerctl
+        pavucontrol
         swww
         nwg-dock-hyprland
         grimblast
