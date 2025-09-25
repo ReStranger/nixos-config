@@ -20,7 +20,6 @@
     kdeconnect.enable = isLinux && isWorkstation;
     wezterm.enable = isLinux && isWorkstation;
 
-    ags.enable = hyprlandEnable && isLinux && isWorkstation;
     anyrun.enable = hyprlandEnable && isLinux && isWorkstation;
     kidex.enable = hyprlandEnable && isLinux && isWorkstation;
     nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
