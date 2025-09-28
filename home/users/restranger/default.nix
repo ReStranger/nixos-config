@@ -8,6 +8,7 @@
 {
   stylix.targets = {
     neovim.enable = false;
+    zen-browser.enable = false;
   };
   module = {
     zathura.enable = isWorkstation;
