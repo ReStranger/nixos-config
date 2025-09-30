@@ -52,6 +52,8 @@ in
         "message/rfc822" = "userapp-Thunderbird-QT8EW2.desktop";
         "x-scheme-handler/mid" = "userapp-Thunderbird-QT8EW2.desktop";
 
+        "application/vnd.microsoft.portable-executable" = "PortProton.desktop";
+        "application/x-msi" = "PortProton.desktop";
       };
     };
   };
