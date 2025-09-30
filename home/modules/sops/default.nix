@@ -24,7 +24,7 @@ in
 
       secrets = {
         "openai_key" = {
-          sopsFile = "${self}/secrets/home/restranger/secrets.yaml";
+          sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
         };
       };
     };
