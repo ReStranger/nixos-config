@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  username,
   ...
 }:
 let
@@ -11,6 +12,6 @@ in
   options.module.adb.enable = mkEnableOption "Enable android debug bridge";
   config = mkIf cfg.enable {
     programs.adb.enable = true;
-    users.users.restranger.extraGroups = [ "adbusers" ];
+    users.users.${username}.extraGroups = [ "adbusers" ];
   };
 }
