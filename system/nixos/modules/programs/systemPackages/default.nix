@@ -19,10 +19,7 @@ in
 
     environment.systemPackages = with pkgs; [
       # Utils
-      neovim
-      tmux
       home-manager
-      git
       coreutils
       curl
       fd
