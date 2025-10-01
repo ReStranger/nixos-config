@@ -32,6 +32,9 @@ in
         xdg-desktop-portal-gtk
       ];
     };
+    dconf.settings."org/gnome/desktop/wm/preferences" = {
+      button-layout = "";
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
