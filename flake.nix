@@ -88,7 +88,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    matugen.url = "github:InioX/Matugen?rev=0bd628f263b1d97f238849315f2ce3ab4439784e";
+    matugen.url = "github:InioX/Matugen";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
