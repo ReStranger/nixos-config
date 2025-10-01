@@ -31,12 +31,6 @@ in
       # Utils
       xorg.xhost
 
-      (prismlauncher.override {
-        additionalPrograms = [
-          glfw3-minecraft
-          ffmpeg
-        ];
-      })
       inputs.quickshell.packages.${pkgs.system}.default
       qt6.qtdeclarative
       qt6.qt5compat

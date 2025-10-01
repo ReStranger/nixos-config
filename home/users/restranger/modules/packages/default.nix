@@ -89,6 +89,12 @@ in
           withOpenASAR = true;
           withVencord = true;
         })
+        (prismlauncher.override {
+          additionalPrograms = [
+            glfw3-minecraft
+            ffmpeg
+          ];
+        })
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
         ayugram-desktop
