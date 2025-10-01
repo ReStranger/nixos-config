@@ -50,7 +50,6 @@ _: {
 
     programs = {
       corectrl.enable = true;
-      dconf.enable = true;
       fonts.enable = true;
       gnupg.enable = true;
       gamemode.enable = true;
