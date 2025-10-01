@@ -21,19 +21,14 @@ in
       # Utils
       neovim
       tmux
-      wget
       home-manager
       git
       coreutils
       curl
-      lsd
+      fd
       ripgrep
 
-      # Hardware utils
-      cpufetch
-
       # Utils
-      dconf-editor
       xorg.xhost
 
       (prismlauncher.override {
