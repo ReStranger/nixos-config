@@ -49,23 +49,16 @@ in
 
         ## fetch ##
         fastfetch
-        cava
 
         ## dev tools ##
         nodejs_22
-        bun
         pnpm
         vscode-js-debug
-        python312
-        python312Packages.pip
-        uv
         clang-tools
         llvmPackages_latest.clang
         llvmPackages_latest.lldb
         gnumake
         cmake
-        cargo
-        rustc
         nixfmt-rfc-style
 
         ## LSP ##
@@ -86,13 +79,9 @@ in
       ]
       ++ lib.optionals isWorkstation [
         onlyoffice-bin
-        thunderbird-bin
         obs-studio
         nekoray
         krita
-        davinci-resolve
-        audacity
-        reaper
         amberol
         transmission_4-gtk
         obsidian
@@ -104,22 +93,19 @@ in
       ++ lib.optionals (isLinux && isWorkstation) [
         ayugram-desktop
         file-roller
-        figma-linux
-        wl-clipboard
-        wl-clipboard-x11
         pulseaudio
         libnotify
       ]
       ++ lib.optionals hyprlandEnable [
         gnome-clocks
         gnome-calculator
+        wl-clipboard-rs
+        wl-clipboard-x11
         brightnessctl
         playerctl
         pavucontrol
         swww
-        nwg-dock-hyprland
         grimblast
-        dconf-editor
         hyprpicker
       ];
   };
