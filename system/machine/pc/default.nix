@@ -1,4 +1,5 @@
-_: {
+{ username, ... }:
+{
   module = {
     adb.enable = true;
     boot.enable = true;
@@ -14,7 +15,12 @@ _: {
     stylix.enable = true;
     timezone.enable = true;
     tty.enable = true;
-    users.enable = true;
+    users = {
+      enable = true;
+      ${username}.hashedPassword =
+        "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
+      root.hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
+    };
     virtualisation = {
       enable = true;
       docker.enable = true;

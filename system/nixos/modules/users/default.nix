@@ -8,10 +8,31 @@
 
 let
   cfg = config.module.users;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
-  options.module.users.enable = mkEnableOption "Enables users";
+  options.module.users = {
+    enable = mkEnableOption "Enables users";
+    ${username}.hashedPassword = mkOption {
+      type = types.str;
+      default = false;
+      description = ''
+        Set hashed password to ${username}
+      '';
+    };
+    root.hashedPassword = mkOption {
+      type = types.str;
+      default = false;
+      description = ''
+        Set hashed password to root
+      '';
+    };
+  };
   config = mkIf cfg.enable {
     users = {
       mutableUsers = false;
@@ -31,7 +52,8 @@ in
           createHome = true;
           description = "${username}";
           isSystemUser = true;
-          hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
+          hashedPassword = cfg.${username}.hashedPassword;
+          # hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
 
           extraGroups = [
             "audio"
@@ -45,7 +67,8 @@ in
 
         root = {
           shell = pkgs.zsh;
-          hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
+          hashedPassword = cfg.root.hashedPassword;
+          # hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
         };
       };
     };
