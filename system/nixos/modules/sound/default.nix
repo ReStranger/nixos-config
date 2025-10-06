@@ -43,7 +43,7 @@ in
         88200
         96000
       ];
-      default = 96000;
+      default = 48000;
       description = ''
         Select default clock rate for pipewire device
       '';
