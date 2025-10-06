@@ -107,6 +107,7 @@ in
         gnome-calculator
         wl-clipboard-rs
         wl-clipboard-x11
+        overskride
         brightnessctl
         playerctl
         pavucontrol
