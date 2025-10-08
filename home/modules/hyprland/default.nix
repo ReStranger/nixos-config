@@ -147,7 +147,10 @@ in
         master = {
           new_status = "master";
         };
-
+        gesture = [
+            "3, horizontal, workspace"
+            "3, vertical, special, magic"
+        ];
         misc = {
           force_default_wallpaper = 0;
           middle_click_paste = false;
