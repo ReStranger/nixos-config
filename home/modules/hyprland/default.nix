@@ -252,7 +252,7 @@ in
         bind = [
           "$mod, T, exec, ${terminal}"
           "$mod, Q, killactive,"
-          "$mod SHIFT, Q, exec, kill -9 $(hyprctl activewindow -j | jq -r .pid)"
+          "$mod SHIFT, Q, forcekillactive"
           "$mod, E, exec, ${fileManager}"
           "$mod, D, exec, ${menu}"
           "CTRL, Print, exec, grimblast --notify --freeze copy area"
