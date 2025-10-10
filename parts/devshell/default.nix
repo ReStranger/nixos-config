@@ -132,14 +132,10 @@
             yazi
             git
             curl
-            helix
-            fish
+            neovim
             tmux
-            lynx
-            ripgrep
-            htop
-            disko
             fzf
+            tmate
           ];
         };
         android = pkgs.stdenv.mkDerivation {
