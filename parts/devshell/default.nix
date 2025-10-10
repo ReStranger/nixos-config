@@ -131,14 +131,10 @@
           yazi
           git
           curl
-          helix
-          fish
+          neovim
           tmux
-          lynx
-          ripgrep
-          htop
-          disko
           fzf
+          tmate
         ];
       };
       devShells.android = pkgs.stdenv.mkDerivation {
