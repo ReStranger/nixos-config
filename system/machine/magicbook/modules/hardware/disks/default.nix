@@ -73,11 +73,9 @@
   };
   fileSystems."/mnt/ccache" = {
     device = "/home/${username}/.cache/ccache";
+    fsType = "none";
     options = [
-      "defaults"
       "bind"
-      "users"
-      "noauto"
     ];
   };
   swapDevices = [
