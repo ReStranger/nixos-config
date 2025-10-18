@@ -43,24 +43,15 @@ in
         ecosystem = {
           no_update_news = true;
         };
+
         exec-once = builtins.map (cmd: "uwsm app -- ${cmd}") [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
           "qs"
-          "kidex"
-          "bash /home/${username}/.config/nwg-dock-hyprland/nwg-dock"
         ];
-        exec =
-          if hostname == "pc" then
-            [
-              "alsactl init"
-              "pactl set-default-sink alsa_output.pci-000_0a_00.4.analog-stereo"
-              "pactl set-sink-volume alsa_output.pci-0000_0a_00.4.analog-stereo 50%"
-              "pactl set-source-volume alsa_input.pci-0000_0a_00.4.analog-stereo 35%"
-            ]
-          else
-            [ ];
+        exec = [ ];
+
         input = {
           kb_layout = "us,ru";
           kb_model = "pc105+inet";
@@ -77,6 +68,7 @@ in
           sensitivity = 0;
           accel_profile = "flat";
         };
+
         device = {
           name = "2.4g-2.4g-wireless-device-mouse";
           sensitivity = 0;
@@ -84,7 +76,6 @@ in
         };
 
         general = {
-
           gaps_in = 5;
           gaps_out = 10;
           border_size = 2;
@@ -93,6 +84,7 @@ in
 
           allow_tearing = true;
         };
+
         decoration = {
           rounding = 15;
           shadow = {
@@ -101,6 +93,7 @@ in
             offset = "2 3";
             render_power = 3;
           };
+
           blur = {
             enabled = true;
             size = 14;
@@ -117,10 +110,7 @@ in
             xray = false;
             special = false;
           };
-          layerrule = [
-            "blur,rofi"
-            "ignorealpha [1],rofi"
-          ];
+
           dim_inactive = false;
         };
 
@@ -147,18 +137,22 @@ in
         master = {
           new_status = "master";
         };
+
         gesture = [
-            "3, horizontal, workspace"
-            "3, vertical, special, magic"
+          "3, horizontal, workspace"
+          "3, vertical, special, magic"
         ];
+
         misc = {
           force_default_wallpaper = 0;
           middle_click_paste = false;
           enable_anr_dialog = false;
         };
+
         xwayland = {
           force_zero_scaling = true;
         };
+
         workspace = [
           "w[t1], gapsout:0, gapsin:0"
           "w[tg1], gapsout:0, gapsin:0"
@@ -186,18 +180,6 @@ in
           "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
           "center, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
           "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-
-          #Сохранение файла в vesktop
-          "workspace [w], class:^(Electron)$, title:^(.*blob.*)$"
-          "float, class:^(Electron)$, title:^(.*blob.*)$"
-          "size 900 590, class:^(Electron)$, title:^(.*blob.*)$"
-          "center, class:^(Electron)$, title:^(.*blob.*)$"
-
-          # Отправка файла в vesktop
-          "workspace [w], class:^(Electron)$, title:^(Открытие файлов)$"
-          "float, class:^(Electron)$, title:^(Открытие файлов)$ "
-          "size 900 590, class:^(Electron)$, title:^(Открытие файлов)$ "
-          "center, class:^(Electron)$, title:^(Открытие файлов)$"
 
           # Fix sharing video
           "workspace [w], class:^(hyprland-share-picker)$, title:^(MainPicker)$"
@@ -230,13 +212,6 @@ in
           "size 960 540,class:^(imv)$"
           "center,class:^(imv)$"
 
-          # Fix xwayland
-          "noblur,class:^()$,class:^()$"
-          "nofocus,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
-          "noshadow,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
-          "noborder,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
-          "float,class:^(kstudy.exe)$,class:^(RoamingWindow)$"
-
           "opacity 0.89 override 0.89 override, class:.*"
           "opacity 1.0 override 1.0 override, fullscreen:1"
 
@@ -259,7 +234,6 @@ in
           "CTRL SHIFT, Print, exec, uwsm app -- grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
 
           "$mod ALT, R, exec, hyprctl reload"
-          "$mod ALT, W, exec, uwsm app -- ags quit; ags run"
 
           "$mod, R, togglesplit, # dwindle"
           "$mod SHIFT, F, togglefloating, "
@@ -267,8 +241,6 @@ in
           "$mod SHIFT, P, pseudo, # dwindle"
 
           "$mod, C, exec, uwsm app -- hyprpicker --autocopy"
-          "$mod ALT, O, exec, uwsm app -- firefox & obsidian & ayugram-desktop -- %u & discord & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
-          "$mod ALT, P, exec, uwsm app -- ags -t powermenu"
 
           "$mod, L, movefocus, r"
           "$mod, H, movefocus, l"
@@ -318,7 +290,6 @@ in
           "$mod, mouse:273, resizewindow"
 
           "$mod, Control_L, movewindow"
-          "$mod, mouse:273, resizewindow"
           "$mod, ALT_L, resizewindow"
         ];
         bindel = [
