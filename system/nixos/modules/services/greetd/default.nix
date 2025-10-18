@@ -55,7 +55,7 @@ in
         initial_session = mkIf cfg.autologin {
           command =
             if wm == "hyprland" then
-              "${pkgs.hyprland}/bin/hyprland &> /tmp/hypland-start.log"
+              "uwsm check may-start && exec uwsm start hyprland-uwsm.desktop"
             else
               "${pkgs.greetd}/bin/agreety --cmd $SHELL";
           user = "${username}";
