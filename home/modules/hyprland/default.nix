@@ -38,12 +38,12 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
-      systemd.enable = true;
+      systemd.enable = false;
       settings = {
         ecosystem = {
           no_update_news = true;
         };
-        exec-once = [
+        exec-once = builtins.map (cmd: "uwsm app -- ${cmd}") [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
@@ -250,25 +250,25 @@ in
 
         "$mod" = "SUPER";
         bind = [
-          "$mod, T, exec, ${terminal}"
+          "$mod, T, exec, uwsm app -- ${terminal}"
           "$mod, Q, killactive,"
           "$mod SHIFT, Q, forcekillactive"
-          "$mod, E, exec, ${fileManager}"
-          "$mod, D, exec, ${menu}"
-          "CTRL, Print, exec, grimblast --notify --freeze copy area"
-          "CTRL SHIFT, Print, exec, grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
+          "$mod, E, exec, uwsm app -- ${fileManager}"
+          "$mod, D, exec, uwsm app -- ${menu}"
+          "CTRL, Print, exec, uwsm app -- grimblast --notify --freeze copy area"
+          "CTRL SHIFT, Print, exec, uwsm app -- grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
 
           "$mod ALT, R, exec, hyprctl reload"
-          "$mod ALT, W, exec, ags quit; ags run"
+          "$mod ALT, W, exec, uwsm app -- ags quit; ags run"
 
           "$mod, R, togglesplit, # dwindle"
           "$mod SHIFT, F, togglefloating, "
           "$mod, F, fullscreen,"
           "$mod SHIFT, P, pseudo, # dwindle"
 
-          "$mod, C, exec, hyprpicker --autocopy"
-          "$mod ALT, O, exec, firefox & obsidian & ayugram-desktop -- %u & discord & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
-          "$mod ALT, P, exec, ags -t powermenu"
+          "$mod, C, exec, uwsm app -- hyprpicker --autocopy"
+          "$mod ALT, O, exec, uwsm app -- firefox & obsidian & ayugram-desktop -- %u & discord & spotify & pactl set-default-sink alsa_output.pci-0000_0a_00.4.analog-stereo"
+          "$mod ALT, P, exec, uwsm app -- ags -t powermenu"
 
           "$mod, L, movefocus, r"
           "$mod, H, movefocus, l"
