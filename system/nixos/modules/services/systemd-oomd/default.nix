@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     systemd.oomd = {
       enable = true;
-      extraConfig = {
+      settings.OOM = {
         DefaultMemoryPressureLimit = "90%";
         DefaultMemoryPressureDurationSec = "10s";
       };
