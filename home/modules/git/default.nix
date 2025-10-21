@@ -15,20 +15,24 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      lfs.enable = true;
-      userName = "ReStranger";
-      userEmail = "restranger@disroot.org";
+    programs = {
       difftastic.enable = true;
-      extraConfig = {
-        color.ui = true;
-        init.defaultBranch = "main";
-        safe.directory = "/etc/nixos";
-        http = {
-          postBuffer = 524288000;
-          lowSpeedLimit = 0;
-          lowSpeedTime = 999999;
+      git = {
+        enable = true;
+        settings = {
+          user = {
+            name = "ReStranger";
+            email = "restranger@disroot.org";
+          };
+          lfs.enable = true;
+          color.ui = true;
+          init.defaultBranch = "main";
+          safe.directory = "/etc/nixos";
+          http = {
+            postBuffer = 524288000;
+            lowSpeedLimit = 0;
+            lowSpeedTime = 999999;
+          };
         };
       };
     };
