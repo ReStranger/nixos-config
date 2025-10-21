@@ -97,6 +97,7 @@ in
         })
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
+        (callPackage ../../../../overlays/davinci-resolve-studio.nix { })
         ayugram-desktop
         file-roller
         pulseaudio
