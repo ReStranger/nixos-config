@@ -20,14 +20,10 @@ in
       nemo-fileroller
     ];
     dconf = {
-      settings."org/nemo/window-state" = {
-        start-with-menu-bar = false;
-      };
-      settings."org/cinnamon/desktop/default-applications/terminal" = {
-        exec = "kitty";
-      };
-      settings."org/nemo/desktop" = {
-        show-desktop-icons = false;
+      settings = {
+        "org/nemo/window-state".start-with-menu-bar = false;
+        "org/cinnamon/desktop/default-applications/terminal".exec = "kitty";
+        "org/nemo/desktop".show-desktop-icons = false;
       };
     };
   };

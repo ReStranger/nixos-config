@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  hostname,
   theme,
   stateVersion,
   ...
@@ -128,38 +127,37 @@ in
   };
 
   config = mkIf cfg.enable {
-    stylix =
-      {
-        enable = true;
-        # image = themes.${theme}.wallpaper;
-        autoEnable = true;
-        polarity = "dark";
-        base16Scheme = themes.${theme}.scheme;
-        enableReleaseChecks = false;
+    stylix = {
+      enable = true;
+      # image = themes.${theme}.wallpaper;
+      autoEnable = true;
+      polarity = "dark";
+      base16Scheme = themes.${theme}.scheme;
+      enableReleaseChecks = false;
 
-        opacity = {
-          applications = 1.0;
-          terminal = 1.0;
-          popups = 1.0;
-          desktop = 1.0;
-        };
-
-        fonts = {
-
-          serif = {
-            inherit (themes.${theme}.font) package name;
-          };
-
-          sansSerif = config.stylix.fonts.serif;
-          monospace = config.stylix.fonts.serif;
-          emoji = config.stylix.fonts.serif;
-        };
-      }
-      // optionalAttrs cfg.useCursor {
-        cursor = {
-          inherit (themes.${theme}.cursor) package name;
-          size = 24;
-        };
+      opacity = {
+        applications = 1.0;
+        terminal = 1.0;
+        popups = 1.0;
+        desktop = 1.0;
       };
+
+      fonts = {
+
+        serif = {
+          inherit (themes.${theme}.font) package name;
+        };
+
+        sansSerif = config.stylix.fonts.serif;
+        monospace = config.stylix.fonts.serif;
+        emoji = config.stylix.fonts.serif;
+      };
+    }
+    // optionalAttrs cfg.useCursor {
+      cursor = {
+        inherit (themes.${theme}.cursor) package name;
+        size = 24;
+      };
+    };
   };
 }

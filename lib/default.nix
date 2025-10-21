@@ -65,7 +65,8 @@ let
         inputs.chaotic.nixosModules.default
         inputs.sops-nix.nixosModules.sops
         # inputs.nur.modules.nixos.default
-      ] ++ constructors;
+      ]
+      ++ constructors;
     };
   mkHostDarwin =
     machineDir:
@@ -108,7 +109,8 @@ let
       modules = [
         inputs.home-manager.darwinModules.home-manager
         inputs.stylix.darwinModules.stylix
-      ] ++ constructors;
+      ]
+      ++ constructors;
     };
   mkHostAndroid =
     hostname:

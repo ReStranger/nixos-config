@@ -88,7 +88,7 @@ in
       ];
 
       kernel.sysctl = {
-                # Enable protection against accidental writing to a FIFO object
+        # Enable protection against accidental writing to a FIFO object
         "fs.protected_fifos" = 2;
 
         # Restrict unsafe options for working with hard links
