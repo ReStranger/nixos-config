@@ -52,7 +52,7 @@ in
           createHome = true;
           description = "${username}";
           isSystemUser = true;
-          hashedPassword = cfg.${username}.hashedPassword;
+          inherit (cfg.${username}) hashedPassword;
           # hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
 
           extraGroups = [
@@ -67,7 +67,7 @@ in
 
         root = {
           shell = pkgs.zsh;
-          hashedPassword = cfg.root.hashedPassword;
+          inherit (cfg.root) hashedPassword;
           # hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
         };
       };
