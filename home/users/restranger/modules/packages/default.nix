@@ -42,6 +42,8 @@ in
         unzip
         unrar
         p7zip
+        curl
+        wget
 
         ## shell ##
         bat
