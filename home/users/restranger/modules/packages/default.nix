@@ -94,6 +94,7 @@ in
             ffmpeg
           ];
         })
+        lunar-client
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
         (callPackage ../../../../overlays/davinci-resolve-studio.nix { })
