@@ -20,6 +20,12 @@ in
       defaultEditor = true;
       viAlias = true;
       extraPackages = with pkgs; [
+        # Mason deps
+        python313
+        nodejs
+        luarocks
+        lua5_1
+
         # LSP
         lua-language-server
         vscode-langservers-extracted
