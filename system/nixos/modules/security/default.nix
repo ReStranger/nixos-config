@@ -8,32 +8,39 @@ let
   cfg = config.module.security;
   inherit (lib)
     mkEnableOption
+    mkOption
     mkIf
     optionalAttrs
     optionals
     ;
+  inherit (lib.types) bool;
 in
 {
   options = {
     module.security = {
       enable = mkEnableOption "Enables security";
       enableBootOptions = mkEnableOption "Enables boot options";
+      preferRustPackages = mkOption {
+        type = bool;
+        default = false;
+        description = "Use Rust-based alternatives to system packages";
+      };
       disableIPV6 = mkEnableOption "Disable ipv6";
+
     };
   };
 
   config = mkIf cfg.enable {
     security = {
-      sudo.enable = false;
-
       pam.services = {
         gtklock = { };
         swaylock = { };
         hyprlock = { };
       };
 
+      sudo.enable = !cfg.preferRustPackages;
       sudo-rs = {
-        enable = true;
+        enable = cfg.preferRustPackages;
         execWheelOnly = true;
         wheelNeedsPassword = true;
       };
@@ -150,7 +157,6 @@ in
 
         # Disable the userfaultfd system call for unprivileged users
         "vm.unprivileged_userfaultfd" = 0;
-
       }
       // optionalAttrs cfg.disableIPV6 {
         # Disable ipv6
