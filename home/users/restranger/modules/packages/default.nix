@@ -108,7 +108,7 @@ in
       ++ lib.optionals hyprlandEnable [
         gnome-clocks
         gnome-calculator
-        wl-clipboard-rs
+        wl-clipboard
         wl-clipboard-x11
         overskride
         brightnessctl
