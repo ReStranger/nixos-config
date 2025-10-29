@@ -20,7 +20,7 @@ in
     environment.systemPackages = with pkgs; [
       # Utils
       home-manager
-      uutils-coreutils-noprefix
+      coreutils-full
       curl
       fd
       ripgrep
