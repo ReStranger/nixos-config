@@ -44,6 +44,7 @@ in
         p7zip
         curl
         wget
+        lm_sensors
 
         ## shell ##
         bat
