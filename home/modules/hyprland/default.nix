@@ -214,6 +214,7 @@ in
 
           "opacity 0.89 override 0.89 override, class:.*"
           "opacity 1.0 override 1.0 override, fullscreen:1"
+          "opacity 1.0 override 1.0 override, class:^(org.wezfurlong.wezterm)$"
 
           "bordersize 0, floating:0, onworkspace:w[t1]"
           "rounding 0, floating:0, onworkspace:w[t1]"
