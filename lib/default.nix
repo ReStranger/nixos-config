@@ -26,6 +26,7 @@ let
       platform ? "x86_64-linux",
       hostname ? machineDir,
       isWorkstation ? false,
+      isLaptop ? false,
       wm ? null,
       theme ? "catppuccin-mocha",
       hostType ? "nixos",
@@ -52,6 +53,7 @@ let
           platform
           machineDir
           isWorkstation
+          isLaptop
           wm
           theme
           hyprlandEnable
@@ -77,6 +79,7 @@ let
       hostname ? machineDir,
       platform ? "aarch64-darwin",
       isWorkstation ? false,
+      isLaptop ? true,
       wm ? null,
       theme ? "catppuccin-mocha",
       hostType ? "darwin",
@@ -95,6 +98,7 @@ let
           username
           platform
           isWorkstation
+          isLaptop
           machineDir
           stateVersion
           hmStateVersion
