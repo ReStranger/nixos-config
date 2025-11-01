@@ -80,7 +80,7 @@ in
 
       ]
       ++ lib.optionals isWorkstation [
-        onlyoffice-bin
+        onlyoffice-desktopeditors
         obs-studio
         nekoray
         krita
