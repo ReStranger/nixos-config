@@ -67,7 +67,7 @@ in
 
         ## Fonts ##
         corefonts
-        vistafonts
+        vista-fonts
         rubik
         cantarell-fonts
         material-symbols
