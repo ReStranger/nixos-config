@@ -45,6 +45,7 @@
       opentablet.enable = true;
       polkit.enable = true;
       power-profiles-daemon.enable = true;
+      scx.enable = true;
       systemd-oomd.enable = true;
       upower.enable = true;
       zerotier-one.enable = true;
