@@ -3,7 +3,7 @@
   lib,
   config,
   pkgs,
-  hostname,
+  isLaptop,
   username,
   ...
 }:
@@ -61,7 +61,7 @@ in
           follow_mouse = 1;
 
           touchpad = {
-            middle_button_emulation = if hostname == "magicbook" then true else false;
+            middle_button_emulation = isLaptop;
             natural_scroll = true;
           };
 
