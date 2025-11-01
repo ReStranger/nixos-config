@@ -49,7 +49,6 @@ in
     boot = optionalAttrs cfg.enableBootOptions {
       kernelParams = [
         # Security settings
-        "debugfs=off"
         "init_on_alloc=1"
         "iommu=force"
         "iommu.passthrough=0"
@@ -66,6 +65,10 @@ in
       ++ optionals cfg.disableIPV6 [
         # Disable ipv6
         "ipv6.disable=1"
+      ]
+      ++ optionals (!config.module.services.scx.enable) [
+        # DebugFS needed for scx
+        "debugfs=off"
       ];
 
       blacklistedKernelModules = [
@@ -91,7 +94,6 @@ in
         "qnx4"
         "qnx6"
         "sysv"
-
       ];
 
       kernel.sysctl = {
