@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  isLaptop,
   ...
 }:
 
@@ -14,6 +15,10 @@ in
     services.scx = {
       enable = true;
       scheduler = "scx_lavd";
+      extraArgs = [
+        "--verbose"
+        (if isLaptop then "--powersave" else "--performance")
+      ];
     };
   };
 }
