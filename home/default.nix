@@ -8,6 +8,7 @@
   platform,
   hmStateVersion,
   isWorkstation ? false,
+  isLaptop ? false,
   wm ? "",
   theme,
   swayEnable ? false,
@@ -56,6 +57,7 @@ in
         stateVersion
         isLinux
         isWorkstation
+        isLaptop
         wm
         theme
         swayEnable
