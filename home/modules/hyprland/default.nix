@@ -9,7 +9,12 @@
 }:
 let
   cfg = config.module.hyprland;
-  inherit (lib) mkEnableOption mkIf mkDefault;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkDefault
+    optionals
+    ;
   terminal = "wezterm";
   fileManager = "nautilus -w";
   menu = "anyrun";
@@ -138,7 +143,7 @@ in
           new_status = "master";
         };
 
-        gesture = [
+        gesture = mkIf isLaptop [
           "3, horizontal, workspace"
           "3, vertical, special, magic"
         ];
@@ -290,6 +295,8 @@ in
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
 
+        ]
+        ++ optionals isLaptop [
           "$mod, Control_L, movewindow"
           "$mod, ALT_L, resizewindow"
         ];
