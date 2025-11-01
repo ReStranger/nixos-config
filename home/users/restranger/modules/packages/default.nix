@@ -114,7 +114,7 @@ in
         overskride
         brightnessctl
         playerctl
-        pavucontrol
+        pwvucontrol
         swww
         grimblast
         hyprpicker
