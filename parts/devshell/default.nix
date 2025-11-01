@@ -68,7 +68,6 @@
         multiPkgs =
           pkgs: with pkgs; [
             zlib
-            ncurses5
             # libc
             # libcxx
             readline
@@ -93,7 +92,6 @@
 
           # Building involves a phase of unzipping large files into a temporary directory
           export TMPDIR=/tmp
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib32:${pkgs.ncurses5}/lib
           clear
           echo -e "\033[1;32m"
           cat << "EOF"
