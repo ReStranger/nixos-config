@@ -114,6 +114,44 @@
         '';
 
       };
+      kernel-fhs-env = pkgs.buildFHSEnv {
+        name = "kernel-build-env";
+        targetPkgs =
+          pkgs:
+          (
+            with pkgs;
+            [
+              pkg-config
+              clang
+              lld
+              llvm
+
+              ncurses
+              elfutils
+              zlib
+
+              ccache
+              git
+              git-repo
+              git-lfs
+            ]
+            ++ pkgs.linux.nativeBuildInputs
+          );
+        runScript = "zsh";
+        profile = ''
+          export LLVM=1
+          export LLVM_IAS=1
+          export ARCH=arm64
+          export CROSS_COMPILE=aarch64-unknown-linux-gnu-
+
+          export LD=ld.lld
+          export CC=clang
+          export AR=llvm-ar
+          export NM=llvm-nm
+          export RANLIB="llvm-ranlib"
+          export PKG_CONFIG_PATH="${pkgs.ncurses.dev}/lib/pkgconfig"
+        '';
+      };
     in
     {
       # For nix develop
@@ -141,6 +179,11 @@
           nativeBuildInputs = [ android-fhs-env ];
           shellHook = "exec android-env";
         };
+      };
+      devShells.kernel = pkgs.stdenv.mkDerivation {
+        name = "kernel-env-shell";
+        nativeBuildInputs = [ kernel-fhs-env ];
+        shellHook = "exec kernel-build-env";
       };
     };
 }
