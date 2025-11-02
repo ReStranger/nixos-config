@@ -39,9 +39,9 @@ in
         [
           fzf
           gobject-introspection
-          inputs.matugen.packages.${system}.default
+          inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
         ]
-        ++ (with inputs.astal.packages.${pkg.system}; [
+        ++ (with inputs.astal.packages.${pkgs.stdenv.hostPlatform.system}; [
           io
           astal3
           astal4

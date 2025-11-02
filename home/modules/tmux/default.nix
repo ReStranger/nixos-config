@@ -28,7 +28,7 @@ in
         pkgs.tmuxPlugins.resurrect
         pkgs.tmuxPlugins.continuum
         pkgs.tmuxPlugins.sessionist
-        { plugin = inputs.minimal-tmux.packages.${pkgs.system}.default; }
+        { plugin = inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default; }
       ];
       baseIndex = 1;
       mouse = true;
