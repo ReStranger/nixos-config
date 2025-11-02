@@ -11,7 +11,7 @@
       #   https://gist.github.com/Arian04/bea169c987d46a7f51c63a68bc117472
       #   https://nixos.wiki/wiki/Android#Building_Android_on_NixOS
       #   https://wiki.lineageos.org/devices/bacon/build
-      fhs = pkgs.buildFHSEnv {
+      android-fhs-env = pkgs.buildFHSEnv {
         name = "android-env";
         targetPkgs =
           pkgs: with pkgs; [
@@ -138,7 +138,7 @@
         };
         android = pkgs.stdenv.mkDerivation {
           name = "android-env-shell";
-          nativeBuildInputs = [ fhs ];
+          nativeBuildInputs = [ android-fhs-env ];
           shellHook = "exec android-env";
         };
       };
