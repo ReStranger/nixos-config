@@ -20,7 +20,7 @@ in
   config = mkIf cfg.enable {
     programs.wezterm = {
       enable = true;
-      package = inputs.wezterm.packages.${pkgs.system}.default;
+      package = inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default;
       enableBashIntegration = true;
       enableZshIntegration = true;
       extraConfig = # lua

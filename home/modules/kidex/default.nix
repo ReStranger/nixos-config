@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     services.kidex = {
       enable = true;
-      package = inputs.kidex.packages.${pkgs.system}.kidex;
+      package = inputs.kidex.packages.${pkgs.stdenv.hostPlatform.system}.kidex;
       settings = {
         directories = [
           {
