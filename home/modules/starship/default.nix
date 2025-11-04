@@ -78,8 +78,9 @@ in
         };
 
         directory = {
-          format = " [](fg:bright-black)[$path](bg:bright-black fg:white)[](fg:bright-black) [ ](fg:yellow)";
+          format = " [](fg:bright-black)[$path](bg:bright-black fg:white)[](fg:bright-black) [$read_only]($read_only_style)";
           read_only = " ";
+          read_only_style = "fg:yellow";
           truncate_to_repo = true;
           truncation_length = 4;
           truncation_symbol = "";
