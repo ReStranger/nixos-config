@@ -165,13 +165,17 @@
           '';
 
           packages = with pkgs; [
+            sops
+            age
+            ssh-to-age
             yazi
             git
             curl
             neovim
             tmux
             fzf
-            tmate
+            tmux
+            zsh
           ];
         };
         android = pkgs.stdenv.mkDerivation {
