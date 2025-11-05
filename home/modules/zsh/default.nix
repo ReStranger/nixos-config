@@ -1,4 +1,5 @@
 {
+  self,
   config,
   inputs,
   username,
@@ -16,6 +17,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    sops.secrets."openai_key".sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
+
     programs.zsh = {
       enable = true;
       history.size = 5000;
