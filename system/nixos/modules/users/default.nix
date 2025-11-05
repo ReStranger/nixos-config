@@ -1,8 +1,10 @@
 {
+  self,
   pkgs,
   lib,
   config,
   username,
+  hostname,
   ...
 }:
 
@@ -11,66 +13,60 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
+    genAttrs
     ;
+
+  userNames = [
+    "${username}"
+    "root"
+  ];
+
+  sopsFile = "${self}/secrets/system/${hostname}/secrets.yaml";
 in
 {
-  options.module.users = {
-    enable = mkEnableOption "Enables users";
-    ${username}.hashedPassword = mkOption {
-      type = types.str;
-      default = false;
-      description = ''
-        Set hashed password to ${username}
-      '';
-    };
-    root.hashedPassword = mkOption {
-      type = types.str;
-      default = false;
-      description = ''
-        Set hashed password to root
-      '';
-    };
-  };
+  options.module.users.enable = mkEnableOption "Enables users";
+
   config = mkIf cfg.enable {
+    sops.secrets = genAttrs (map (u: "user_password/${u}") userNames) (_up: {
+      neededForUsers = true;
+      inherit sopsFile;
+    });
+
     users = {
       mutableUsers = false;
 
       groups = {
-        ${username} = {
+        "${username}" = {
           gid = 1000;
         };
       };
 
-      users = {
-        ${username} = {
-          uid = 1000;
-          home = "/home/${username}";
-          shell = pkgs.zsh;
-          group = "${username}";
-          createHome = true;
-          description = "${username}";
-          isSystemUser = true;
-          inherit (cfg.${username}) hashedPassword;
-          # hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
-
-          extraGroups = [
-            "audio"
-            "networkmanager"
-            "wheel"
-            "docker"
-            "libvirtd"
-            "dialout"
-          ];
-        };
-
-        root = {
-          shell = pkgs.zsh;
-          inherit (cfg.root) hashedPassword;
-          # hashedPassword = "$6$/k2DxKT/Biwenuzi$rxMb4alvs9KiBsfrI4UIiTWpTNYgvpvq8jGLl1thkTKX00APg6EPt1E9mO6DgpDHrOjwFWlmLwQiLcIk.w4o20";
-        };
-      };
+      users = genAttrs userNames (
+        u:
+        let
+          common = {
+            shell = pkgs.zsh;
+            hashedPasswordFile = config.sops.secrets."user_password/${u}".path;
+          };
+        in
+        if u == "${username}" then
+          common
+          // {
+            uid = 1000;
+            isNormalUser = true;
+            description = "${username}";
+            extraGroups = [
+              "audio"
+              "networkmanager"
+              "wheel"
+              "docker"
+              "libvirtd"
+              "dialout"
+            ];
+          }
+        else
+          common
+      );
     };
   };
 }
