@@ -17,8 +17,12 @@ nix build \
     "${repo}#nixosConfigurations.${host}.config.environment.etc.\"nix/nix.conf\".source"
 systemctl restart nix-daemon.service
 
-nixos-install --flake "$ref"
+if [[ "${INSTALL:-1}" != "0" ]]; then
+  nixos-install --flake "$ref"
+fi
 
 unmnt="umount -R /mnt"
-echo unmount: "$unmnt"
-eval "$unmnt"
+if [[ "${UMOUNT:-1}" != "0" ]]; then
+  echo unmount: "$unmnt"
+  eval "$unmnt"
+fi
