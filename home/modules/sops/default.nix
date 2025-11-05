@@ -1,5 +1,4 @@
 {
-  self,
   config,
   pkgs,
   lib,
@@ -24,12 +23,6 @@ in
     sops = {
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
       keepGenerations = 0;
-
-      secrets = {
-        "openai_key" = {
-          sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
-        };
-      };
     };
   };
 }
