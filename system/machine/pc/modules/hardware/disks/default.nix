@@ -5,7 +5,7 @@
 {
 
   boot.initrd.luks.devices = {
-    cryptroot.device = "/dev/disk/by-id/nvme-eui.002538da11b3a04c-part2";
+    cryptroot.device = "/dev/nvme0n1p5";
     cryptstorage.device = "/dev/disk/by-id/wwn-0x50014ee2153e7621-part1";
   };
   fileSystems = {
@@ -67,7 +67,7 @@
     };
 
     "/boot" = {
-      device = "/dev/nvme0n1p1";
+      device = "/dev/nvme0n1p6";
       fsType = "vfat";
       options = [
         "fmask=0022"
@@ -84,7 +84,7 @@
       ];
     };
     "/mnt/win" = {
-      device = "/dev/nvme0n1p4";
+      device = "/dev/nvme0n1p3";
       fsType = "ntfs-3g";
       options = [
         "rw"
@@ -95,12 +95,16 @@
         "x-gvfs-symbolic-icon=windows"
       ];
     };
-    # fileSystems."/mnt/win_hdd" =
-    #   {
-    #     device = "/dev/sda2";
-    #     fsType = "ntfs-3g";
-    #     options = [ "rw" "uid=1000" "x-gvfs-show" "x-gvfs-name=WinHDD" ];
-    #   };
+    "/mnt/win_hdd" = {
+      device = "/dev/sda2";
+      fsType = "ntfs-3g";
+      options = [
+        "rw"
+        "uid=1000"
+        "x-gvfs-show"
+        "x-gvfs-name=WinHDD"
+      ];
+    };
     "/mnt/ccache" = {
       device = "/home/${username}/.cache/ccache";
       fsType = "none";
