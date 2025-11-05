@@ -17,7 +17,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.sops ];
+    home.packages = with pkgs; [
+      sops
+      age
+    ];
     sops = {
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
       keepGenerations = 0;
