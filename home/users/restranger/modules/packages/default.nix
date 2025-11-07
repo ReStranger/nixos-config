@@ -87,10 +87,6 @@ in
         amberol
         transmission_4-gtk
         obsidian
-        (discord.override {
-          withOpenASAR = true;
-          withVencord = true;
-        })
         (prismlauncher.override {
           additionalPrograms = [
             glfw3-minecraft
