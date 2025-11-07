@@ -235,7 +235,7 @@ in
         };
 
         vencordSettings = {
-          plugins = plugins;
+          inherit plugins;
         };
       in
       builtins.toJSON vencordSettings;

@@ -21,6 +21,7 @@
     wezterm.enable = isLinux && isWorkstation;
 
     anyrun.enable = hyprlandEnable && isLinux && isWorkstation;
+    discord.enable = hyprlandEnable && isLinux && isWorkstation;
     kidex.enable = hyprlandEnable && isLinux && isWorkstation;
     nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
