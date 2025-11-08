@@ -14,6 +14,7 @@
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
     zsh.enable = isWorkstation;
+    zen-browser.enable = isWorkstation;
 
     dconf.enable = isLinux && isWorkstation;
     xdg-user-dirs.enable = isLinux && isWorkstation;
