@@ -212,6 +212,9 @@ in
           "pin, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
           "workspace [w], class:^(polkit-gnome-authentication-agent-1)$"
 
+          "float, class:^(org.gnome.clocks)$, title:^(Часы)$"
+          "size 600 730, class:^(org.gnome.clocks)$, title:^(Часы)$"
+
           # Popup imv
           "float,class:^(imv)$"
           "size 960 540,class:^(imv)$"
