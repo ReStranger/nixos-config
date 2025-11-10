@@ -8,6 +8,7 @@
 
 let
   cfg = config.module.programs.hyprland;
+  pkg = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf;
 in
 {
@@ -17,9 +18,8 @@ in
       enable = true;
       xwayland.enable = true;
       withUWSM = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      package = pkg.hyprland;
+      portalPackage = pkg.xdg-desktop-portal-hyprland;
     };
     services.libinput.enable = true;
   };
