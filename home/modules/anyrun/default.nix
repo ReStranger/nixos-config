@@ -8,6 +8,7 @@
 
 let
   cfg = config.module.anyrun;
+  pkg = inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf;
 in
 {
@@ -18,20 +19,8 @@ in
   config = mkIf cfg.enable {
     programs.anyrun = {
       enable = true;
+      package = pkg.anyrun;
       config = {
-
-        plugins = with inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}; [
-          applications
-          rink
-          translate
-          shell
-          symbols
-          translate
-          kidex
-          dictionary
-          websearch
-          stdin
-        ];
         closeOnClick = true;
         hidePluginInfo = true;
         hideIcons = false;
@@ -40,6 +29,17 @@ in
         width = {
           fraction = 0.27;
         };
+        plugins = with pkg; [
+          applications
+          rink
+          translate
+          shell
+          symbols
+          kidex
+          dictionary
+          websearch
+          stdin
+        ];
       };
       extraConfigFiles = {
         "applications.ron".text = ''
