@@ -25,7 +25,6 @@ in
       cava.enable = true;
       fd.enable = true;
       fzf.enable = true;
-      imv.enable = true;
       jq.enable = true;
       lazydocker.enable = true;
       lsd.enable = true;
@@ -81,6 +80,7 @@ in
       ++ lib.optionals isWorkstation [
         onlyoffice-desktopeditors
         obs-studio
+        eog
         nekoray
         krita
         amberol
