@@ -28,7 +28,6 @@ in
       jq.enable = true;
       lazydocker.enable = true;
       lsd.enable = true;
-      mpv.enable = true;
       ripgrep.enable = true;
       zoxide.enable = true;
     };
@@ -81,6 +80,7 @@ in
         onlyoffice-desktopeditors
         obs-studio
         eog
+        vlc
         nekoray
         krita
         amberol
