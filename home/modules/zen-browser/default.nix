@@ -27,6 +27,24 @@ in
               Status = "locked";
             }
           );
+          mkPluginUrl = id: "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
+
+          mkExtensionEntry =
+            {
+              id,
+              pinned ? false,
+            }:
+            let
+              base = {
+                install_url = mkPluginUrl id;
+                installation_mode = "force_installed";
+              };
+            in
+            if pinned then base // { default_area = "navbar"; } else base;
+
+          mkExtensionSettings = builtins.mapAttrs (
+            _: entry: if builtins.isAttrs entry then entry else mkExtensionEntry { id = entry; }
+          );
         in
         {
           AutofillAddressEnabled = true;
@@ -44,6 +62,32 @@ in
             Locked = true;
             Cryptomining = true;
             Fingerprinting = true;
+          };
+          SanitizeOnShutdown = {
+            FormData = true;
+            Cache = true;
+          };
+          ExtensionSettings = mkExtensionSettings {
+            "uBlock0@raymondhill.net" = mkExtensionEntry {
+              id = "ublock-origin";
+              pinned = true;
+            };
+            "{446900e4-71c2-419f-a6a7-df9c091e268b}" = mkExtensionEntry {
+              id = "bitwarden-password-manager";
+              pinned = true;
+            };
+            "authenticator@mymindstorm" = "auth-helper";
+            "firefox@betterttv.net" = "betterttv";
+            "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}" = "catppuccin-web-file-icons";
+            "addon@darkreader.org" = "darkreader";
+            "idcac-pub@guus.ninja" = "istilldontcareaboutcookies";
+            "multithreaded-download-manager@qw.linux-2g64.local" = "multithreaded-download-manager";
+            "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
+            "sponsorBlocker@ajay.app" = "sponsorblock";
+            "syncshare@naloaty.me" = "syncshare";
+            "firefox@tampermonkey.net" = "tampermonkey";
+            "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}" = "traduzir-paginas-web";
+            "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium-ff";
           };
           Preferences = mkLockedAttrs {
             "intl.locale.requested" = "ru";
