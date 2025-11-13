@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   isLaptop,
   username,
   ...
@@ -44,6 +45,9 @@ in
       enable = true;
       xwayland.enable = true;
       systemd.enable = false;
+      plugins = [
+        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
+      ];
       settings = {
         ecosystem = {
           no_update_news = true;
@@ -152,6 +156,13 @@ in
           force_default_wallpaper = 0;
           middle_click_paste = false;
           enable_anr_dialog = false;
+        };
+
+        plugin = {
+          csgo-vulkan-fix = {
+            fix_mouse = true;
+            vkfix-app = "cs2, 1440, 1080";
+          };
         };
 
         xwayland = {
