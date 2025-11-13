@@ -10,8 +10,8 @@ let
 
   browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta.meta.desktopFileName;
   editor = "nvim.desktop";
-  videoPlayer = "mpv.desktop";
   imageViewer = "org.gnome.eog.desktop";
+  videoPlayer = "vlc.desktop";
   fileManager = "org.gnome.Nautilus.desktop";
   pdfReader = "org.pwmt.zathura.desktop";
   torrent = "transmission-gtk.desktop";
