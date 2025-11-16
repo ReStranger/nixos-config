@@ -17,8 +17,8 @@
           pkgs: with pkgs; [
             # android-tools
             # libxcrypt-legacy # libcrypt.so.1
-            # freetype # libfreetype.so.6
-            # fontconfig # java NPE: "sun.awt.FontConfiguration.head" is null
+            freetype # libfreetype.so.6
+            fontconfig # java NPE: "sun.awt.FontConfiguration.head" is null
             # yaml-cpp # necessary for some kernels according to a comment on the gist
 
             # Some of the packages here are probably unecessary but I don't wanna figure out which
