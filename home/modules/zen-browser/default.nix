@@ -17,6 +17,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    # FIXME: Do not hardcode this path
+    home.activation.linkZenThemes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      ln -fs ~/.config/nixos/home/modules/zen-browser/zen-themes.json ~/.zen/default/zen-themes.json
+    '';
     programs.zen-browser = {
       enable = true;
       policies =
