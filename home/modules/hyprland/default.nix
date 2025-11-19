@@ -262,6 +262,9 @@ in
 
           "$mod, C, exec, uwsm app -- hyprpicker --autocopy"
 
+          "ALT, F10, pass, class:^(com.obsproject.Studio)$"
+          "CTRL SHIFT, M, pass, class:^(discord)$"
+
           "$mod, L, movefocus, r"
           "$mod, H, movefocus, l"
           "$mod, K, movefocus, u"
