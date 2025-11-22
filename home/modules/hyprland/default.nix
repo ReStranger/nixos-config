@@ -180,56 +180,50 @@ in
           "workspace 2 silent, class:^(obsidian)$"
           "workspace 3 silent, class:^(discord)$"
           "workspace 3 silent, class:^(com.ayugram.desktop)$"
-          "workspace 5 silent, title:^(Spotify Free)$"
-          "workspace 3 silent, class:^(com.ayugram.desktop)$"
+          "workspace 5 silent, initialTitle:^(Steam)$"
+          "workspace 5 silent, class:^(steam)$"
 
-          #Сохранение файла в zen-beta
-          "workspace [w], title:^(Save Image)$, class:^(zen-beta)$"
-          "size 900 590, itle:^(Save Image)$, class:^(zen-beta)$"
-          "center, title:^(Save Image)$, class:^(zen-beta)$"
+          # Saving a file in в zen-beta
+          "workspace [w], title:^(Сохранение изображения)$, class:^(zen-beta)$"
+          "size 900 590, itle:^(Сохранение изображения)$, class:^(zen-beta)$"
+          "center, title:^(Сохранение изображения)$, class:^(zen-beta)$"
 
-          "workspace [w], title:^(Enter name of file to save to…)$, class:^(zen-beta)$"
-          "size 900 590, itle:^(Enter name of file to save to…)$, class:^(zen-beta)$"
-          "center, title:^(Enter name of file to save to…)$, class:^(zen-beta)$"
+          "workspace [w], title:^(Введите имя файла для сохранения…)$, class:^(zen-beta)$"
+          "size 900 590, itle:^(Введите имя файла для сохранения…)$, class:^(zen-beta)$"
+          "center, title:^(Введите имя файла для сохранения…)$, class:^(zen-beta)$"
 
-          # Просмотр медиа в telegram
-          "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "center, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-
-          # Fix sharing video
-          "workspace [w], class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-          "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-          "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-
-          # Картинка в картинке в zen-beta
-
-          # ru_RU-UTF-8
+          # Picture in picture in zen-beta
           "workspace [w], class:^(zen-beta)$, title:^(Картинка в картинке)$"
           "float,class:^(zen-beta)$, title:^(Картинка в картинке)$"
           "size 427 277,class:^(zen-beta)$, title:^(Картинка в картинке)$"
           "pin,class:^(zen-beta)$, title:^(Картинка в картинке)$"
-          # en_US-UTF-8
-          "workspace [w], class:^(zen-beta)$, title:^(Picture-in-Picture)$"
-          "float,class:^(zen-beta)$, title:^(Picture-in-Picture)$"
-          "size 427 277,class:^(zen-beta)$, title:^(Picture-in-Picture)$"
-          "pin,class:^(zen-beta)$, title:^(Picture-in-Picture)$"
 
-          "workspace [w], class:^(org.pulseaudio.pavucontrol)$, title:^(Громкость)$"
+          # Viewing media в telegram
+          "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
+          "center, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
+          "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
+
+          # Fix screensharing popup
+          "workspace [w], class:^(hyprland-share-picker)$, title:^(MainPicker)$"
+          "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
+          "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
 
           # Calculator
           "float, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
           "size 334 494, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
           "pin, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
-          "workspace [w], class:^(polkit-gnome-authentication-agent-1)$"
 
+          # Clocks
           "float, class:^(org.gnome.clocks)$, title:^(Часы)$"
           "size 600 730, class:^(org.gnome.clocks)$, title:^(Часы)$"
 
-          # Popup imv
-          "float,class:^(imv)$"
-          "size 960 540,class:^(imv)$"
-          "center,class:^(imv)$"
+          # Popup eog
+          "float,class:^(eog)$"
+          "size 960 540,class:^(eog)$"
+          "center,class:^(eog)$"
+
+          # Fix polkit popup
+          "workspace [w], class:^(polkit-gnome-authentication-agent-1)$"
 
           "opacity 0.89 override 0.89 override, class:.*"
           "opacity 1.0 override 1.0 override, fullscreen:1"
