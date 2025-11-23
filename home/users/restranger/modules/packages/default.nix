@@ -81,7 +81,6 @@ in
         obs-studio
         eog
         vlc
-        nekoray
         krita
         amberol
         transmission_4-gtk
