@@ -175,66 +175,66 @@ in
           "f[1], gapsout:0, gapsin:0"
         ];
 
-        windowrulev2 = [
-          "workspace 1 silent, class:^(zen-beta)$"
-          "workspace 2 silent, class:^(obsidian)$"
-          "workspace 3 silent, class:^(discord)$"
-          "workspace 3 silent, class:^(com.ayugram.desktop)$"
-          "workspace 5 silent, initialTitle:^(Steam)$"
-          "workspace 5 silent, class:^(steam)$"
+        windowrule = [
+          "workspace 1 silent, match:class ^(zen-beta)$"
+          "workspace 2 silent, match:class ^(obsidian)$"
+          "workspace 3 silent, match:class ^(discord)$"
+          "workspace 3 silent, match:class ^(com.ayugram.desktop)$"
+          "workspace 5 silent, match:initial_title ^(Steam)$"
+          "workspace 5 silent, match:class ^(steam)$"
 
           # Saving a file in в zen-beta
-          "workspace [w], title:^(Сохранение изображения)$, class:^(zen-beta)$"
-          "size 900 590, itle:^(Сохранение изображения)$, class:^(zen-beta)$"
-          "center, title:^(Сохранение изображения)$, class:^(zen-beta)$"
+          "workspace [w], match:title ^(Сохранение изображения)$, match:class ^(zen-beta)$"
+          "size 900 590, match:title ^(Сохранение изображения)$, match:class ^(zen-beta)$"
+          "center on, match:title ^(Сохранение изображения)$, match:class ^(zen-beta)$"
 
-          "workspace [w], title:^(Введите имя файла для сохранения…)$, class:^(zen-beta)$"
-          "size 900 590, itle:^(Введите имя файла для сохранения…)$, class:^(zen-beta)$"
-          "center, title:^(Введите имя файла для сохранения…)$, class:^(zen-beta)$"
+          "workspace [w], match:title ^(Введите имя файла для сохранения…)$, match:class ^(zen-beta)$"
+          "size 900 590, match:title ^(Введите имя файла для сохранения…)$, match:class ^(zen-beta)$"
+          "center on, match:title ^(Введите имя файла для сохранения…)$, match:class ^(zen-beta)$"
 
           # Picture in picture in zen-beta
-          "workspace [w], class:^(zen-beta)$, title:^(Картинка в картинке)$"
-          "float,class:^(zen-beta)$, title:^(Картинка в картинке)$"
-          "size 427 277,class:^(zen-beta)$, title:^(Картинка в картинке)$"
-          "pin,class:^(zen-beta)$, title:^(Картинка в картинке)$"
+          "workspace [w], match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
+          "float on,match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
+          "size 427 277,match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
+          "pin on,match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
 
           # Viewing media в telegram
-          "workspace [w], title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "center, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
-          "float, title:^(Просмотр медиа)$, class:^(com.ayugram.desktop)$"
+          "workspace [w], match:title ^(Просмотр медиа)$, match:class ^(com.ayugram.desktop)$"
+          "center on, match:title ^(Просмотр медиа)$, match:class ^(com.ayugram.desktop)$"
+          "float on, match:title ^(Просмотр медиа)$, match:class ^(com.ayugram.desktop)$"
 
           # Fix screensharing popup
-          "workspace [w], class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-          "float, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
-          "size 500 290, class:^(hyprland-share-picker)$, title:^(MainPicker)$"
+          "workspace [w], match:class ^(hyprland-share-picker)$, match:title ^(MainPicker)$"
+          "float on, match:class ^(hyprland-share-picker)$, match:title ^(MainPicker)$"
+          "size 500 290, match:class ^(hyprland-share-picker)$, match:title ^(MainPicker)$"
 
           # Calculator
-          "float, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
-          "size 334 494, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
-          "pin, class:^(org.gnome.Calculator)$, title:^(Калькулятор)$"
+          "float on, match:class ^(org.gnome.Calculator)$, match:title ^(Калькулятор)$"
+          "size 334 494, match:class ^(org.gnome.Calculator)$, match:title ^(Калькулятор)$"
+          "pin on, match:class ^(org.gnome.Calculator)$, match:title ^(Калькулятор)$"
 
           # Clocks
-          "float, class:^(org.gnome.clocks)$, title:^(Часы)$"
-          "size 600 730, class:^(org.gnome.clocks)$, title:^(Часы)$"
+          "float on, match:class ^(org.gnome.clocks)$, match:title ^(Часы)$"
+          "size 600 730, match:class ^(org.gnome.clocks)$, match:title ^(Часы)$"
 
           # Popup eog
-          "float,class:^(eog)$"
-          "size 960 540,class:^(eog)$"
-          "center,class:^(eog)$"
+          "float on,match:class ^(eog)$"
+          "size 960 540,match:class ^(eog)$"
+          "center on,match:class ^(eog)$"
 
           # Fix polkit popup
-          "workspace [w], class:^(polkit-gnome-authentication-agent-1)$"
+          "workspace [w], match:class ^(polkit-gnome-authentication-agent-1)$"
 
-          "opacity 0.89 override 0.89 override, class:.*"
-          "opacity 1.0 override 1.0 override, fullscreen:1"
-          "opacity 1.0 override 1.0 override, class:^(org.wezfurlong.wezterm)$"
+          "opacity 0.89 override 0.89 override, match:class .*"
+          "opacity 1.0 override 1.0 override, match:fullscreen true"
+          "opacity 1.0 override 1.0 override, match:class ^(org.wezfurlong.wezterm)$"
 
-          "bordersize 0, floating:0, onworkspace:w[t1]"
-          "rounding 0, floating:0, onworkspace:w[t1]"
-          "bordersize 0, floating:0, onworkspace:w[tg1]"
-          "rounding 0, floating:0, onworkspace:w[tg1]"
-          "bordersize 0, floating:0, onworkspace:f[1]"
-          "rounding 0, floating:0, onworkspace:f[1]"
+          "border_size 0, match:float false, match:workspace w[t1]"
+          "rounding 0, match:float false, match:workspace w[t1]"
+          "border_size 0, match:float false, match:workspace w[tg1]"
+          "rounding 0, match:float false, match:workspace w[tg1]"
+          "border_size 0, match:float false, match:workspace f[1]"
+          "rounding 0, match:float false, match:workspace f[1]"
         ];
 
         "$mod" = "SUPER";
