@@ -28,6 +28,7 @@ in
       jq.enable = true;
       lazydocker.enable = true;
       lsd.enable = true;
+      mangohud.enable = true;
       ripgrep.enable = true;
       zoxide.enable = true;
     };
