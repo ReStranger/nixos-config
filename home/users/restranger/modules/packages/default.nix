@@ -83,6 +83,7 @@ in
         vlc
         krita
         amberol
+        hieroglyphic
         transmission_4-gtk
         obsidian
         (prismlauncher.override {
