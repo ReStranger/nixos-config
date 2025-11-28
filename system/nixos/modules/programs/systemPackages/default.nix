@@ -27,10 +27,6 @@ in
 
       # Utils
       xorg.xhost
-
-      inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
-      qt6.qtdeclarative
-      qt6.qt5compat
     ];
   };
 }
