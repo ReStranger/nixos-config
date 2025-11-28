@@ -32,6 +32,7 @@ in
         typescript-language-server
         clang-tools
         cmake-language-server
+        qt6.qtdeclarative
         rust-analyzer
         pyright
         ruff
