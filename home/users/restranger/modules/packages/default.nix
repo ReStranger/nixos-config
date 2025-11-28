@@ -43,6 +43,7 @@ in
         curl
         wget
         lm_sensors
+        systemctl-tui
 
         ## shell ##
         bat
