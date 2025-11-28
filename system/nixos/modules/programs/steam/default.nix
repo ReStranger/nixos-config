@@ -37,6 +37,7 @@ in
           ]
         else
           [ ];
+      protontricks.enable = true;
     };
   };
 }
