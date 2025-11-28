@@ -26,6 +26,7 @@
     kidex.enable = hyprlandEnable && isLinux && isWorkstation;
     nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
+    quickshell.enable = hyprlandEnable && isLinux && isWorkstation;
 
     nix.enable = true;
 
