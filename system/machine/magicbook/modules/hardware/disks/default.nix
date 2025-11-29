@@ -12,8 +12,10 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
+        "defaults"
         "subvol=@"
         "discard=async"
+        "space_cache=v2"
         "ssd"
         "ssd_spread"
       ];
@@ -24,8 +26,10 @@
       fsType = "btrfs";
       neededForBoot = true;
       options = [
+        "defaults"
         "subvol=@home"
         "discard=async"
+        "space_cache=v2"
         "ssd"
         "ssd_spread"
       ];
@@ -34,9 +38,11 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
+        "defaults"
         "subvol=@log"
         "noatime"
         "discard=async"
+        "space_cache=v2"
         "ssd"
         "ssd_spread"
       ];
@@ -46,9 +52,11 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
+        "defaults"
         "subvol=@nix"
         "noatime"
         "discard=async"
+        "space_cache=v2"
         "ssd"
         "ssd_spread"
       ];
@@ -58,8 +66,10 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [
+        "defaults"
         "subvol=@.snapshots"
         "discard=async"
+        "space_cache=v2"
         "ssd"
         "ssd_spread"
       ];
