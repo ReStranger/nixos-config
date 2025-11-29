@@ -36,6 +36,6 @@
     ];
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "GENERIC_V3"; };
+    kernelPackages = pkgs.linuxPackages_cachyos;
   };
 }
