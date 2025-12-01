@@ -104,7 +104,7 @@
     };
 
     wezterm = {
-      url = "github:ReStranger/wezterm?dir=nix";
+      url = "github:wez/wezterm?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
