@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  hyprlandEnable,
   ...
 }:
 
@@ -239,5 +240,12 @@ in
         };
       in
       builtins.toJSON vencordSettings;
+    xdg.configFile."Vencord/settings/quickCss.css" = mkIf hyprlandEnable {
+      text = ''
+        .winButtons_c38106 {
+          display: none !important;
+        }
+      '';
+    };
   };
 }
