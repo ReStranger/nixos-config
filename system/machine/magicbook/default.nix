@@ -29,6 +29,7 @@ _: {
         frontend = "tui";
       };
       gvfs.enable = true;
+      irqbalance.enable = true;
       network = {
         enable = true;
         wifi = {
