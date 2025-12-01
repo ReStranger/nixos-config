@@ -46,29 +46,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    nix-topology = {
-      url = "github:oddlama/nix-topology";
-    };
-
-    impermanence = {
-      url = "github:/nix-community/impermanence";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-    };
+    nix-topology.url = "github:oddlama/nix-topology";
+    impermanence.url = "github:/nix-community/impermanence";
+    sops-nix.url = "github:Mic92/sops-nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
@@ -76,43 +61,25 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ags = {
-      url = "github:aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    astal.url = "github:aylur/astal";
+    ags.url = "github:aylur/ags";
+    anyrun.url = "github:anyrun-org/anyrun";
+    kidex.url = "github:Kirottu/kidex";
+    matugen.url = "github:InioX/Matugen";
+    wezterm.url = "github:wez/wezterm?dir=nix";
+    minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    matugen.url = "github:InioX/Matugen";
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake/beta";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    kidex.url = "github:Kirottu/kidex";
-
-    minimal-tmux = {
-      url = "github:niksingh710/minimal-tmux-status";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     zsh-autosuggestions = {
@@ -153,6 +120,7 @@
       url = "github:hlissner/zsh-autopair";
       flake = false;
     };
+
     zsh-vi-mode = {
       url = "github:jeffreytse/zsh-vi-mode";
       flake = false;
