@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -19,8 +20,8 @@ in
       enableRenice = true;
       settings = {
         custom = {
-          start = "notify-send -a 'Gamemode' 'Optimizations activated'";
-          end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+          start = "${pkgs.libnotify}/bin/notify-send -send -a 'Gamemode' 'Optimizations activated'";
+          end = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'";
         };
       };
     };
