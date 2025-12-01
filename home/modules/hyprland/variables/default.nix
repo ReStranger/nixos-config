@@ -6,7 +6,7 @@
 
 let
   cfg = config.module.hyprland.variables;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
 
   commonSessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";
@@ -26,6 +26,7 @@ let
 
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_QPA_PLATFORM = "wayland;xcb ";
+    QT_QPA_PLATFORMTHEME = mkForce "gtk3";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
     GTK_USE_PORTAL = "1";
