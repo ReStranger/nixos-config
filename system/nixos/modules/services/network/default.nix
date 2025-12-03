@@ -62,7 +62,7 @@ in
       };
       firewall.enable = cfg.firewall;
       hosts = {
-        "127.0.0.1" = [ "pc.local" ];
+        "127.0.0.1" = [ "${hostname}.local" ];
       };
       useDHCP = lib.mkDefault true;
     };
