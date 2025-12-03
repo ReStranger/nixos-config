@@ -44,7 +44,13 @@ _: {
       scx.enable = true;
       systemd-oomd.enable = true;
       upower.enable = true;
-      zerotier-one.enable = true;
+      zerotier-one = {
+        enable = true;
+        joinNetworks = [
+          "8bd5124fd65dec01" # re_sshd
+          "af415e486f516107" # party
+        ];
+      };
       zram = {
         enable = true;
         deviceNumber = 2;
