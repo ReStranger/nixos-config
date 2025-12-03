@@ -1,4 +1,5 @@
 {
+  self,
   config,
   pkgs,
   lib,
@@ -22,6 +23,7 @@ in
     ];
     sops = {
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+      defaultSopsFile = "${self}/secrets/home/${username}/secrets.yaml";
       keepGenerations = 0;
     };
   };
