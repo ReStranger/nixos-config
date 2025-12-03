@@ -1,5 +1,4 @@
 {
-  self,
   config,
   inputs,
   username,
@@ -17,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."openai_key".sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
+    sops.secrets."openai_key" = { };
 
     programs.zsh = {
       enable = true;
