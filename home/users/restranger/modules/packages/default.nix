@@ -99,13 +99,13 @@ in
       ++ lib.optionals (isLinux && isWorkstation) [
         (callPackage ../../../../overlays/davinci-resolve-studio.nix { })
         ayugram-desktop
-        file-roller
-        pulseaudio
         libnotify
       ]
       ++ lib.optionals hyprlandEnable [
+        file-roller
         gnome-clocks
         gnome-calculator
+        gnome-software
         wl-clipboard
         wl-clipboard-x11
         overskride
