@@ -61,8 +61,14 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    astal.url = "github:aylur/astal";
-    ags.url = "github:aylur/ags";
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     anyrun.url = "github:anyrun-org/anyrun";
     kidex.url = "github:Kirottu/kidex";
     matugen.url = "github:InioX/Matugen";
