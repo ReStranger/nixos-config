@@ -79,7 +79,7 @@ in
 
       ]
       ++ lib.optionals isWorkstation [
-        onlyoffice-desktopeditors
+        libreoffice-fresh
         obs-studio
         eog
         vlc
