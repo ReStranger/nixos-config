@@ -2,8 +2,6 @@
   lib,
   pkgs,
   config,
-  username,
-  wm,
   ...
 }:
 
@@ -30,13 +28,6 @@ in
           Select default frontend of greetd
         '';
       };
-      autologin = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Enable autologin
-        '';
-      };
     };
   };
 
@@ -51,14 +42,6 @@ in
             else
               "${pkgs.greetd}/bin/agreety --cmd $SHELL";
           user = "greeter";
-        };
-        initial_session = mkIf cfg.autologin {
-          command =
-            if wm == "hyprland" then
-              "uwsm check may-start && exec uwsm start hyprland-uwsm.desktop"
-            else
-              "${pkgs.greetd}/bin/agreety --cmd $SHELL";
-          user = "${username}";
         };
       };
     };
