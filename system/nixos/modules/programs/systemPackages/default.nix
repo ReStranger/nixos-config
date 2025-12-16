@@ -27,5 +27,8 @@ in
       # Utils
       xorg.xhost
     ];
+    environment.pathsToLink = [
+      "/share/nautilus-python/extensions"
+    ];
   };
 }
