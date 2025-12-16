@@ -87,6 +87,7 @@ in
         inkscape
         amberol
         hieroglyphic
+        xournalpp
         transmission_4-gtk
         obsidian
         (prismlauncher.override {
