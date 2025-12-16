@@ -8,7 +8,6 @@
 let
   cfg = config.module.nautilus;
   inherit (lib) mkEnableOption mkIf;
-
 in
 {
   options.module.nautilus = {
@@ -26,8 +25,9 @@ in
     };
 
     dconf = {
-      settings."org/gnome/nautilus/icon-view" = {
-        default-zoom-level = "small-plus";
+      settings = {
+        "org/gnome/nautilus/icon-view".default-zoom-level = "small-plus";
+        "com/github/stunkymonkey/nautilus-open-any-terminal".terminal = "wezterm";
       };
     };
   };
