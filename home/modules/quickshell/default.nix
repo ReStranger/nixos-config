@@ -29,14 +29,13 @@ in
           withWayland = true;
           withX11 = false;
           withPipewire = true;
-          withPam = false;
+          withPam = true;
           withHyprland = true;
           withI3 = false;
           withPolkit = false;
         }).passthru.withModules
           (with pkgs; [ qt6.qt5compat ]);
 
-      # qt6.qtdeclarative
       systemd.enable = true;
       activeConfig = "/home/${username}/.config/quickshell/main";
     };
