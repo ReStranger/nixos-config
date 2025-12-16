@@ -22,5 +22,7 @@ in
       portalPackage = pkg.xdg-desktop-portal-hyprland;
     };
     services.libinput.enable = true;
+    programs.uwsm.waylandCompositors.hyprland.binPath =
+      lib.mkForce "/run/current-system/sw/bin/start-hyprland";
   };
 }
