@@ -15,13 +15,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      nautilus
-      nautilus-python
-      nautilus-open-any-terminal
-    ];
-    home.sessionVariables = {
-      NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+    home = {
+      packages = with pkgs; [
+        nautilus
+        nautilus-python
+        nautilus-open-any-terminal
+      ];
+      sessionVariables = {
+        NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+      };
     };
 
     dconf = {
