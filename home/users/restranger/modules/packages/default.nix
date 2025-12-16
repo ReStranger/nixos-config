@@ -84,6 +84,7 @@ in
         eog
         vlc
         krita
+        inkscape
         amberol
         hieroglyphic
         transmission_4-gtk
