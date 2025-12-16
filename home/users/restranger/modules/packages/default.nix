@@ -105,7 +105,7 @@ in
         file-roller
         gnome-clocks
         gnome-calculator
-        gnome-software
+        bazaar
         wl-clipboard
         wl-clipboard-x11
         overskride
