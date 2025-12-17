@@ -26,6 +26,9 @@ in
 
       # Utils
       xorg.xhost
+
+      # HACK
+      nautilus-open-any-terminal
     ];
     environment.pathsToLink = [
       "/share/nautilus-python/extensions"
