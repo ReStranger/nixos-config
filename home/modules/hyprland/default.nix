@@ -30,14 +30,6 @@ in
     module.hyprland = {
       variables.enable = mkDefault cfg.enable;
     };
-    xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      config.common.default = "gtk";
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
-    };
     dconf.settings."org/gnome/desktop/wm/preferences" = {
       button-layout = "";
     };
