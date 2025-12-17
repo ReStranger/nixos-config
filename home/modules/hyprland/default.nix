@@ -35,6 +35,8 @@ in
     };
     wayland.windowManager.hyprland = {
       enable = true;
+      package = null;
+      portalPackage = null;
       xwayland.enable = true;
       systemd.enable = false;
       plugins = [
