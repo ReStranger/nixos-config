@@ -27,6 +27,8 @@ in
   options.module.hyprland.enable = mkEnableOption "Enable Hyprland";
 
   config = mkIf cfg.enable {
+    xdg.configFile."uwsm/env".source =
+      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     module.hyprland = {
       variables.enable = mkDefault cfg.enable;
     };
