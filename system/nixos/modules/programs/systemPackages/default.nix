@@ -23,6 +23,7 @@ in
       curl
       fd
       ripgrep
+      nix-output-monitor
 
       # Utils
       xorg.xhost
