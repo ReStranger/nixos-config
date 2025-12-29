@@ -49,7 +49,7 @@ in
           no_update_news = true;
         };
 
-        exec-once = builtins.map (cmd: "uwsm app -- ${cmd}") [
+        exec-once = map (cmd: "uwsm app -- ${cmd}") [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "swww-daemon"
           "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
