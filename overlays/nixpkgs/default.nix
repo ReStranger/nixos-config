@@ -2,7 +2,7 @@
 let
   baseSettings = {
     config = {
-      allowBroken = true;
+      allowBroken = false;
     };
   };
 
@@ -17,14 +17,33 @@ in
 {
   nixpkgs.overlays = [
     (final: _prev: {
-      stable = import inputs.stable { inherit (final) system; } // baseSettings;
-      stable-unfree = import inputs.stable { inherit (final) system; } // unfreeSettings;
+      stable = import inputs.stable {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (baseSettings) config;
+      };
+      stable-unfree = import inputs.stable {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (unfreeSettings) config;
+      };
 
-      unstable = import inputs.unstable { inherit (final) system; } // baseSettings;
-      unstable-unfree = import inputs.unstable { inherit (final) system; } // unfreeSettings;
+      unstable = import inputs.unstable {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (baseSettings) config;
+      };
+      unstable-unfree = import inputs.unstable {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (unfreeSettings) config;
+      };
 
-      master = import inputs.master { inherit (final) system; } // baseSettings;
-      master-unfree = import inputs.master { inherit (final) system; } // unfreeSettings;
+      master = import inputs.master {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (baseSettings) config;
+      };
+      master-unfree = import inputs.master {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (unfreeSettings) config;
+      };
     })
   ];
+
 }
