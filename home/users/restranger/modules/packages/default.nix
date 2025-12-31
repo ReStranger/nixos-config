@@ -102,6 +102,7 @@ in
         (callPackage ../../../../overlays/davinci-resolve-studio.nix { })
         ayugram-desktop
         libnotify
+        (bottles.override { removeWarningPopup = true; })
       ]
       ++ lib.optionals hyprlandEnable [
         file-roller
