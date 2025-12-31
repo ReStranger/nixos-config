@@ -80,7 +80,7 @@ in
         libreoffice-fresh
         obs-studio
         eog
-        vlc
+        showtime
         krita
         inkscape
         amberol
