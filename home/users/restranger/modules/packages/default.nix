@@ -62,8 +62,6 @@ in
         cmake
         nixfmt-rfc-style
 
-        ## LSP ##
-
         ## Fonts ##
         corefonts
         vista-fonts
@@ -108,7 +106,6 @@ in
         file-roller
         gnome-clocks
         gnome-calculator
-        bazaar
         wl-clipboard
         wl-clipboard-x11
         overskride
