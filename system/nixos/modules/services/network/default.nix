@@ -12,15 +12,17 @@ let
     mkIf
     mkPackageOption
     mkOption
-    types
+    mkDefault
+    mkForce
     ;
+  inherit (lib.types) bool enum str;
 in
 {
   options.module.services.network = {
     enable = mkEnableOption "Enable network service configuration";
     package = mkPackageOption pkgs "networkmanager" { };
     firewall = mkOption {
-      type = types.bool;
+      type = bool;
       default = false;
       description = ''
         Enable firewall
@@ -28,7 +30,7 @@ in
     };
     wifi = {
       backend = mkOption {
-        type = types.enum [
+        type = enum [
           "wpa_supplicant"
           "iwd"
         ];
@@ -38,7 +40,7 @@ in
         '';
       };
       macAddress = mkOption {
-        type = types.str;
+        type = str;
         default = "preserve";
         example = ''
           "00:11:22:33:44:55", "permanent", "preserve", "random", "stable", "stable-ssid"
@@ -51,6 +53,11 @@ in
     };
   };
   config = mkIf cfg.enable {
+    boot.initrd.systemd.network.wait-online.enable = false;
+    systemd = {
+      network.wait-online.enable = false;
+      services."NetworkManager-wait-online".wantedBy = mkForce [ ];
+    };
     networking = {
       hostName = "${hostname}";
       networkmanager = {
@@ -64,7 +71,7 @@ in
       hosts = {
         "127.0.0.1" = [ "${hostname}.local" ];
       };
-      useDHCP = lib.mkDefault true;
+      useDHCP = mkDefault true;
     };
   };
 }
