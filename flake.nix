@@ -102,6 +102,12 @@
       url = "github:zsh-users/zsh-syntax-highlighting";
       flake = false;
     };
+
+    zsh-nix-shell = {
+      url = "github:chisui/zsh-nix-shell";
+      flake = false;
+    };
+
     fzf-tab = {
       url = "github:Aloxaf/fzf-tab";
       flake = false;

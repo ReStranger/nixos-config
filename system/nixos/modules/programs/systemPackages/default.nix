@@ -32,6 +32,7 @@ in
       nautilus-open-any-terminal
     ];
     environment.pathsToLink = [
+      "/share/zsh"
       "/share/nautilus-python/extensions"
     ];
   };

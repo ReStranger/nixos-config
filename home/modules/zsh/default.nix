@@ -38,6 +38,11 @@ in
           src = zsh-syntax-highlighting;
         }
         {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = zsh-nix-shell;
+        }
+        {
           name = "fzf-tab";
           file = "fzf-tab.plugin.zsh";
           src = fzf-tab;
