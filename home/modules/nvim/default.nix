@@ -19,7 +19,11 @@ in
       enable = true;
       defaultEditor = true;
       viAlias = true;
+      extraLuaPackages = ps: [ ps.magick ];
       extraPackages = with pkgs; [
+        ueberzugpp
+        imagemagick
+
         # Mason deps
         python313
         nodejs
