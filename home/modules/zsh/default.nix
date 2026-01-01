@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  username,
   lib,
   ...
 }:
@@ -20,7 +19,20 @@ in
 
     programs.zsh = {
       enable = true;
-      history.size = 5000;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      history = {
+        size = 5000;
+        append = true;
+        share = true;
+        ignoreSpace = true;
+        ignoreAllDups = true;
+        ignoreDups = true;
+        saveNoDups = true;
+        findNoDups = true;
+        path = "${config.xdg.dataHome}/zsh/zsh_history";
+      };
       plugins = with inputs; [
         {
           name = "zsh-autosuggestions";
@@ -30,7 +42,7 @@ in
         {
           name = "zsh-completions";
           file = "zsh-completions.plugin.zsh";
-          src = zsh-autosuggestions;
+          src = zsh-completions;
         }
         {
           name = "zsh-syntax-highlighting";
@@ -62,80 +74,62 @@ in
           file = "zsh-vi-mode.plugin.zsh";
           src = zsh-vi-mode;
         }
-
       ];
       shellAliases = {
         "lg" = "lazygit";
         "cat" = "bat --style=plain";
         "tmux" = "tmux -u";
         "uwufetch" = "uwufetch -i";
-        "mkvenv" = "python -m venv .venv && source .venv/bin/activate";
         ";:q" = "exit";
         "Жй" = "exit";
         ":Q" = "exit";
         "ЖЙ" = "exit";
-        "find.trash" =
-          "sudo find / | grep -vE '/home/${username}/.cache|/home/${username}/.icons|/root/.cache|/root/.icons|/var/log|/tmp' | rg";
       };
       sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
         OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai_key".path})";
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=#${config.lib.stylix.colors.base03}";
+        AUTO_NOTIFY_THRESHOLD = 300;
+        KEYTIMEOUT = 1;
       };
-      initContent =
-        with config.lib.stylix.colors; # zsh
-        ''
-          export KEYTIMEOUT=1
-          ZVM_INIT_MODE=sourcing
-          ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_NEX
-          ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
-          ZVM_VI_HIGHLIGHT_FOREGROUND=#BAC2DE
-          ZVM_VI_HIGHLIGHT_BACKGROUND=#2F2E3E
+      initContent = ''
+        ZVM_INIT_MODE=sourcing
+        ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_NEX
+        ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+        ZVM_VI_HIGHLIGHT_FOREGROUND=#${config.lib.stylix.colors.base05}
+        ZVM_VI_HIGHLIGHT_BACKGROUND=#${config.lib.stylix.colors.base02}
 
-          autoload -Uz compinit && compinit -d "$HOME/.cache/zcompdump"
+        bindkey "^[OA" history-beginning-search-backward
+        bindkey "^[OB" history-beginning-search-forward
+        bindkey -M vicmd "k" history-beginning-search-backward
+        bindkey -M vicmd "j" history-beginning-search-forward
+        bindkey -M vicmd "k" history-beginning-search-backward
+        bindkey -M vicmd "j" history-beginning-search-forward
+        bindkey -M vicmd '?' history-incremental-search-backward
+        bindkey -M vicmd '/' history-incremental-search-forward
+        bindkey "''${key[Up]}" up-line-or-search
 
-          bindkey "^[OA" history-beginning-search-backward
-          bindkey "^[OB" history-beginning-search-forward
-          bindkey -M vicmd "k" history-beginning-search-backward
-          bindkey -M vicmd "j" history-beginning-search-forward
-          bindkey -M vicmd "k" history-beginning-search-backward
-          bindkey -M vicmd "j" history-beginning-search-forward
-          bindkey -M vicmd '?' history-incremental-search-backward
-          bindkey -M vicmd '/' history-incremental-search-forward
+        AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy" "tmux" "tmate" "nix-shell")
 
-          export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${base03}"
+        HISTDUP=erase
 
-          export AUTO_NOTIFY_THRESHOLD=300
-          AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy" "tmux" "tmate" "nix-shell")
-          export EDITOR=nvim
-          export VISUAL=nvim
-
-          HISTDUP=erase
-          HISTFILE=~/.local/share/.zsh_history
-          setopt appendhistory
-          setopt sharehistory
-          setopt hist_ignore_space
-          setopt hist_ignore_all_dups
-          setopt hist_save_no_dups
-          setopt hist_ignore_dups
-          setopt hist_find_no_dups
-
-          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-          zstyle ':completion:*' list-colors "$${(s.:.)LS_COLORS}"
-          zstyle ':completion:*' menu no
-          zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd --color=always $realpath'
-          zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd --color=always $realpath'
-                zstyle ":fzf-tab:*" fzf-flags \
-                  -e \
-                  -i \
-                  --algo=v1 \
-                  --no-mouse \
-                  -m \
-                  --height=20 \
-                  --reverse \
-                  --no-scrollbar \
-                  --pointer=">"
-        '';
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        zstyle ':completion:*' list-colors "$${(s.:.)LS_COLORS}"
+        zstyle ':completion:*' menu no
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd --color=always $realpath'
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd --color=always $realpath'
+              zstyle ":fzf-tab:*" fzf-flags \
+                -e \
+                -i \
+                --algo=v1 \
+                --no-mouse \
+                -m \
+                --height=20 \
+                --reverse \
+                --no-scrollbar \
+                --pointer=">"
+      '';
     };
   };
 }
