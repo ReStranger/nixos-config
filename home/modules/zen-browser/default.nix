@@ -84,14 +84,22 @@ in
             "firefox@betterttv.net" = "betterttv";
             "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}" = "catppuccin-web-file-icons";
             "addon@darkreader.org" = "darkreader";
+            "jid1-BoFifL9Vbdl2zQ@jetpack" = "decentraleyes";
+            "2.0@disconnect.me" = "disconnect";
+            "jid1-ZAdIEUB7XOzOJw@jetpack" = "duckduckgo-for-firefox";
             "idcac-pub@guus.ninja" = "istilldontcareaboutcookies";
             "multithreaded-download-manager@qw.linux-2g64.local" = "multithreaded-download-manager";
+            "{73a6fe31-595d-460b-a920-fcc0f8843232}" = "noscript";
+            "jid1-MnnxcxisBPnSXQ@jetpack" = "privacy-badger17";
+            "{ddc62400-f22d-4dd3-8b4a-05837de53c2e}" = "read-aloud";
             "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
+            "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}" = "search_by_image";
             "sponsorBlocker@ajay.app" = "sponsorblock";
             "syncshare@naloaty.me" = "syncshare";
             "firefox@tampermonkey.net" = "tampermonkey";
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}" = "traduzir-paginas-web";
             "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium-ff";
+            "{d07ccf11-c0cd-4938-a265-2a4d6ad01189}" = "view-page-archive";
           };
           Preferences = mkLockedAttrs {
             "intl.locale.requested" = "ru";
