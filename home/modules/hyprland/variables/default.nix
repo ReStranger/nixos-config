@@ -17,9 +17,6 @@ let
     GDK_BACKEND = "wayland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-    DESKTOPINTEGRATION = "1";
-    MANGOHUD = "1";
 
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
