@@ -12,10 +12,12 @@ let
   cfg = config.module.hyprland;
   inherit (lib)
     mkEnableOption
+    mkOption
     mkIf
     mkDefault
     optionals
     ;
+  inherit (lib.types) enum;
   terminal = "wezterm";
   fileManager = "nautilus -w";
   menu = "anyrun";
@@ -23,14 +25,27 @@ in
 {
   imports = [
     "${self}/home/modules/hyprland/variables"
+    "${self}/home/modules/hyprland/styles"
   ];
-  options.module.hyprland.enable = mkEnableOption "Enable Hyprland";
+  options.module.hyprland = {
+    enable = mkEnableOption "Enable Hyprland";
+    style = mkOption {
+      type = enum [
+        "round"
+        "flat"
+      ];
+      default = "round";
+      description = "Set Hyprland style";
+    };
+  };
 
   config = mkIf cfg.enable {
     xdg.configFile."uwsm/env".source =
       "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     module.hyprland = {
-      variables.enable = mkDefault cfg.enable;
+      variables.enable = mkDefault true;
+      styles.round.enable = cfg.style == "round";
+      styles.flat.enable = cfg.style == "flat";
     };
     dconf.settings."org/gnome/desktop/wm/preferences" = {
       button-layout = "";
@@ -80,24 +95,11 @@ in
         };
 
         general = {
-          gaps_in = 5;
-          gaps_out = 10;
-          border_size = 2;
-
           layout = "dwindle";
-
           allow_tearing = true;
         };
 
         decoration = {
-          rounding = 15;
-          shadow = {
-            enabled = true;
-            range = 30;
-            offset = "2 3";
-            render_power = 3;
-          };
-
           blur = {
             enabled = true;
             size = 14;
@@ -164,11 +166,11 @@ in
           force_zero_scaling = true;
         };
 
-        workspace = [
-          "w[t1], gapsout:0, gapsin:0"
-          "w[tg1], gapsout:0, gapsin:0"
-          "f[1], gapsout:0, gapsin:0"
-        ];
+        # workspace = [
+        #   "w[t1], gapsout:0, gapsin:0"
+        #   "w[tg1], gapsout:0, gapsin:0"
+        #   "f[1], gapsout:0, gapsin:0"
+        # ];
 
         windowrule = [
           "workspace 1 silent, match:class ^(zen-beta)$"
@@ -224,12 +226,12 @@ in
           "opacity 1.0 override 1.0 override, match:fullscreen true"
           "opacity 1.0 override 1.0 override, match:class ^(org.wezfurlong.wezterm)$"
 
-          "border_size 0, match:float false, match:workspace w[t1]"
-          "rounding 0, match:float false, match:workspace w[t1]"
-          "border_size 0, match:float false, match:workspace w[tg1]"
-          "rounding 0, match:float false, match:workspace w[tg1]"
-          "border_size 0, match:float false, match:workspace f[1]"
-          "rounding 0, match:float false, match:workspace f[1]"
+          # "border_size 0, match:float false, match:workspace w[t1]"
+          # "rounding 0, match:float false, match:workspace w[t1]"
+          # "border_size 0, match:float false, match:workspace w[tg1]"
+          # "rounding 0, match:float false, match:workspace w[tg1]"
+          # "border_size 0, match:float false, match:workspace f[1]"
+          # "rounding 0, match:float false, match:workspace f[1]"
         ];
 
         "$mod" = "SUPER";
