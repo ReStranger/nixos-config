@@ -27,6 +27,7 @@ in
 
       # Utils
       xorg.xhost
+      gparted-full
 
       # HACK
       nautilus-open-any-terminal
