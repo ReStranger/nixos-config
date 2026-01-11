@@ -38,7 +38,7 @@ in
         default_session = {
           command =
             if cfg.frontend == "tui" then
-              "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session"
+              "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session --cmd ${pkgs.uwsm}/bin/uwsm start default"
             else
               "${pkgs.greetd}/bin/agreety --cmd $SHELL";
           user = "greeter";
