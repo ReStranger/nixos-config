@@ -59,7 +59,7 @@ in
         llvmPackages_latest.lldb
         gnumake
         cmake
-        nixfmt-rfc-style
+        nixfmt
 
         ## Fonts ##
         corefonts

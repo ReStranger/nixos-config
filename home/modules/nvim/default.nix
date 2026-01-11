@@ -54,7 +54,7 @@ in
         stylua
         prettierd
         black
-        nixfmt-rfc-style
+        nixfmt
 
         # Debuggers
         llvmPackages_latest.lldb
