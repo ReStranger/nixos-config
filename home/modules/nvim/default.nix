@@ -21,8 +21,11 @@ in
       viAlias = true;
       extraLuaPackages = ps: [ ps.magick ];
       extraPackages = with pkgs; [
+        # Tools
         ueberzugpp
         imagemagick
+        ripgrep
+        tree-sitter
 
         # Mason deps
         python313
@@ -49,6 +52,10 @@ in
         clippy
         eslint_d
         mypy
+        deadnix
+        lix
+        shellcheck-minimal
+        zsh
 
         # formatters
         stylua
