@@ -14,6 +14,7 @@ in
 
   config = mkIf cfg.enable {
     programs.nano.enable = false;
+    documentation.nixos.enable = false;
     qt.enable = true;
 
     environment.systemPackages = with pkgs; [
