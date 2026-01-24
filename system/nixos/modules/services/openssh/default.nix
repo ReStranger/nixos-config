@@ -11,6 +11,12 @@ in
 {
   options.module.services.openssh.enable = mkEnableOption "Enable openssh";
   config = mkIf cfg.enable {
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
   };
 }
