@@ -64,7 +64,6 @@ let
       modules = [
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
-        inputs.chaotic.nixosModules.default
         inputs.sops-nix.nixosModules.sops
         # inputs.nur.modules.nixos.default
       ]
