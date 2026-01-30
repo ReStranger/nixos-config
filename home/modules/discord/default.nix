@@ -242,7 +242,7 @@ in
       builtins.toJSON vencordSettings;
     xdg.configFile."Vencord/settings/quickCss.css" = mkIf hyprlandEnable {
       text = ''
-        .winButtons_c38106 {
+        *[class*="winButtons"] {
           display: none !important;
         }
       '';
