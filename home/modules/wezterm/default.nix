@@ -34,6 +34,8 @@ in
           config.enable_tab_bar = true
           config.hide_tab_bar_if_only_one_tab = true
 
+          config.check_for_updates = false
+
           config.window_background_opacity = 0.89
 
           config.window_padding = {
