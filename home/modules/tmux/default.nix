@@ -38,6 +38,9 @@ in
               set-option -ga terminal-overrides ",$TERM:Tc"
               set -g default-terminal "$TERM"
 
+              set -gq allow-passthrough on
+              set -g visual-activity off
+
               # Сортировка по имени
               bind s choose-tree -sZ -O name
 
