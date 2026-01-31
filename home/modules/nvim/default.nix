@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.module.nvim;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkOverride;
 in
 {
   options = {
@@ -19,7 +19,14 @@ in
       enable = true;
       defaultEditor = true;
       viAlias = true;
+      initLua = mkOverride 10 "";
       extraLuaPackages = ps: [ ps.magick ];
+      extraWrapperArgs = [
+        "--suffix"
+        "LUA_PATH"
+        ";"
+        (lib.makeSearchPathOutput "share/lua/5.1" "lib/lua/5.1" [ pkgs.luajitPackages.magick ])
+      ];
       extraPackages = with pkgs; [
         # Tools
         ueberzugpp
