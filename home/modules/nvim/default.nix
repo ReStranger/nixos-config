@@ -29,16 +29,16 @@ in
       ];
       extraPackages = with pkgs; [
         # Tools
-        ueberzugpp
         imagemagick
         ripgrep
         tree-sitter
+        pkg-config
 
         # Mason deps
         python313
         nodejs
         luarocks
-        lua5_1
+        luajit
 
         # LSP
         lua-language-server
