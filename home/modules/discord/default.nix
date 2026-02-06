@@ -17,7 +17,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = [
-      (pkgs.stable-unfree.discord.override {
+      (pkgs.discord.override {
         withOpenASAR = true;
         withVencord = true;
       })
