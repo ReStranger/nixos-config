@@ -37,7 +37,7 @@ in
           (with pkgs; [ qt6.qt5compat ]);
 
       systemd.enable = true;
-      activeConfig = "/home/${username}/.config/quickshell/main";
+      activeConfig = "/home/${username}/.config/quickshell";
     };
   };
 }
