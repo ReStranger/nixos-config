@@ -12,18 +12,19 @@ let
 in
 {
   options.module.discord = {
-    enable = mkEnableOption "Enable discord with vencord patches";
+    enable = mkEnableOption "Enable discord";
+    withVencord = mkEnableOption "Enable Vencord patches";
   };
 
   config = mkIf cfg.enable {
     home.packages = [
       (pkgs.discord.override {
         withOpenASAR = true;
-        withVencord = true;
+        inherit (cfg) withVencord;
       })
     ];
 
-    xdg.configFile."Vencord/settings/settings.json".text =
+    xdg.configFile."Vencord/settings/settings.json" =
       let
         plugins = {
           CommandsAPI = {
@@ -239,7 +240,8 @@ in
           inherit plugins;
         };
       in
-      builtins.toJSON vencordSettings;
+      mkIf cfg.withVencord { text = builtins.toJSON vencordSettings; };
+
     xdg.configFile."Vencord/settings/quickCss.css" = mkIf hyprlandEnable {
       text = ''
         *[class*="winButtons"] {
