@@ -165,73 +165,139 @@ in
         xwayland = {
           force_zero_scaling = true;
         };
+        layerrule = [
+          "match:namespace anyrun, no_anim on"
+          "match:namespace quickshell:.*, blur_popups on"
+          "match:namespace quickshell:.*, blur on"
+          "match:namespace quickshell:.*, ignore_alpha 0.79"
+        ];
 
-        # workspace = [
-        #   "w[t1], gapsout:0, gapsin:0"
-        #   "w[tg1], gapsout:0, gapsin:0"
-        #   "f[1], gapsout:0, gapsin:0"
-        # ];
+        workspace = [
+          "w[t1], gapsout:0, gapsin:0"
+          "w[tg1], gapsout:0, gapsin:0"
+          "f[1], gapsout:0, gapsin:0"
+        ];
 
         windowrule = [
-          "workspace 1 silent, match:class ^(zen-beta)$"
-          "workspace 2 silent, match:class ^(obsidian)$"
-          "workspace 3 silent, match:class ^(discord)$"
-          "workspace 3 silent, match:class ^(com.ayugram.desktop)$"
-          "workspace 5 silent, match:initial_title ^(Steam)$"
-          "workspace 5 silent, match:class ^(steam)$"
+          {
+            name = "workspace-1-pin-browser";
+            "match:class" = "zen-beta";
+            workspace = "1 silent";
+          }
+          {
+            name = "workspace-2-pin-obsidian";
+            "match:class" = "obsidian";
+            workspace = "2 silent";
+          }
+          {
+            name = "workspace-3-pin-discord";
+            "match:class" = "discord";
+            workspace = "3 silent";
+          }
+          {
+            name = "workspace-3-pin-ayugram";
+            "match:class" = "com.ayugram.desktop";
+            workspace = "3 silent";
+          }
+          {
+            name = "workspace-5-pin-steam-update";
+            "match:initial_title" = "Steam";
+            workspace = "5 silent";
+          }
+          {
+            name = "workspace-5-steam";
+            "match:class" = "steam";
+            workspace = "5 silent";
+          }
 
-          # Saving a file in в zen-beta
-          "workspace [w], match:title ^(Сохранение изображения)$, match:class ^(zen-beta)$"
-          "size 900 590, match:title ^(Сохранение изображения)$, match:class ^(zen-beta)$"
-          "center on, match:title ^(Сохранение изображения)$, match:class ^(zen-beta)$"
+          # Saving a file in в zen-beta # FIXME:
+          {
+            name = "saving-a-picture-in-zen-beta";
+            "match:title" = "Сохранение изображения.*";
+            "match:class" = "xdg-desktop-portal-gtk";
+            size = "900 590";
+            center = "on";
+            # workspace = "[w]";
+          }
+          {
+            name = "saving-a-file-in-zen-beta";
+            "match:class" = "zen-beta";
+            "match:title" = "Введите имя файла для сохранения…";
+            workspace = "[w]";
+            size = "900 590";
+            center = "on";
+          }
+          {
+            name = "picture-in-picture-in-zen-beta";
+            "match:class" = "zen-beta";
+            "match:title" = "Картинка в картинке";
+            workspace = "[w]";
+            float = "on";
+            size = "427 277";
+            pin = "on";
+          }
+          {
+            name = "viewing-media-in-telegram";
+            "match:class" = "com.ayugram.desktop";
+            "match:title" = "Просмотр медиа";
+            workspace = "[w]";
+            center = "on";
+            float = "on";
+          }
+          {
+            name = "screensharing-popup";
+            "match:title" = "Select what to share";
+            size = "500 290";
+            float = "on";
+          }
 
-          "workspace [w], match:title ^(Введите имя файла для сохранения…)$, match:class ^(zen-beta)$"
-          "size 900 590, match:title ^(Введите имя файла для сохранения…)$, match:class ^(zen-beta)$"
-          "center on, match:title ^(Введите имя файла для сохранения…)$, match:class ^(zen-beta)$"
+          {
+            name = "Calculator";
+            "match:class" = "org.gnome.Calculator";
+            size = "334 494";
+            float = "on";
+            pin = "on";
+          }
+          {
+            name = "clock";
+            "match:class" = "org.gnome.clocks";
+            size = "600 730";
+            float = "on";
+          }
+          {
+            name = "eog-popup";
+            "match:class" = "eog";
+            size = "960 540";
+            center = "on";
+          }
 
-          # Picture in picture in zen-beta
-          "workspace [w], match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
-          "float on,match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
-          "size 427 277,match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
-          "pin on,match:class ^(zen-beta)$, match:title ^(Картинка в картинке)$"
+          {
+            name = "polkit-popup";
+            "match:class" = "polkit-gnome-authentication-agent-1";
+            workspace = "[w]";
+          }
+          {
+            name = "global-transparency";
+            "match:class" = ".*";
+            opacity = "0.89 override 0.89 override";
+          }
+          {
+            name = "disable-transparency-in-fullscreen";
+            "match:fullscreen" = true;
+            opacity = "1.0 override 1.0 override";
+          }
+          {
+            name = "disable-transparency-in-terminal";
+            "match:class" = "org.wezfurlong.wezterm";
+            opacity = "1.0 override 1.0 override";
+          }
 
-          # Viewing media в telegram
-          "workspace [w], match:title ^(Просмотр медиа)$, match:class ^(com.ayugram.desktop)$"
-          "center on, match:title ^(Просмотр медиа)$, match:class ^(com.ayugram.desktop)$"
-          "float on, match:title ^(Просмотр медиа)$, match:class ^(com.ayugram.desktop)$"
-
-          # Fix screensharing popup
-          "workspace [w], match:class ^(hyprland-share-picker)$, match:title ^(MainPicker)$"
-          "float on, match:class ^(hyprland-share-picker)$, match:title ^(MainPicker)$"
-          "size 500 290, match:class ^(hyprland-share-picker)$, match:title ^(MainPicker)$"
-
-          # Calculator
-          "float on, match:class ^(org.gnome.Calculator)$, match:title ^(Калькулятор)$"
-          "size 334 494, match:class ^(org.gnome.Calculator)$, match:title ^(Калькулятор)$"
-          "pin on, match:class ^(org.gnome.Calculator)$, match:title ^(Калькулятор)$"
-
-          # Clocks
-          "float on, match:class ^(org.gnome.clocks)$, match:title ^(Часы)$"
-          "size 600 730, match:class ^(org.gnome.clocks)$, match:title ^(Часы)$"
-
-          # Popup eog
-          "float on,match:class ^(eog)$"
-          "size 960 540,match:class ^(eog)$"
-          "center on,match:class ^(eog)$"
-
-          # Fix polkit popup
-          "workspace [w], match:class ^(polkit-gnome-authentication-agent-1)$"
-
-          "opacity 0.89 override 0.89 override, match:class .*"
-          "opacity 1.0 override 1.0 override, match:fullscreen true"
-          "opacity 1.0 override 1.0 override, match:class ^(org.wezfurlong.wezterm)$"
-
-          # "border_size 0, match:float false, match:workspace w[t1]"
-          # "rounding 0, match:float false, match:workspace w[t1]"
-          # "border_size 0, match:float false, match:workspace w[tg1]"
-          # "rounding 0, match:float false, match:workspace w[tg1]"
-          # "border_size 0, match:float false, match:workspace f[1]"
-          # "rounding 0, match:float false, match:workspace f[1]"
+          "border_size 0, match:float false, match:workspace w[t1]"
+          "rounding 0, match:float false, match:workspace w[t1]"
+          "border_size 0, match:float false, match:workspace w[tg1]"
+          "rounding 0, match:float false, match:workspace w[tg1]"
+          "border_size 0, match:float false, match:workspace f[1]"
+          "rounding 0, match:float false, match:workspace f[1]"
         ];
 
         "$mod" = "SUPER";
@@ -261,28 +327,6 @@ in
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
 
-          "$mod, 1, workspace, 1"
-          "$mod, 2, workspace, 2"
-          "$mod, 3, workspace, 3"
-          "$mod, 4, workspace, 4"
-          "$mod, 5, workspace, 5"
-          "$mod, 6, workspace, 6"
-          "$mod, 7, workspace, 7"
-          "$mod, 8, workspace, 8"
-          "$mod, 9, workspace, 9"
-          "$mod, 0, workspace, 10"
-
-          "$mod SHIFT, 1, movetoworkspacesilent, 1"
-          "$mod SHIFT, 2, movetoworkspacesilent, 2"
-          "$mod SHIFT, 3, movetoworkspacesilent, 3"
-          "$mod SHIFT, 4, movetoworkspacesilent, 4"
-          "$mod SHIFT, 5, movetoworkspacesilent, 5"
-          "$mod SHIFT, 6, movetoworkspacesilent, 6"
-          "$mod SHIFT, 7, movetoworkspacesilent, 7"
-          "$mod SHIFT, 8, movetoworkspacesilent, 8"
-          "$mod SHIFT, 9, movetoworkspacesilent, 9"
-          "$mod SHIFT, 0, movetoworkspacesilent, 10"
-
           "$mod SHIFT, H, swapwindow, l"
           "$mod SHIFT, L, swapwindow, r"
           "$mod SHIFT, K, swapwindow, u"
@@ -298,7 +342,19 @@ in
 
           "$mod, mouse_down, workspace, e-1"
           "$mod, mouse_up, workspace, e+1"
-        ];
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = if i < 9 then i + 1 else 10;
+            in
+            [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+            ]
+          ) 10
+        ));
         bindm = [
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
