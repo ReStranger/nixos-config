@@ -31,7 +31,7 @@ in
         # Tools
         imagemagick
         ripgrep
-        tree-sitter
+        (callPackage ../../overlays/tree-sitter.nix { })
         pkg-config
 
         # Mason deps
