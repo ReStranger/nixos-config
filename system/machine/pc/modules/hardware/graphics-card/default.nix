@@ -7,9 +7,6 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        rocmPackages.clr.icd
-      ];
     };
     amdgpu = {
       initrd.enable = true;
@@ -18,5 +15,10 @@
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  environment.systemPackages = with pkgs; [ nvtopPackages.amd ];
+  environment = {
+    systemPackages = with pkgs; [ nvtopPackages.amd ];
+    variables = {
+      ROC_ENABLE_PRE_VEGA = 1;
+    };
+  };
 }
