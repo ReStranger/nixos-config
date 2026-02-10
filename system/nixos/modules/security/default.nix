@@ -8,23 +8,16 @@ let
   cfg = config.module.security;
   inherit (lib)
     mkEnableOption
-    mkOption
     mkIf
     optionalAttrs
     optionals
     ;
-  inherit (lib.types) bool;
 in
 {
   options = {
     module.security = {
       enable = mkEnableOption "Enables security";
       enableBootOptions = mkEnableOption "Enables boot options";
-      preferRustPackages = mkOption {
-        type = bool;
-        default = false;
-        description = "Use Rust-based alternatives to system packages";
-      };
       disableIPV6 = mkEnableOption "Disable ipv6";
 
     };
@@ -38,9 +31,9 @@ in
         hyprlock = { };
       };
 
-      sudo.enable = !cfg.preferRustPackages;
+      sudo.enable = false;
       sudo-rs = {
-        enable = cfg.preferRustPackages;
+        enable = true;
         execWheelOnly = true;
         wheelNeedsPassword = true;
       };
