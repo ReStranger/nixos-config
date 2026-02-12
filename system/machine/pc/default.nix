@@ -33,6 +33,7 @@ _: {
         enable = true;
         wifi.backend = "iwd";
       };
+      ollama.enable = true;
       openssh.enable = true;
       opentablet.enable = true;
       polkit.enable = true;
