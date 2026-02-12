@@ -24,8 +24,8 @@
   inputs = {
     nixpkgs.follows = "unstable";
 
-    stable.url = "github:NixOS/nixpkgs/nixos-26.05";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
+    unstable.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     master.url = "github:NixOS/nixpkgs/master";
 
     home-manager = {
