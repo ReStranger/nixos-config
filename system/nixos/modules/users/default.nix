@@ -61,6 +61,8 @@ in
               description = "${username}";
               extraGroups = [
                 "audio"
+                "video"
+                "render"
                 "networkmanager"
                 "wheel"
                 "docker"
