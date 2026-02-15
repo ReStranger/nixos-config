@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
   module = {
     adb.enable = true;
     boot.enable = true;
@@ -33,7 +34,10 @@ _: {
         enable = true;
         wifi.backend = "iwd";
       };
-      ollama.enable = true;
+      ollama = {
+        enable = true;
+        package = pkgs.ollama-vulkan;
+      };
       openssh.enable = true;
       opentablet.enable = true;
       polkit.enable = true;
