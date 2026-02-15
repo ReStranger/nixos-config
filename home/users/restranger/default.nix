@@ -13,6 +13,7 @@
   module = {
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
+    thunderbird.enable = isWorkstation;
     zsh.enable = isWorkstation;
     zen-browser.enable = isWorkstation;
 
