@@ -169,7 +169,7 @@ in
           "match:namespace anyrun, no_anim on"
           "match:namespace quickshell:.*, blur_popups on"
           "match:namespace quickshell:.*, blur on"
-          "match:namespace quickshell:.*, ignore_alpha 0.79"
+          "match:namespace quickshell:.*, ignore_alpha 0.5"
         ];
 
         workspace = [
