@@ -223,28 +223,28 @@ buildFHSEnv {
       python3.pkgs.numpy
       udev
       xdg-utils # xdg-open needed to open URLs
-      xorg.libICE
-      xorg.libSM
-      xorg.libX11
-      xorg.libXcomposite
-      xorg.libXcursor
-      xorg.libXdamage
-      xorg.libXext
-      xorg.libXfixes
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXrandr
-      xorg.libXrender
-      xorg.libXt
-      xorg.libXtst
-      xorg.libXxf86vm
-      xorg.libxcb
-      xorg.xcbutil
-      xorg.xcbutilimage
-      xorg.xcbutilkeysyms
-      xorg.xcbutilrenderutil
-      xorg.xcbutilwm
-      xorg.xkeyboardconfig
+      libICE
+      libSM
+      libX11
+      libXcomposite
+      libXcursor
+      libXdamage
+      libXext
+      libXfixes
+      libXi
+      libXinerama
+      libXrandr
+      libXrender
+      libXt
+      libXtst
+      libXxf86vm
+      libxcb
+      xcbutil
+      xcbutilimage
+      xcbutilkeysyms
+      xcbutilrenderutil
+      xcbutilwm
+      xkeyboardconfig
       zlib
     ];
 
