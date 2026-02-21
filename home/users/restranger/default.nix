@@ -11,6 +11,7 @@
     zen-browser.enable = false;
   };
   module = {
+    opencode.enable = isWorkstation;
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
     thunderbird.enable = isWorkstation;
