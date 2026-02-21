@@ -27,7 +27,7 @@ in
       nix-output-monitor
 
       # Utils
-      xorg.xhost
+      xhost
       gparted-full
 
       # HACK
