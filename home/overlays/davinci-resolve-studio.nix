@@ -9,7 +9,7 @@
   addDriverRunpath,
   dbus,
   libGLU,
-  xorg,
+  libXxf86vm,
   buildFHSEnv,
   buildFHSEnvChroot,
   bash,
@@ -47,7 +47,7 @@ let
     # Pretty sure, there are missing dependencies ...
     buildInputs = [
       libGLU
-      xorg.libXxf86vm
+      libXxf86vm
     ];
 
     src =
