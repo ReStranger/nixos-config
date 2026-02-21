@@ -15,9 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."openai_api_key" = { };
-    sops.secrets."openrouter_api_key" = { };
-
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -89,8 +86,6 @@ in
       sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
-        OPENAI_API_KEY = "$(cat ${config.sops.secrets."openai_api_key".path})";
-        OPENROUTER_API_KEY = "$(cat ${config.sops.secrets."openrouter_api_key".path})";
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=#${config.lib.stylix.colors.base03}";
         AUTO_NOTIFY_THRESHOLD = 300;
         KEYTIMEOUT = 1;
