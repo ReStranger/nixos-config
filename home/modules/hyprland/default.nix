@@ -18,9 +18,9 @@ let
     optionals
     ;
   inherit (lib.types) enum;
-  terminal = "wezterm";
-  fileManager = "nautilus -w";
-  menu = "anyrun";
+  terminal = "${inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/wezterm";
+  fileManager = "${pkgs.nautilus}/bin/nautilus -w";
+  menu = "${inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}/bin/anyrun";
 in
 {
   imports = [
@@ -66,8 +66,8 @@ in
 
         exec-once = map (cmd: "uwsm app -- ${cmd}") [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-          "swww-daemon"
-          "swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
+          "${pkgs.swww}/bin/swww-daemon"
+          "${pkgs.swww}/bin/swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
         ];
         exec = [ ];
 
@@ -307,8 +307,8 @@ in
           "$mod SHIFT, Q, forcekillactive"
           "$mod, E, exec, uwsm app -- ${fileManager}"
           "$mod, D, exec, uwsm app -- ${menu}"
-          "CTRL, Print, exec, uwsm app -- grimblast --notify --freeze copy area"
-          "CTRL SHIFT, Print, exec, uwsm app -- grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
+          "CTRL, Print, exec, uwsm app -- ${pkgs.grimblast}/bin/grimblast --notify --freeze copy area"
+          "CTRL SHIFT, Print, exec, uwsm app -- ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
 
           "$mod ALT, R, exec, hyprctl reload"
 
@@ -317,7 +317,7 @@ in
           "$mod, F, fullscreen,"
           "$mod SHIFT, P, pseudo, # dwindle"
 
-          "$mod, C, exec, uwsm app -- hyprpicker --autocopy"
+          "$mod, C, exec, uwsm app -- ${pkgs.hyprpicker}/bin/hyprpicker --autocopy"
 
           "ALT, F10, pass, class:^(com.obsproject.Studio)$"
           "CTRL SHIFT, M, pass, class:^(discord)$"
@@ -369,8 +369,6 @@ in
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
           ", XF86MonBrightnessDown, exec, brightnessctl set 5++%-"
-        ];
-        bindl = [
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
