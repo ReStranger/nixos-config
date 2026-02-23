@@ -1,4 +1,5 @@
 {
+  pkgs,
   isWorkstation,
   isLinux,
   hyprlandEnable ? false,
@@ -11,6 +12,21 @@
     zen-browser.enable = false;
   };
   module = {
+    mcp.enable = isWorkstation;
+    mcp-servers = {
+      enable = isWorkstation;
+      servers = {
+        open-web-search = {
+          enable = true;
+          package = pkgs.open-websearch;
+          env = {
+            DEFAULT_SEARCH_ENGINE = "duckduckgo";
+            PORT = "3228";
+          };
+        };
+
+      };
+    };
     opencode.enable = isWorkstation;
     zathura.enable = isWorkstation;
     stylix.enable = isWorkstation;
