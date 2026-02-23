@@ -30,6 +30,7 @@
       };
       gvfs.enable = true;
       irqbalance.enable = true;
+      n8n.enable = true;
       network = {
         enable = true;
         wifi.backend = "iwd";
