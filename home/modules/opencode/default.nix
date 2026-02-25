@@ -21,6 +21,7 @@ in
     sops.secrets = genAttrs secrets (_: { });
     programs.opencode = {
       enable = true;
+      enableMcpIntegration = true;
       settings =
         let
           secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
