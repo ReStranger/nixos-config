@@ -102,35 +102,64 @@ let
       }) names
     );
 
-  browserApps = mkAssociations mimeBrowser browser;
-  figmaApps = mkAssociations mimeFigma "figma-linux.desktop";
-  fileManagerApps = mkAssociations mimeFileManager fileManager;
-  editorApps = mkAssociations mimeEditor editor;
-  imageViewerApps = mkAssociations mimeImageViewer imageViewer;
-  videoPlayerApps = mkAssociations mimeVideoPlayer videoPlayer;
-  pdfReaderApps = mkAssociations mimePdfReader pdfReader;
+  associationRules = [
+    {
+      desktopFile = browser;
+      mimes = mimeBrowser;
+    }
+    {
+      desktopFile = "figma-linux.desktop";
+      mimes = mimeFigma;
+    }
+    {
+      desktopFile = fileManager;
+      mimes = mimeFileManager;
+    }
+    {
+      desktopFile = editor;
+      mimes = mimeEditor;
+    }
+    {
+      desktopFile = imageViewer;
+      mimes = mimeImageViewer;
+    }
+    {
+      desktopFile = videoPlayer;
+      mimes = mimeVideoPlayer;
+    }
+    {
+      desktopFile = pdfReader;
+      mimes = mimePdfReader;
+    }
+    {
+      desktopFile = "com.ayugram.desktop.desktop";
+      mimes = mimeTelegram;
+    }
+    {
+      desktopFile = "obsidian.desktop";
+      mimes = mimeObsidian;
+    }
+    {
+      desktopFile = "anytype.desktop";
+      mimes = mimeAnytype;
+    }
+    {
+      desktopFile = torrent;
+      mimes = mimeTorrent;
+    }
+    {
+      desktopFile = mail;
+      mimes = mimeMail;
+    }
+    {
+      desktopFile = wine;
+      mimes = mimeWine;
+    }
+  ];
 
-  telegramApps = mkAssociations mimeTelegram "com.ayugram.desktop.desktop";
-  obsidianApps = mkAssociations mimeObsidian "obsidian.desktop";
-  anytypeApps = mkAssociations mimeAnytype "anytype.desktop";
-  transmissionApps = mkAssociations mimeTorrent torrent;
-  thunderbirdApps = mkAssociations mimeMail mail;
-  portprotonApps = mkAssociations mimeWine wine;
-
-  associations =
-    browserApps
-    // figmaApps
-    // fileManagerApps
-    // editorApps
-    // imageViewerApps
-    // videoPlayerApps
-    // pdfReaderApps
-    // telegramApps
-    // obsidianApps
-    // anytypeApps
-    // transmissionApps
-    // thunderbirdApps
-    // portprotonApps;
+  associations = builtins.foldl' (
+    acc: rule: acc // (mkAssociations rule.mimes rule.desktopFile)
+  ) { } associationRules;
 
 in
 {
