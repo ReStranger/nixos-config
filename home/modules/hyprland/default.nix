@@ -312,7 +312,7 @@ in
 
           "$mod ALT, R, exec, hyprctl reload"
 
-          "$mod, R, togglesplit, # dwindle"
+          "$mod, R, layoutmsg, togglesplit"
           "$mod SHIFT, F, togglefloating, "
           "$mod, F, fullscreen,"
           "$mod SHIFT, P, pseudo, # dwindle"
