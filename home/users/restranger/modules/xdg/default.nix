@@ -35,6 +35,10 @@ let
     "text/html"
   ];
 
+  mimeFigma = [
+    "x-scheme-handler/figma"
+  ];
+
   mimeFileManager = [
     "inode/directory"
     "application/x-gnome-saved-search"
@@ -99,6 +103,7 @@ let
     );
 
   browserApps = mkAssociations mimeBrowser browser;
+  figmaApps = mkAssociations mimeFigma "figma-linux.desktop";
   fileManagerApps = mkAssociations mimeFileManager fileManager;
   editorApps = mkAssociations mimeEditor editor;
   imageViewerApps = mkAssociations mimeImageViewer imageViewer;
@@ -114,6 +119,7 @@ let
 
   associations =
     browserApps
+    // figmaApps
     // fileManagerApps
     // editorApps
     // imageViewerApps
