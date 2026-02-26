@@ -88,7 +88,7 @@ let
         ) serverCfg.envSecrets
       );
     in
-    "${pkgs.writeShellScript "mcp-${name}-start" ''
+    "${pkgs.writeShellScript "${name}-start" ''
       set -euo pipefail
       ${secretExports}
       exec ${escapeShellArg "${pkg}/bin/${serverCfg.command}"} ${escapeShellArgs serverCfg.args}
