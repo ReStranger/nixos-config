@@ -20,19 +20,10 @@ in
       defaultEditor = true;
       viAlias = true;
       initLua = mkOverride 10 "";
-      extraLuaPackages = ps: [ ps.magick ];
-      extraWrapperArgs = [
-        "--suffix"
-        "LUA_PATH"
-        ";"
-        (lib.makeSearchPathOutput "share/lua/5.1" "lib/lua/5.1" [ pkgs.luajitPackages.magick ])
-      ];
       extraPackages = with pkgs; [
         # Tools
-        imagemagick
         ripgrep
         (callPackage ../../overlays/tree-sitter.nix { })
-        pkg-config
 
         # Mason deps
         python313
