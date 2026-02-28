@@ -75,6 +75,8 @@
 
     mcp-nixos.url = "github:ReStranger/mcp-nixos?ref=feature/add_http_support";
 
+    opencode-background-agents.url = "github:ReStranger/opencode-background-agents?ref=feat/init-flake";
+
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
