@@ -29,6 +29,9 @@ in
             Authorization = "Bearer {file:${config.sops.secrets.github_token.path}}";
           };
         };
+        mcp-nixos = {
+          url = "http://localhost:3229/mcp";
+        };
 
         web-search = {
           url = "http://localhost:3228/sse";
