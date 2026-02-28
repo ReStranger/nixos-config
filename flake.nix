@@ -73,6 +73,8 @@
     wezterm.url = "github:wez/wezterm?dir=nix";
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
+    mcp-nixos.url = "github:ReStranger/mcp-nixos?ref=feature/add_http_support";
+
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
