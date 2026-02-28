@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  inputs,
+  pkgs,
   ...
 }:
 
@@ -19,6 +21,7 @@ in
 
   config = mkIf cfg.enable {
     sops.secrets = genAttrs secrets (_: { });
+
     programs.opencode = {
       enable = true;
       enableMcpIntegration = true;
@@ -27,6 +30,12 @@ in
           secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
         in
         {
+          plugin = [
+            "@zenobius/opencode-background"
+            "file://${
+              inputs.opencode-background-agents.packages.${pkgs.stdenv.hostPlatform.system}.default
+            }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
+          ];
           provider = {
             weegam = {
               name = "Weegam";
