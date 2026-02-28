@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   isWorkstation,
   isLinux,
   hyprlandEnable ? false,
@@ -25,6 +26,16 @@
           };
         };
 
+        mcp-nixos = {
+          enable = true;
+          package = inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          env = {
+            MCP_NIXOS_TRANSPORT = "http";
+            MCP_NIXOS_HOST = "127.0.0.1";
+            MCP_NIXOS_PORT = "3229";
+            MCP_NIXOS_PATH = "/mcp";
+          };
+        };
       };
     };
     opencode.enable = isWorkstation;
