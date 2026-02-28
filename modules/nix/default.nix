@@ -31,10 +31,7 @@ in
 
   config = mkIf cfg.enable {
     # Nixpkgs config
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePerdicate = _: true;
-    };
+    nixpkgs.config.allowUnfree = true;
 
     # Nix package manager settings
     nix = {
