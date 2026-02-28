@@ -118,7 +118,7 @@ let
     };
   };
 
-  mkService = name: serverCfg: nameValuePair "mcp-${name}" (mkBaseService name serverCfg);
+  mkService = name: serverCfg: nameValuePair "${name}" (mkBaseService name serverCfg);
 in
 {
   options.module.mcp-servers = {
