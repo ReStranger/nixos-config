@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  printf '%s\n' "Convert to mp4: ffmpeg not found in PATH" >&2
+  exit 127
+fi
+
+if ! command -v ffprobe >/dev/null 2>&1; then
+  printf '%s\n' "Convert to mp4: ffprobe not found in PATH" >&2
+  exit 127
+fi
+
+is_supported_input_ext() {
+  # A conservative list of common video containers.
+  case "$1" in
+    avi|flv|mkv|mov|mpg|mpeg|m2ts|mts|ts|webm|wmv|ogv|3gp|3g2|m4v) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+is_mp4_compatible_video_codec() {
+  case "$1" in
+    h264|hevc|av1|mpeg4) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+is_mp4_compatible_audio_codec() {
+  case "$1" in
+    aac|mp3|alac|none) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+for i in "$@"; do
+  if [[ ! -f "$i" ]]; then
+    printf '%s\n' "Convert to mp4: skip (not a file): $i" >&2
+    continue
+  fi
+
+  ext="${i##*.}"
+  ext="${ext,,}"
+
+  if [[ "$ext" == "mp4" ]]; then
+    printf '%s\n' "Convert to mp4: skip (already mp4): $i" >&2
+    continue
+  fi
+
+  if ! is_supported_input_ext "$ext"; then
+    printf '%s\n' "Convert to mp4: skip (unsupported input extension .$ext): $i" >&2
+    continue
+  fi
+
+  out="${i%.*}.mp4"
+  if [[ -e "$out" ]]; then
+    printf '%s\n' "Convert to mp4: skip (output exists): $out" >&2
+    continue
+  fi
+
+  vcodec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nw=1:nk=1 "$i" || true)"
+  acodec="$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nw=1:nk=1 "$i" || true)"
+  [[ -n "$vcodec" ]] || {
+    printf '%s\n' "Convert to mp4: skip (no video stream): $i" >&2
+    continue
+  }
+  [[ -n "$acodec" ]] || acodec="none"
+
+  if is_mp4_compatible_video_codec "$vcodec" && is_mp4_compatible_audio_codec "$acodec"; then
+    ffmpeg -hide_banner -loglevel error -i "$i" \
+      -map 0:v:0 -map 0:a? \
+      -c copy -movflags +faststart \
+      "$out"
+  else
+    printf '%s\n' "Convert to mp4: codecs not MP4-copy compatible (v=$vcodec a=$acodec), transcoding: $i" >&2
+    ffmpeg -hide_banner -loglevel error -i "$i" \
+      -map 0:v:0 -map 0:a? \
+      -c:v libx264 -crf 20 -preset medium \
+      -c:a aac -b:a 192k \
+      -movflags +faststart \
+      "$out"
+  fi
+done
