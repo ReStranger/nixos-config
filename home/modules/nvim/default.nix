@@ -23,7 +23,7 @@ in
       extraPackages = with pkgs; [
         # Tools
         ripgrep
-        (callPackage ../../overlays/tree-sitter.nix { })
+        tree-sitter
 
         # Mason deps
         python313
