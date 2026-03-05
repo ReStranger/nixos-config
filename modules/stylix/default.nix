@@ -7,7 +7,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    mkForce
+    ;
   inherit (lib) optionalAttrs;
   inherit (lib.types) bool;
 
@@ -129,6 +134,7 @@ in
   config = mkIf cfg.enable {
     stylix = {
       enable = true;
+      targets.gtksourceview.enable = mkForce false; # Breack cache
       # image = themes.${theme}.wallpaper;
       autoEnable = true;
       polarity = "dark";
