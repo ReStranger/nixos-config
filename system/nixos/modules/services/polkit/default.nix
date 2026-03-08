@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  username,
   ...
 }:
 
@@ -27,7 +28,14 @@ in
         {
           return polkit.Result.YES;
         }
-      })
+      });
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.policykit.exec" &&
+            action.lookup("program") == "/etc/profiles/per-user/${username}/bin/showmethekey-cli" &&
+            (subject.isInGroup("wheel") || subject.local)) {
+            return polkit.Result.YES;
+        }
+      });
     '';
   };
 }
