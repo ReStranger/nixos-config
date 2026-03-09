@@ -15,6 +15,7 @@ let
     mkOption
     mkIf
     mkDefault
+    mkForce
     optionals
     ;
   inherit (lib.types) enum;
@@ -116,6 +117,7 @@ in
             xray = false;
             special = false;
           };
+          shadow.color = mkForce "rgba(12121499)";
 
           dim_inactive = false;
         };
