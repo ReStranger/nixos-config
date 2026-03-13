@@ -43,6 +43,7 @@ in
         wget
         lm_sensors
         systemctl-tui
+        audiosource
 
         ## shell ##
         bat
