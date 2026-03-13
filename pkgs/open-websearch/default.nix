@@ -6,22 +6,28 @@
 
 buildNpmPackage rec {
   pname = "open-websearch";
-  version = "1.2.0";
+  version = "1.2.6";
 
   src = fetchFromGitHub {
     owner = "Aas-ee";
     repo = "open-webSearch";
     rev = "v${version}";
-    hash = "sha256-GN2RuVst+uuJzItPOMXI5z87zcRM4gT5iX+SD9AifIQ=";
+    hash = "sha256-K/xlQKYnR/GywC5lEt0l9KLUG763j1/gMwPi9pwlwKs=";
   };
 
-  npmDepsHash = "sha256-EIlclTiiX5RSJaIqyxPmC6HVcripeJV5iAdBjOmBxYQ=";
+  npmDepsHash = "sha256-tE+TRsUoegVIZYmqHHKfZN5YnLMHymHYlOzrqijV9Xg=";
 
   npmBuildScript = "build";
 
   meta = {
     description = "Web search MCP server";
+    mainProgram = "open-websearch";
     homepage = "https://github.com/Aas-ee/open-webSearch";
-    license = lib.licenses.mit;
+    license = lib.licenses.asl20;
+    platforms = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
+    maintainers = [ "ReStranger" ];
   };
 }
