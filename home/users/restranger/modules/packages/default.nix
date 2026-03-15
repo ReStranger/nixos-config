@@ -52,7 +52,7 @@ in
         fastfetch
 
         ## dev tools ##
-        nodejs_25
+        nodejs
         pnpm
         vscode-js-debug
         clang-tools
