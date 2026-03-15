@@ -41,6 +41,7 @@ _: {
       power-profiles-daemon.enable = true;
       scx.enable = true;
       systemd-oomd.enable = true;
+      tailscale.enable = true;
       upower.enable = true;
       zerotier-one = {
         enable = true;
