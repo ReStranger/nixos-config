@@ -1,14 +1,12 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
 
-  browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta.meta.desktopFileName;
+  browser = "zen.desktop";
   editor = "nvim.desktop";
   imageViewer = "org.gnome.eog.desktop";
   videoPlayer = "vlc.desktop";
