@@ -51,6 +51,7 @@
       polkit.enable = true;
       scx.enable = true;
       systemd-oomd.enable = true;
+      tailscale.enable = true;
       zerotier-one = {
         enable = true;
         joinNetworks = [
