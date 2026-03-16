@@ -23,7 +23,7 @@ in
   config = mkIf cfg.enable {
     services.ollama = {
       enable = true;
-      openFirewall = true;
+      openFirewall = config.networking.firewall.enable;
       inherit (cfg) package;
     };
   };
