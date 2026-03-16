@@ -168,6 +168,7 @@
             sops
             age
             ssh-to-age
+            cachix
             yazi
             git
             curl
@@ -183,11 +184,11 @@
           nativeBuildInputs = [ android-fhs-env ];
           shellHook = "exec android-env";
         };
-      };
-      devShells.kernel = pkgs.stdenv.mkDerivation {
-        name = "kernel-env-shell";
-        nativeBuildInputs = [ kernel-fhs-env ];
-        shellHook = "exec kernel-build-env";
+        kernel = pkgs.stdenv.mkDerivation {
+          name = "kernel-env-shell";
+          nativeBuildInputs = [ kernel-fhs-env ];
+          shellHook = "exec kernel-build-env";
+        };
       };
     };
 }
