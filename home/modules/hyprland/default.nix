@@ -67,8 +67,6 @@ in
 
         exec-once = map (cmd: "uwsm app -- ${cmd}") [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-          "${pkgs.swww}/bin/swww-daemon"
-          "${pkgs.swww}/bin/swww img /home/${username}/.config/hypr/wallpaper --transition-type center"
         ];
         exec = [ ];
 

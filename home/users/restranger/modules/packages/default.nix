@@ -114,7 +114,6 @@ in
         brightnessctl
         playerctl
         pwvucontrol
-        swww
         grimblast
         hyprpicker
       ];
