@@ -77,7 +77,7 @@ in
 
       ]
       ++ lib.optionals isWorkstation [
-        libreoffice-fresh
+        onlyoffice-desktopeditors
         obs-studio
         eog
         showtime
