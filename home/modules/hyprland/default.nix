@@ -234,6 +234,7 @@ in
             workspace = "[w]";
             float = "on";
             size = "427 277";
+            border_size = 0;
             pin = "on";
           }
           {
