@@ -48,10 +48,7 @@ in
 
         allowed-users = [ "@wheel" ];
 
-        trusted-users = [
-          "root"
-          username
-        ];
+        trusted-users = [ username ];
 
         substituters = [
           "https://re-cache.cachix.org"
