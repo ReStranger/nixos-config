@@ -166,7 +166,6 @@ in
           force_zero_scaling = true;
         };
         layerrule = [
-          "match:namespace anyrun, no_anim on"
           "match:namespace quickshell:.*, blur_popups on"
           "match:namespace quickshell:.*, blur on"
           "match:namespace quickshell:.*, ignore_alpha 0.5"
