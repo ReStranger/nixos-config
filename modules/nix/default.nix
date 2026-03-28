@@ -43,6 +43,7 @@ in
           "nix-command"
           "flakes"
         ];
+        warn-dirty = false;
         auto-optimise-store = true;
         builders-use-substitutes = true;
 
