@@ -22,6 +22,8 @@
           package = pkgs.open-websearch;
           env = {
             DEFAULT_SEARCH_ENGINE = "duckduckgo";
+            USE_PROXY = "true";
+            MODE = "http";
             PORT = "3228";
           };
         };

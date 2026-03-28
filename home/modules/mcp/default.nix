@@ -34,7 +34,7 @@ in
         };
 
         web-search = {
-          url = "http://localhost:3228/sse";
+          url = "http://localhost:3228/mcp";
         };
       };
     };
