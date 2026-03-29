@@ -10,6 +10,8 @@ let
   cfg = config.module.opencode;
   inherit (lib) mkEnableOption mkIf genAttrs;
   secrets = [
+    "bifrost/server_url"
+    "bifrost/api_key"
     "openai_api_key"
     "openrouter_api_key"
   ];
@@ -37,12 +39,12 @@ in
             }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
           ];
           provider = {
-            weegam = {
-              name = "Weegam";
+            bifrost = {
+              name = "Bifrost";
               npm = "@ai-sdk/openai-compatible";
               options = {
-                apiKey = secret.openai_api_key;
-                baseURL = "https://api.weegam.com/uni/v1";
+                apiKey = secret."bifrost/api_key";
+                baseURL = secret."bifrost/server_url";
               };
               models = {
                 "gemini-2.5-flash" = {
@@ -109,17 +111,6 @@ in
                         thinkingLevel = "low";
                       };
                     };
-                  };
-                };
-                "gemini-3-pro-image-preview" = {
-                  name = "Gemini 3 Pro Image Preview";
-                  reasoning = true;
-                  tool_call = true;
-                  attachment = true;
-                  temperature = true;
-                  limit = {
-                    context = 1048576;
-                    output = 65536;
                   };
                 };
                 "gemini-3-pro-preview" = {
@@ -292,7 +283,7 @@ in
                     };
                   };
                 };
-                "gpt-5-mini-2025-08-07" = {
+                "openai/gpt-5-mini-2025-08-07" = {
                   name = "GPT-5 Mini 2025-08-07";
                   reasoning = true;
                   tool_call = true;
@@ -310,8 +301,8 @@ in
                     };
                   };
                 };
-                "gpt-5.1-2025-11-13" = {
-                  name = "GPT-5.1 2025-11-13";
+                "gpt-5.1" = {
+                  name = "GPT-5.1";
                   reasoning = true;
                   tool_call = true;
                   temperature = true;
@@ -328,32 +319,8 @@ in
                     };
                   };
                 };
-                "gpt-5.2-2025-12-11" = {
-                  name = "GPT-5.2 2025-12-11";
-                  reasoning = true;
-                  tool_call = true;
-                  temperature = true;
-                  limit = {
-                    context = 1047576;
-                    output = 65536;
-                  };
-                  variants = {
-                    high = {
-                      reasoningEffort = "high";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                    low = {
-                      reasoningEffort = "low";
-                      textVerbosity = "low";
-                    };
-                    none = {
-                      reasoningEffort = "none";
-                    };
-                  };
-                };
-                "gpt-5.2-codex" = {
-                  name = "GPT-5.2 Codex";
+                "openai/gpt-5.2" = {
+                  name = "GPT-5.2";
                   reasoning = true;
                   tool_call = true;
                   temperature = true;
@@ -376,56 +343,8 @@ in
                     };
                   };
                 };
-                "gpt-5.2-codex-openai-compact" = {
-                  name = "GPT-5.2 Codex OpenAI Compact";
-                  reasoning = true;
-                  tool_call = true;
-                  temperature = true;
-                  limit = {
-                    context = 1047576;
-                    output = 65536;
-                  };
-                  variants = {
-                    high = {
-                      reasoningEffort = "high";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                    low = {
-                      reasoningEffort = "low";
-                      textVerbosity = "low";
-                    };
-                    none = {
-                      reasoningEffort = "none";
-                    };
-                  };
-                };
-                "gpt-5.2-openai-compact" = {
-                  name = "GPT-5.2 OpenAI Compact";
-                  reasoning = true;
-                  tool_call = true;
-                  temperature = true;
-                  limit = {
-                    context = 1047576;
-                    output = 65536;
-                  };
-                  variants = {
-                    high = {
-                      reasoningEffort = "high";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                    low = {
-                      reasoningEffort = "low";
-                      textVerbosity = "low";
-                    };
-                    none = {
-                      reasoningEffort = "none";
-                    };
-                  };
-                };
-                "gpt-5.2-pro-2025-12-11" = {
-                  name = "GPT-5.2 Pro 2025-12-11";
+                "openai/gpt-5.4" = {
+                  name = "GPT-5.4";
                   reasoning = true;
                   tool_call = true;
                   temperature = true;
@@ -456,12 +375,6 @@ in
               options = {
                 baseURL = "http://localhost:11434/v1";
               };
-            };
-            openrouter = {
-              options = {
-                apiKey = secret.openrouter_api_key;
-              };
-              models = { };
             };
           };
         };
