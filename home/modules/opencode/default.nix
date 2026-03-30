@@ -27,6 +27,7 @@ in
     programs.opencode = {
       enable = true;
       enableMcpIntegration = true;
+      package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings =
         let
           secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");

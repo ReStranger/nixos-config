@@ -102,7 +102,6 @@ in
         libnotify
         (bottles.override { removeWarningPopup = true; })
         figma-linux
-        opencode
       ]
       ++ lib.optionals hyprlandEnable [
         file-roller
