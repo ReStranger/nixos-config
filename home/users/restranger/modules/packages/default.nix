@@ -97,7 +97,6 @@ in
         lunar-client
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
-        (callPackage ../../../../overlays/davinci-resolve-studio.nix { })
         ayugram-desktop
         libnotify
         (bottles.override { removeWarningPopup = true; })
