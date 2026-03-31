@@ -40,6 +40,88 @@ in
             }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
           ];
           provider = {
+            bifrost-response = {
+              name = "Bifrost";
+              npm = "@ai-sdk/openai";
+              options = {
+                apiKey = secret."bifrost/api_key";
+                baseURL = secret."bifrost/server_url";
+              };
+              models = {
+                "openai/gpt-5.3-codex" = {
+                  name = "GPT-5.3 Codex";
+                  reasoning = true;
+                  tool_call = true;
+                  temperature = true;
+                  limit = {
+                    context = 1047576;
+                    output = 65536;
+                  };
+                  variants = {
+                    high = {
+                      reasoningEffort = "high";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                    low = {
+                      reasoningEffort = "low";
+                      textVerbosity = "low";
+                    };
+                    none = {
+                      reasoningEffort = "none";
+                    };
+                  };
+                };
+                "openai/gpt-5.4" = {
+                  name = "GPT-5.4";
+                  reasoning = true;
+                  tool_call = true;
+                  temperature = true;
+                  limit = {
+                    context = 1047576;
+                    output = 65536;
+                  };
+                  variants = {
+                    high = {
+                      reasoningEffort = "high";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                    low = {
+                      reasoningEffort = "low";
+                      textVerbosity = "low";
+                    };
+                    none = {
+                      reasoningEffort = "none";
+                    };
+                  };
+                };
+                "openai/gpt-5.4-pro" = {
+                  name = "GPT-5.4 Pro";
+                  reasoning = true;
+                  tool_call = true;
+                  temperature = true;
+                  limit = {
+                    context = 1047576;
+                    output = 65536;
+                  };
+                  variants = {
+                    high = {
+                      reasoningEffort = "high";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                    low = {
+                      reasoningEffort = "low";
+                      textVerbosity = "low";
+                    };
+                    none = {
+                      reasoningEffort = "none";
+                    };
+                  };
+                };
+              };
+            };
             bifrost = {
               name = "Bifrost";
               npm = "@ai-sdk/openai-compatible";
@@ -322,30 +404,6 @@ in
                 };
                 "openai/gpt-5.2" = {
                   name = "GPT-5.2";
-                  reasoning = true;
-                  tool_call = true;
-                  temperature = true;
-                  limit = {
-                    context = 1047576;
-                    output = 65536;
-                  };
-                  variants = {
-                    high = {
-                      reasoningEffort = "high";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                    low = {
-                      reasoningEffort = "low";
-                      textVerbosity = "low";
-                    };
-                    none = {
-                      reasoningEffort = "none";
-                    };
-                  };
-                };
-                "openai/gpt-5.4" = {
-                  name = "GPT-5.4";
                   reasoning = true;
                   tool_call = true;
                   temperature = true;
