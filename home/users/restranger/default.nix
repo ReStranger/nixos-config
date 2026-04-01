@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   isWorkstation,
   isLinux,
   hyprlandEnable ? false,
@@ -30,7 +29,7 @@
 
         mcp-nixos = {
           enable = true;
-          package = inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          package = pkgs.mcp-nixos;
           env = {
             MCP_NIXOS_TRANSPORT = "http";
             MCP_NIXOS_HOST = "127.0.0.1";
