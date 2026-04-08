@@ -5,7 +5,6 @@
   pkgs,
   inputs,
   isLaptop,
-  username,
   ...
 }:
 let
