@@ -215,6 +215,7 @@ in
             "match:class" = "xdg-desktop-portal-gtk";
             size = "900 590";
             center = "on";
+            float = "on";
             # workspace = "[w]";
           }
           {
@@ -251,21 +252,22 @@ in
           }
 
           {
-            name = "Calculator";
+            name = "calculator";
             "match:class" = "org.gnome.Calculator";
-            size = "334 494";
+            size = "360 620";
             float = "on";
             pin = "on";
           }
           {
             name = "clock";
             "match:class" = "org.gnome.clocks";
-            size = "600 730";
+            size = "500 629";
             float = "on";
           }
           {
             name = "eog-popup";
-            "match:class" = "eog";
+            "match:class" = "org.gnome.eog";
+            float = "on";
             size = "960 540";
             center = "on";
           }
