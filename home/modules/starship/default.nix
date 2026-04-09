@@ -20,19 +20,26 @@ in
       settings = {
         add_newline = true;
         format = lib.concatStrings [
+          "$hostname"
           "$nix_shell"
           "$os"
           "$directory"
+          "$battery"
           "$container"
-          "$git_branch $git_status"
+          "$git_branch $git_state"
           "$python"
           "$nodejs"
+          "$bun"
+          "$deno"
           "$lua"
           "$rust"
           "$java"
           "$c"
+          "$cpp"
+          "$cmake"
           "$golang"
           "$cmd_duration"
+          "$jobs"
           "$status"
           "$line_break"
           "[❯](bold purple)"
@@ -49,6 +56,17 @@ in
         continuation_prompt = "∙  ┆ ";
 
         line_break.disabled = false;
+        hostname = {
+          ssh_only = true;
+          format = " [](fg:base04)[$ssh_symbol $hostname](bg:base04 fg:white)[](fg:base04) ";
+          ssh_symbol = "";
+
+        };
+
+        battery = {
+          format = " [](fg:bright-black)[$path](bg:bright-black fg:white)[](fg:bright-black)";
+          disabled = false;
+        };
 
         status = {
           symbol = "✗";
@@ -91,6 +109,9 @@ in
           style = "";
           format = "[ $symbol $branch](fg:purple)(:$remote_branch)";
         };
+        git_state = {
+          format = "[](fg:yellow)[$state( $progress_current/$progress_total)](bg:yellow fg:black)[](fg:yellow) ";
+        };
 
         os = {
           disabled = false;
@@ -120,12 +141,12 @@ in
         };
 
         bun = {
-          symbol = "󰛦";
+          symbol = "";
           format = "[$symbol ](blue)";
         };
 
         deno = {
-          symbol = "󰛦";
+          symbol = "";
           format = "[$symbol ](blue)";
         };
 
@@ -146,6 +167,16 @@ in
 
         c = {
           symbol = "";
+          format = "[$symbol ](blue)";
+        };
+
+        cpp = {
+          symbol = "";
+          format = "[$symbol ](blue)";
+        };
+
+        cmake = {
+          symbol = "";
           format = "[$symbol ](blue)";
         };
 
