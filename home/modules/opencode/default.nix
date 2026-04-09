@@ -76,7 +76,6 @@ in
                   name = "GPT-5.4";
                   reasoning = true;
                   tool_call = true;
-                  temperature = true;
                   limit = {
                     context = 1047576;
                     output = 65536;
@@ -100,7 +99,6 @@ in
                   name = "GPT-5.4 Pro";
                   reasoning = true;
                   tool_call = true;
-                  temperature = true;
                   limit = {
                     context = 1047576;
                     output = 65536;
