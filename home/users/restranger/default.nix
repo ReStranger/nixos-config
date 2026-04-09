@@ -12,6 +12,7 @@
     zen-browser.enable = false;
   };
   module = {
+    cachix.enable = true;
     mcp.enable = isWorkstation;
     mcp-servers = {
       enable = isWorkstation;
