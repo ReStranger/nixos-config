@@ -69,6 +69,7 @@
     sops.enable = true;
     starship.enable = true;
     tmux.enable = true;
+    variables.enable = true;
     yazi.enable = true;
 
     user = {

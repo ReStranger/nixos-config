@@ -15,7 +15,7 @@ in
 
   config = mkIf cfg.enable {
     home.sessionVariables = {
-      BROWSER = "firefox.desktop";
+      BROWSER = "zen.desktop";
       TERMINAL = "wezterm";
     };
   };
