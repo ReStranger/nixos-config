@@ -62,6 +62,7 @@ let
           ;
       };
       modules = [
+        inputs.determinate.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
         inputs.sops-nix.nixosModules.sops
@@ -110,6 +111,7 @@ let
       };
 
       modules = [
+        inputs.determinate.nixosModules.default
         inputs.home-manager.darwinModules.home-manager
         inputs.stylix.darwinModules.stylix
       ]
