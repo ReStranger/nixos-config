@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      inputs.nix.inputs.flake-parts.follows = "flake-parts";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
