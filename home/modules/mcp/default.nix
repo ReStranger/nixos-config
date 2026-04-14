@@ -16,9 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    sops.secrets.github_token = {
-      sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
-    };
+    sops.secrets.github_token = { };
     programs.mcp = {
       enable = true;
       servers = {
