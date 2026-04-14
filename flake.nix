@@ -58,6 +58,8 @@
     impermanence.url = "github:/nix-community/impermanence";
     sops-nix.url = "github:Mic92/sops-nix";
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";

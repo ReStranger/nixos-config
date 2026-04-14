@@ -40,6 +40,6 @@
       "net.ipv4.ip_default_ttl" = 65;
     };
     extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };
 }

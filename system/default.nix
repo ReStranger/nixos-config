@@ -1,6 +1,7 @@
 {
   self,
   lib,
+  inputs,
   machineDir,
   hostType,
   platform ? null,
@@ -31,6 +32,7 @@ in
     hostPlatform = platform;
 
     overlays = [
+      inputs.nix-cachyos-kernel.overlays.pinned
     ];
   };
 }

@@ -50,6 +50,7 @@ in
         substituters = [
           "https://re-cache.cachix.org"
           "https://install.determinate.systems"
+          "https://attic.xuyh0120.win/lantian"
           "https://hyprland.cachix.org"
           "https://wezterm.cachix.org"
           "https://anyrun.cachix.org"
@@ -60,6 +61,7 @@ in
         trusted-public-keys = [
           "re-cache.cachix.org-1:zIzN9Bp2Lwpt5qMc5XReiFsgSx6G4+wZMy9UHCDJ4X4="
           "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+          "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
           "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
