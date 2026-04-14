@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   isLinux,
   hyprlandEnable,
   ...
@@ -9,7 +10,7 @@
 
 let
   cfg = config.module.zen-browser;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf strings;
 in
 {
   options.module.zen-browser = {
@@ -144,13 +145,28 @@ in
         };
         search = {
           force = true;
-          default = "ddg";
+          default = "SearXNG";
           privateDefault = "google";
           engines =
             let
               nixSnowflakeIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             in
             {
+              "SearXNG" = {
+                urls = [
+                  {
+                    template = "https://searxng.reworker.lol/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+
+                    ];
+                  }
+                ];
+                definedAliases = [ "@sxng" ];
+              };
               "Nix Packages" = {
                 urls = [
                   {
