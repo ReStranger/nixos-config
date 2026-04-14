@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   lib,
   config,
@@ -29,12 +30,29 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    sops = {
+      secrets.github_token = {
+        sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
+      };
+      templates.nix-github = {
+        content = ''
+          access-tokens = github.com=${config.sops.placeholder.github_token}
+        '';
+        mode = "0444";
+      };
+    };
+
     # Nixpkgs config
     nixpkgs.config.allowUnfree = true;
 
     # Nix package manager settings
     nix = {
       registry.s.flake = inputs.self;
+
+      extraOptions = ''
+        !include ${config.sops.templates.nix-github.path}
+      '';
 
       settings = {
         eval-cores = "0";
