@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pkgs2push=(quickshell)
+pkgs2push=(quickshell xdg-desktop-portal-hyprland csgo-vulkan-fix xwayland)
 
 for i in "${pkgs2push[@]}"; do
     CACHE=re-cache nix path-info --recursive /run/current-system | grep -F "${i}" | cachix push re-cache
