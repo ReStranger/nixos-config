@@ -3,7 +3,10 @@ let
   settings = {
     fontSize = 12;
     hyprland = {
-      monitor = [ "eDP-1, 1920x1080@60, 0x0, 1.25" ];
+      monitor = [
+        "eDP-1, 1920x1080@60, 0x0, 1.25"
+        "HDMI-A-1, 1920x1080@60, 0x-720, 1.5"
+      ];
 
       workspace = [
         "1,monitor:eDP-1,default:true"
@@ -12,7 +15,10 @@ let
         "4,monitor:eDP-1"
         "5,monitor:eDP-1"
         "6,monitor:eDP-1"
-        "7,monitor:eDP-1"
+        "7,monitor:HDMI-A-1,default:true"
+        "8,monitor:HDMI-A-1"
+        "9,monitor:HDMI-A-1"
+        "0,monitor:HDMI-A-1"
       ];
     };
   };
