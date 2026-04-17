@@ -128,7 +128,7 @@ in
                 baseURL = secret."bifrost/server_url";
               };
               models = {
-                "gemini-2.5-flash" = {
+                "gemini/gemini-2.5-flash" = {
                   name = "Gemini 2.5 Flash";
                   reasoning = true;
                   tool_call = true;
@@ -150,7 +150,7 @@ in
                     };
                   };
                 };
-                "gemini-2.5-pro" = {
+                "gemini/gemini-2.5-pro" = {
                   name = "Gemini 2.5 Pro";
                   reasoning = true;
                   tool_call = true;
@@ -172,7 +172,7 @@ in
                     };
                   };
                 };
-                "gemini-3-flash-preview" = {
+                "gemini/gemini-3-flash-preview" = {
                   name = "Gemini 3 Flash Preview";
                   reasoning = true;
                   tool_call = true;
@@ -194,7 +194,7 @@ in
                     };
                   };
                 };
-                "gemini-3-pro-preview" = {
+                "gemini/gemini-3-pro-preview" = {
                   name = "Gemini 3 Pro Preview";
                   reasoning = true;
                   tool_call = true;
@@ -216,7 +216,29 @@ in
                     };
                   };
                 };
-                "gemini-3.1-pro-preview" = {
+                "gemini/gemini-3.1-flash-lite-preview" = {
+                  name = "Gemini 3.1 Flash Lite Preview";
+                  reasoning = true;
+                  tool_call = true;
+                  temperature = true;
+                  limit = {
+                    context = 1048576;
+                    output = 65536;
+                  };
+                  variants = {
+                    high = {
+                      thinkingConfig = {
+                        thinkingLevel = "high";
+                      };
+                    };
+                    low = {
+                      thinkingConfig = {
+                        thinkingLevel = "low";
+                      };
+                    };
+                  };
+                };
+                "gemini/gemini-3.1-pro-preview" = {
                   name = "Gemini 3.1 Pro Preview";
                   reasoning = true;
                   tool_call = true;
