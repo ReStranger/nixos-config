@@ -36,22 +36,25 @@ in
         vscode-langservers-extracted
         typescript-language-server
         clang-tools
-        cmake-language-server
+        neocmakelsp
         qt6.qtdeclarative
         rust-analyzer
         pyright
         ruff
         bash-language-server
         nixd
+        docker-language-server
         marksman
         hyprls
 
         # Linters
+        cmake-lint
         clippy
         eslint_d
         mypy
         deadnix
-        lix
+        nix
+        hadolint
         shellcheck-minimal
         zsh
 
