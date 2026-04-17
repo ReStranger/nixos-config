@@ -155,7 +155,7 @@ in
               "SearXNG" = {
                 urls = [
                   {
-                    template = "https://searxng.reworker.lol/search";
+                    template = "https://searxng.reworker.lol:5443/search";
                     params = [
                       {
                         name = "q";
