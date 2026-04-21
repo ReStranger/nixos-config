@@ -12,7 +12,6 @@ let
   secrets = [
     "bifrost/server_url"
     "bifrost/api_key"
-    "openai_api_key"
     "openrouter_api_key"
   ];
 in
@@ -43,6 +42,8 @@ in
             }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
             "context-mode"
           ];
+          autoshare = false;
+          autoupdate = false;
           provider = {
             bifrost-response = {
               name = "Bifrost";
@@ -62,6 +63,11 @@ in
                     output = 65536;
                   };
                   variants = {
+                    xhigh = {
+                      reasoningEffort = "xhigh";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
                     high = {
                       reasoningEffort = "high";
                       textVerbosity = "low";
@@ -108,6 +114,11 @@ in
                     output = 65536;
                   };
                   variants = {
+                    xhigh = {
+                      reasoningEffort = "xhigh";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
                     high = {
                       reasoningEffort = "high";
                       textVerbosity = "low";
