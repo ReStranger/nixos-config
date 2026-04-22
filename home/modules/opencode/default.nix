@@ -40,6 +40,7 @@ in
             "file://${
               inputs.opencode-background-agents.packages.${pkgs.stdenv.hostPlatform.system}.default
             }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
+            "https://github.com/loss-and-quick/opencode-plugin-advisor"
             "context-mode"
           ];
           autoshare = false;
@@ -50,6 +51,9 @@ in
             };
             explore = {
               model = "bifrost/gemini/gemini-3.1-flash-lite-preview";
+            };
+            advisor = {
+              model = "bifrost/openai/gpt-5.4";
             };
           };
           provider = {
