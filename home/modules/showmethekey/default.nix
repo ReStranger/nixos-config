@@ -19,7 +19,8 @@ in
     wayland.windowManager.hyprland.settings.windowrule = [
       {
         name = "floating-show-key";
-        "match:class" = "showmethekey-gtk";
+        "match:class" = "one.alynx.showmethekey";
+        "match:initial_title" = "Floating Window - Show Me The Key";
         float = "on";
         pin = "on";
         size = "900 60";
