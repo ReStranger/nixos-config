@@ -40,6 +40,7 @@ in
             "file://${
               inputs.opencode-background-agents.packages.${pkgs.stdenv.hostPlatform.system}.default
             }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
+            "https://github.com/loss-and-quick/opencode-ralph"
             "https://github.com/loss-and-quick/opencode-plugin-advisor"
             "context-mode"
           ];
