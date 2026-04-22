@@ -19,7 +19,7 @@ in
 {
   imports = [
     "${self}/modules"
-    "${self}/overlays/nixpkgs"
+    "${self}/overlays"
     "${self}/system/${hostType}/modules"
   ]
   ++ optional machineConfigurationPathExist machineConfigurationPath
