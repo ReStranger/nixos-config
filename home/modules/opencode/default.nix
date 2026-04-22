@@ -44,6 +44,14 @@ in
           ];
           autoshare = false;
           autoupdate = false;
+          agent = {
+            general = {
+              model = "bifrost/openai/gpt-5.4";
+            };
+            explore = {
+              model = "bifrost/gemini/gemini-3.1-flash-lite-preview";
+            };
+          };
           provider = {
             bifrost-response = {
               name = "Bifrost";
