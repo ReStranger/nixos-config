@@ -6,16 +6,16 @@
 
 buildNpmPackage rec {
   pname = "open-websearch";
-  version = "1.2.6";
+  version = "1.2.7";
 
   src = fetchFromGitHub {
     owner = "Aas-ee";
     repo = "open-webSearch";
     rev = "v${version}";
-    hash = "sha256-K/xlQKYnR/GywC5lEt0l9KLUG763j1/gMwPi9pwlwKs=";
+    hash = "sha256-ko216HwLEFhVOsyOBTDZNK0MfXL55OFrIM7RR1BRJJM=";
   };
 
-  npmDepsHash = "sha256-tE+TRsUoegVIZYmqHHKfZN5YnLMHymHYlOzrqijV9Xg=";
+  npmDepsHash = "sha256-yhWFDXEPvm7HWFOiO3X1YRFYpAT0QeZJuFt65yxu+E0=";
 
   npmBuildScript = "build";
 
