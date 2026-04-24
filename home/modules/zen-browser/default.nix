@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   isLinux,
   hyprlandEnable,
   ...
@@ -10,7 +9,7 @@
 
 let
   cfg = config.module.zen-browser;
-  inherit (lib) mkEnableOption mkIf strings;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.module.zen-browser = {
