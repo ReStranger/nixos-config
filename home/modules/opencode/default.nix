@@ -46,6 +46,7 @@ in
           ];
           autoshare = false;
           autoupdate = false;
+          lsp = true;
           agent = {
             general = {
               model = "bifrost/openai/gpt-5.4";
