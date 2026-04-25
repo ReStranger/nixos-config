@@ -68,6 +68,7 @@ in
 
         substituters = [
           "https://cache.nixos.org"
+          "https://mirror.yandex.ru/nixos/"
           "https://install.determinate.systems"
           "https://re-cache.cachix.org"
           "https://attic.xuyh0120.win/lantian"
