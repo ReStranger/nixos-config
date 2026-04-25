@@ -76,8 +76,6 @@ in
           "https://anyrun.cachix.org"
         ];
 
-        trusted-substituters = [ "https://hyprland.cachix.org" ];
-
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "re-cache.cachix.org-1:zIzN9Bp2Lwpt5qMc5XReiFsgSx6G4+wZMy9UHCDJ4X4="
