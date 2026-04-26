@@ -57,6 +57,7 @@ in
       settings = {
         eval-cores = "0";
         lazy-trees = true;
+        connect-timeout = 5;
         warn-dirty = false;
         auto-optimise-store = false;
         builders-use-substitutes = true;
@@ -66,8 +67,9 @@ in
         trusted-users = [ username ];
 
         substituters = [
-          "https://re-cache.cachix.org"
+          "https://cache.nixos.org"
           "https://install.determinate.systems"
+          "https://re-cache.cachix.org"
           "https://attic.xuyh0120.win/lantian"
           "https://hyprland.cachix.org"
           "https://wezterm.cachix.org"
@@ -77,6 +79,7 @@ in
         trusted-substituters = [ "https://hyprland.cachix.org" ];
 
         trusted-public-keys = [
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "re-cache.cachix.org-1:zIzN9Bp2Lwpt5qMc5XReiFsgSx6G4+wZMy9UHCDJ4X4="
           "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
           "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
