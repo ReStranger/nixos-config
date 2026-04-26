@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }:
@@ -22,9 +21,7 @@ in
       servers = {
         context-mode = {
           type = "local";
-          command = "${
-            inputs.context-mode.packages.${pkgs.stdenv.hostPlatform.system}.default
-          }/bin/context-mode";
+          command = "${pkgs.context-mode}/bin/context-mode";
         };
         github = {
           type = "http";

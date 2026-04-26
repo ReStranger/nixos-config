@@ -27,8 +27,8 @@ in
       enable = true;
       enableMcpIntegration = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      extraPackages = [
-        inputs.context-mode.packages.${pkgs.stdenv.hostPlatform.system}.default
+      extraPackages = with pkgs; [
+        context-mode
       ];
       settings =
         let
