@@ -10,11 +10,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "context-mode";
-  version = "1.0.94";
+  version = "1.0.98";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/${finalAttrs.pname}/-/${finalAttrs.pname}-${finalAttrs.version}.tgz";
-    hash = "sha256-WyLPIfEmS742M2ZVzrJmRh9uTZg/5nMPztI9Tm97Jr0=";
+    hash = "sha256-vNBXLIIQzC2IchQFRAkkSLjJmrX7MF5U+p1o9pkCrw0=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
