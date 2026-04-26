@@ -4,14 +4,14 @@
   fetchFromGitHub,
 }:
 
-buildNpmPackage rec {
+buildNpmPackage (finalAttrs: {
   pname = "open-websearch";
   version = "1.2.7";
 
   src = fetchFromGitHub {
     owner = "Aas-ee";
     repo = "open-webSearch";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-ko216HwLEFhVOsyOBTDZNK0MfXL55OFrIM7RR1BRJJM=";
   };
 
@@ -21,13 +21,10 @@ buildNpmPackage rec {
 
   meta = {
     description = "Web search MCP server";
-    mainProgram = "open-websearch";
     homepage = "https://github.com/Aas-ee/open-webSearch";
     license = lib.licenses.asl20;
-    platforms = [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
+    platforms = lib.platforms.all;
+    mainProgram = "open-websearch";
     maintainers = [ "ReStranger" ];
   };
-}
+})
