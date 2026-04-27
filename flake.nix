@@ -78,6 +78,9 @@
     kidex.url = "github:Kirottu/kidex";
     matugen.url = "github:InioX/Matugen";
     wezterm.url = "github:wez/wezterm?dir=nix";
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
     opencode.url = "github:anomalyco/opencode";

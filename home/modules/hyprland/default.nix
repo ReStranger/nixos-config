@@ -18,7 +18,7 @@ let
     optionals
     ;
   inherit (lib.types) enum;
-  terminal = "${inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/wezterm";
+  terminal = "${inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/ghostty";
   fileManager = "${pkgs.nautilus}/bin/nautilus -w";
   menu = "${inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}/bin/anyrun";
 in
