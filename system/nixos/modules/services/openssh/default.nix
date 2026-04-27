@@ -2,13 +2,10 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.openssh;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.openssh.enable = mkEnableOption "Enable openssh";
   config = mkIf cfg.enable {
     services.openssh = {

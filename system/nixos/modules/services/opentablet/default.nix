@@ -2,13 +2,10 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.opentablet;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.opentablet.enable = mkEnableOption "Enable opentablet";
   config = mkIf cfg.enable {
     hardware.opentabletdriver = {

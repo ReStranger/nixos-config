@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.firefox;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.firefox = {
     enable = mkEnableOption "Enable firefox module";
   };
@@ -16,7 +13,7 @@ in
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
-      languagePacks = [ "ru" ];
+      languagePacks = ["ru"];
       profiles.default = {
         id = 0;
         name = "default";

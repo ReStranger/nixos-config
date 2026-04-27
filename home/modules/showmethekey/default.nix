@@ -3,19 +3,16 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.showmethekey;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.showmethekey = {
     enable = mkEnableOption "Enable showmethekey module";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.showmethekey ];
+    home.packages = [pkgs.showmethekey];
     wayland.windowManager.hyprland.settings.windowrule = [
       {
         name = "floating-show-key";

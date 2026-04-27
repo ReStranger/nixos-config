@@ -7,7 +7,6 @@
   python3,
   makeWrapper,
 }:
-
 stdenv.mkDerivation (finalAttrs: {
   pname = "context-mode";
   version = "1.0.98";
@@ -17,7 +16,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-vNBXLIIQzC2IchQFRAkkSLjJmrX7MF5U+p1o9pkCrw0=";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [makeWrapper];
 
   dontBuild = true;
 
@@ -31,11 +30,11 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper ${nodejs}/bin/node $out/bin/${finalAttrs.pname} \
       --add-flags "$out/lib/${finalAttrs.pname}/cli.bundle.mjs" \
       --prefix PATH : ${
-        lib.makeBinPath [
-          bun
-          python3
-        ]
-      }
+      lib.makeBinPath [
+        bun
+        python3
+      ]
+    }
 
     runHook postInstall
   '';
@@ -44,7 +43,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "MCP plugin that saves 98% of your context window";
     homepage = "https://github.com/mksglu/context-mode";
     license = lib.licenses.elastic20;
-    maintainers = [ "ReStranger" ];
+    maintainers = ["ReStranger"];
     platforms = lib.platforms.all;
     mainProgram = finalAttrs.pname;
   };

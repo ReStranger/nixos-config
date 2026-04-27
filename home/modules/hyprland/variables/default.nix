@@ -2,9 +2,7 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.hyprland.variables;
   inherit (lib) mkEnableOption mkIf mkForce;
 
@@ -37,9 +35,7 @@ let
   };
 
   sessionVariables = commonSessionVariables // hostSpecificVariables;
-
-in
-{
+in {
   options = {
     module.hyprland.variables.enable = mkEnableOption "Enable variables in Hyprland";
   };

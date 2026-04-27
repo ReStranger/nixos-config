@@ -3,12 +3,10 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.module.nvim;
   inherit (lib) mkEnableOption mkIf mkOverride;
-in
-{
+in {
   options = {
     module.nvim = {
       enable = mkEnableOption "Enable re:nvim module";
@@ -62,7 +60,7 @@ in
         stylua
         prettierd
         black
-        nixfmt
+        alejandra
 
         # Debuggers
         llvmPackages_latest.lldb

@@ -4,14 +4,11 @@
   pkgs,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.programs.hyprland;
   pkg = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.programs.hyprland.enable = mkEnableOption "Enables hyprland";
   config = mkIf cfg.enable {
     programs.hyprland = {

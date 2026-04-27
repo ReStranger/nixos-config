@@ -2,13 +2,10 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.programs.throne;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.programs.throne = {
     enable = mkEnableOption "Enable throne";
   };

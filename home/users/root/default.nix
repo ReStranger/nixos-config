@@ -1,9 +1,4 @@
-{
-  isWorkstation,
-  ...
-}:
-
-{
+{isWorkstation, ...}: {
   stylix.targets = {
     neovim.enable = false;
     zen-browser.enable = false;
@@ -22,6 +17,5 @@
     starship.enable = true;
     tmux.enable = true;
     yazi.enable = true;
-
   };
 }

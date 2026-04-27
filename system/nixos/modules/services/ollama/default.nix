@@ -3,14 +3,11 @@
   config,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.ollama;
   inherit (lib) mkEnableOption mkIf mkOption;
   inherit (lib.types) package;
-in
-{
+in {
   options.module.services.ollama = {
     enable = mkEnableOption "Enable ollama daemon";
     package = mkOption {
@@ -18,7 +15,6 @@ in
       description = "Ollama package to use";
       default = pkgs.ollama;
     };
-
   };
   config = mkIf cfg.enable {
     services.ollama = {

@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   boot = {
     initrd = {
       availableKernelModules = [
@@ -13,7 +12,7 @@
         "sd_mod"
         "cryptd"
       ];
-      kernelModules = [ ];
+      kernelModules = [];
     };
     kernelModules = [
       "amdgpu"
@@ -35,8 +34,8 @@
       "preempt=none"
       "hpet=disable"
     ];
-    extraModulePackages = [ ];
-    supportedFilesystems = [ "ntfs" ];
+    extraModulePackages = [];
+    supportedFilesystems = ["ntfs"];
     kernel.sysctl."kernel.yama.ptrace_scope" = lib.mkForce 1;
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };

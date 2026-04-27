@@ -5,14 +5,14 @@
   pkgs,
   theme,
   ...
-}:
-
-let
+}: let
   cfg = config.module.wezterm;
   inherit (lib) mkEnableOption mkIf;
-  font = if theme == "touka" then "Maple Mono NF" else config.stylix.fonts.serif.name;
-in
-{
+  font =
+    if theme == "touka"
+    then "Maple Mono NF"
+    else config.stylix.fonts.serif.name;
+in {
   options.module.wezterm = {
     enable = mkEnableOption "Enable wezterm module";
   };
@@ -23,7 +23,8 @@ in
       package = inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      extraConfig = # lua
+      extraConfig =
+        # lua
         ''
           local wezterm = require("wezterm")
           local config = {}

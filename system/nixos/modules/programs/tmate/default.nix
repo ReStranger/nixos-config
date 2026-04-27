@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.programs.tmate;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.programs.tmate = {
     enable = mkEnableOption "Enable tmate program";
   };

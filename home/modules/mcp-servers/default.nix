@@ -3,12 +3,11 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.mcp-servers;
 
-  inherit (lib)
+  inherit
+    (lib)
     concatStringsSep
     escapeShellArg
     escapeShellArgs
@@ -24,8 +23,11 @@ let
     ;
 
   serverType = types.submodule (
-    { config, name, ... }:
     {
+      config,
+      name,
+      ...
+    }: {
       options = {
         enable = mkEnableOption "MCP server ${name}";
 
@@ -43,19 +45,19 @@ let
 
         args = mkOption {
           type = types.listOf types.str;
-          default = [ ];
+          default = [];
           description = "Command line arguments.";
         };
 
         envSecrets = mkOption {
           type = types.attrsOf types.str;
-          default = { };
+          default = {};
           description = "Environment variables loaded from files at runtime (VAR = /path/to/secret).";
         };
 
         env = mkOption {
           type = types.attrsOf types.str;
-          default = { };
+          default = {};
           description = "Environment variables (plain text).";
         };
 
@@ -74,25 +76,22 @@ let
     }
   );
 
-  mkExecStart =
-    name: serverCfg:
-    let
-      pkg =
-        if serverCfg.package == null then
-          throw "module.mcp-servers.servers.${name}.package must be set"
-        else
-          serverCfg.package;
-      secretExports = concatStringsSep "\n" (
-        mapAttrsToList (
-          varName: secretPath: "export ${varName}=\"$(tr -d '\\n' <${escapeShellArg secretPath})\""
-        ) serverCfg.envSecrets
-      );
-    in
-    "${pkgs.writeShellScript "${name}-start" ''
-      set -euo pipefail
-      ${secretExports}
-      exec ${escapeShellArg "${pkg}/bin/${serverCfg.command}"} ${escapeShellArgs serverCfg.args}
-    ''}";
+  mkExecStart = name: serverCfg: let
+    pkg =
+      if serverCfg.package == null
+      then throw "module.mcp-servers.servers.${name}.package must be set"
+      else serverCfg.package;
+    secretExports = concatStringsSep "\n" (
+      mapAttrsToList (
+        varName: secretPath: "export ${varName}=\"$(tr -d '\\n' <${escapeShellArg secretPath})\""
+      )
+      serverCfg.envSecrets
+    );
+  in "${pkgs.writeShellScript "${name}-start" ''
+    set -euo pipefail
+    ${secretExports}
+    exec ${escapeShellArg "${pkg}/bin/${serverCfg.command}"} ${escapeShellArgs serverCfg.args}
+  ''}";
 
   enabledServers = filterAttrs (_: server: server.enable) cfg.servers;
 
@@ -101,32 +100,32 @@ let
       Description = "MCP server ${name}";
     };
 
-    Service = {
-      ExecStart = mkExecStart name serverCfg;
-      Restart = "on-failure";
-      Environment = mapAttrsToList (k: v: "${k}=${v}") serverCfg.env;
-    }
-    // optionalAttrs (serverCfg.envFile != null) {
-      EnvironmentFile = serverCfg.envFile;
-    }
-    // optionalAttrs (serverCfg.workingDirectory != null) {
-      WorkingDirectory = serverCfg.workingDirectory;
-    };
+    Service =
+      {
+        ExecStart = mkExecStart name serverCfg;
+        Restart = "on-failure";
+        Environment = mapAttrsToList (k: v: "${k}=${v}") serverCfg.env;
+      }
+      // optionalAttrs (serverCfg.envFile != null) {
+        EnvironmentFile = serverCfg.envFile;
+      }
+      // optionalAttrs (serverCfg.workingDirectory != null) {
+        WorkingDirectory = serverCfg.workingDirectory;
+      };
 
     Install = {
-      WantedBy = [ "default.target" ];
+      WantedBy = ["default.target"];
     };
   };
 
   mkService = name: serverCfg: nameValuePair "${name}" (mkBaseService name serverCfg);
-in
-{
+in {
   options.module.mcp-servers = {
     enable = mkEnableOption "MCP servers infrastructure";
 
     servers = mkOption {
       type = types.attrsOf serverType;
-      default = { };
+      default = {};
       description = "MCP server definitions.";
       example = lib.literalExpression ''
         {
@@ -144,10 +143,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    assertions = mapAttrsToList (name: serverCfg: {
-      assertion = serverCfg.package != null;
-      message = "module.services.mcp-servers.servers.${name}.package must be set";
-    }) enabledServers;
+    assertions =
+      mapAttrsToList (name: serverCfg: {
+        assertion = serverCfg.package != null;
+        message = "module.services.mcp-servers.servers.${name}.package must be set";
+      })
+      enabledServers;
 
     systemd.user.services = mapAttrs' mkService enabledServers;
   };

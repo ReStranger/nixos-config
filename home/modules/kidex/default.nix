@@ -4,13 +4,10 @@
   pkgs,
   inputs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.kidex;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.kidex = {
     enable = mkEnableOption "Enable kidex service";
   };

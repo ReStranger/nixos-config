@@ -5,31 +5,37 @@
   hostname,
   hyprlandEnable,
   ...
-}:
-
-let
+}: let
   cfg = config.module.nwg-dock;
   inherit (lib) mkEnableOption mkIf;
-  nwg-dock-name = if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock";
-  nwg-dock-options = if hostname == "pc" then "-nolauncher -mb 5 -x" else "-nolauncher -mb 10 -d";
-in
-{
+  nwg-dock-name =
+    if hyprlandEnable
+    then "nwg-dock-hyprland"
+    else "nwg-dock";
+  nwg-dock-options =
+    if hostname == "pc"
+    then "-nolauncher -mb 5 -x"
+    else "-nolauncher -mb 10 -d";
+in {
   options.module.nwg-dock = {
     enable = mkEnableOption "Enable nwg-dock module";
   };
 
   config = mkIf cfg.enable {
     home.packages =
-      if hyprlandEnable then
-        [
-          pkgs.nwg-dock-hyprland
-        ]
-      else
-        [
-          pkgs.nwg-dock
-        ];
-    home.file.".config/${if hyprlandEnable then "nwg-dock-hyprland" else "nwg-dock"}/style.css".text =
-      with config.lib.stylix.colors; # css
+      if hyprlandEnable
+      then [
+        pkgs.nwg-dock-hyprland
+      ]
+      else [
+        pkgs.nwg-dock
+      ];
+    home.file.".config/${
+      if hyprlandEnable
+      then "nwg-dock-hyprland"
+      else "nwg-dock"
+    }/style.css".text = with config.lib.stylix.colors; # css
+    
       ''
         window {
           background-color: transparent;
@@ -79,7 +85,8 @@ in
         }
       '';
     xdg.configFile = {
-      "${nwg-dock-name}/nwg-dock".text = # bash
+      "${nwg-dock-name}/nwg-dock".text =
+        # bash
         ''
           #!/usr/bin/env bash
 

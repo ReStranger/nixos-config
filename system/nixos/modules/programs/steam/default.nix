@@ -3,18 +3,16 @@
   pkgs,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.programs.steam;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
     types
     ;
-in
-{
+in {
   options.module.programs.steam = {
     enable = mkEnableOption "Enable steam client";
     proton-ge = mkOption {
@@ -30,13 +28,12 @@ in
     programs.steam = {
       enable = true;
       extraCompatPackages =
-        if cfg.proton-ge then
-          with pkgs;
-          [
+        if cfg.proton-ge
+        then
+          with pkgs; [
             proton-ge-bin
           ]
-        else
-          [ ];
+        else [];
       protontricks.enable = true;
     };
   };

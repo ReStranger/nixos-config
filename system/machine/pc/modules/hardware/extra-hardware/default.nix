@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   # Extra drivers settings
   hardware = {
     enableAllFirmware = true;
@@ -14,7 +13,6 @@
     firmware = with pkgs; [
       linux-firmware
     ];
-
   };
   powerManagement.cpuFreqGovernor = "performance";
 }

@@ -2,18 +2,16 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.zram;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
     types
     ;
-in
-{
+in {
   options.module.services.zram = {
     enable = mkEnableOption "Enable zram";
     deviceNumber = mkOption {

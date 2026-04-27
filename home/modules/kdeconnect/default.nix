@@ -3,13 +3,10 @@
   lib,
   hyprlandEnable,
   ...
-}:
-
-let
+}: let
   cfg = config.module.kdeconnect;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.kdeconnect.enable = mkEnableOption "Enable kdeconnect module";
 
   config = mkIf cfg.enable {

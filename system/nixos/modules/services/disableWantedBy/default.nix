@@ -1,8 +1,11 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.module.services.disableWantedBy;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -10,13 +13,12 @@ let
     mkForce
     ;
   inherit (lib.types) listOf str;
-in
-{
+in {
   options.module.services.disableWantedBy = {
     enable = mkEnableOption "Disable WantedBy for services";
     services = mkOption {
       type = listOf str;
-      default = [ ];
+      default = [];
       example = [
         "foo"
         "too"
@@ -28,8 +30,9 @@ in
   config = mkIf cfg.enable {
     systemd.services = mkMerge (
       map (name: {
-        ${name}.wantedBy = mkForce [ ];
-      }) cfg.services
+        ${name}.wantedBy = mkForce [];
+      })
+      cfg.services
     );
   };
 }

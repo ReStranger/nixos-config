@@ -4,19 +4,15 @@
   pkgs,
   inputs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.tmux;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.tmux = {
     enable = mkEnableOption "Enable tmux module";
   };
 
   config = mkIf cfg.enable {
-
     programs.tmux = {
       enable = true;
       shell = "${pkgs.zsh}/bin/zsh";
@@ -28,7 +24,7 @@ in
         pkgs.tmuxPlugins.resurrect
         pkgs.tmuxPlugins.continuum
         pkgs.tmuxPlugins.sessionist
-        { plugin = inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default; }
+        {plugin = inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default;}
       ];
       baseIndex = 1;
       mouse = true;
@@ -46,7 +42,7 @@ in
 
               # Переназначение клавиш
               unbind %
-              bind b split-window -h 
+              bind b split-window -h
 
               unbind '"'
               bind v split-window -v
@@ -74,8 +70,8 @@ in
               bind-key -T copy-mode-vi 'C-k' select-pane -U
               bind-key -T copy-mode-vi 'C-l' select-pane -R
               bind-key -T copy-mode-vi 'C-\' select-pane -l
-              bind-key -T copy-mode-vi 'v' send -X begin-selection 
-              bind-key -T copy-mode-vi 'y' send -X copy-selection 
+              bind-key -T copy-mode-vi 'v' send -X begin-selection
+              bind-key -T copy-mode-vi 'y' send -X copy-selection
 
               unbind -T copy-mode-vi MouseDragEnd1Pane
 

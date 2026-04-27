@@ -3,19 +3,16 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.mcp;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.mcp = {
     enable = mkEnableOption "Enable mcp module";
   };
 
   config = mkIf cfg.enable {
-    sops.secrets.github_token = { };
+    sops.secrets.github_token = {};
     programs.mcp = {
       enable = true;
       servers = {

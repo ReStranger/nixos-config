@@ -4,13 +4,10 @@
   username,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.virtualisation;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options = {
     module.virtualisation = {
       enable = mkEnableOption "Enables virtualisation";
@@ -22,8 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-
-    users.extraGroups.vboxusers.members = [ username ];
+    users.extraGroups.vboxusers.members = [username];
 
     programs.virt-manager.enable = cfg.libvirtd.enable;
 

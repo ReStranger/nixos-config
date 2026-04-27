@@ -1,9 +1,4 @@
-{
-  inputs,
-  ...
-}:
-
-{
+{inputs, ...}: {
   imports = [
     inputs.treefmt-nix.flakeModule
   ];
@@ -31,12 +26,10 @@
 
       programs = {
         deadnix.enable = true;
-        nixfmt.enable = true;
+        alejandra.enable = true;
         statix.enable = true;
         terraform.enable = true;
         shellcheck.enable = true;
-        stylua.enable = true;
-        yamlfmt.enable = true;
       };
     };
   };

@@ -4,10 +4,10 @@
   pkgs,
   hostname,
   ...
-}:
-let
+}: let
   cfg = config.module.services.network;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkPackageOption
@@ -16,11 +16,10 @@ let
     mkForce
     ;
   inherit (lib.types) bool enum str;
-in
-{
+in {
   options.module.services.network = {
     enable = mkEnableOption "Enable network service configuration";
-    package = mkPackageOption pkgs "networkmanager" { };
+    package = mkPackageOption pkgs "networkmanager" {};
     firewall = mkOption {
       type = bool;
       default = false;
@@ -48,7 +47,6 @@ in
         description = ''
           Set the MAC address of the interface
         '';
-
       };
     };
   };
@@ -56,7 +54,7 @@ in
     boot.initrd.systemd.network.wait-online.enable = false;
     systemd = {
       network.wait-online.enable = false;
-      services."NetworkManager-wait-online".wantedBy = mkForce [ ];
+      services."NetworkManager-wait-online".wantedBy = mkForce [];
     };
     networking = {
       hostName = "${hostname}";
@@ -69,7 +67,7 @@ in
       };
       firewall.enable = cfg.firewall;
       hosts = {
-        "127.0.0.1" = [ "${hostname}.local" ];
+        "127.0.0.1" = ["${hostname}.local"];
       };
       useDHCP = mkDefault true;
     };

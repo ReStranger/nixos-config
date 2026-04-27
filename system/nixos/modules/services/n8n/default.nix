@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.n8n;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.n8n = {
     enable = mkEnableOption "Enable n8n service";
   };

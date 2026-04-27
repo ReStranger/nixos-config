@@ -2,17 +2,16 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.module.sound;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
     types
     ;
-in
-{
+in {
   options.module.sound = {
     enable = mkEnableOption "Enable pipewire as backend sound server";
     rtkit = mkOption {

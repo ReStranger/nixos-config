@@ -3,13 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.figma-linux;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.figma-linux = {
     enable = mkEnableOption "Enable figma-linux module";
   };

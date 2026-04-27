@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   hardware = {
     graphics = {
       enable = true;
@@ -13,7 +9,7 @@
       opencl.enable = true;
     };
   };
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
 
-  environment.systemPackages = with pkgs; [ nvtopPackages.amd ];
+  environment.systemPackages = with pkgs; [nvtopPackages.amd];
 }

@@ -5,18 +5,16 @@
   config,
   username,
   ...
-}:
-
-let
+}: let
   cfg = config.module.nix-config;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
     ;
   inherit (lib.types) bool;
-in
-{
+in {
   options = {
     module.nix-config = {
       enable = mkEnableOption "Enables nix-config";
@@ -30,7 +28,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
     sops = {
       secrets.github_token = {
         sopsFile = "${self}/secrets/home/${username}/secrets.yaml";
@@ -62,9 +59,9 @@ in
         auto-optimise-store = false;
         builders-use-substitutes = true;
 
-        allowed-users = [ "@wheel" ];
+        allowed-users = ["@wheel"];
 
-        trusted-users = [ username ];
+        trusted-users = [username];
 
         substituters = [
           "https://cache.nixos.org"

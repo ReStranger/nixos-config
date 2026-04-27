@@ -16,8 +16,7 @@
   wmEnable ? false,
   allDirs,
   ...
-}:
-let
+}: let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
   inherit (lib) optional;
@@ -25,26 +24,24 @@ let
   stateVersion = hmStateVersion;
   isRoot = username == "root";
   homeDirectory =
-    if isDarwin then
-      "/Users/${username}"
-    else if isRoot then
-      "/root"
-    else
-      "/home/${username}";
+    if isDarwin
+    then "/Users/${username}"
+    else if isRoot
+    then "/root"
+    else "/home/${username}";
   userConfigurationPath = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
   userModulesPath = "${self}/home/users/${username}/modules";
   userModulesPathExist = builtins.pathExists userModulesPath;
   # sshModulePath = "${self}/home/modules/ssh";
   # sshModuleExistPath = builtins.pathExists sshModulePath;
-in
-{
+in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension =
       "backup-"
-      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
     extraSpecialArgs = {
       inherit
@@ -67,29 +64,29 @@ in
     };
 
     users.${username} = {
-      imports = [
-        (
-          { modulesPath, ... }:
-          {
-            # Important! We disable home-manager's module to avoid option
-            # definition collisions
-            disabledModules = [ "${modulesPath}/programs/anyrun.nix" ];
-          }
-        )
-        # inputs.impermanence.nixosModules.home-manager.impermanence
-        inputs.ags.homeManagerModules.default
-        inputs.anyrun.homeManagerModules.default
-        inputs.kidex.homeModules.kidex
-        inputs.zen-browser.homeModules.beta
-        inputs.sops-nix.homeManagerModules.sops
-        # inputs.nur.modules.homeManager.default
-        # inputs.nvf.homeManagerModules.default
+      imports =
+        [
+          (
+            {modulesPath, ...}: {
+              # Important! We disable home-manager's module to avoid option
+              # definition collisions
+              disabledModules = ["${modulesPath}/programs/anyrun.nix"];
+            }
+          )
+          # inputs.impermanence.nixosModules.home-manager.impermanence
+          inputs.ags.homeManagerModules.default
+          inputs.anyrun.homeManagerModules.default
+          inputs.kidex.homeModules.kidex
+          inputs.zen-browser.homeModules.beta
+          inputs.sops-nix.homeManagerModules.sops
+          # inputs.nur.modules.homeManager.default
+          # inputs.nvf.homeManagerModules.default
 
-        "${self}/modules"
-        "${self}/home/modules"
-      ]
-      ++ optional userConfigurationPathExist userConfigurationPath
-      ++ optional userModulesPathExist userModulesPath;
+          "${self}/modules"
+          "${self}/home/modules"
+        ]
+        ++ optional userConfigurationPathExist userConfigurationPath
+        ++ optional userModulesPathExist userModulesPath;
 
       home = {
         inherit username;

@@ -3,7 +3,6 @@
   buildNpmPackage,
   fetchFromGitHub,
 }:
-
 buildNpmPackage (finalAttrs: {
   pname = "open-websearch";
   version = "1.2.7";
@@ -25,6 +24,6 @@ buildNpmPackage (finalAttrs: {
     license = lib.licenses.asl20;
     platforms = lib.platforms.all;
     mainProgram = "open-websearch";
-    maintainers = [ "ReStranger" ];
+    maintainers = ["ReStranger"];
   };
 })

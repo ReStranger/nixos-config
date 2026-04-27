@@ -3,13 +3,10 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.programs.home-manager;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.programs.home-manager.enable = mkEnableOption "Enable Home Manager";
 
   config = mkIf cfg.enable {

@@ -6,10 +6,10 @@
   inputs,
   isLaptop,
   ...
-}:
-let
+}: let
   cfg = config.module.hyprland;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
@@ -21,8 +21,7 @@ let
   terminal = "${inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/ghostty";
   fileManager = "${pkgs.nautilus}/bin/nautilus -w";
   menu = "${inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}/bin/anyrun";
-in
-{
+in {
   imports = [
     "${self}/home/modules/hyprland/variables"
     "${self}/home/modules/hyprland/styles"
@@ -40,8 +39,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile."uwsm/env".source =
-      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     module.hyprland = {
       variables.enable = mkDefault true;
       styles.round.enable = cfg.style == "round";
@@ -67,7 +65,7 @@ in
         exec-once = map (cmd: "uwsm app -- ${cmd}") [
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         ];
-        exec = [ ];
+        exec = [];
 
         input = {
           kb_layout = "us,ru";
@@ -302,69 +300,72 @@ in
         ];
 
         "$mod" = "SUPER";
-        bind = [
-          "$mod, T, exec, uwsm app -- ${terminal}"
-          "$mod, Q, killactive,"
-          "$mod SHIFT, Q, forcekillactive"
-          "$mod, E, exec, uwsm app -- ${fileManager}"
-          "$mod, D, exec, uwsm app -- ${menu}"
-          "CTRL, Print, exec, uwsm app -- ${pkgs.grimblast}/bin/grimblast --notify --freeze copy area"
-          "CTRL SHIFT, Print, exec, uwsm app -- ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
+        bind =
+          [
+            "$mod, T, exec, uwsm app -- ${terminal}"
+            "$mod, Q, killactive,"
+            "$mod SHIFT, Q, forcekillactive"
+            "$mod, E, exec, uwsm app -- ${fileManager}"
+            "$mod, D, exec, uwsm app -- ${menu}"
+            "CTRL, Print, exec, uwsm app -- ${pkgs.grimblast}/bin/grimblast --notify --freeze copy area"
+            "CTRL SHIFT, Print, exec, uwsm app -- ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png"
 
-          "$mod ALT, R, exec, hyprctl reload"
+            "$mod ALT, R, exec, hyprctl reload"
 
-          "$mod, R, layoutmsg, togglesplit"
-          "$mod SHIFT, F, togglefloating, "
-          "$mod, F, fullscreen,"
-          "$mod SHIFT, P, pseudo, # dwindle"
+            "$mod, R, layoutmsg, togglesplit"
+            "$mod SHIFT, F, togglefloating, "
+            "$mod, F, fullscreen,"
+            "$mod SHIFT, P, pseudo, # dwindle"
 
-          "$mod, C, exec, uwsm app -- ${pkgs.hyprpicker}/bin/hyprpicker --autocopy"
+            "$mod, C, exec, uwsm app -- ${pkgs.hyprpicker}/bin/hyprpicker --autocopy"
 
-          "ALT, F10, pass, class:^(com.obsproject.Studio)$"
-          "CTRL SHIFT, M, pass, class:^(discord)$"
+            "ALT, F10, pass, class:^(com.obsproject.Studio)$"
+            "CTRL SHIFT, M, pass, class:^(discord)$"
 
-          "$mod, L, movefocus, r"
-          "$mod, H, movefocus, l"
-          "$mod, K, movefocus, u"
-          "$mod, J, movefocus, d"
+            "$mod, L, movefocus, r"
+            "$mod, H, movefocus, l"
+            "$mod, K, movefocus, u"
+            "$mod, J, movefocus, d"
 
-          "$mod SHIFT, H, swapwindow, l"
-          "$mod SHIFT, L, swapwindow, r"
-          "$mod SHIFT, K, swapwindow, u"
-          "$mod SHIFT, J, swapwindow, d"
+            "$mod SHIFT, H, swapwindow, l"
+            "$mod SHIFT, L, swapwindow, r"
+            "$mod SHIFT, K, swapwindow, u"
+            "$mod SHIFT, J, swapwindow, d"
 
-          "$mod CTRL, H, resizeactive, -20 0"
-          "$mod CTRL, L, resizeactive, 20 0"
-          "$mod CTRL, K, resizeactive, 0 -20"
-          "$mod CTRL, J, resizeactive, 0 20"
+            "$mod CTRL, H, resizeactive, -20 0"
+            "$mod CTRL, L, resizeactive, 20 0"
+            "$mod CTRL, K, resizeactive, 0 -20"
+            "$mod CTRL, J, resizeactive, 0 20"
 
-          "$mod, S, togglespecialworkspace, magic"
-          "$mod SHIFT, S, movetoworkspace, special:magic"
+            "$mod, S, togglespecialworkspace, magic"
+            "$mod SHIFT, S, movetoworkspace, special:magic"
 
-          "$mod, mouse_down, workspace, e-1"
-          "$mod, mouse_up, workspace, e+1"
-        ]
-        ++ (builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = if i < 9 then i + 1 else 10;
-            in
-            [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
-            ]
-          ) 10
-        ));
-        bindm = [
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-
-        ]
-        ++ optionals isLaptop [
-          "$mod, Control_L, movewindow"
-          "$mod, ALT_L, resizewindow"
-        ];
+            "$mod, mouse_down, workspace, e-1"
+            "$mod, mouse_up, workspace, e+1"
+          ]
+          ++ (builtins.concatLists (
+            builtins.genList (
+              i: let
+                ws =
+                  if i < 9
+                  then i + 1
+                  else 10;
+              in [
+                "$mod, code:1${toString i}, workspace, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+              ]
+            )
+            10
+          ));
+        bindm =
+          [
+            "$mod, mouse:272, movewindow"
+            "$mod, mouse:273, resizewindow"
+          ]
+          ++ optionals isLaptop [
+            "$mod, Control_L, movewindow"
+            "$mod, ALT_L, resizewindow"
+          ];
         bindel = [
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"

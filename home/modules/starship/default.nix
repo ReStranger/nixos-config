@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.starship;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.starship = {
     enable = mkEnableOption "Enable starship module";
   };
@@ -60,7 +57,6 @@ in
           ssh_only = true;
           format = "[](fg:base04)[$ssh_symbol $hostname](bg:base04 fg:white)[](fg:base04) ";
           ssh_symbol = "";
-
         };
 
         battery = {

@@ -2,12 +2,10 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.module.hyprland.styles.flat;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options = {
     module.hyprland.styles.flat.enable = mkEnableOption "Enable flat style in Hyprland";
   };

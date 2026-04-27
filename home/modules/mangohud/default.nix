@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.mangohud;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.mangohud = {
     enable = mkEnableOption "Enable mangohud module";
   };

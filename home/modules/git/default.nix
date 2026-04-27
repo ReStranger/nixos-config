@@ -2,14 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.git;
   inherit (lib) mkEnableOption mkIf;
-
-in
-{
+in {
   options.module.git = {
     enable = mkEnableOption "Enable git module";
   };

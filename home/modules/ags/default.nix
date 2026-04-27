@@ -4,13 +4,10 @@
   lib,
   inputs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.ags;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.ags = {
     enable = mkEnableOption "Enable ags module";
   };
@@ -34,8 +31,7 @@ in
       # configDir = /home/${username}/.config/my-ags;
 
       # additional packages to add to gjs's runtime
-      extraPackages =
-        with pkgs;
+      extraPackages = with pkgs;
         [
           fzf
           gobject-introspection

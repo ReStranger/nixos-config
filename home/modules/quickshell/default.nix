@@ -5,14 +5,11 @@
   inputs,
   username,
   ...
-}:
-
-let
+}: let
   cfg = config.module.quickshell;
   pkg = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.quickshell = {
     enable = mkEnableOption "Enable quickshell module";
   };
@@ -34,7 +31,7 @@ in
           withI3 = false;
           withPolkit = false;
         }).passthru.withModules
-          (with pkgs; [ qt6.qt5compat ]);
+        (with pkgs; [qt6.qt5compat]);
 
       systemd.enable = true;
       activeConfig = "/home/${username}/.config/quickshell";

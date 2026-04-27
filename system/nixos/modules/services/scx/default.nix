@@ -3,13 +3,10 @@
   config,
   isLaptop,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.scx;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.scx.enable = mkEnableOption "Enable scx";
   config = mkIf cfg.enable {
     services.scx = {
@@ -17,7 +14,11 @@ in
       scheduler = "scx_lavd";
       extraArgs = [
         "--verbose"
-        (if isLaptop then "--powersave" else "--performance")
+        (
+          if isLaptop
+          then "--powersave"
+          else "--performance"
+        )
       ];
     };
   };

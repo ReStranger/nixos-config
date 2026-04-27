@@ -5,9 +5,9 @@
   theme,
   stateVersion,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkIf
@@ -19,15 +19,13 @@ let
   cfg = config.module.stylix;
 
   terminessPackage =
-    if stateVersion == "24.11" then
-      pkgs.nerdfonts.override { fonts = [ "Terminess" ]; }
-    else
-      pkgs.nerd-fonts.terminess-ttf;
+    if stateVersion == "24.11"
+    then pkgs.nerdfonts.override {fonts = ["Terminess"];}
+    else pkgs.nerd-fonts.terminess-ttf;
   jbPackage =
-    if stateVersion == "24.11" then
-      pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }
-    else
-      pkgs.nerd-fonts.iosevka;
+    if stateVersion == "24.11"
+    then pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];}
+    else pkgs.nerd-fonts.iosevka;
 
   themes = {
     catppuccin-mocha = {
@@ -117,8 +115,7 @@ let
       };
     };
   };
-in
-{
+in {
   options = {
     module.stylix = {
       enable = mkEnableOption "Enables stylix";
@@ -132,38 +129,38 @@ in
   };
 
   config = mkIf cfg.enable {
-    stylix = {
-      enable = true;
-      targets.gtksourceview.enable = mkForce false; # Breack cache
-      # image = themes.${theme}.wallpaper;
-      autoEnable = true;
-      polarity = "dark";
-      base16Scheme = themes.${theme}.scheme;
-      enableReleaseChecks = false;
+    stylix =
+      {
+        enable = true;
+        targets.gtksourceview.enable = mkForce false; # Breack cache
+        # image = themes.${theme}.wallpaper;
+        autoEnable = true;
+        polarity = "dark";
+        base16Scheme = themes.${theme}.scheme;
+        enableReleaseChecks = false;
 
-      opacity = {
-        applications = 1.0;
-        terminal = 1.0;
-        popups = 1.0;
-        desktop = 1.0;
-      };
-
-      fonts = {
-
-        serif = {
-          inherit (themes.${theme}.font) package name;
+        opacity = {
+          applications = 1.0;
+          terminal = 1.0;
+          popups = 1.0;
+          desktop = 1.0;
         };
 
-        sansSerif = config.stylix.fonts.serif;
-        monospace = config.stylix.fonts.serif;
-        emoji = config.stylix.fonts.serif;
+        fonts = {
+          serif = {
+            inherit (themes.${theme}.font) package name;
+          };
+
+          sansSerif = config.stylix.fonts.serif;
+          monospace = config.stylix.fonts.serif;
+          emoji = config.stylix.fonts.serif;
+        };
+      }
+      // optionalAttrs cfg.useCursor {
+        cursor = {
+          inherit (themes.${theme}.cursor) package name;
+          size = 24;
+        };
       };
-    }
-    // optionalAttrs cfg.useCursor {
-      cursor = {
-        inherit (themes.${theme}.cursor) package name;
-        size = 24;
-      };
-    };
   };
 }

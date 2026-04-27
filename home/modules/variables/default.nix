@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.variables;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.variables = {
     enable = mkEnableOption "Enable variables module";
   };

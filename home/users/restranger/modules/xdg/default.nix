@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   browser = "zen.desktop";
@@ -91,13 +90,13 @@ let
     "application/x-msi"
   ];
 
-  mkAssociations =
-    names: desktopFile:
+  mkAssociations = names: desktopFile:
     builtins.listToAttrs (
       map (name: {
         inherit name;
         value = desktopFile;
-      }) names
+      })
+      names
     );
 
   associationRules = [
@@ -155,12 +154,12 @@ let
     }
   ];
 
-  associations = builtins.foldl' (
-    acc: rule: acc // (mkAssociations rule.mimes rule.desktopFile)
-  ) { } associationRules;
-
-in
-{
+  associations =
+    builtins.foldl' (
+      acc: rule: acc // (mkAssociations rule.mimes rule.desktopFile)
+    ) {}
+    associationRules;
+in {
   options.module.user.xdg.enable = mkEnableOption "Enable xdg";
 
   config = mkIf config.module.user.xdg.enable {

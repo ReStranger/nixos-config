@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.tailscale;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.tailscale = {
     enable = mkEnableOption "Enable tailscale service";
   };
@@ -17,7 +14,7 @@ in
     services.tailscale = {
       enable = true;
       interfaceName = "userspace-networking";
-      extraDaemonFlags = [ "--no-logs-no-support" ];
+      extraDaemonFlags = ["--no-logs-no-support"];
     };
   };
 }

@@ -4,14 +4,11 @@
   pkgs,
   inputs,
   ...
-}:
-
-let
+}: let
   cfg = config.module.anyrun;
   pkg = inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.anyrun = {
     enable = mkEnableOption "Enable anyrun program";
   };
@@ -73,7 +70,7 @@ in
         "websearch.ron".text = ''
           Config(
             prefix: ":s",
-            engines: [DuckDuckGo] 
+            engines: [DuckDuckGo]
           )
         '';
 
@@ -95,8 +92,8 @@ in
           )
         '';
       };
-      extraCss =
-        with config.lib.stylix.colors; # css
+      extraCss = with config.lib.stylix.colors; # css
+      
         ''
           * {
           font-family: ${config.stylix.fonts.serif.name};

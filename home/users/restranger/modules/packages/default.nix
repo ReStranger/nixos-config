@@ -6,15 +6,11 @@
   isWorkstation,
   hyprlandEnable,
   ...
-}:
-
-let
+}: let
   cfg = config.module.user.packages;
   inherit (pkgs.stdenv) isLinux;
   inherit (lib) mkEnableOption mkIf;
-
-in
-{
+in {
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
   };
@@ -33,8 +29,7 @@ in
       zoxide.enable = true;
     };
 
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         ## system tools ##
         unzip
@@ -61,7 +56,6 @@ in
         llvmPackages_latest.lldb
         gnumake
         cmake
-        nixfmt
 
         ## Fonts ##
         corefonts
@@ -76,7 +70,6 @@ in
         nerd-fonts.fira-code
         nerd-fonts.hack
         nerd-fonts.ubuntu
-
       ]
       ++ lib.optionals isWorkstation [
         onlyoffice-desktopeditors

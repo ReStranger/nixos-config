@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.module.ccache;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.ccache = {
     enable = mkEnableOption "Enable ccache module";
   };

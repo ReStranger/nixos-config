@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   module = {
     adb.enable = true;
     boot.enable = true;

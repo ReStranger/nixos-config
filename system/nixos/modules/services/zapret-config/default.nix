@@ -3,10 +3,10 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.module.services.zapret-config;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkPackageOption
@@ -15,11 +15,10 @@ let
     concatStrings
     maintainers
     ;
-in
-{
+in {
   options.module.services.zapret-config = {
     enable = mkEnableOption "DPI bypass multi platform service";
-    package = mkPackageOption pkgs "zapret" { };
+    package = mkPackageOption pkgs "zapret" {};
     settings = mkOption {
       type = types.lines;
       default = ''
@@ -110,13 +109,17 @@ in
       isSystemUser = true;
       group = "tpws";
     };
-    users.groups.tpws = { };
+    users.groups.tpws = {};
     systemd.services.zapret-config = {
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
       path = with pkgs; [
-        (if cfg.firewallType == "iptables" then iptables else nftables)
+        (
+          if cfg.firewallType == "iptables"
+          then iptables
+          else nftables
+        )
         gawk
         ipset
         sysctl
@@ -134,7 +137,11 @@ in
         EnvironmentFile = pkgs.writeText "${cfg.package.pname}-environment" (concatStrings [
           ''
             FWTYPE=${cfg.firewallType}
-            DISABLE_IPV6=${if cfg.disableIpv6 then "1" else "0"}
+            DISABLE_IPV6=${
+              if cfg.disableIpv6
+              then "1"
+              else "0"
+            }
           ''
           cfg.settings
         ]);
@@ -156,6 +163,6 @@ in
         SystemCallArchitectures = "native";
       };
     };
-    meta.maintainers = with maintainers; [ nishimara ];
+    meta.maintainers = with maintainers; [nishimara];
   };
 }

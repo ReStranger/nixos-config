@@ -2,13 +2,10 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.gvfs;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.gvfs = {
     enable = mkEnableOption "Enable gvfs";
   };

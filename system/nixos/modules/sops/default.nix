@@ -5,12 +5,10 @@
   username,
   hostname,
   ...
-}:
-let
+}: let
   cfg = config.module.sops;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.sops.enable = mkEnableOption "Enable sops module";
   config = mkIf cfg.enable {
     sops = {

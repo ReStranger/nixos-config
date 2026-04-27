@@ -2,12 +2,10 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.module.services.zapret;
   inherit (lib) mkEnableOption mkIf;
-in
-{
+in {
   options.module.services.zapret.enable = mkEnableOption "DPI bypass multi platform service";
   config = mkIf cfg.enable {
     services.zapret = {

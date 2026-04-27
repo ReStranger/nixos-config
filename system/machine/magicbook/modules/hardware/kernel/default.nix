@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   boot = {
     initrd = {
       availableKernelModules = [
@@ -11,7 +7,7 @@
         "usb_storage"
         "sd_mod"
       ];
-      kernelModules = [ "amdgpu" ];
+      kernelModules = ["amdgpu"];
     };
     kernelModules = [
       "amdgpu"
@@ -39,7 +35,7 @@
       "vm.laptop_mode" = 5;
       "net.ipv4.ip_default_ttl" = 65;
     };
-    extraModulePackages = [ ];
+    extraModulePackages = [];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };
 }

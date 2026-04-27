@@ -3,18 +3,16 @@
   pkgs,
   config,
   ...
-}:
-
-let
+}: let
   cfg = config.module.services.greetd;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
     types
     ;
-in
-{
+in {
   options = {
     module.services.greetd = {
       enable = mkEnableOption "Enable Greetd login manager";
@@ -37,10 +35,9 @@ in
       settings = {
         default_session = {
           command =
-            if cfg.frontend == "tui" then
-              "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session --cmd ${pkgs.uwsm}/bin/uwsm start default"
-            else
-              "${pkgs.greetd}/bin/agreety --cmd $SHELL";
+            if cfg.frontend == "tui"
+            then "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session --cmd ${pkgs.uwsm}/bin/uwsm start default"
+            else "${pkgs.greetd}/bin/agreety --cmd $SHELL";
           user = "greeter";
         };
       };
