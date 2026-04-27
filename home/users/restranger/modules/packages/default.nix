@@ -88,6 +88,7 @@ in
         hieroglyphic
         xournalpp
         transmission_4-gtk
+        audacity
         obsidian
         (prismlauncher.override {
           additionalPrograms = [
@@ -102,6 +103,8 @@ in
         libnotify
         bottles
         figma-linux
+        yabridge
+        yabridgectl
       ]
       ++ lib.optionals hyprlandEnable [
         file-roller
