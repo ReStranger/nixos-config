@@ -81,6 +81,11 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    ayugram-desktop = {
+      type = "git";
+      submodules = true;
+      url = "https://github.com/ndfined-crp/ayugram-desktop/";
+    };
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
     opencode.url = "github:anomalyco/opencode";

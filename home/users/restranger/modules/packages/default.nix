@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -99,7 +100,7 @@ in
         lunar-client
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
-        ayugram-desktop
+        inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.ayugram-desktop
         libnotify
         bottles
         figma-linux
