@@ -100,6 +100,7 @@ in
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}" = "traduzir-paginas-web";
             "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium-ff";
             "{d07ccf11-c0cd-4938-a265-2a4d6ad01189}" = "view-page-archive";
+            "nixpkgs-pr-tracker@tahayassine.me" = "nixpkgs-pr-tracker";
           };
           Preferences = mkLockedAttrs {
             "intl.locale.requested" = "ru";
