@@ -100,7 +100,7 @@ in
       ++ lib.optionals (isLinux && isWorkstation) [
         ayugram-desktop
         libnotify
-        (bottles.override { removeWarningPopup = true; })
+        bottles
         figma-linux
       ]
       ++ lib.optionals hyprlandEnable [
