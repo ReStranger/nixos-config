@@ -24,6 +24,7 @@ in {
       settings = {
         font-family = mkForce "Maple Mono NF";
         background-opacity = mkForce 0.89;
+        window-inherit-working-directory = false;
         custom-shader = "cursor_smear.glsl";
       };
     };
