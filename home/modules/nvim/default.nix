@@ -59,6 +59,7 @@ in {
         # formatters
         stylua
         prettierd
+        cmake-format
         black
         alejandra
 
