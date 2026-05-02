@@ -28,5 +28,9 @@ in {
         custom-shader = "cursor_smear.glsl";
       };
     };
+    programs.ssh.extraConfig = ''
+      Host *
+          SetEnv TERM=xterm-256color
+    '';
   };
 }
