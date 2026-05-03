@@ -51,6 +51,7 @@
     mangohud.enable = isLinux && isWorkstation;
     showmethekey.enable = isLinux && isWorkstation;
     ghostty.enable = isLinux && isWorkstation;
+    qt.enable = isLinux && isWorkstation;
 
     anyrun.enable = hyprlandEnable && isLinux && isWorkstation;
     discord.enable = hyprlandEnable && isLinux && isWorkstation;
