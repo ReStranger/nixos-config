@@ -38,6 +38,7 @@ in {
           "https://github.com/loss-and-quick/opencode-ralph"
           "https://github.com/loss-and-quick/opencode-plugin-advisor"
           "context-mode"
+          "opencode-snip@latest"
         ];
         autoshare = false;
         autoupdate = false;
