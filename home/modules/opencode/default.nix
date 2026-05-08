@@ -39,6 +39,7 @@ in {
           "https://github.com/loss-and-quick/opencode-plugin-advisor"
           "context-mode"
           "opencode-snip@latest"
+          "@tarquinen/opencode-dcp@latest"
         ];
         autoshare = false;
         autoupdate = false;
