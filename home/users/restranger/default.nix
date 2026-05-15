@@ -6,6 +6,7 @@
   ...
 }: {
   stylix.targets = {
+    hyprland.enable = false;
     neovim.enable = false;
     zen-browser.enable = false;
   };
