@@ -82,8 +82,8 @@
       };
 
       cursor = {
-        name = "Bibata-Modern-Classic";
-        package = pkgs.bibata-cursors;
+        name = "Doro";
+        package = pkgs.doro-cursor;
       };
     };
     zen = {
