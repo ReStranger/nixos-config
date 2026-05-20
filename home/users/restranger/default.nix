@@ -49,6 +49,7 @@
     dconf.enable = isLinux && isWorkstation;
     xdg-user-dirs.enable = isLinux && isWorkstation;
     gtk.enable = isLinux && isWorkstation;
+    kdeconnect.enable = isLinux && isWorkstation;
     mangohud.enable = isLinux && isWorkstation;
     showmethekey.enable = isLinux && isWorkstation;
     ghostty.enable = isLinux && isWorkstation;
