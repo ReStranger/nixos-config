@@ -210,9 +210,10 @@ in {
           enabled = true;
           multiplier = 2;
         };
-        WhoReacted = {
-          enabled = true;
-        };
+        # Causing discord to crash now
+        # WhoReacted = {
+        #   enabled = true;
+        # };
         YoutubeAdblock = {
           enabled = true;
         };
