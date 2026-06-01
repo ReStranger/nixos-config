@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  defaultStateVersion = "25.11";
+  defaultStateVersion = "26.05";
 
   constructors = [
     "${self}/home"
