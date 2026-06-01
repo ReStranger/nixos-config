@@ -26,6 +26,7 @@ in {
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       extraPackages = with pkgs; [
         context-mode
+        snip
       ];
       settings = let
         secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
