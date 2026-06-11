@@ -28,7 +28,6 @@
         enable = true;
         services = [
           "ollama"
-          "n8n"
         ];
       };
       greetd = {
@@ -37,7 +36,6 @@
       };
       gvfs.enable = true;
       irqbalance.enable = true;
-      n8n.enable = true;
       network = {
         enable = true;
         wifi.backend = "iwd";
