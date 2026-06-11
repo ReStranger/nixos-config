@@ -40,6 +40,7 @@
     };
     opencode.enable = isWorkstation;
     zathura.enable = isWorkstation;
+    obs-studio.enable = isWorkstation;
     stylix.enable = isWorkstation;
     thunderbird.enable = isWorkstation;
     zsh.enable = isWorkstation;

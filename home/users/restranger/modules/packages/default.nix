@@ -73,7 +73,6 @@ in {
       ]
       ++ lib.optionals isWorkstation [
         onlyoffice-desktopeditors
-        obs-studio
         eog
         showtime
         krita
