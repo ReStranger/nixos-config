@@ -27,5 +27,7 @@ in {
         xdg-desktop-portal-gtk
       ];
     };
+    # HACK
+    environment.etc."xdg/menus/hyprland-applications.menu".source = ./dolphin.menu;
   };
 }
