@@ -53,6 +53,9 @@
           deEnable
           hostType
           ;
+        stable = inputs.stable.legacyPackages.${platform};
+        unstable = inputs.unstable.legacyPackages.${platform};
+        master = inputs.master.legacyPackages.${platform};
       };
       modules =
         [
@@ -99,6 +102,9 @@
           deEnable
           hostType
           ;
+        stable = inputs.stable.legacyPackages.${platform};
+        unstable = inputs.unstable.legacyPackages.${platform};
+        master = inputs.master.legacyPackages.${platform};
       };
 
       modules =

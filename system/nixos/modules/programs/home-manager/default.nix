@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -15,6 +16,9 @@ in {
       # useUserPackages = true;
       extraSpecialArgs = {
         inherit inputs;
+        stable = inputs.stable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        unstable = inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        master = inputs.master.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       };
     };
   };
