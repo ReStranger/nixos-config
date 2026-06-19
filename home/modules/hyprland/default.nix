@@ -19,7 +19,7 @@
     ;
   inherit (lib.types) enum;
   terminal = "${inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/ghostty";
-  fileManager = "${pkgs.nautilus}/bin/nautilus -w";
+  fileManager = "${pkgs.kdePackages.dolphin}/bin/dolphin";
   menu = "${inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}/bin/anyrun";
 in {
   imports = [
@@ -40,6 +40,9 @@ in {
 
   config = mkIf cfg.enable {
     xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    home.activation.rebuildKdeCache = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
+    '';
     module.hyprland = {
       variables.enable = mkDefault true;
       styles.round.enable = cfg.style == "round";
