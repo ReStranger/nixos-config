@@ -143,25 +143,11 @@ in {
         };
         search = {
           force = true;
-          default = "SearXNG";
+          default = "ddg";
           privateDefault = "google";
           engines = let
             nixSnowflakeIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           in {
-            "SearXNG" = {
-              urls = [
-                {
-                  template = "https://searxng.reworker.lol:5443/search";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              definedAliases = ["@sxng"];
-            };
             "Nix Packages" = {
               urls = [
                 {
