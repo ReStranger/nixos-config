@@ -138,7 +138,7 @@ in {
           nearestNeighbour = false;
           square = false;
           zoom = 2;
-          size = 100;
+          size = 500;
           zoomSpeed = 0.5;
         };
         MemberCount = {
