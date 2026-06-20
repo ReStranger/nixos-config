@@ -64,6 +64,7 @@
     nautilus.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     quickshell.enable = hyprlandEnable && isLinux && isWorkstation;
+    hyprland-qt-support.enable = hyprlandEnable && isLinux && isWorkstation;
 
     nix.enable = true;
     btop.enable = true;
