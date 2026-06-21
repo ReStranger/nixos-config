@@ -22,7 +22,6 @@
     };
 
     services = {
-      ananicy.enable = true;
       bluetooth.enable = true;
       disableWantedBy = {
         enable = true;
