@@ -21,7 +21,6 @@ _: {
     };
 
     services = {
-      ananicy.enable = true;
       bluetooth.enable = true;
       greetd = {
         enable = true;
