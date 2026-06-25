@@ -26,7 +26,6 @@ in {
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       extraPackages = with pkgs; [
         context-mode
-        snip
       ];
       settings = let
         secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
@@ -39,7 +38,6 @@ in {
           "https://github.com/loss-and-quick/opencode-ralph"
           "https://github.com/loss-and-quick/opencode-plugin-advisor"
           "context-mode"
-          "opencode-snip@latest"
           "@tarquinen/opencode-dcp@latest"
         ];
         autoshare = false;
