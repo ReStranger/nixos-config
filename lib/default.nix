@@ -28,12 +28,8 @@
   }: let
     hyprlandEnable = wm == "hyprland";
     deEnable = hyprlandEnable;
-    nixosSystem =
-      if stateVersion == defaultStateVersion
-      then inputs.stable.lib.nixosSystem
-      else inputs.nixpkgs.lib.nixosSystem;
   in
-    nixosSystem {
+    inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit
           inputs
