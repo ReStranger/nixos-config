@@ -16,6 +16,8 @@
     mkDefault
     mkForce
     optionals
+    getExe
+    getExe'
     ;
   inherit (lib.types) enum;
   terminal = "${inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/ghostty";
@@ -475,7 +477,7 @@ in {
             (d "${mainMod} + SHIFT + Q" "hl.dsp.window.kill()" {})
             (f "${mainMod} + E" "${fileManager}" {})
             (f "${mainMod} + D" "${menu}" {})
-            (f "${mainMod} + C" "${pkgs.hyprpicker}/bin/hyprpicker --autocopy" {})
+            (f "${mainMod} + C" "${getExe pkgs.hyprpicker} --autocopy" {})
             (f "${mainMod} + ALT + R" "hyprctl reload" {})
 
             # Window state
@@ -485,8 +487,8 @@ in {
             (d "${mainMod} + SHIFT + P" "hl.dsp.window.pseudo()" {})
 
             # Clipboard / screenshots
-            (f "CTRL + Print" "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area" {})
-            (f "CTRL + SHIFT + Print" "${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png" {})
+            (f "CTRL + Print" "${getExe pkgs.grimblast} --notify --freeze copy area" {})
+            (f "CTRL + SHIFT + Print" "${getExe pkgs.grimblast} --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png" {})
             (d "${mainMod} + L" "hl.dsp.focus({ direction = \"right\" })" {})
             (d "${mainMod} + H" "hl.dsp.focus({ direction = \"left\" })" {})
             (d "${mainMod} + K" "hl.dsp.focus({ direction = \"up\" })" {})
@@ -543,29 +545,29 @@ in {
             (d "${mainMod} + ALT_L" "hl.dsp.window.resize()" {mouse = true;})
 
             # Media keys
-            (f "XF86AudioRaiseVolume" "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+" {
+            (f "XF86AudioRaiseVolume" "${getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 5%+" {
               locked = true;
               repeating = true;
             })
-            (f "XF86AudioLowerVolume" "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" {
+            (f "XF86AudioLowerVolume" "${getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 5%-" {
               locked = true;
               repeating = true;
             })
-            (f "XF86MonBrightnessUp" "${pkgs.brightnessctl}/bin/brightnessctl set +5%" {
+            (f "XF86MonBrightnessUp" "${getExe pkgs.brightnessctl} set +5%" {
               locked = true;
               repeating = true;
             })
-            (f "XF86MonBrightnessDown" "${pkgs.brightnessctl}/bin/brightnessctl set 5%-" {
+            (f "XF86MonBrightnessDown" "${getExe pkgs.brightnessctl} set 5%-" {
               locked = true;
               repeating = true;
             })
-            (f "XF86AudioMute" "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" {
+            (f "XF86AudioMute" "${getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle" {
               locked = true;
               repeating = true;
             })
-            (f "XF86AudioPlay" "${pkgs.playerctl}/bin/playerctl play-pause" {locked = true;})
-            (f "XF86AudioPrev" "${pkgs.playerctl}/bin/playerctl previous" {locked = true;})
-            (f "XF86AudioNext" "${pkgs.playerctl}/bin/playerctl next" {locked = true;})
+            (f "XF86AudioPlay" "${getExe pkgs.playerctl} play-pause" {locked = true;})
+            (f "XF86AudioPrev" "${getExe pkgs.playerctl} previous" {locked = true;})
+            (f "XF86AudioNext" "${getExe pkgs.playerctl} next" {locked = true;})
           ];
       };
     };
