@@ -1,15 +1,17 @@
 {
   config,
   lib,
+  pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
 
-  browser = "zen.desktop";
-  editor = "nvim.desktop";
-  imageViewer = "org.gnome.eog.desktop";
-  videoPlayer = "vlc.desktop";
-  fileManager = "org.gnome.Nautilus.desktop";
+  browser = "${inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta}/share/applications/zen-beta.desktop";
+  editor = "${pkgs.neovim}/share/application/nvim.desktop";
+  imageViewer = "${pkgs.imv}/share/application/imv.desktop";
+  videoPlayer = "${pkgs.vlc}/share/application/vlc.desktop";
+  fileManager = "${pkgs.kdePackages.dolphin}/share/applications/org.kde.dolphin.desktop";
   pdfReader = "org.pwmt.zathura.desktop";
   torrent = "transmission-gtk.desktop";
   mail = "Thunderbird.desktop";
