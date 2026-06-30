@@ -27,6 +27,7 @@ in {
       lsd.enable = true;
       ripgrep.enable = true;
       zoxide.enable = true;
+      imv.enable = isWorkstation;
     };
 
     home.packages = with pkgs;
@@ -73,11 +74,9 @@ in {
       ]
       ++ lib.optionals isWorkstation [
         onlyoffice-desktopeditors
-        eog
-        showtime
         krita
+        vlc
         inkscape
-        amberol
         hieroglyphic
         xournalpp
         transmission_4-gtk
@@ -100,9 +99,10 @@ in {
         yabridgectl
       ]
       ++ lib.optionals hyprlandEnable [
-        file-roller
-        gnome-clocks
-        gnome-calculator
+        kdePackages.kclock
+        kdePackages.kalk
+        kdePackages.ark
+        kdePackages.dolphin
         wl-clipboard
         wl-clipboard-x11
         overskride
