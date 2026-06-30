@@ -22,9 +22,9 @@ in {
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      config.common.default = "gtk";
+      config.common.default = ["hyprland" "kde"];
       extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
+        kdePackages.xdg-desktop-portal-kde
       ];
     };
     # HACK
