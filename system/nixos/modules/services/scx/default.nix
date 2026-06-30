@@ -16,7 +16,7 @@ in {
         "--verbose"
         (
           if isLaptop
-          then "--powersave"
+          then "--autopower"
           else "--performance"
         )
       ];
