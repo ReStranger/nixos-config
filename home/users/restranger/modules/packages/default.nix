@@ -62,7 +62,6 @@ in {
         corefonts
         vista-fonts
         rubik
-        cantarell-fonts
         material-symbols
         maple-mono.NF
         nerd-fonts.jetbrains-mono
