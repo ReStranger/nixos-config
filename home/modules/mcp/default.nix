@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.module.mcp;
@@ -16,10 +15,6 @@ in {
     programs.mcp = {
       enable = true;
       servers = {
-        context-mode = {
-          type = "local";
-          command = "${pkgs.context-mode}/bin/context-mode";
-        };
         github = {
           type = "http";
           url = "https://api.githubcopilot.com/mcp/";
