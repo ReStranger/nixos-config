@@ -24,20 +24,13 @@ in {
       enable = true;
       enableMcpIntegration = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      extraPackages = with pkgs; [
-        context-mode
-      ];
       settings = let
         secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
       in {
         plugin = [
           "@zenobius/opencode-background"
-          "file://${
-            inputs.opencode-background-agents.packages.${pkgs.stdenv.hostPlatform.system}.default
-          }/lib/node_modules/kdco-background-agents/dist/plugin/background-agents.js"
           "https://github.com/loss-and-quick/opencode-ralph"
           "https://github.com/loss-and-quick/opencode-plugin-advisor"
-          "context-mode"
           "@tarquinen/opencode-dcp@latest"
         ];
         autoshare = false;

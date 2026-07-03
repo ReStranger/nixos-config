@@ -88,7 +88,6 @@
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
     opencode.url = "github:anomalyco/opencode";
-    opencode-background-agents.url = "github:ReStranger/opencode-background-agents?ref=feat/init-flake";
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
