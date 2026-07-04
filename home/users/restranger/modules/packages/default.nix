@@ -106,7 +106,7 @@ in {
         overskride
         brightnessctl
         playerctl
-        pwvucontrol
+        lxqt.pavucontrol-qt
         grimblast
         hyprpicker
       ];
