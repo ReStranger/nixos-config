@@ -101,7 +101,6 @@ in {
         kdePackages.kclock
         kdePackages.kalk
         kdePackages.ark
-        kdePackages.dolphin
         wl-clipboard
         wl-clipboard-x11
         overskride

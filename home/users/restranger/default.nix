@@ -60,6 +60,7 @@
       enable = hyprlandEnable && isLinux && isWorkstation;
       withVencord = true;
     };
+    dolphin.enable = hyprlandEnable && isLinux && isWorkstation;
     kidex.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     quickshell.enable = hyprlandEnable && isLinux && isWorkstation;
