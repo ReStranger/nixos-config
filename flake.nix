@@ -87,7 +87,7 @@
     };
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
-    opencode.url = "github:anomalyco/opencode";
+    opencode.url = "github:ReStranger/opencode";
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
