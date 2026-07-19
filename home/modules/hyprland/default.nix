@@ -178,6 +178,12 @@ in {
             accel_profile = "flat";
           };
 
+          plugin = {
+            csgo_vulkan_fix = {
+              fix_mouse = true;
+            };
+          };
+
           ecosystem = {
             no_update_news = true;
             # enforce_permissions = true;
@@ -264,6 +270,14 @@ in {
             speed = 6;
             bezier = "default";
           }
+        ];
+        "plugin.csgo_vulkan_fix.vkfix_app" = let
+          app = name: w: h: {
+            app = name;
+            inherit w h;
+          };
+        in [
+          (app "cs2" 1440 1080)
         ];
 
         workspace_rule = [
