@@ -23,12 +23,6 @@
 
     services = {
       bluetooth.enable = true;
-      disableWantedBy = {
-        enable = true;
-        services = [
-          "ollama"
-        ];
-      };
       greetd = {
         enable = true;
         frontend = "tui";
