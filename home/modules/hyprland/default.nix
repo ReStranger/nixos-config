@@ -53,6 +53,23 @@ in {
     dconf.settings."org/gnome/desktop/wm/preferences" = {
       button-layout = "";
     };
+    systemd.user.services.polkit-kde-authentication-agent-1 = {
+      Unit = {
+        Description = "polkit-kde-authentication-agent-1";
+        Wants = ["graphical-session.target"];
+        After = ["graphical-session.target"];
+      };
+      Install = {
+        WantedBy = ["graphical-session.target"];
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = null;
@@ -83,7 +100,6 @@ in {
               '';
           in [
             "hyprland.start"
-            (f "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
             (f "${pkgs.awww}/bin/awww")
           ];
         };
