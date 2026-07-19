@@ -4,12 +4,11 @@
   fetchurl,
   nodejs,
   bun,
-  python3,
   makeWrapper,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "context-mode";
-  version = "1.0.146";
+  version = "1.0.169";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/${finalAttrs.pname}/-/${finalAttrs.pname}-${finalAttrs.version}.tgz";
@@ -30,10 +29,7 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper ${nodejs}/bin/node $out/bin/${finalAttrs.pname} \
       --add-flags "$out/lib/${finalAttrs.pname}/cli.bundle.mjs" \
       --prefix PATH : ${
-      lib.makeBinPath [
-        bun
-        python3
-      ]
+      lib.makeBinPath [bun]
     }
 
     runHook postInstall
