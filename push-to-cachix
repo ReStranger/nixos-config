@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pkgs2push=(quickshell csgo-vulkan-fix opencode)
+pkgs2push=(quickshell csgo-vulkan-fix opencode xdg-desktop-portal-kde)
 
 for i in "${pkgs2push[@]}"; do
     CACHE=re-cache nix path-info --recursive /run/current-system | grep -F "${i}" | cachix push re-cache
