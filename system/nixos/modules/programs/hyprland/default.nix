@@ -23,8 +23,14 @@ in {
       enable = true;
       xdgOpenUsePortal = true;
       config.common.default = ["hyprland" "kde"];
-      extraPortals = with pkgs; [
-        kdePackages.xdg-desktop-portal-kde
+      extraPortals = [
+        (pkgs.kdePackages.xdg-desktop-portal-kde.override {
+          mkKdeDerivation = args:
+            pkgs.kdePackages.mkKdeDerivation (args
+              // {
+                excludeDependencies = ["plasma-workspace"];
+              });
+        })
       ];
     };
     # HACK
