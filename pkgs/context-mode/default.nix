@@ -3,7 +3,8 @@
   stdenv,
   fetchurl,
   nodejs,
-  bun,
+  inputs,
+  pkgs,
   makeWrapper,
 }:
 stdenv.mkDerivation (finalAttrs: {
@@ -29,7 +30,7 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper ${nodejs}/bin/node $out/bin/${finalAttrs.pname} \
       --add-flags "$out/lib/${finalAttrs.pname}/cli.bundle.mjs" \
       --prefix PATH : ${
-      lib.makeBinPath [bun]
+      lib.makeBinPath [inputs.re-nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.bun-canary]
     }
 
     runHook postInstall

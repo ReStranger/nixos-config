@@ -68,6 +68,7 @@ in {
           "https://mirror.yandex.ru/nixos/"
           "https://install.determinate.systems"
           "https://re-cache.cachix.org"
+          "https://re-nixpkgs.cachix.org"
           "https://attic.xuyh0120.win/lantian"
           "https://hyprland.cachix.org"
           "https://ghostty.cachix.org"
@@ -80,6 +81,7 @@ in {
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "re-cache.cachix.org-1:zIzN9Bp2Lwpt5qMc5XReiFsgSx6G4+wZMy9UHCDJ4X4="
+          "re-nixpkgs.cachix.org-1:yp0DeOCu+yrfJ3u3Ih9JopChk1MCKbkFvH2gMmzrOdw="
           "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
           "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
