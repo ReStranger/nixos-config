@@ -92,6 +92,7 @@ in {
         inherit username;
         inherit stateVersion;
         inherit homeDirectory;
+        pointerCursor.enable = isWorkstation;
       };
     };
   };
