@@ -78,7 +78,7 @@ in {
       systemd.enable = false;
       configType = "lua";
       plugins = [
-        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
+        # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
       ];
       settings = {
         monitor = [
@@ -178,11 +178,11 @@ in {
             accel_profile = "flat";
           };
 
-          plugin = {
-            csgo_vulkan_fix = {
-              fix_mouse = true;
-            };
-          };
+          # plugin = {
+          #   csgo_vulkan_fix = {
+          #     fix_mouse = true;
+          #   };
+          # };
 
           ecosystem = {
             no_update_news = true;
@@ -271,14 +271,14 @@ in {
             bezier = "default";
           }
         ];
-        "plugin.csgo_vulkan_fix.vkfix_app" = let
-          app = name: w: h: {
-            app = name;
-            inherit w h;
-          };
-        in [
-          (app "cs2" 1440 1080)
-        ];
+        # "plugin.csgo_vulkan_fix.vkfix_app" = let
+        #   app = name: w: h: {
+        #     app = name;
+        #     inherit w h;
+        #   };
+        # in [
+        #   (app "cs2" 1440 1080)
+        # ];
 
         workspace_rule = [
           {
