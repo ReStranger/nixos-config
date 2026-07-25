@@ -28,8 +28,6 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     master.url = "github:NixOS/nixpkgs/master";
 
-    re-nixpkgs.url = "github:ReStranger/re-nixpkgs";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,14 +80,7 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
-    ayugram-desktop = {
-      type = "git";
-      submodules = true;
-      url = "https://github.com/ndfined-crp/ayugram-desktop/";
-    };
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
-
-    opencode.url = "github:ReStranger/opencode";
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
