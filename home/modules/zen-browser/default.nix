@@ -1,5 +1,4 @@
 {
-  self,
   config,
   lib,
   pkgs,
@@ -16,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     home.activation.linkZenThemes = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      ln -fs ${self}/home/modules/zen-browser/zen-themes.json ${config.xdg.configHome}/zen/default/zen-themes.json
+      ln -fs ${config.xdg.configHome}/nixos/home/modules/zen-browser/zen-themes.json ${config.xdg.configHome}/zen/default/zen-themes.json
     '';
     programs.zen-browser = {
       enable = true;
