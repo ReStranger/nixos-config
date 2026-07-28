@@ -57,7 +57,6 @@ in {
         connect-timeout = 5;
         warn-dirty = false;
         auto-optimise-store = true;
-        auto-optimise-store = false;
         builders-use-substitutes = true;
 
         allowed-users = ["@wheel"];
