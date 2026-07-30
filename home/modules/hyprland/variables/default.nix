@@ -1,11 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  cfg = config.module.hyprland.variables;
-  inherit (lib) mkEnableOption mkIf;
-
+let
   commonSessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
@@ -32,14 +25,5 @@
   hostSpecificVariables = {
     NIXOS_OZONE_WL = "1";
   };
-
-  sessionVariables = commonSessionVariables // hostSpecificVariables;
-in {
-  options = {
-    module.hyprland.variables.enable = mkEnableOption "Enable variables in Hyprland";
-  };
-
-  config = mkIf cfg.enable {
-    home.sessionVariables = sessionVariables;
-  };
-}
+in
+  commonSessionVariables // hostSpecificVariables
