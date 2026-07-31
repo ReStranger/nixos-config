@@ -11,7 +11,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "opencode2";
   version = "0.0.0-next-16296";
 
-  src = fetchurl {
+  src =
+    fetchurl
+    {
       x86_64-linux = {
         url = "https://registry.npmjs.org/@opencode-ai/cli-linux-x64/-/cli-linux-x64-${finalAttrs.version}.tgz";
         hash = "sha256-ID8zDcsByGp3BAg1zLSdxsl+/FAeCsuS8v8gyXPHvKw=";

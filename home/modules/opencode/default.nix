@@ -1,158 +1,222 @@
 {
+  self,
   config,
   lib,
-  inputs,
-  pkgs,
+  username,
   ...
 }: let
   cfg = config.module.opencode;
-  inherit (lib) mkEnableOption mkIf genAttrs;
+  inherit (lib) genAttrs mkEnableOption mkIf;
+
   secrets = [
     "bifrost/server_url"
     "bifrost/api_key"
     "openrouter_api_key"
   ];
-  promptsDir = pkgs.runCommandLocal "opencode-prompts" {} ''
-    mkdir -p $out
-    cp -r ${./prompts}/* $out/
-  '';
+
+  agentsDir = ./agents;
 in {
+  imports = ["${self}/home/modules/opencode2"];
+
   options.module.opencode = {
     enable = mkEnableOption "Enable opencode program";
   };
 
   config = mkIf cfg.enable {
     sops.secrets = genAttrs secrets (_: {});
-
-    programs.opencode = {
+    module.opencode2 = {
       enable = true;
       enableMcpIntegration = true;
-      package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      cli = {
+        keybinds = {
+          agent_cycle = "tab";
+          agent_cycle_reverse = "shift+tab";
+          command_list = "ctrl+p";
+        };
+        theme = {
+          name = "stylix";
+          mode = "system";
+        };
+        scroll = {
+          speed = 2;
+          acceleration = true;
+        };
+        diffs = {
+          wrap = "word";
+          view = "auto";
+        };
+        session = {
+          sidebar = "auto";
+          scrollbar = false;
+          thinking = "show";
+          markdown = "rendered";
+        };
+        animations = true;
+        debug = {
+          devtools = false;
+        };
+      };
+
       settings = let
         secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
       in {
-        plugin = [
-          "@zenobius/opencode-background"
-          "https://github.com/loss-and-quick/opencode-ralph"
-          "https://github.com/loss-and-quick/opencode-plugin-advisor"
-          "@tarquinen/opencode-dcp@latest"
-        ];
-        autoshare = false;
+        inherit username;
+        share = "manual";
         autoupdate = false;
-        lsp = true;
-        agent = {
-          build = {
-            color = "secondary";
+        default_agent = "build";
+        compaction = {
+          auto = true;
+          keep = {
+            tokens = 8000;
           };
-          plan = {
-            color = "primary";
+          buffer = 20000;
+        };
+
+        attachments = {
+          image = {
+            auto_resize = true;
+            max_width = 2000;
+            max_height = 2000;
+            max_base64_bytes = 5242880;
           };
+        };
+
+        agents = {
+          build.color = "#${config.lib.stylix.colors.base0E}";
+          plan.color = "#${config.lib.stylix.colors.base0B}";
+          orchestrator.color = "#${config.lib.stylix.colors.base08}";
           general = {
-            model = "bifrost-response/weegam/gpt-5.4";
+            model = "bifrost/gpt-5.4";
           };
           explore = {
             model = "opencode/deepseek-v4-flash-free";
           };
           advisor = {
-            model = "bifrost-response/glm-5.2";
+            model = "llama-cpp/Qwen3.6-35B-A3B-UD-Q3_K_XL";
           };
           title = {
-            model = "bifrost-response/mistral/mistral-small";
+            model = "opencode/deepseek-v4-flash-free";
           };
           summary = {
             model = "opencode/deepseek-v4-flash-free";
           };
-          orchestrator = {
-            mode = "primary";
-            color = "error";
-            description = "Coordinates work by delegating implementation tasks to the minion subagent.";
-            prompt = "{file:${promptsDir}/orchestrator.txt}";
-          };
-          minion = {
-            model = "opencode/deepseek-v4-flash-free";
-            description = "Subagent that executes focused tasks delegated by Orchestrator.";
-            mode = "subagent";
-            prompt = "{file:${promptsDir}/minion.txt}";
-            permission = {
-              task = "deny";
-            };
-          };
         };
-        provider = {
-          bifrost-response = {
+
+        providers = {
+          bifrost = {
             name = "Bifrost";
-            npm = "@ai-sdk/openai";
-            options = {
+            settings = {
               apiKey = secret."bifrost/api_key";
               baseURL = secret."bifrost/server_url";
             };
+            package = "@opencode-ai/ai/providers/openai-compatible";
             models = {
-              "weegam/gpt-5.4" = {
+              "gpt-5.4" = {
                 name = "GPT-5.4";
-                reasoning = true;
-                tool_call = true;
+                capabilities = {
+                  tools = true;
+                  input = ["text" "image"];
+                  output = ["text"];
+                };
                 limit = {
                   context = 1047576;
                   output = 65536;
                 };
-                options = {
+                settings = {
                   reasoningEffort = "high";
                   textVerbosity = "low";
                   reasoningSummary = "auto";
-                  include = ["reasoning.encrypted_content"];
                 };
-                variants = {
-                  high = {
-                    reasoningEffort = "high";
-                    textVerbosity = "low";
-                    reasoningSummary = "auto";
-                  };
-                  low = {
-                    reasoningEffort = "low";
-                    textVerbosity = "low";
-                    reasoningSummary = "auto";
-                  };
-                };
+                variants = [
+                  {
+                    id = "high";
+                    settings = {
+                      reasoningEffort = "high";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                  }
+                  {
+                    id = "low";
+                    settings = {
+                      reasoningEffort = "low";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                  }
+                ];
               };
-              "charm/glm-5.2" = {
+              "glm-5.2" = {
                 name = "GLM-5.2";
-                reasoning = true;
-                tool_call = true;
+                capabilities = {
+                  tools = true;
+                  input = ["text" "image"];
+                  output = ["text"];
+                };
                 limit = {
                   context = 1048576;
                   output = 32768;
                 };
-                options = {
+                settings = {
                   reasoningEffort = "high";
                 };
-                variants = {
-                  high = {
-                    reasoningEffort = "high";
-                  };
-                  low = {
-                    reasoningEffort = "low";
-                  };
-                };
+                variants = [
+                  {
+                    id = "high";
+                    settings = {
+                      reasoningEffort = "high";
+                    };
+                  }
+                  {
+                    id = "low";
+                    settings = {
+                      reasoningEffort = "high";
+                    };
+                  }
+                ];
               };
             };
           };
-          ollama = {
-            npm = "@ai-sdk/openai-compatible";
-            name = "Ollama (local)";
-            options = {
-              baseURL = "http://localhost:11434/v1";
+
+          llama-cpp = {
+            name = "llama.cpp (local)";
+            package = "@opencode-ai/ai/providers/openai-compatible";
+            settings = {
+              apiKey = "llama-cpp";
+              baseURL = "http://localhost:11435/v1";
             };
             models = {
-              "qwythos-9b:latest" = {
-                name = "Qwythos-9B";
-                reasoning = true;
-                tool_call = true;
+              "Qwen3.6-35B-A3B-UD-Q3_K_XL" = {
+                name = "Qwen3.6-35B-A3B";
+                limit = {
+                  context = 65536;
+                };
+                capabilities = {
+                  tools = true;
+                  input = ["text"];
+                  output = ["text"];
+                };
+              };
+              "Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-Q4_K" = {
+                name = "Qwythos-9B-Claude-Mythos";
+                limit = {
+                  context = 65536;
+                };
+                capabilities = {
+                  tools = true;
+                  input = ["text"];
+                  output = ["text"];
+                };
               };
             };
           };
         };
-        experimental = {};
       };
+    };
+
+    xdg.configFile."opencode/agents" = {
+      source = agentsDir;
+      recursive = true;
     };
   };
 }
