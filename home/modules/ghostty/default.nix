@@ -23,7 +23,7 @@ in {
       package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings = {
         font-family = mkForce "Maple Mono NF";
-        background-opacity = mkForce 0.89;
+        background-opacity = mkForce 0.79;
         background-blur = true;
         window-inherit-working-directory = false;
         custom-shader = "cursor_smear.glsl";
