@@ -72,6 +72,7 @@ in {
         vlc
         inkscape
         qbittorrent
+        davinci-resolve_20
         xournalpp
         audacity
         obsidian
