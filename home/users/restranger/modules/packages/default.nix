@@ -71,8 +71,8 @@ in {
         krita
         vlc
         inkscape
+        qbittorrent
         xournalpp
-        transmission_4-gtk
         audacity
         obsidian
         (prismlauncher.override {
