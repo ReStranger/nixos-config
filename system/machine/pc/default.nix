@@ -33,9 +33,26 @@
         enable = true;
         wifi.backend = "iwd";
       };
-      ollama = {
+      llama-cpp = {
         enable = true;
-        package = pkgs.ollama-vulkan;
+        package = pkgs.llama-cpp-vulkan;
+        contextSize = 65536;
+        threads = 8;
+        gpuLayers = 99;
+        extraSettings = {
+          reasoning-preserve = true;
+          # n-cpu-moe = 24;
+          # cmoeThreads = 12;
+
+          models-dir = "/mnt/sda1/llama/models/";
+          models-max = 1;
+          sleep-idle-seconds = -1;
+          temp = 0.6;
+          top-p = 0.95;
+          top-k = 20;
+          repeat-penalty = 1.05;
+          n-predict = 16384;
+        };
       };
       openssh.enable = true;
       opentablet.enable = true;
