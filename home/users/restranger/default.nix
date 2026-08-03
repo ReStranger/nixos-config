@@ -38,6 +38,7 @@
         };
       };
     };
+    ida.enable = isWorkstation;
     opencode.enable = isWorkstation;
     zathura.enable = isWorkstation;
     obs-studio.enable = isWorkstation;
