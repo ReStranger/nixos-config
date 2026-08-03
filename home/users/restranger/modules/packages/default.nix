@@ -39,7 +39,6 @@ in {
         wget
         lm_sensors
         systemctl-tui
-        audiosource
 
         ## shell ##
         bat
@@ -49,13 +48,10 @@ in {
 
         ## dev tools ##
         nodejs
-        pnpm
         vscode-js-debug
         clang-tools
         llvmPackages_latest.clang
         llvmPackages_latest.lldb
-        gnumake
-        cmake
 
         ## Fonts ##
         corefonts
@@ -75,7 +71,6 @@ in {
         krita
         vlc
         inkscape
-        hieroglyphic
         xournalpp
         transmission_4-gtk
         audacity
