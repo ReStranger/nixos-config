@@ -6,6 +6,7 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
 in {
+  imports = [./stylix.nix];
 
   options.module.ida = {
     enable = mkEnableOption "Enable ida module";
