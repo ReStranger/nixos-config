@@ -28,6 +28,7 @@ in {
         nodejs
         luarocks
         luajit
+        xxd
 
         # LSP
         lua-language-server
