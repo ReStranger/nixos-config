@@ -34,6 +34,7 @@
     kernel.sysctl = {
       "vm.laptop_mode" = 5;
       "net.ipv4.ip_default_ttl" = 65;
+      "vm.dirty_writeback_centisecs" = 1500;
     };
     extraModulePackages = [];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
