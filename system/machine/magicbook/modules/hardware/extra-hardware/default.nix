@@ -14,12 +14,10 @@
       linux-firmware
     ];
   };
-  #   services.udev.extraRules = ''
-  # ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="/usr/bin/iw dev $name set power_save on"
-  # SUBSYSTEM=="pci", ATTR{power/control}="auto"
-  # ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
-  #   '';
 
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"
+  '';
   systemd.services.ath11k-rmmod-before-sleep = {
     description = "Unload ath11k_pci before sleep";
     before = ["sleep.target"];
