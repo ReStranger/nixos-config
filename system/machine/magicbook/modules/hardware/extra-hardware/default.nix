@@ -15,9 +15,15 @@
     ];
   };
 
-  services.udev.extraRules = ''
-    ACTION=="add|change", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"
-  '';
+  services.udev = {
+    extraRules = ''
+      ACTION=="add|change", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"
+    '';
+    extraHwdb = ''
+      battery:*:*:dmi:*
+       CHARGE_LIMIT=75,95
+    '';
+  };
 
   systemd.services = {
     ath11k-rmmod-before-sleep = {
