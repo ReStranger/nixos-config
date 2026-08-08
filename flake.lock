@@ -1478,6 +1478,22 @@
     },
     "nixpkgs_15": {
       "locked": {
+        "lastModified": 1785967620,
+        "narHash": "sha256-IItrdb7Puk05RqOBWZYFC5X6Wl1sJmCfh5MWVHw5iMM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_16": {
+      "locked": {
         "lastModified": 1770107345,
         "narHash": "sha256-tbS0Ebx2PiA1FRW8mt8oejR0qMXmziJmPaU1d4kYY9g=",
         "owner": "nixos",
@@ -1492,7 +1508,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_16": {
+    "nixpkgs_17": {
       "locked": {
         "lastModified": 1785602060,
         "narHash": "sha256-z7D96eESRM4CPV/XtwpwFn8IDdfLAmxz6lVWrGYXvR4=",
@@ -1724,6 +1740,7 @@
         "sops-nix": "sops-nix",
         "stable": "stable",
         "stylix": "stylix",
+        "tmux-nerd-font-window-name": "tmux-nerd-font-window-name",
         "treefmt-nix": "treefmt-nix",
         "unstable": "unstable",
         "wezterm": "wezterm",
@@ -1997,9 +2014,27 @@
         "type": "github"
       }
     },
-    "treefmt-nix": {
+    "tmux-nerd-font-window-name": {
       "inputs": {
         "nixpkgs": "nixpkgs_15"
+      },
+      "locked": {
+        "lastModified": 1775836742,
+        "narHash": "sha256-b6CQdN33hU5li/0LUOHMs7oN8ffVRVQlSf17Twhz2e8=",
+        "owner": "joshmedeski",
+        "repo": "tmux-nerd-font-window-name",
+        "rev": "0af812a228e1b9f538b8d220c6c59d82d7228973",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshmedeski",
+        "repo": "tmux-nerd-font-window-name",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_16"
       },
       "locked": {
         "lastModified": 1785360170,
@@ -2037,7 +2072,7 @@
         "freetype2": "freetype2",
         "harfbuzz": "harfbuzz",
         "libpng": "libpng",
-        "nixpkgs": "nixpkgs_16",
+        "nixpkgs": "nixpkgs_17",
         "rust-overlay": "rust-overlay",
         "zlib": "zlib"
       },

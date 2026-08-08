@@ -81,6 +81,7 @@
       url = "github:ghostty-org/ghostty";
     };
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
+    tmux-nerd-font-window-name.url = "github:joshmedeski/tmux-nerd-font-window-name";
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

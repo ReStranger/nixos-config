@@ -24,7 +24,8 @@ in {
         pkgs.tmuxPlugins.resurrect
         pkgs.tmuxPlugins.continuum
         pkgs.tmuxPlugins.sessionist
-        {plugin = inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default;}
+        inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.tmux-nerd-font-window-name.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
       baseIndex = 1;
       mouse = true;
