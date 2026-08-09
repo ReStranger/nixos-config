@@ -19,10 +19,13 @@
     nameValuePair
     optionalAttrs
     pathIsDirectory
-    types
+    mapAttrs
+    mapAttrs'
     ;
 
+  inherit (lib.types) nullOr package listOf bool either lines path attrsOf oneOf str;
   inherit (lib.hm.strings) isPathLike;
+  inherit (lib.hm.mcp) renderEnv transformMcpServer;
 
   jsonFormat = pkgs.formats.json {};
 
@@ -233,7 +236,7 @@
 
   toOpencodeShape = server: let
     isRemote = server ? url && server.url != null;
-    renderedEnv = lib.hm.mcp.renderEnv (p: "{file:${p}}") (server.env or {});
+    renderedEnv = renderEnv (p: "{file:${p}}") (server.env or {});
   in
     optionalAttrs (server.enabled or null != null) {
       inherit (server) enabled;
@@ -265,9 +268,9 @@
   transformedMcpServers =
     if cfg.enableMcpIntegration && config.programs.mcp.enable && config.programs.mcp.servers != {}
     then
-      lib.mapAttrs (
+      mapAttrs (
         _: server:
-          lib.hm.mcp.transformMcpServer {
+          transformMcpServer {
             inherit server;
             extraTransforms = [toOpencodeShape];
             exclude = [
@@ -299,21 +302,21 @@ in {
     enable = mkEnableOption "opencode2";
 
     package = mkOption {
-      type = types.nullOr types.package;
+      type = nullOr package;
       default = pkgs.opencode2;
       defaultText = literalExpression "pkgs.opencode2";
       description = "Package providing the opencode2 executable.";
     };
 
     extraPackages = mkOption {
-      type = with types; listOf package;
+      type = listOf package;
       default = [];
       example = literalExpression "[ pkgs.uv ]";
       description = "Extra packages available to OpenCode.";
     };
 
     enableMcpIntegration = mkOption {
-      type = types.bool;
+      type = bool;
       default = false;
       description = ''
         Whether to integrate `programs.mcp.servers` into `module.opencode2.settings.mcp`.
@@ -354,7 +357,7 @@ in {
     };
 
     context = mkOption {
-      type = types.either types.lines types.path;
+      type = either lines path;
       default = "";
       description = ''
         Global instructions written to `$XDG_CONFIG_HOME/opencode/AGENTS.md`.
@@ -362,7 +365,7 @@ in {
     };
 
     commands = mkOption {
-      type = types.either (types.attrsOf (types.either types.lines types.path)) types.path;
+      type = either (attrsOf (either lines path)) path;
       default = {};
       description = ''
         Custom command markdown files for `$XDG_CONFIG_HOME/opencode/commands/`.
@@ -372,7 +375,7 @@ in {
     };
 
     agents = mkOption {
-      type = types.either (types.attrsOf (types.either types.lines types.path)) types.path;
+      type = either (attrsOf (either lines path)) path;
       default = {};
       description = ''
         Custom agent markdown files for `$XDG_CONFIG_HOME/opencode/agents/`.
@@ -382,7 +385,7 @@ in {
     };
 
     skills = mkOption {
-      type = types.either (types.attrsOf (types.oneOf [types.lines types.path types.str])) types.path;
+      type = either (attrsOf (oneOf [lines path str])) path;
       default = {};
       description = ''
         Custom skills for `$XDG_CONFIG_HOME/opencode/skills/`.
@@ -392,7 +395,7 @@ in {
     };
 
     themes = mkOption {
-      type = types.either (types.attrsOf (types.either jsonFormat.type types.path)) types.path;
+      type = either (attrsOf (either jsonFormat.type path)) path;
       default = {};
       description = ''
         Custom themes for `$XDG_CONFIG_HOME/opencode/themes/`.
@@ -402,7 +405,7 @@ in {
     };
 
     tools = mkOption {
-      type = types.either (types.attrsOf (types.either types.lines types.path)) types.path;
+      type = either (attrsOf (either lines path)) path;
       default = {};
       description = ''
         Custom tools for `$XDG_CONFIG_HOME/opencode/tools/`.
@@ -502,7 +505,7 @@ in {
         };
       }
       // optionalAttrs (builtins.isAttrs cfg.commands) (
-        lib.mapAttrs' (
+        mapAttrs' (
           name: content:
             nameValuePair "opencode/commands/${name}.md" (
               if isPath content
@@ -513,7 +516,7 @@ in {
         cfg.commands
       )
       // optionalAttrs (builtins.isAttrs cfg.agents) (
-        lib.mapAttrs' (
+        mapAttrs' (
           name: content:
             nameValuePair "opencode/agents/${name}.md" (
               if isPath content
@@ -524,7 +527,7 @@ in {
         cfg.agents
       )
       // optionalAttrs (builtins.isAttrs cfg.tools) (
-        lib.mapAttrs' (
+        mapAttrs' (
           name: content:
             nameValuePair "opencode/tools/${name}.ts" (
               if isPath content
@@ -534,7 +537,7 @@ in {
         )
         cfg.tools
       )
-      // lib.mapAttrs' (
+      // mapAttrs' (
         name: content:
           if isPathLike content && pathIsDirectory content
           then
@@ -554,7 +557,7 @@ in {
         else {}
       )
       // optionalAttrs (builtins.isAttrs cfg.themes) (
-        lib.mapAttrs' (
+        mapAttrs' (
           name: content:
             nameValuePair "opencode/themes/${name}.json" (
               if isPath content

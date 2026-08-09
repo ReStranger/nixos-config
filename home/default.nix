@@ -19,7 +19,7 @@
 }: let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
-  inherit (lib) optional;
+  inherit (lib) optional readFile;
 
   stateVersion = hmStateVersion;
   isRoot = username == "root";
@@ -41,7 +41,7 @@ in {
     useUserPackages = true;
     backupFileExtension =
       "backup-"
-      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+      + readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
     extraSpecialArgs = {
       inherit

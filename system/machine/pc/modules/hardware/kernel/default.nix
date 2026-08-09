@@ -2,7 +2,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (lib) mkForce;
+in {
   boot = {
     initrd = {
       availableKernelModules = [
@@ -36,7 +38,7 @@
     ];
     extraModulePackages = [];
     supportedFilesystems = ["ntfs"];
-    kernel.sysctl."kernel.yama.ptrace_scope" = lib.mkForce 1;
+    kernel.sysctl."kernel.yama.ptrace_scope" = mkForce 1;
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };
 }

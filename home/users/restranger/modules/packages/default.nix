@@ -8,7 +8,7 @@
 }: let
   cfg = config.module.user.packages;
   inherit (pkgs.stdenv) isLinux;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf optionals;
 in {
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
@@ -66,7 +66,7 @@ in {
         nerd-fonts.hack
         nerd-fonts.ubuntu
       ]
-      ++ lib.optionals isWorkstation [
+      ++ optionals isWorkstation [
         onlyoffice-desktopeditors
         krita
         vlc
@@ -84,7 +84,7 @@ in {
         })
         lunar-client
       ]
-      ++ lib.optionals (isLinux && isWorkstation) [
+      ++ optionals (isLinux && isWorkstation) [
         ayugram-desktop
         libnotify
         bottles
@@ -92,7 +92,7 @@ in {
         yabridge
         yabridgectl
       ]
-      ++ lib.optionals hyprlandEnable [
+      ++ optionals hyprlandEnable [
         kdePackages.kclock
         kdePackages.kalk
         kdePackages.ark

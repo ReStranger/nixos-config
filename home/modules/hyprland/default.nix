@@ -17,12 +17,15 @@
     optionals
     getExe
     getExe'
+    optional
     ;
   inherit (lib.types) enum;
+  inherit (lib.hm.dag) entryAfter;
+  inherit (lib.generators) mkLuaInline;
 
-  terminal = "${inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/ghostty";
-  fileManager = "${pkgs.kdePackages.dolphin}/bin/dolphin";
-  menu = "${inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}/bin/anyrun";
+  terminal = "${getExe inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}";
+  fileManager = "${getExe pkgs.kdePackages.dolphin}";
+  menu = "${getExe inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}";
 
   sessionVariables = import ./variables;
   windowRules = import ./window-rules;
@@ -44,7 +47,7 @@ in {
   config = mkIf cfg.enable {
     xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     home = {
-      activation.rebuildKdeCache = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      activation.rebuildKdeCache = entryAfter ["writeBoundary"] ''
         ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
       '';
       inherit sessionVariables;
@@ -97,7 +100,7 @@ in {
           # on = {
           #   _args = let
           #     f = path:
-          #       lib.generators.mkLuaInline ''
+          #       mkLuaInline ''
           #         function()
           #           hl.exec_cmd("uwsm app -- ${path}")
           #         end
@@ -291,18 +294,18 @@ in {
               _args =
                 [
                   key
-                  (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${path}")'')
+                  (mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${path}")'')
                 ]
-                ++ lib.optional (opts != {}) opts;
+                ++ optional (opts != {}) opts;
             };
 
             d = key: code: opts: {
               _args =
                 [
                   key
-                  (lib.generators.mkLuaInline code)
+                  (mkLuaInline code)
                 ]
-                ++ lib.optional (opts != {}) opts;
+                ++ optional (opts != {}) opts;
             };
           in
             [

@@ -8,13 +8,14 @@
 }: let
   cfg = config.module.zen-browser;
   inherit (lib) mkEnableOption mkIf;
+  inherit (lib.hm.dag) entryAfter;
 in {
   options.module.zen-browser = {
     enable = mkEnableOption "Enable zen-browser module";
   };
 
   config = mkIf cfg.enable {
-    home.activation.linkZenThemes = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.linkZenThemes = entryAfter ["writeBoundary"] ''
       ln -fs ${config.xdg.configHome}/nixos/home/modules/zen-browser/zen-themes.json ${config.xdg.configHome}/zen/default/zen-themes.json
     '';
     programs.zen-browser = {

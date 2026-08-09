@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.module.starship;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf concatStrings;
 in {
   options.module.starship = {
     enable = mkEnableOption "Enable starship module";
@@ -16,7 +16,7 @@ in {
       enableZshIntegration = true;
       settings = {
         add_newline = true;
-        format = lib.concatStrings [
+        format = concatStrings [
           "$hostname"
           "$nix_shell"
           "$os"

@@ -19,10 +19,11 @@
     mkOption
     nameValuePair
     optionalAttrs
-    types
+    literalExpression
     ;
+  inherit (lib.types) submodule nullOr package str listOf attrsOf;
 
-  serverType = types.submodule (
+  serverType = submodule (
     {
       config,
       name,
@@ -32,43 +33,43 @@
         enable = mkEnableOption "MCP server ${name}";
 
         package = mkOption {
-          type = types.nullOr types.package;
+          type = nullOr package;
           default = null;
           description = "Package that provides the server executable.";
         };
 
         command = mkOption {
-          type = types.str;
+          type = str;
           default = config.package.pname;
           description = "Executable name inside package's bin directory.";
         };
 
         args = mkOption {
-          type = types.listOf types.str;
+          type = listOf str;
           default = [];
           description = "Command line arguments.";
         };
 
         envSecrets = mkOption {
-          type = types.attrsOf types.str;
+          type = attrsOf str;
           default = {};
           description = "Environment variables loaded from files at runtime (VAR = /path/to/secret).";
         };
 
         env = mkOption {
-          type = types.attrsOf types.str;
+          type = attrsOf str;
           default = {};
           description = "Environment variables (plain text).";
         };
 
         envFile = mkOption {
-          type = types.nullOr types.str;
+          type = nullOr str;
           default = null;
           description = "Path to an environment file (KEY=VALUE format).";
         };
 
         workingDirectory = mkOption {
-          type = types.nullOr types.str;
+          type = nullOr str;
           default = null;
           description = "Working directory for the server.";
         };
@@ -124,10 +125,10 @@ in {
     enable = mkEnableOption "MCP servers infrastructure";
 
     servers = mkOption {
-      type = types.attrsOf serverType;
+      type = attrsOf serverType;
       default = {};
       description = "MCP server definitions.";
-      example = lib.literalExpression ''
+      example = literalExpression ''
         {
           foo = {
             enable = true;

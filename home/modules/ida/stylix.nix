@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.module.ida;
-  inherit (lib) mkIf fromHexString removePrefix concatStringsSep drop splitString;
+  inherit (lib) mkIf fromHexString removePrefix concatStringsSep drop splitString removeSuffix;
 
   colors = config.lib.stylix.colors;
 
@@ -118,7 +118,7 @@
   themedIcon = icon: let
     accent = "#${colors.base0D}";
   in
-    pkgs.runCommand "ida-${lib.removeSuffix ".png" (baseNameOf icon)}-icon" {
+    pkgs.runCommand "ida-${removeSuffix ".png" (baseNameOf icon)}-icon" {
       nativeBuildInputs = [pkgs.imagemagick];
     } ''
       magick ${icon} -alpha set -channel RGB -fill '${accent}' -colorize 100% $out
