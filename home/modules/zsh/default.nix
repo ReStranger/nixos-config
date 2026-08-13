@@ -104,7 +104,7 @@ in {
         bindkey -M vicmd '/' history-incremental-search-forward
         bindkey "''${key[Up]}" up-line-or-search
 
-        AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy" "tmux" "tmate" "nix-shell" "opencode")
+        AUTO_NOTIFY_IGNORE+=("docker" "lazygit" "lg" "nvim" "vi" "yazi" "yy" "tmux" "tmate" "nix-shell" "opencode" "opencode2" "pi")
 
         HISTDUP=erase
 
