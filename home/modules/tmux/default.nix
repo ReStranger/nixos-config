@@ -81,5 +81,21 @@ in {
               set -g @resurrect-capture-pane-contents 'on'
       '';
     };
+    xdg.configFile."tmux/tmux-nerd-font-window-name.yml".source = (pkgs.formats.yaml {}).generate "tmux-nerd-font-window-name.yml" {
+      config = {
+        fallback-icon = "?";
+        multi-pane-icon = "";
+        show-name = true;
+        always-show-fallback-name = false;
+        icon-position = "left";
+      };
+
+      icons = {
+        nh = "󱄅";
+        opencode = "󰚩";
+        opencode2 = "󰚩";
+        pi = "󰏿";
+      };
+    };
   };
 }
