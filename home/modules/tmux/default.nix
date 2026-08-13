@@ -37,6 +37,8 @@ in {
 
               set -gq allow-passthrough on
               set -g visual-activity off
+              set -g extended-keys on
+              set -g extended-keys-format csi-u
 
               # Сортировка по имени
               bind s choose-tree -sZ -O name
