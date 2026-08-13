@@ -119,7 +119,8 @@ in {
           "kernel.randomize_va_space" = 2;
 
           # Prohibit connecting to other processes using ptrace
-          "kernel.yama.ptrace_scope" = 3;
+          # 2< Beack nix-functional-tests:sentry test in determinate-nix
+          "kernel.yama.ptrace_scope" = 1;
 
           # Enable protection for the eBPF JIT subsystem
           "net.core.bpf_jit_harden" = 2;
