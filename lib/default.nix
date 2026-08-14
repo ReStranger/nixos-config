@@ -59,6 +59,7 @@
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
+          inputs.ncro.nixosModules.default
           # inputs.nur.modules.nixos.default
         ]
         ++ constructors;

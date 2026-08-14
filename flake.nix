@@ -54,6 +54,10 @@
     nix-topology.url = "github:oddlama/nix-topology";
     impermanence.url = "github:/nix-community/impermanence";
     sops-nix.url = "github:Mic92/sops-nix";
+    ncro = {
+      url = "github:feel-co/ncro";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 

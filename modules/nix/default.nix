@@ -10,6 +10,7 @@
   inherit
     (lib)
     mkEnableOption
+    mkForce
     mkIf
     mkOption
     ;
@@ -63,27 +64,8 @@ in {
 
         trusted-users = [username];
 
-        substituters = [
-          "https://cache.nixos.org"
-          "https://mirror.yandex.ru/nixos/"
-          "https://install.determinate.systems"
-          "https://re-cache.cachix.org"
-          "https://attic.xuyh0120.win/lantian"
-          "https://hyprland.cachix.org"
-          "https://ghostty.cachix.org"
-          # "https://wezterm.cachix.org"
-          "https://anyrun.cachix.org"
-        ];
-
-        trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "re-cache.cachix.org-1:zIzN9Bp2Lwpt5qMc5XReiFsgSx6G4+wZMy9UHCDJ4X4="
-          "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
-          "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-          "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
-          # "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
-          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+        substituters = mkForce [
+          "http://127.0.0.1:${toString config.module.services.ncro.port}"
         ];
       };
     };
