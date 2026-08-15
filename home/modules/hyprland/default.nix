@@ -46,6 +46,7 @@ in {
 
   config = mkIf cfg.enable {
     xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    home.sessionVariables = sessionVariables;
     home = {
       activation.rebuildKdeCache = entryAfter ["writeBoundary"] ''
         ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
