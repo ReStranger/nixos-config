@@ -1,7 +1,7 @@
 {lib, ...}: let
   inherit (lib) pathIsDirectory;
 in {
-  imports = builtins.filter (module: pathIsDirectory module) (
+  imports = builtins.filter pathIsDirectory (
     map (module: toString ./. + "/${module}") (
       builtins.attrNames (builtins.readDir (toString ./.))
     )
