@@ -14,8 +14,8 @@ in {
   config = mkIf cfg.enable {
     programs.thunderbird = {
       enable = true;
+      languagePacks = ["ru"];
       profiles.default = {
-        # name = "default";
         isDefault = true;
         settings = {
           "privacy.donottrackheader.enabled" = true;
