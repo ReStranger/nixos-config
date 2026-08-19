@@ -43,7 +43,11 @@ in {
           Config(
             desktop_actions: false,
             max_entries: 6,
-            terminal: Some("wezterm"),
+            launch_prefix: Some("uwsm app --"),
+            terminal: Some(Terminal(
+              command: "ghostty",
+              args: "-e {}",
+            )),
           )
         '';
 

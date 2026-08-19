@@ -77,7 +77,7 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    anyrun.url = "github:anyrun-org/anyrun";
+    anyrun.url = "github:ReStranger/anyrun/feat/applications-launch-prefix";
     kidex.url = "github:Kirottu/kidex";
     matugen.url = "github:InioX/Matugen";
     wezterm.url = "github:wez/wezterm?dir=nix";

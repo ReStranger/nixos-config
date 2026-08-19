@@ -29,15 +29,16 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1781014878,
-        "narHash": "sha256-+Fx+JfSboBk8KKVgmaMKDKvMe9c3WC+7RKYjnpvMVpg=",
-        "owner": "anyrun-org",
+        "lastModified": 1786947405,
+        "narHash": "sha256-eAHEMHtTlmAWS8kP2BKux8XliijSaxTViwr8h48yQ2c=",
+        "owner": "ReStranger",
         "repo": "anyrun",
-        "rev": "f3b23bc5520f7673a5119da44b3570fbe060db37",
+        "rev": "98b16f7eb9403c4af4ee628500173d00717e822c",
         "type": "github"
       },
       "original": {
-        "owner": "anyrun-org",
+        "owner": "ReStranger",
+        "ref": "feat/applications-launch-prefix",
         "repo": "anyrun",
         "type": "github"
       }
