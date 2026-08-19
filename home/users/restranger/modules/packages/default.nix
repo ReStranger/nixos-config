@@ -20,7 +20,6 @@ in {
     programs = {
       cava.enable = true;
       fd.enable = true;
-      fzf.enable = true;
       jq.enable = true;
       lazydocker.enable = true;
       lsd.enable = true;
