@@ -11,6 +11,7 @@
   };
   module = {
     cachix.enable = true;
+    fzf.enable = true;
     mcp.enable = isWorkstation;
     mcp-servers = {
       enable = isWorkstation;
