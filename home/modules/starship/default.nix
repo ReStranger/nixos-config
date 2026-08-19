@@ -13,7 +13,6 @@ in {
   config = mkIf cfg.enable {
     programs.starship = {
       enable = true;
-      enableZshIntegration = true;
       settings = {
         add_newline = true;
         format = concatStrings [
