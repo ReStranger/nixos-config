@@ -21,8 +21,6 @@ in {
     programs.wezterm = {
       enable = true;
       package = inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
       extraConfig =
         # lua
         ''

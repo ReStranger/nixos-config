@@ -20,7 +20,6 @@ in {
     '';
     programs.ghostty = {
       enable = true;
-      enableZshIntegration = true;
       package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings = {
         font-family = mkForce "Maple Mono NF";
