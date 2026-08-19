@@ -1,6 +1,8 @@
 {
   self,
   config,
+  inputs,
+  pkgs,
   lib,
   username,
   ...
@@ -27,6 +29,7 @@ in {
     module.opencode2 = {
       enable = true;
       enableMcpIntegration = true;
+      package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       cli = {
         keybinds = {
           agent_cycle = "tab";

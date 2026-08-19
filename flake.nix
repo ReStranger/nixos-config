@@ -85,6 +85,9 @@
       url = "github:ghostty-org/ghostty";
     };
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
+
+    opencode.url = "github:anomalyco/opencode/v2";
+
     tmux-nerd-font-window-name.url = "github:joshmedeski/tmux-nerd-font-window-name";
 
     quickshell = {
