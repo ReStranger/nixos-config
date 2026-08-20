@@ -72,6 +72,7 @@
     direnv.enable = true;
     git.enable = true;
     lazygit.enable = true;
+    nix-your-shell.enable = true;
     nvim.enable = true;
     sops.enable = true;
     starship.enable = true;
