@@ -31,22 +31,22 @@ in {
       enableMcpIntegration = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       cli = {
-        keybinds = {
-          agent_cycle = "tab";
-          agent_cycle_reverse = "shift+tab";
-          command_list = "ctrl+p";
-        };
-        theme = {
-          name = "stylix";
-          mode = "system";
-        };
-        scroll = {
-          speed = 2;
-          acceleration = true;
+        animations = true;
+        debug = {
+          devtools = false;
         };
         diffs = {
           wrap = "word";
           view = "auto";
+        };
+        keybinds = {
+          "agent.cycle" = "tab";
+          "agent.cycle.reverse" = "shift+tab";
+          "command.palette.show" = "ctrl+p";
+        };
+        scroll = {
+          speed = 2;
+          acceleration = true;
         };
         session = {
           sidebar = "auto";
@@ -54,9 +54,9 @@ in {
           thinking = "show";
           markdown = "rendered";
         };
-        animations = true;
-        debug = {
-          devtools = false;
+        theme = {
+          name = "stylix";
+          mode = "system";
         };
       };
 
