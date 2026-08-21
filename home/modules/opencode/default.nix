@@ -112,7 +112,7 @@ in {
               apiKey = secret."bifrost/api_key";
               baseURL = secret."bifrost/server_url";
             };
-            package = "@opencode-ai/ai/providers/openai-compatible";
+            package = "@opencode-ai/ai/providers/openai";
             models = {
               "gpt-5.4" = {
                 name = "GPT-5.4";
