@@ -132,9 +132,9 @@ in {
                 };
                 variants = [
                   {
-                    id = "high";
+                    id = "minimal";
                     settings = {
-                      reasoningEffort = "high";
+                      reasoningEffort = "minimal";
                       textVerbosity = "low";
                       reasoningSummary = "auto";
                     };
@@ -143,6 +143,22 @@ in {
                     id = "low";
                     settings = {
                       reasoningEffort = "low";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                  }
+                  {
+                    id = "medium";
+                    settings = {
+                      reasoningEffort = "medium";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                  }
+                  {
+                    id = "high";
+                    settings = {
+                      reasoningEffort = "high";
                       textVerbosity = "low";
                       reasoningSummary = "auto";
                     };
