@@ -9,14 +9,14 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "opencode2";
-  version = "0.0.0-next-16296";
+  version = "0.0.0-beta-17498";
 
   src =
     fetchurl
     {
       x86_64-linux = {
         url = "https://registry.npmjs.org/@opencode-ai/cli-linux-x64/-/cli-linux-x64-${finalAttrs.version}.tgz";
-        hash = "sha256-ID8zDcsByGp3BAg1zLSdxsl+/FAeCsuS8v8gyXPHvKw=";
+        hash = "sha256-/pNmOn+pIChsL/fWJfdNEo8B9U66sFSbXlpkj1m3TOw=";
       };
       aarch64-linux = {
         url = "https://registry.npmjs.org/@opencode-ai/cli-linux-arm64/-/cli-linux-arm64-${finalAttrs.version}.tgz";
