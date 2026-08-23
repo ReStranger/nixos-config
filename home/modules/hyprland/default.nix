@@ -20,7 +20,6 @@
     optional
     ;
   inherit (lib.types) enum;
-  inherit (lib.hm.dag) entryAfter;
   inherit (lib.generators) mkLuaInline;
 
   terminal = "${getExe inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}";
@@ -47,12 +46,6 @@ in {
   config = mkIf cfg.enable {
     xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     home.sessionVariables = sessionVariables;
-    home = {
-      activation.rebuildKdeCache = entryAfter ["writeBoundary"] ''
-        ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
-      '';
-      inherit sessionVariables;
-    };
     module.hyprland = {
       styles.round.enable = cfg.style == "round";
       styles.flat.enable = cfg.style == "flat";
@@ -84,9 +77,6 @@ in {
       xwayland.enable = true;
       systemd.enable = false;
       configType = "lua";
-      plugins = [
-        # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
-      ];
       settings =
         {
           monitor = [
@@ -98,19 +88,6 @@ in {
             }
           ];
 
-          # on = {
-          #   _args = let
-          #     f = path:
-          #       mkLuaInline ''
-          #         function()
-          #           hl.exec_cmd("uwsm app -- ${path}")
-          #         end
-          #       '';
-          #   in [
-          #     "hyprland.start"
-          #     (f "${pkgs.awww}/bin/awww")
-          #   ];
-          # };
           config = {
             general = {
               resize_on_border = false;
@@ -186,16 +163,7 @@ in {
               accel_profile = "flat";
             };
 
-            # plugin = {
-            #   csgo_vulkan_fix = {
-            #     fix_mouse = true;
-            #   };
-            # };
-
-            ecosystem = {
-              no_update_news = true;
-              # enforce_permissions = true;
-            };
+            ecosystem.no_update_news = true;
           };
 
           gesture = mkIf isLaptop [
@@ -279,14 +247,6 @@ in {
               bezier = "default";
             }
           ];
-          # "plugin.csgo_vulkan_fix.vkfix_app" = let
-          #   app = name: w: h: {
-          #     app = name;
-          #     inherit w h;
-          #   };
-          # in [
-          #   (app "cs2" 1440 1080)
-          # ];
 
           bind = let
             mainMod = "SUPER";

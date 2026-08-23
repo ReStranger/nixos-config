@@ -15,44 +15,32 @@
   window_rule = [
     {
       name = "workspace-1-pin-browser";
-      match = {
-        class = "^zen-beta$";
-      };
+      match.class = "^zen-beta$";
       workspace = "1 silent";
     }
     {
       name = "workspace-2-pin-obsidian";
-      match = {
-        class = "^obsidian$";
-      };
+      match.class = "^obsidian$";
       workspace = "2 silent";
     }
     {
       name = "workspace-3-pin-discord";
-      match = {
-        class = "^discord$";
-      };
+      match.class = "^discord$";
       workspace = "3 silent";
     }
     {
       name = "workspace-3-pin-ayugram";
-      match = {
-        class = "^com.ayugram.desktop$";
-      };
+      match.class = "^com.ayugram.desktop$";
       workspace = "3 silent";
     }
     {
       name = "workspace-5-pin-steam-update";
-      match = {
-        initial_title = "^Steam$";
-      };
+      match.initial_title = "^Steam$";
       workspace = "5 silent";
     }
     {
       name = "workspace-5-steam";
-      match = {
-        class = "^steam$";
-      };
+      match.class = "^steam$";
       workspace = "5 silent";
     }
 
@@ -77,23 +65,17 @@
 
     {
       name = "global-transparency";
-      match = {
-        class = ".*";
-      };
+      match.class = ".*";
       opacity = "0.89 override 0.89 override";
     }
     {
       name = "disable-transparency-in-fullscreen";
-      match = {
-        fullscreen = true;
-      };
+      match.fullscreen = true;
       opacity = "1.0 override 1.0 override";
     }
     {
       name = "disable-transparency-in-terminal";
-      match = {
-        class = "^com.mitchellh.ghostty$";
-      };
+      match.class = "^com.mitchellh.ghostty$";
       opacity = "1.0 override 1.0 override";
     }
 
@@ -111,18 +93,13 @@
     }
 
     {
-      match = {
-        class = "cs2";
-      };
+      match.class = "cs2";
       immediate = true;
     }
 
     {
       name = "portal-filepicker";
-      match = {
-        class = "^org.freedesktop.impl.portal.desktop.kde$";
-        title = "^Открытие файлов$";
-      };
+      match.class = "^org.freedesktop.impl.portal.desktop.kde$";
       size = "1230 730";
       float = true;
       fullscreen = false;
