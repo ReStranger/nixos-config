@@ -10,6 +10,9 @@ in {
   config = mkIf cfg.enable {
     systemd.oomd = {
       enable = true;
+      enableRootSlice = true;
+      enableUserSlices = true;
+      enableSystemSlice = true;
       settings.OOM = {
         DefaultMemoryPressureLimit = "90%";
         DefaultMemoryPressureDurationSec = "10s";
