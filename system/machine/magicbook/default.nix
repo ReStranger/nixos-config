@@ -51,10 +51,7 @@ _: {
           "af415e486f516107" # party
         ];
       };
-      zram = {
-        enable = true;
-        deviceNumber = 2;
-      };
+      zram.enable = true;
     };
 
     programs = {

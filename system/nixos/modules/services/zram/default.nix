@@ -8,25 +8,15 @@
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 in {
-  options.module.services.zram = {
-    enable = mkEnableOption "Enable zram";
-    deviceNumber = mkOption {
-      type = types.number;
-      default = 1;
-      description = ''
-        Change number of ram devices
-      '';
-    };
-  };
+  options.module.services.zram.enable = mkEnableOption "Enable zram";
   config = mkIf cfg.enable {
     zramSwap = {
       enable = true;
+      memoryPercent = 200;
       priority = 32767;
-      swapDevices = cfg.deviceNumber;
+      swapDevices = 1;
     };
     boot = {
       kernelParams = [
