@@ -38,12 +38,27 @@ in {
           stdin
         ];
       };
-      extraConfigFiles = {
+      extraConfigFiles = let
+        uwsmPreprocess = pkgs.writeShellScript "anyrun-preprocess-exec" ''
+          mode="$1"
+          shift
+
+          if [ "$mode" = "term" ]; then
+            echo "${lib.getExe pkgs.uwsm} app -T -- $*"
+          else
+            echo "${lib.getExe pkgs.uwsm} app -- $*"
+          fi
+        '';
+      in {
         "applications.ron".text = ''
           Config(
             desktop_actions: false,
             max_entries: 6,
-            terminal: Some("wezterm"),
+            preprocess_exec_script: Some("${uwsmPreprocess}"),
+            terminal: Some(Terminal(
+              command: "ghostty",
+              args: "-e {}",
+            )),
           )
         '';
 
