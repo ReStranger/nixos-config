@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
+  isLinux,
   isWorkstation,
   hyprlandEnable,
   ...
 }: let
   cfg = config.module.user.packages;
-  inherit (pkgs.stdenv) isLinux;
   inherit (lib) mkEnableOption mkIf optionals;
 in {
   options.module.user.packages = {

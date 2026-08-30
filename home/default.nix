@@ -17,8 +17,8 @@
   allDirs,
   ...
 }: let
-  inherit (pkgs.stdenv) isDarwin;
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
   inherit (lib) optional readFile;
 
   stateVersion = hmStateVersion;
