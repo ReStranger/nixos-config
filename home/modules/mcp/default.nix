@@ -26,6 +26,10 @@ in {
           url = "http://localhost:3229/mcp";
         };
 
+        playwright = {
+          url = "http://localhost:3230/mcp";
+        };
+
         web-search = {
           url = "http://localhost:3228/mcp";
         };
