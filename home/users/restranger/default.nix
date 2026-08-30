@@ -37,6 +37,11 @@
             MCP_NIXOS_PATH = "/mcp";
           };
         };
+        playwright = {
+          enable = true;
+          package = pkgs.playwright-mcp;
+          args = ["--port" "3230"];
+        };
       };
     };
     ida.enable = isWorkstation;
