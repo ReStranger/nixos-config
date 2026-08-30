@@ -140,6 +140,7 @@ in {
           "zen.welcome-screen.seen" = true;
           "zen.widget.linux.transparency" = isLinux;
           "browser.tabs.allow_transparent_browser" = true;
+          "browser.tabs.unloadOnLowMemory" = true;
         };
         search = {
           force = true;
