@@ -48,6 +48,7 @@
     opencode.enable = isWorkstation;
     zathura.enable = isWorkstation;
     obs-studio.enable = isWorkstation;
+    pi-coding-agent.enable = isWorkstation;
     stylix.enable = isWorkstation;
     thunderbird.enable = isWorkstation;
     zsh.enable = isWorkstation;
