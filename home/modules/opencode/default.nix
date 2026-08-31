@@ -30,6 +30,22 @@ in {
       enable = true;
       enableMcpIntegration = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      context = ''
+        ## Running tools
+
+        - If a command is missing, run it ephemerally via Nix — never install it.
+        - One-off:      `nix run nixpkgs#<package> -- <args>`
+        - Shell + cmds: `nix shell nixpkgs#<p1> [nixpkgs#<p2>...] -c <cmd> [args...]`
+        - Repo flakes:  prefer `nix develop -c <cmd> ...` over hand-built shells.
+        - STRICTLY FORBIDDEN: `nix-env -iA nixos.<pkg>`, `nix profile install`,
+          `npm i -g`, `pip install --user`, and any other global/user installs.
+          If a tool seems to require a persistent install, stop and tell the
+          user to add it to their NixOS/Home Manager config instead.
+        - Use exact attribute paths when the package name is ambiguous
+          (e.g. `nixpkgs#nil` vs editor packages).
+        - If the package does not exist in nixpkgs, report it rather than
+          looking for workarounds.
+      '';
       cli = {
         animations = true;
         debug = {
