@@ -44,9 +44,9 @@ in {
           shift
 
           if [ "$mode" = "term" ]; then
-            echo "${lib.getExe pkgs.uwsm} app -T -- $*"
+            echo "nohup ${lib.getExe pkgs.uwsm} app -T -- $* >/dev/null 2>&1 & disown"
           else
-            echo "${lib.getExe pkgs.uwsm} app -- $*"
+            echo "nohup ${lib.getExe pkgs.uwsm} app -- $* >/dev/null 2>&1 & disown"
           fi
         '';
       in {
