@@ -40,7 +40,7 @@
         playwright = {
           enable = true;
           package = pkgs.playwright-mcp;
-          args = ["--port" "3230"];
+          args = ["--host" "127.0.0.1" "--port" "3230"];
         };
       };
     };
