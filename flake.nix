@@ -77,6 +77,7 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop";
     anyrun.url = "github:anyrun-org/anyrun";
     kidex.url = "github:Kirottu/kidex";
     matugen.url = "github:InioX/Matugen";

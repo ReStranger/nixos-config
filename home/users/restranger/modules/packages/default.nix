@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   isLinux,
   isWorkstation,
   hyprlandEnable,
@@ -84,7 +85,7 @@ in {
         lunar-client
       ]
       ++ optionals (isLinux && isWorkstation) [
-        ayugram-desktop
+        inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
         libnotify
         bottles
         figma-linux

@@ -155,6 +155,28 @@ in {
             ];
           }
           {
+            url = "https://ayugram-desktop.cachix.org";
+            public_key = "ayugram-desktop.cachix.org-1:AZ5EqHrJsAKL5YkZYLPEsb1FdD9QlypUwQ0REcJftgA=";
+            filters = [
+              {
+                action = "allow";
+                field = "name";
+                pattern = "ayugram-desktop*";
+              }
+            ];
+          }
+          {
+            url = "https://tg-owt.cachix.org";
+            public_key = "tg-owt.cachix.org-1:lp0BukIhSK3EIyLcDhDZ5zABgT48nmNp6t4SnZ0wr8w=";
+            filters = [
+              {
+                action = "allow";
+                field = "name";
+                pattern = "tg_owt*";
+              }
+            ];
+          }
+          {
             url = "https://install.determinate.systems";
             public_key = "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=";
           }
