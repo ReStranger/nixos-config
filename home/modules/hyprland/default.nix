@@ -280,24 +280,24 @@ in {
               (f "${mainMod} + ALT + R" "hyprctl reload" {})
 
               # Window state
-              (d "${mainMod} + ALT + R" "hl.dsp.layout(\"togglesplit\")" {})
-              (d "${mainMod} + SHIFT + F" "hl.dsp.window.float({ action = \"toggle\" })" {})
+              (d "${mainMod} + R" "hl.dsp.layout('togglesplit')" {})
+              (d "${mainMod} + SHIFT + F" "hl.dsp.window.float({ action = 'toggle' })" {})
               (d "${mainMod} + F" "hl.dsp.window.fullscreen()" {})
               (d "${mainMod} + SHIFT + P" "hl.dsp.window.pseudo()" {})
 
               # Clipboard / screenshots
               (f "CTRL + Print" "${getExe pkgs.grimblast} --notify --freeze copy area" {})
               (f "CTRL + SHIFT + Print" "${getExe pkgs.grimblast} --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png" {})
-              (d "${mainMod} + L" "hl.dsp.focus({ direction = \"right\" })" {})
-              (d "${mainMod} + H" "hl.dsp.focus({ direction = \"left\" })" {})
-              (d "${mainMod} + K" "hl.dsp.focus({ direction = \"up\" })" {})
-              (d "${mainMod} + J" "hl.dsp.focus({ direction = \"down\" })" {})
+              (d "${mainMod} + L" "hl.dsp.focus({ direction = 'right' })" {})
+              (d "${mainMod} + H" "hl.dsp.focus({ direction = 'left' })" {})
+              (d "${mainMod} + K" "hl.dsp.focus({ direction = 'up' })" {})
+              (d "${mainMod} + J" "hl.dsp.focus({ direction = 'down' })" {})
 
               # Window swap
-              (d "${mainMod} + SHIFT + H" "hl.dsp.window.move({ direction = \"left\" })" {})
-              (d "${mainMod} + SHIFT + L" "hl.dsp.window.move({ direction = \"right\" })" {})
-              (d "${mainMod} + SHIFT + K" "hl.dsp.window.move({ direction = \"up\" })" {})
-              (d "${mainMod} + SHIFT + J" "hl.dsp.window.move({ direction = \"down\" })" {})
+              (d "${mainMod} + SHIFT + H" "hl.dsp.window.move({ direction = 'left' })" {})
+              (d "${mainMod} + SHIFT + L" "hl.dsp.window.move({ direction = 'right' })" {})
+              (d "${mainMod} + SHIFT + K" "hl.dsp.window.move({ direction = 'up' })" {})
+              (d "${mainMod} + SHIFT + J" "hl.dsp.window.move({ direction = 'down' })" {})
 
               # Resize
               (d "${mainMod} + CTRL + H" "hl.dsp.window.resize({ x = -20, y = 0, relative = true })" {})
@@ -306,18 +306,18 @@ in {
               (d "${mainMod} + CTRL + J" "hl.dsp.window.resize({ x = 0, y = 20, relative = true })" {})
 
               # Special workspace
-              (d "${mainMod} + S" "hl.dsp.workspace.toggle_special(\"magic\")" {})
-              (d "${mainMod} + SHIFT + S" "hl.dsp.window.move({ workspace = \"special:magic\", follow = false })" {})
+              (d "${mainMod} + S" "hl.dsp.workspace.toggle_special('magic')" {})
+              (d "${mainMod} + SHIFT + S" "hl.dsp.window.move({ workspace = 'special:magic', follow = false })" {})
 
               # Mouse drag
               (d "${mainMod} + mouse:272" "hl.dsp.window.drag()" {mouse = true;})
               (d "${mainMod} + mouse:273" "hl.dsp.window.resize()" {mouse = true;})
 
               # Pass through for OBS Studio
-              (d "ALT + F10" "hl.dsp.pass({ window = \"class:^(com\\\\.obsproject\\\\.Studio)$\" })" {})
+              (d "ALT + F10" "hl.dsp.pass({ window = 'class:^(com\\\\.obsproject\\\\.Studio)$' })" {})
 
               # Pass through for Discord
-              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = \"class:^(discord)$\" })" {})
+              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = 'class:^(discord)$' })" {})
             ]
             ++ (builtins.concatLists (
               builtins.genList (
@@ -336,10 +336,10 @@ in {
             ))
             ++ optionals isLaptop [
               # Pass through for OBS Studio
-              (d "ALT + F10" "hl.dsp.pass({ window = \"class:^(com\\\\.obsproject\\\\.Studio)$\" })" {})
+              (d "ALT + F10" "hl.dsp.pass({ window = 'class:^(com\\\\.obsproject\\\\.Studio)$' })" {})
 
               # Pass through for Discord
-              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = \"class:^(discord)$\" })" {})
+              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = 'class:^(discord)$' })" {})
               (d "${mainMod} + Control_L" "hl.dsp.window.drag()" {mouse = true;})
               (d "${mainMod} + ALT_L" "hl.dsp.window.resize()" {mouse = true;})
 
