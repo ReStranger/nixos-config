@@ -40,6 +40,7 @@ in {
           "npm:@juicesharp/rpiv-ask-user-question"
           "npm:@juicesharp/rpiv-advisor"
           "npm:@juicesharp/rpiv-btw"
+          "npm:@juicesharp/rpiv-i18n"
         ];
         ccHeader = {
           readOnlyConfig = true;
@@ -115,6 +116,8 @@ in {
         };
       };
     };
+
+    xdg.configFile."rpiv-i18n/locale.json".text = builtins.toJSON {locale = "ru";};
 
     home.file = {
       "${config.programs.pi-coding-agent.configDir}/extensions/pi-cwd-guard.json".text = builtins.toJSON {
