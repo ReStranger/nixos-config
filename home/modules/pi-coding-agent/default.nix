@@ -14,7 +14,33 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."bifrost/api_key" = {};
+    sops = {
+      secrets = {
+        "bifrost/api_key" = {};
+        "bifrost/server_url" = {};
+      };
+
+      templates."pi-agent-auth" = {
+        path = "${config.programs.pi-coding-agent.configDir}/auth.json";
+        mode = "0600";
+        content = builtins.toJSON {
+          opencode = {
+            type = "api_key";
+            key = "public";
+          };
+          bifrost-responses = {
+            type = "api_key";
+            key = config.sops.placeholder."bifrost/api_key";
+            env.BIFROST_BASE_URL = config.sops.placeholder."bifrost/server_url";
+          };
+          bifrost-completions = {
+            type = "api_key";
+            key = config.sops.placeholder."bifrost/api_key";
+            env.BIFROST_BASE_URL = config.sops.placeholder."bifrost/server_url";
+          };
+        };
+      };
+    };
 
     programs.pi-coding-agent = {
       enable = true;
@@ -41,6 +67,7 @@ in {
           "npm:@juicesharp/rpiv-advisor"
           "npm:@juicesharp/rpiv-btw"
           "npm:@juicesharp/rpiv-i18n"
+          "https://github.com/ReStranger/pi-bifrost-provider"
         ];
         ccHeader = {
           readOnlyConfig = true;
@@ -59,60 +86,6 @@ in {
 
       models = {
         providers = {
-          bifrost-responses = {
-            baseUrl = "https://bifrost.reworker.lol/v1";
-            apiKey = "!cat ${config.sops.secrets."bifrost/api_key".path}";
-            api = "openai-responses";
-            models = [
-              {
-                id = "gpt-5.4";
-                name = "GPT-5.4";
-                reasoning = true;
-                input = ["text" "image"];
-                contextWindow = 1047576;
-                maxTokens = 65536;
-                cost = {
-                  input = 2.5;
-                  output = 15.0;
-                  cacheRead = 0.25;
-                  cacheWrite = 0.0;
-                  tiers = [
-                    {
-                      inputTokensAbove = 200000;
-                      input = 5.0;
-                      output = 22.5;
-                      cacheRead = 0.5;
-                      cacheWrite = 0.0;
-                    }
-                  ];
-                };
-              }
-              {
-                id = "glm-5.2";
-                name = "GLM-5.2";
-                reasoning = true;
-                input = ["text" "image"];
-                contextWindow = 1048576;
-                maxTokens = 32768;
-              }
-            ];
-          };
-
-          bifrost-completions = {
-            baseUrl = "https://bifrost.reworker.lol/v1";
-            apiKey = "!cat ${config.sops.secrets."bifrost/api_key".path}";
-            api = "openai-completions";
-            models = [
-              {
-                id = "deepseek-v4-flash";
-                name = "deepseek-v4-flash";
-                reasoning = true;
-                input = ["text"];
-                contextWindow = 1048576;
-                maxTokens = 32768;
-              }
-            ];
-          };
         };
       };
     };
