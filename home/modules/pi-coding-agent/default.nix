@@ -116,9 +116,11 @@ in {
     };
 
     home.file = {
-      "${config.programs.pi-coding-agent.configDir}/extensions" = {
-        source = ./extensions;
-        recursive = true;
+      "${config.programs.pi-coding-agent.configDir}/extensions/pi-cwd-guard.json".text = builtins.toJSON {
+        allowedOutsideCwdPaths = [
+          "/tmp/pi"
+          "${pkgs.pi-coding-agent}/lib/node_modules/pi-monorepo"
+        ];
       };
       "${config.programs.pi-coding-agent.configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
     };
