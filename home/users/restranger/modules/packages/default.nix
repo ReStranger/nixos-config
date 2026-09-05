@@ -73,6 +73,7 @@ in {
         inkscape
         qbittorrent
         davinci-resolve_20
+        open-design
         xournalpp
         audacity
         obsidian
