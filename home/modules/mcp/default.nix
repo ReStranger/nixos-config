@@ -1,10 +1,11 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.module.mcp;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 in {
   options.module.mcp = {
     enable = mkEnableOption "Enable mcp module";
@@ -32,6 +33,15 @@ in {
 
         web-search = {
           url = "http://localhost:3228/mcp";
+        };
+
+        open-design = {
+          command = getExe pkgs.open-design;
+          args = [
+            "mcp"
+            "--daemon-url"
+            "http://127.0.0.1:7456"
+          ];
         };
       };
     };
