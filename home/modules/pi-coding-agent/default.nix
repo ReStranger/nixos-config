@@ -69,6 +69,7 @@ in {
           "npm:@juicesharp/rpiv-i18n"
           "https://github.com/ReStranger/pi-bifrost-provider"
           "https://github.com/ReStranger/pi-ui-enhanced"
+          "https://github.com/ReStranger/pi-working-enhanced"
         ];
         ccHeader = {
           readOnlyConfig = true;
