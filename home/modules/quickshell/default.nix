@@ -3,7 +3,6 @@
   lib,
   pkgs,
   inputs,
-  username,
   ...
 }: let
   cfg = config.module.quickshell;
@@ -34,7 +33,7 @@ in {
         (with pkgs; [qt6.qt5compat]);
 
       systemd.enable = true;
-      activeConfig = "/home/${username}/.config/quickshell";
+      activeConfig = "${config.xdg.configHome}/quickshell";
     };
   };
 }
