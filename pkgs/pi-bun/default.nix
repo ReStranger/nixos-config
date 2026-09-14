@@ -69,7 +69,7 @@ buildNpmPackage (finalAttrs: {
     npm run build --workspace=packages/coding-agent
 
     pushd packages/coding-agent
-    bun build --compile --no-compile-autoload-bunfig --target=bun-linux-x64-baseline \
+    bun build --compile --no-compile-autoload-bunfig \
       ./dist/bun/cli.js ./src/utils/image-resize-worker.ts \
       --outfile $TMPDIR/pi
     popd
