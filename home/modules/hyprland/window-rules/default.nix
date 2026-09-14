@@ -118,5 +118,11 @@
       border_size = 0;
       pin = true;
     }
+    {
+      name = "clock";
+      match.class = "^org.kde.kclock$";
+      size = "437 550";
+      float = true;
+    }
   ];
 }
