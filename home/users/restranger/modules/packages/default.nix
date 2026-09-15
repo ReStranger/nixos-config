@@ -88,7 +88,7 @@ in {
       ++ optionals (isLinux && isWorkstation) [
         inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
         libnotify
-        bottles
+        (bottles.override {removeWarningPopup = true;})
         figma-linux
         yabridge
         yabridgectl
