@@ -92,9 +92,7 @@ in {
         nh = "󱄅";
         nom = "󱄅";
         opencode = "󰚩";
-        opencode2 = "󰚩";
         pi = "󰏿";
-        ".pi-wrapped_" = "󰏿";
       };
     };
   };
