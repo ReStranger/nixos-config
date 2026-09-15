@@ -28,6 +28,10 @@ in {
             type = "api_key";
             key = "public";
           };
+          "llama.cpp" = {
+            type = "api_key";
+            env.LLAMA_BASE_URL = "http://127.0.0.1:11435";
+          };
           bifrost-responses = {
             type = "api_key";
             key = config.sops.placeholder."bifrost/api_key";
