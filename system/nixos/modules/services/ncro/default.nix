@@ -37,7 +37,7 @@ in {
         };
         upstreams = [
           {
-            url = "https://cache.nixos.org";
+            url = "https://mirror.yandex.ru/nixos";
             priority = 10;
             public_key = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
           }
@@ -191,7 +191,7 @@ in {
         ];
         fallback_cache = {
           enabled = true;
-          url = "https://mirror.yandex.ru/nixos/";
+          url = "https://cache.nixos.org";
           public_key = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
         };
         logging.timestamps = false;
