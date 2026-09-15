@@ -2,10 +2,11 @@
   lib,
   pkgs,
   config,
+  username,
   ...
 }: let
   cfg = config.module.programs.gamemode;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe';
 in {
   options.module.programs.gamemode = {
     enable = mkEnableOption "Enable gamemode";
@@ -17,8 +18,8 @@ in {
       enableRenice = true;
       settings = {
         custom = {
-          start = "${pkgs.libnotify}/bin/notify-send -send -a 'Gamemode' 'Optimizations activated'";
-          end = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'";
+          start = "${getExe' pkgs.libnotify "notify-send"} -send -a 'Gamemode' 'Optimizations activated'";
+          end = "${getExe' pkgs.libnotify "notify-send"} -a 'Gamemode' 'Optimizations deactivated'";
         };
       };
     };
