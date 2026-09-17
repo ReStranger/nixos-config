@@ -58,17 +58,17 @@ _: {
     programs = {
       corectrl.enable = true;
       fonts.enable = true;
-      gnupg.enable = true;
       gamemode.enable = true;
+      gnupg.enable = true;
       home-manager.enable = true;
       hyprland.enable = true;
-      throne.enable = true;
       nix-helper.enable = true;
       nix-ld.enable = true;
       steam.enable = true;
+      systemPackages.enable = true;
+      throne.enable = true;
       xdg-terminal-exec.enable = true;
       zsh.enable = true;
-      systemPackages.enable = true;
     };
   };
 }
