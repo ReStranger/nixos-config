@@ -7,7 +7,7 @@
 }: let
   cfg = config.module.anyrun;
   pkg = inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system};
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 in {
   options.module.anyrun = {
     enable = mkEnableOption "Enable anyrun program";
@@ -44,9 +44,9 @@ in {
           shift
 
           if [ "$mode" = "term" ]; then
-            echo "nohup ${lib.getExe pkgs.uwsm} app -T -- $* >/dev/null 2>&1 & disown"
+            echo "nohup ${getExe pkgs.uwsm} app -T -- $* >/dev/null 2>&1 & disown"
           else
-            echo "nohup ${lib.getExe pkgs.uwsm} app -- $* >/dev/null 2>&1 & disown"
+            echo "nohup ${getExe pkgs.uwsm} app -- $* >/dev/null 2>&1 & disown"
           fi
         '';
       in {
