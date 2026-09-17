@@ -30,11 +30,6 @@
       gvfs.enable = true;
       irqbalance.enable = true;
       kmscon.enable = true;
-      ncro.enable = true;
-      network = {
-        enable = true;
-        wifi.backend = "iwd";
-      };
       llama-cpp = {
         enable = true;
         package = pkgs.llama-cpp-vulkan;
@@ -44,6 +39,11 @@
           models-max = 1;
           sleep-idle-seconds = -1;
         };
+      };
+      ncro.enable = true;
+      network = {
+        enable = true;
+        wifi.backend = "iwd";
       };
       openssh.enable = true;
       opentablet.enable = true;
@@ -68,14 +68,14 @@
       gnupg.enable = true;
       home-manager.enable = true;
       hyprland.enable = true;
-      throne.enable = true;
       nix-helper.enable = true;
       nix-ld.enable = true;
-      tmate.enable = true;
       steam.enable = true;
+      systemPackages.enable = true;
+      throne.enable = true;
+      tmate.enable = true;
       xdg-terminal-exec.enable = true;
       zsh.enable = true;
-      systemPackages.enable = true;
     };
   };
 }
