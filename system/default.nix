@@ -32,6 +32,7 @@ in {
 
     overlays = [
       inputs.nix-cachyos-kernel.overlays.pinned
+      inputs.millennium.overlays.default
     ];
   };
 }

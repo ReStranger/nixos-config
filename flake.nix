@@ -85,6 +85,8 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
     opencode.url = "github:anomalyco/opencode/v2";
