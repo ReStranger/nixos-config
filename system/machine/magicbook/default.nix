@@ -28,6 +28,7 @@ _: {
       };
       gvfs.enable = true;
       irqbalance.enable = true;
+      kmscon.enable = true;
       ncro.enable = true;
       network = {
         enable = true;
