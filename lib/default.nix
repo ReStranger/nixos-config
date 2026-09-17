@@ -60,6 +60,7 @@
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
           inputs.ncro.nixosModules.default
+          inputs.nixos-millennium.nixosModules.default
           # inputs.nur.modules.nixos.default
         ]
         ++ constructors;
