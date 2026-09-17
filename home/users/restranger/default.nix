@@ -10,8 +10,8 @@
     zen-browser.enable = false;
   };
   module = {
-    cachix.enable = true;
-    fzf.enable = true;
+    ghostty.enable = isWorkstation;
+    ida.enable = isWorkstation;
     mcp.enable = isWorkstation;
     mcp-servers = {
       enable = isWorkstation;
@@ -44,25 +44,21 @@
         };
       };
     };
-    ida.enable = isWorkstation;
-    opencode.enable = isWorkstation;
-    zathura.enable = isWorkstation;
     obs-studio.enable = isWorkstation;
+    opencode.enable = isWorkstation;
     pi-coding-agent.enable = isWorkstation;
-    stylix.enable = isWorkstation;
     thunderbird.enable = isWorkstation;
-    zsh.enable = isWorkstation;
+    zathura.enable = isWorkstation;
     zen-browser.enable = isWorkstation;
 
     dconf.enable = isLinux && isWorkstation;
-    xdg-user-dirs.enable = isLinux && isWorkstation;
     gtk.enable = isLinux && isWorkstation;
     kdeconnect.enable = isLinux && isWorkstation;
     mangohud.enable = isLinux && isWorkstation;
     millennium.enable = isLinux && isWorkstation;
-    showmethekey.enable = isLinux && isWorkstation;
-    ghostty.enable = isLinux && isWorkstation;
     qt.enable = isLinux && isWorkstation;
+    showmethekey.enable = isLinux && isWorkstation;
+    xdg-user-dirs.enable = isLinux && isWorkstation;
 
     anyrun.enable = hyprlandEnable && isLinux && isWorkstation;
     discord = {
@@ -74,18 +70,22 @@
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     quickshell.enable = hyprlandEnable && isLinux && isWorkstation;
 
-    nix.enable = true;
     btop.enable = true;
+    cachix.enable = true;
     direnv.enable = true;
+    fzf.enable = true;
     git.enable = true;
     lazygit.enable = true;
     nix-your-shell.enable = true;
+    nix.enable = true;
     nvim.enable = true;
     sops.enable = true;
     starship.enable = true;
+    stylix.enable = true;
     tmux.enable = true;
     variables.enable = true;
     yazi.enable = true;
+    zsh.enable = true;
 
     user = {
       xdg.enable = isLinux && isWorkstation;
