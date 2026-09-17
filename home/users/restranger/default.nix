@@ -59,6 +59,7 @@
     gtk.enable = isLinux && isWorkstation;
     kdeconnect.enable = isLinux && isWorkstation;
     mangohud.enable = isLinux && isWorkstation;
+    millennium.enable = isLinux && isWorkstation;
     showmethekey.enable = isLinux && isWorkstation;
     ghostty.enable = isLinux && isWorkstation;
     qt.enable = isLinux && isWorkstation;
