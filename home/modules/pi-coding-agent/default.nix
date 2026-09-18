@@ -61,6 +61,7 @@ in {
           clearOnShrink = true;
         };
         showCacheMissNotices = true;
+        enableInstallTelemetry = false;
         tuiMode = "fullscreen";
         fullscreenExitOutput = "transcript";
         fullscreenCopyOnSelect = true;
