@@ -88,6 +88,7 @@ in {
           "https://github.com/ReStranger/pi-bifrost-provider"
           "https://github.com/ReStranger/pi-ui-enhanced"
           "https://github.com/ReStranger/pi-working-enhanced"
+          "https://github.com/ReStranger/pi-clear-cmd"
         ];
         ccHeader = {
           readOnlyConfig = true;
@@ -140,6 +141,26 @@ in {
             "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode/docs/plan-craft.md" = "allow";
           };
         };
+      };
+      "${configDir}/extensions/pi-clear-cmd.json".text = builtins.toJSON {
+        hidden = [
+          "htg"
+          "hi"
+          "hi"
+          "hc"
+          "hv"
+          "hm"
+          "hdf"
+          "hsp"
+          "hs"
+          "hcl"
+          "hps"
+          "hpcl"
+          "fff-mode"
+          "fff-health"
+          "fff-rescan"
+          "languages"
+        ];
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
       "${configDir}/pi-fff.json".text = builtins.toJSON {
