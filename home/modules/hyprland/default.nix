@@ -22,7 +22,7 @@
   inherit (lib.types) enum;
   inherit (lib.generators) mkLuaInline;
 
-  terminal = "${getExe inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default}";
+  terminal = "${getExe pkgs.alacritty}";
   fileManager = "${getExe pkgs.kdePackages.dolphin}";
   menu = "${getExe inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}";
 
