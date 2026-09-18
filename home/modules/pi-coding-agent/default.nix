@@ -58,6 +58,19 @@ in {
       };
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
+        defaultProvider = "bifrost-responses";
+        defaultModel = "gpt-5.4";
+        enabledModels = [
+          "bifrost-responses/gpt-5.4"
+          "opencode/muse-spark-1.3-contributor-free"
+          "bifrost-responses/deepseek-v4-flash"
+          "bifrost-responses/glm-5.2"
+          "bifrost-responses/glm-5.3"
+          "bifrost-responses/gpt-5.5"
+          "opencode/nemotron-3-ultra-free"
+          "opencode/mimo-v2.5-free"
+          "opencode/hy3-free"
+        ];
         terminal = {
           clearOnShrink = true;
         };
