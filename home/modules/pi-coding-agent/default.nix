@@ -50,9 +50,7 @@ in {
       enable = true;
       package = pkgs.pi-bun;
       configDir = "${config.xdg.configHome}/pi/agent";
-      extraPackages = with pkgs; [nodejs bun];
       keybindings = {
-        "app.thinking.cycle" = ["ctrl+t"];
       };
       settings = {
         theme = "stylix";
