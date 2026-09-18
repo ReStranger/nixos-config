@@ -51,6 +51,10 @@ in {
       package = pkgs.pi-bun;
       configDir = "${config.xdg.configHome}/pi/agent";
       keybindings = {
+        "tui.select.up" = ["up" "k"];
+        "tui.select.down" = ["down" "j"];
+        "tui.select.pageUp" = ["pageUp" "ctrl+u"];
+        "tui.select.pageDown" = ["pageDown" "ctrl+d"];
       };
       settings = {
         theme = "stylix";
