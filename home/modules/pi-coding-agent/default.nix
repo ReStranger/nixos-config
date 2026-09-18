@@ -73,7 +73,6 @@ in {
           "npm:pi-context-view"
           "npm:pi-subagents"
           "npm:pi-cwd-guard"
-          "npm:pi-model-sort"
           "npm:pi-lens"
           "npm:@hank-warren/pi-plan-mode"
           "npm:@juicesharp/rpiv-todo"
