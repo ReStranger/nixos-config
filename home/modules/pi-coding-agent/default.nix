@@ -57,6 +57,13 @@ in {
         "tui.select.pageDown" = ["pageDown" "ctrl+d"];
       };
       settings = {
+        terminal = {
+          clearOnShrink = true;
+        };
+        showCacheMissNotices = true;
+        tuiMode = "fullscreen";
+        fullscreenExitOutput = "transcript";
+        fullscreenCopyOnSelect = true;
         theme = "stylix";
         packages = [
           "npm:pi-mcp-adapter"
