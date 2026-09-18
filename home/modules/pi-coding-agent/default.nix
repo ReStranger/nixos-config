@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.module.pi-coding-agent;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 in {
   imports = [./stylix.nix];
 
@@ -65,6 +65,7 @@ in {
         tuiMode = "fullscreen";
         fullscreenExitOutput = "transcript";
         fullscreenCopyOnSelect = true;
+        npmCommand = ["${getExe pkgs.bun}"];
         theme = "stylix";
 
         packages = [
