@@ -76,10 +76,10 @@ in {
           "npm:@gotgenes/pi-permission-system"
           "npm:pi-lens"
           "npm:@hank-warren/pi-plan-mode"
+          "npm:pi-btw"
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
           "npm:@juicesharp/rpiv-advisor"
-          "npm:@juicesharp/rpiv-btw"
           "npm:@juicesharp/rpiv-i18n"
           "https://github.com/ReStranger/pi-bifrost-provider"
           "https://github.com/ReStranger/pi-ui-enhanced"
@@ -137,8 +137,7 @@ in {
           };
         };
       };
-        ];
-      };
+      "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
     };
   };
 }
