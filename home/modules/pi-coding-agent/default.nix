@@ -80,6 +80,7 @@ in {
           "npm:@narumitw/pi-goal"
           "npm:@snowy117/pi-dcp"
           "npm:pi-token-speed"
+          "npm:@ff-labs/pi-fff"
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
           "npm:@juicesharp/rpiv-advisor"
@@ -141,6 +142,16 @@ in {
         };
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
+      "${configDir}/pi-fff.json".text = builtins.toJSON {
+        "$schema" = "https://raw.githubusercontent.com/dmtrKovalenko/fff/main/packages/pi-fff/pi-fff.schema.json";
+        mode = "override";
+        frecencyDbPath = "${config.home.homeDirectory}/.local/state/pi/fff/frecency";
+        historyDbPath = "${config.home.homeDirectory}/.local/state/pi/fff/history";
+        enableFsRootScanning = false;
+        enableHomeDirScanning = false;
+        warnOnHomeDirScan = false;
+        followSymlinks = true;
+      };
     };
   };
 }
