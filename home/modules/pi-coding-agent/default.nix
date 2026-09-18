@@ -98,7 +98,7 @@ in {
           ver = 1;
           grad = true;
           lines = true;
-          pkg = false;
+          pkg = true;
           speed = 50;
           slogan = "Code something that makes you proud";
           sloganOn = true;
