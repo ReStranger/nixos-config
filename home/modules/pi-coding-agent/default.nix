@@ -66,13 +66,14 @@ in {
         fullscreenExitOutput = "transcript";
         fullscreenCopyOnSelect = true;
         theme = "stylix";
+
         packages = [
           "npm:pi-mcp-adapter"
           "npm:pi-web-access"
           "npm:pi-cc-header"
           "npm:pi-context-view"
           "npm:pi-subagents"
-          "npm:pi-cwd-guard"
+          "npm:@gotgenes/pi-permission-system"
           "npm:pi-lens"
           "npm:@hank-warren/pi-plan-mode"
           "npm:@juicesharp/rpiv-todo"
@@ -107,14 +108,37 @@ in {
 
     xdg.configFile."rpiv-i18n/locale.json".text = builtins.toJSON {locale = "ru";};
 
-    home.file = {
-      "${config.programs.pi-coding-agent.configDir}/extensions/pi-cwd-guard.json".text = builtins.toJSON {
-        allowedOutsideCwdPaths = [
-          "/tmp/pi"
-          "${pkgs.pi-coding-agent}/lib/node_modules/pi-monorepo"
+    home.file = let
+      configDir = config.programs.pi-coding-agent.configDir;
+      piMonorepoPath = builtins.unsafeDiscardStringContext "${pkgs.pi-bun}/lib/node_modules/pi-monorepo";
+    in {
+      "${configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
+      "${configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
+        permission = {
+          "*" = "allow";
+          path = {
+            "*" = "allow";
+            "*.env" = "deny";
+            "*.env.*" = "deny";
+            "*.env.example" = "allow";
+          };
+          bash = {
+            "*" = "allow";
+            "rm -rf *" = "ask";
+            "sudo *" = "ask";
+          };
+          external_directory = {
+            "*" = "ask";
+            "/tmp/pi" = "allow";
+            "${piMonorepoPath}" = "allow";
+            "${configDir}/plans" = "allow";
+            "${configDir}/npm/node_modules/pi-subagents" = "allow";
+            "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode/docs/plan-craft.md" = "allow";
+          };
+        };
+      };
         ];
       };
-      "${config.programs.pi-coding-agent.configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
     };
   };
 }
