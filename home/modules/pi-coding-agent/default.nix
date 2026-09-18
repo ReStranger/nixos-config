@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.module.pi-coding-agent;
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf getExe getVersion;
 in {
   imports = [./stylix.nix];
 
@@ -57,6 +57,7 @@ in {
         "tui.select.pageDown" = ["pageDown" "ctrl+d"];
       };
       settings = {
+        lastChangelogVersion = getVersion pkgs.pi-bun;
         terminal = {
           clearOnShrink = true;
         };
