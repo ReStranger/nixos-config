@@ -58,8 +58,8 @@ in {
       };
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
-        defaultProvider = "bifrost-responses";
-        defaultModel = "gpt-5.4";
+        defaultProvider = "opencode-free";
+        defaultModel = "muse-spark-1.3-contributor-free";
         enabledModels = [
           "bifrost-responses/gpt-5.4"
           "opencode/muse-spark-1.3-contributor-free"
@@ -104,6 +104,7 @@ in {
           "https://github.com/ReStranger/pi-ui-enhanced"
           "https://github.com/ReStranger/pi-working-enhanced"
           "https://github.com/ReStranger/pi-clear-cmd"
+          "https://github.com/ReStranger/pi-opencode-free"
         ];
         ccHeader = {
           readOnlyConfig = true;
