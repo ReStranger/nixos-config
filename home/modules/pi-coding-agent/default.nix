@@ -14,38 +14,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops = {
-      secrets = {
-        "bifrost/api_key" = {};
-        "bifrost/server_url" = {};
-      };
-
-      templates."pi-agent-auth" = {
-        path = "${config.programs.pi-coding-agent.configDir}/auth.json";
-        mode = "0600";
-        content = builtins.toJSON {
-          opencode = {
-            type = "api_key";
-            key = "public";
-          };
-          "llama.cpp" = {
-            type = "api_key";
-            env.LLAMA_BASE_URL = "http://127.0.0.1:11435";
-          };
-          bifrost-responses = {
-            type = "api_key";
-            key = config.sops.placeholder."bifrost/api_key";
-            env.BIFROST_BASE_URL = config.sops.placeholder."bifrost/server_url";
-          };
-          bifrost-completions = {
-            type = "api_key";
-            key = config.sops.placeholder."bifrost/api_key";
-            env.BIFROST_BASE_URL = config.sops.placeholder."bifrost/server_url";
-          };
-        };
-      };
-    };
-
     programs.pi-coding-agent = {
       enable = true;
       package = pkgs.pi-bun;
