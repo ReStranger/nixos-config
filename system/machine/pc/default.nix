@@ -4,6 +4,7 @@
     boot.enable = true;
     ccache.enable = true;
     locale.enable = true;
+    performance.enable = true;
     plymouth.enable = true;
     security = {
       enable = true;
