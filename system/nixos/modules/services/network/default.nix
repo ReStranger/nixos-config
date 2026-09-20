@@ -52,6 +52,7 @@ in {
   };
   config = mkIf cfg.enable {
     boot.initrd.systemd.network.wait-online.enable = false;
+    services.resolved.enable = true;
     systemd = {
       network.wait-online.enable = false;
       services."NetworkManager-wait-online".wantedBy = mkForce [];
@@ -60,6 +61,7 @@ in {
       hostName = "${hostname}";
       networkmanager = {
         enable = true;
+        dns = "systemd-resolved";
         wifi = {
           inherit (cfg.wifi) backend;
           inherit (cfg.wifi) macAddress;
