@@ -8,18 +8,15 @@
 }: let
   cfg = config.module.zen-browser;
   inherit (lib) mkEnableOption mkIf;
-  inherit (lib.hm.dag) entryAfter;
 in {
   options.module.zen-browser = {
     enable = mkEnableOption "Enable zen-browser module";
   };
 
   config = mkIf cfg.enable {
-    home.activation.linkZenThemes = entryAfter ["writeBoundary"] ''
-      ln -fs ${config.xdg.configHome}/nixos/home/modules/zen-browser/zen-themes.json ${config.xdg.configHome}/zen/default/zen-themes.json
-    '';
     programs.zen-browser = {
       enable = true;
+
       policies = let
         mkLockedAttrs = builtins.mapAttrs (
           _: value: {
@@ -29,24 +26,16 @@ in {
         );
         mkPluginUrl = id: "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
 
-        mkExtensionEntry = {
-          id,
-          pinned ? false,
-        }: let
-          base = {
-            install_url = mkPluginUrl id;
-            installation_mode = "force_installed";
-          };
-        in
-          if pinned
-          then base // {default_area = "navbar";}
-          else base;
+        mkExtensionEntry = id: {
+          install_url = mkPluginUrl id;
+          installation_mode = "force_installed";
+        };
 
         mkExtensionSettings = builtins.mapAttrs (
           _: entry:
             if builtins.isAttrs entry
             then entry
-            else mkExtensionEntry {id = entry;}
+            else mkExtensionEntry entry
         );
       in {
         AutofillAddressEnabled = true;
@@ -70,14 +59,8 @@ in {
           Cache = true;
         };
         ExtensionSettings = mkExtensionSettings {
-          "uBlock0@raymondhill.net" = mkExtensionEntry {
-            id = "ublock-origin";
-            pinned = true;
-          };
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = mkExtensionEntry {
-            id = "bitwarden-password-manager";
-            pinned = true;
-          };
+          "uBlock0@raymondhill.net" = "ublock-origin";
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
           "authenticator@mymindstorm" = "auth-helper";
           "firefox@betterttv.net" = "betterttv";
           "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}" = "catppuccin-web-file-icons";
@@ -130,6 +113,18 @@ in {
         };
       };
       profiles.default = {
+        mods = [
+          "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
+          "642854b5-88b4-4c40-b256-e035532109df" # Transparent Zen
+          "9bbaab67-a2c8-4d79-837f-90cd72a8932a" # Big Essentials
+          "cb15abdb-0514-4e09-8ce5-722cf1f4a20f" # Hide Extension Name
+          "8039de3b-72e1-41ea-83b3-5077cf0f98d1" # Trackpad Animation
+          "79dde383-4fe7-404a-a8e6-9be440022542" # Tidy Popup
+        ];
+        extensionButtons."nav-bar" = [
+          "uBlock0@raymondhill.net"
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}"
+        ];
         settings = {
           "zen.workspaces.continue-where-left-off" = true;
           "zen.workspaces.natural-scroll" = true;
