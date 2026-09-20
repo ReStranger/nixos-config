@@ -10,7 +10,6 @@
     zen-browser.enable = false;
   };
   module = {
-    alacritty.enable = isWorkstation;
     ghostty.enable = isWorkstation;
     ida.enable = isWorkstation;
     mcp.enable = isWorkstation;
