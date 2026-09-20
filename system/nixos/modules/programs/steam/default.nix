@@ -9,33 +9,15 @@
     (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
 in {
-  options.module.programs.steam = {
-    enable = mkEnableOption "Enable steam client";
-    proton-ge = mkOption {
-      type = types.bool;
-      default = true;
-      description = ''
-        Enable proton-ge
-      '';
-    };
-  };
+  options.module.programs.steam.enable = mkEnableOption "Enable steam client";
 
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
       package = pkgs.millennium-steam;
-      extraCompatPackages =
-        if cfg.proton-ge
-        then
-          with pkgs; [
-            proton-ge-bin
-          ]
-        else [];
-      protontricks.enable = true;
+      extraCompatPackages = with pkgs; [proton-ge-bin];
     };
   };
 }
