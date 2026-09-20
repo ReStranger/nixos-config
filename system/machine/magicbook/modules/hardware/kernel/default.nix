@@ -18,7 +18,6 @@
       "quiet"
       "splash"
       "mitigations=off"
-      "nowatchdog"
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
       "threadirqs"
@@ -27,8 +26,6 @@
       "selinux=0"
       "raid=noautodetect"
       "preempt=none"
-      "hpet=disable"
-      "nmi_watchdog=0"
       "usbcore.autosuspend=5"
     ];
     kernel.sysctl = {
@@ -36,7 +33,6 @@
       "net.ipv4.ip_default_ttl" = 65;
       "vm.dirty_writeback_centisecs" = 1500;
     };
-    extraModulePackages = [];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };
 }
