@@ -19,7 +19,6 @@
       "quiet"
       "splash"
       "mitigations=off"
-      "nowatchdog"
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
       "threadirqs"
@@ -28,9 +27,7 @@
       "selinux=0"
       "raid=noautodetect"
       "preempt=none"
-      "hpet=disable"
     ];
-    extraModulePackages = [];
     supportedFilesystems = ["ntfs"];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };
