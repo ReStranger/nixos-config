@@ -14,6 +14,15 @@
       module: ((builtins.pathExists module) && ((builtins.readFileType module) == "directory"))
     ) (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
 
+  localPackages = {
+    lib,
+    callPackage,
+    directory,
+  }:
+    builtins.mapAttrs (_: value: value.default) (lib.packagesFromDirectoryRecursive {
+      inherit callPackage directory;
+    });
+
   mkHost = machineDir: {
     username ? "user",
     stateVersion ? defaultStateVersion,
@@ -35,6 +44,7 @@
           inputs
           self
           allDirs
+          localPackages
           hostname
           username
           stateVersion
@@ -86,6 +96,7 @@
           inputs
           self
           allDirs
+          localPackages
           hostname
           username
           platform
@@ -124,6 +135,7 @@
           inputs
           self
           allDirs
+          localPackages
           hostname
           username
           platform
@@ -140,4 +152,6 @@ in {
   genNixos = builtins.mapAttrs mkHost;
   genDarwin = builtins.mapAttrs mkHostDarwin;
   genAndroid = builtins.mapAttrs mkHostAndroid;
+
+  inherit allDirs localPackages;
 }

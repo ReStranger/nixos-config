@@ -1,6 +1,7 @@
 {
   self,
   inputs,
+  localPackages,
   ...
 }: let
   baseSettings = {
@@ -24,19 +25,11 @@ in {
   nixpkgs.overlays = [
     (
       final: prev: let
-        selfPkgs = prev.lib.packagesFromDirectoryRecursive {
+        selfPkgsUnwrapped = localPackages {
+          inherit (prev) lib;
           inherit (final) callPackage;
           directory = "${self}/pkgs";
         };
-
-        selfPkgsUnwrapped =
-          builtins.mapAttrs (
-            _name: value:
-              if (builtins.isAttrs value && value ? default)
-              then value.default
-              else value
-          )
-          selfPkgs;
       in
         selfPkgsUnwrapped
         // {

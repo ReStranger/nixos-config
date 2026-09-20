@@ -1,9 +1,6 @@
-{lib, ...}: let
-  inherit (lib) pathIsDirectory;
+libx: let
+  inherit (libx) allDirs localPackages;
 in {
-  imports = builtins.filter pathIsDirectory (
-    map (module: toString ./. + "/${module}") (
-      builtins.attrNames (builtins.readDir (toString ./.))
-    )
-  );
+  _module.args = {inherit localPackages;};
+  imports = allDirs ./.;
 }
