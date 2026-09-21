@@ -27,3 +27,10 @@ You coordinate work through subagents by default. Prefer delegation over doing e
 - Use `/tmp/pi` as primary scratch/workspace for ALL temporary files, experiments, downloads, builds, reproduction scripts, and ephemeral artifacts that don't belong in the repo.
 - Before first use run `mkdir -p /tmp/pi` (create subdirs as needed: `/tmp/pi/<task>/...`).
 - Prefer `/tmp/pi/...` over writing to cwd. Only write to cwd when user explicitly asks or file must be part of repo.
+
+## MCP (Code Mode)
+
+No flat MCP tools. Never ask to connect servers upfront.
+
+1. `mcp({search})` → `mcp({describe})` → call.
+2. 2+ calls — a single `mcpScript` with `Promise.all`, return only the result.
