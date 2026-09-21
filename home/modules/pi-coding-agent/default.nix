@@ -51,23 +51,52 @@ in {
         theme = "stylix";
 
         packages = [
+          "https://github.com/ReStranger/pi-lazy"
           "npm:pi-mcp-adapter"
-          "npm:pi-web-access"
-          "npm:pi-cc-header"
-          "npm:pi-context-view"
-          "npm:pi-subagents"
-          "npm:@gotgenes/pi-permission-system"
-          "npm:pi-lens"
-          "npm:@hank-warren/pi-plan-mode"
           "npm:pi-btw"
-          "npm:@narumitw/pi-goal"
+          "npm:@gotgenes/pi-permission-system"
           "npm:@snowy117/pi-dcp"
-          "npm:pi-token-speed"
-          "npm:@ff-labs/pi-fff"
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
-          "npm:@juicesharp/rpiv-advisor"
           "npm:@juicesharp/rpiv-i18n"
+          "npm:pi-cc-header"
+          "npm:pi-token-speed"
+          {
+            source = "npm:pi-subagents";
+            extensions = [];
+          }
+          {
+            source = "npm:pi-lens";
+            extensions = [];
+          }
+          {
+            source = "npm:@ff-labs/pi-fff";
+            extensions = [];
+          }
+          {
+            source = "npm:pi-web-access";
+            extensions = [];
+          }
+          {
+            source = "npm:@hank-warren/pi-plan-mode";
+            extensions = [];
+          }
+          {
+            source = "npm:@narumitw/pi-goal";
+            extensions = [];
+          }
+          {
+            source = "npm:@narumitw/pi-usage";
+            extensions = [];
+          }
+          {
+            source = "npm:@juicesharp/rpiv-advisor";
+            extensions = [];
+          }
+          {
+            source = "npm:pi-context-view";
+            extensions = [];
+          }
           "https://github.com/ReStranger/pi-bifrost-provider"
           "https://github.com/ReStranger/pi-ui-enhanced"
           "https://github.com/ReStranger/pi-working-enhanced"
@@ -156,6 +185,92 @@ in {
         enableHomeDirScanning = false;
         warnOnHomeDirScan = false;
         followSymlinks = true;
+      };
+      "${configDir}/lazy.json".text = builtins.toJSON {
+        version = 1;
+        defaults = {lazy = true;};
+        auto = true;
+        autoLoadLimit = 1;
+        afterStartBatchSize = 1;
+        afterStartDelayMs = 0;
+        afterStartInitialDelayMs = 750;
+        afterStartPauseDuringTurn = true;
+        afterStartAdaptiveYield = true;
+        afterStartPrefetch = true;
+        specs = [
+          {
+            name = "subagents";
+            source = "npm:pi-subagents";
+            lazy = "after-start";
+            priority = 10;
+            tools = ["subagent"];
+            keywords = ["delegate" "subagent" "subagents" "in parallel"];
+            description = "Subagent orchestration";
+          }
+          {
+            name = "lens";
+            source = "npm:pi-lens";
+            lazy = "after-start";
+            priority = 20;
+            description = "Code intelligence (LSP/diagnostics)";
+          }
+          {
+            name = "fff";
+            source = "npm:@ff-labs/pi-fff";
+            lazy = "after-start";
+            priority = 30;
+            description = "Fuzzy file finder";
+          }
+          {
+            name = "web";
+            source = "npm:pi-web-access";
+            lazy = true;
+            cmd = ["web"];
+            tools = ["web_search" "fetch_content" "get_search_content"];
+            keywords = ["web search" "search the web" "fetch url" "youtube"];
+            description = "Web search / fetch / video";
+          }
+          {
+            name = "plan";
+            source = "npm:@hank-warren/pi-plan-mode";
+            lazy = true;
+            cmd = ["plan"];
+            keywords = ["/plan" "plan mode" "make a plan"];
+            description = "Plan mode";
+          }
+          {
+            name = "goal";
+            source = "npm:@narumitw/pi-goal";
+            lazy = true;
+            cmd = ["goal"];
+            keywords = ["/goal" "track goals"];
+            description = "Goal tracking";
+          }
+          {
+            name = "usage";
+            source = "npm:@narumitw/pi-usage";
+            lazy = true;
+            cmd = ["usage"];
+            keywords = ["/usage" "api balance" "check balance"];
+            description = "Provider balance / usage";
+          }
+          {
+            name = "advisor";
+            source = "npm:@juicesharp/rpiv-advisor";
+            lazy = true;
+            cmd = ["advisor"];
+            keywords = ["/advisor" "second opinion"];
+            description = "Second-opinion advisor";
+          }
+          {
+            name = "context";
+            source = "npm:pi-context-view";
+            lazy = true;
+            cmd = ["context"];
+            keywords = ["/context"];
+            description = "Context viewer";
+          }
+        ];
       };
     };
   };
