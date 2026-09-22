@@ -116,6 +116,14 @@ in {
           sloganColor = true;
           disabled = false;
         };
+        subagents.agentOverrides = {
+          "cursor-agent".disabled = true;
+          "cursor-agent-writer".disabled = true;
+          "codex-exec".disabled = true;
+          "codex-exec-writer".disabled = true;
+          "claude-code".disabled = true;
+          "claude-code-writer".disabled = true;
+        };
       };
 
       models = {
