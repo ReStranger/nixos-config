@@ -148,10 +148,18 @@ in {
           external_directory = {
             "*" = "ask";
             "/tmp/pi" = "allow";
+            "/tmp/pi/*" = "allow";
+          };
+          external_directory_read = {
+            "/nix" = "allow";
+            "/nix/*" = "allow";
             "${piMonorepoPath}" = "allow";
+            "${piMonorepoPath}/*" = "allow";
             "${configDir}/plans" = "allow";
+            "${configDir}/plans/*" = "allow";
             "${configDir}/npm/node_modules/pi-subagents" = "allow";
-            "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode/docs/plan-craft.md" = "allow";
+            "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode" = "allow";
+            "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode/*" = "allow";
           };
         };
       };
