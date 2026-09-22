@@ -60,8 +60,6 @@
           # wxGTK30
           # xml2
           zip
-
-          zsh
         ];
       multiPkgs = pkgs:
         with pkgs; [
@@ -73,7 +71,6 @@
           # libgcc # crtbeginS.o
           # iconv.dev # sys/types.h
         ];
-      runScript = "zsh";
       profile = ''
         export ALLOW_NINJA_ENV=true
         export USE_CCACHE=1
@@ -132,7 +129,6 @@
           ]
           ++ pkgs.linux.nativeBuildInputs
       );
-      runScript = "zsh";
       profile = ''
         export LLVM=1
         export LLVM_IAS=1
@@ -154,10 +150,6 @@
         name = "flake-template";
         meta.description = "DevShell for Flake";
 
-        shellHook = ''
-          exec zsh
-        '';
-
         packages = with pkgs; [
           sops
           age
@@ -170,7 +162,6 @@
           tmux
           fzf
           tmux
-          zsh
         ];
       };
       android = pkgs.stdenv.mkDerivation {
