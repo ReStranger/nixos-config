@@ -13,7 +13,6 @@ in {
   config = mkIf cfg.enable {
     services.tailscale = {
       enable = true;
-      interfaceName = "userspace-networking";
       extraDaemonFlags = ["--no-logs-no-support"];
     };
   };
