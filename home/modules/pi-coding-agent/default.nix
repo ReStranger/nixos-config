@@ -53,14 +53,25 @@ in {
         packages = [
           "https://github.com/ReStranger/pi-lazy"
           "npm:pi-mcp-adapter"
-          "npm:pi-btw"
           "npm:@gotgenes/pi-permission-system"
           "npm:@snowy117/pi-dcp"
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
           "npm:@juicesharp/rpiv-i18n"
           "npm:pi-cc-header"
-          "npm:pi-token-speed"
+          "https://github.com/ReStranger/pi-bifrost-provider"
+          "https://github.com/ReStranger/pi-ui-enhanced"
+          "https://github.com/ReStranger/pi-clear-cmd"
+          "https://github.com/ReStranger/pi-opencode-free"
+          "https://github.com/heyhuynhgiabuu/pi-oauth-antigravity"
+          {
+            source = "npm:pi-btw";
+            extensions = [];
+          }
+          {
+            source = "npm:pi-token-speed";
+            extensions = [];
+          }
           {
             source = "npm:pi-subagents";
             extensions = [];
@@ -69,10 +80,7 @@ in {
             source = "npm:pi-lens";
             extensions = [];
           }
-          {
-            source = "npm:@ff-labs/pi-fff";
-            extensions = [];
-          }
+          "npm:@ff-labs/pi-fff"
           {
             source = "npm:pi-web-access";
             extensions = [];
@@ -97,11 +105,6 @@ in {
             source = "npm:pi-context-view";
             extensions = [];
           }
-          "https://github.com/ReStranger/pi-bifrost-provider"
-          "https://github.com/ReStranger/pi-ui-enhanced"
-          "https://github.com/ReStranger/pi-working-enhanced"
-          "https://github.com/ReStranger/pi-clear-cmd"
-          "https://github.com/ReStranger/pi-opencode-free"
         ];
         ccHeader = {
           readOnlyConfig = true;
@@ -140,6 +143,7 @@ in {
     in {
       "${configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
       "${configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
+        doublePressToConfirm = false;
         permission = {
           "*" = "allow";
           path = {
@@ -206,7 +210,7 @@ in {
         version = 1;
         defaults = {lazy = true;};
         auto = true;
-        autoLoadLimit = 1;
+        autoLoadLimit = 10;
         afterStartBatchSize = 1;
         afterStartDelayMs = 0;
         afterStartInitialDelayMs = 750;
@@ -218,73 +222,63 @@ in {
             name = "subagents";
             source = "npm:pi-subagents";
             lazy = "after-start";
-            priority = 10;
-            tools = ["subagent"];
-            keywords = ["delegate" "subagent" "subagents" "in parallel"];
+            priority = 30;
             description = "Subagent orchestration";
           }
           {
             name = "lens";
             source = "npm:pi-lens";
             lazy = "after-start";
-            priority = 20;
+            priority = 40;
             description = "Code intelligence (LSP/diagnostics)";
-          }
-          {
-            name = "fff";
-            source = "npm:@ff-labs/pi-fff";
-            lazy = "after-start";
-            priority = 30;
-            description = "Fuzzy file finder";
           }
           {
             name = "web";
             source = "npm:pi-web-access";
+            lazy = "after-start";
+            priority = 50;
+          }
+          {
+            name = "token-speed";
+            source = "npm:pi-token-speed";
+            lazy = "after-start";
+            priority = 60;
+          }
+          {
+            name = "btw";
+            source = "npm:pi-btw";
             lazy = true;
-            cmd = ["web"];
-            tools = ["web_search" "fetch_content" "get_search_content"];
-            keywords = ["web search" "search the web" "fetch url" "youtube"];
-            description = "Web search / fetch / video";
+            cmd = ["btw"];
           }
           {
             name = "plan";
             source = "npm:@hank-warren/pi-plan-mode";
             lazy = true;
             cmd = ["plan"];
-            keywords = ["/plan" "plan mode" "make a plan"];
-            description = "Plan mode";
           }
           {
             name = "goal";
             source = "npm:@narumitw/pi-goal";
             lazy = true;
             cmd = ["goal"];
-            keywords = ["/goal" "track goals"];
-            description = "Goal tracking";
           }
           {
             name = "usage";
             source = "npm:@narumitw/pi-usage";
             lazy = true;
             cmd = ["usage"];
-            keywords = ["/usage" "api balance" "check balance"];
-            description = "Provider balance / usage";
           }
           {
             name = "advisor";
             source = "npm:@juicesharp/rpiv-advisor";
             lazy = true;
             cmd = ["advisor"];
-            keywords = ["/advisor" "second opinion"];
-            description = "Second-opinion advisor";
           }
           {
             name = "context";
             source = "npm:pi-context-view";
             lazy = true;
             cmd = ["context"];
-            keywords = ["/context"];
-            description = "Context viewer";
           }
         ];
       };
