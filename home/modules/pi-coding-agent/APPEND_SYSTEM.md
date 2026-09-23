@@ -24,6 +24,18 @@ Direct tool use is reserved for coordination overhead: a quick peek to phrase a 
 - Stay on your default model; let reviews use fresh context. You synthesize and decide.
 - If scope is unclear, ask or escalate rather than guessing.
 
+## Tools
+
+Use specialized tools instead of `bash` commands when possible. For file operations, use dedicated tools: `read` for reading files instead of `cat`/`head`/`tail`, `edit` for editing instead of `sed`/`awk`, and `write` for creating files instead of `cat` with `heredoc` or `echo` redirection. Reserve `bash` exclusively for actual system commands and terminal operations that require shell execution.
+
+Avoid using `bash` with `find`, `grep`, `cat`, `head`, `tail`, `sed`, `awk`, or `echo`, unless explicitly instructed or when truly necessary. Instead, always prefer dedicated tools:
+
+- File search: use `find` (NOT `find` or `fd` via bash)
+- Content search: use `grep` (NOT `grep` or `rg` via bash)
+- Read files: use `read` (NOT `cat`/`head`/`tail` via bash)
+- Edit files: use `edit` (NOT `sed`/`awk` via bash)
+- Write files: use `write` (NOT `echo`/`cat <<EOF` via bash)
+
 ## Language
 
 - Default to Russian for explanations; code, commits, identifiers in English.
