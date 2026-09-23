@@ -93,10 +93,11 @@
     };
     "/mnt/win" = {
       device = "/dev/nvme0n1p3";
-      fsType = "ntfs-3g";
+      fsType = "ntfs3";
       options = [
         "rw"
         "uid=1000"
+        "iocharset=utf8"
         "x-gvfs-show"
         "x-gvfs-name=Win10"
         "x-gvfs-icon=windows"
@@ -105,10 +106,11 @@
     };
     "/mnt/win_hdd" = {
       device = "/dev/sda2";
-      fsType = "ntfs-3g";
+      fsType = "ntfs3";
       options = [
         "rw"
         "uid=1000"
+        "iocharset=utf8"
         "x-gvfs-show"
         "x-gvfs-name=WinHDD"
       ];
