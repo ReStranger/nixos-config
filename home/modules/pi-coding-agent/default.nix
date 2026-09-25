@@ -78,10 +78,10 @@ in {
         ];
         ccHeader = {
           readOnlyConfig = true;
-          color = "p";
+          color = "w";
           ver = 1;
-          grad = true;
-          lines = true;
+          grad = false;
+          lines = false;
           pkg = true;
           speed = 50;
           slogan = "Code something that makes you proud";
