@@ -11,6 +11,7 @@
         global.excludes = [
           "LICENSE"
           ".gitattributes"
+          ".envrc"
 
           "*.png"
           "*.svg"
