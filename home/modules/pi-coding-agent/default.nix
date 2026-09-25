@@ -175,6 +175,14 @@ in {
           "pi-mcp"
         ];
       };
+      "${configDir}/mcp.json".text = builtins.toJSON {
+        settings = {
+          directTools = false;
+          scriptMode = true;
+          idleTimeout = 10;
+        };
+        mcpServers.web-search.disabled = true;
+      };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
       "${configDir}/pi-fff.json".text = builtins.toJSON {
         "$schema" = "https://raw.githubusercontent.com/dmtrKovalenko/fff/main/packages/pi-fff/pi-fff.schema.json";
