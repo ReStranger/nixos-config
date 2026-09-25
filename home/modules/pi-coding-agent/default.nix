@@ -51,7 +51,6 @@ in {
         theme = "stylix";
 
         packages = [
-          "https://github.com/ReStranger/pi-lazy"
           "npm:pi-mcp-adapter"
           "npm:@gotgenes/pi-permission-system"
           "npm:@snowy117/pi-dcp"
@@ -64,47 +63,16 @@ in {
           "https://github.com/ReStranger/pi-clear-cmd"
           "https://github.com/ReStranger/pi-opencode-free"
           "https://github.com/heyhuynhgiabuu/pi-oauth-antigravity"
-          {
-            source = "npm:pi-btw";
-            extensions = [];
-          }
-          {
-            source = "npm:pi-token-speed";
-            extensions = [];
-          }
-          {
-            source = "npm:pi-subagents";
-            extensions = [];
-          }
-          {
-            source = "npm:pi-lens";
-            extensions = [];
-          }
+          "npm:pi-btw"
+          "npm:pi-token-speed"
+          "npm:pi-lens"
           "npm:@ff-labs/pi-fff"
-          {
-            source = "npm:pi-web-access";
-            extensions = [];
-          }
-          {
-            source = "npm:@hank-warren/pi-plan-mode";
-            extensions = [];
-          }
-          {
-            source = "npm:@narumitw/pi-goal";
-            extensions = [];
-          }
-          {
-            source = "npm:@narumitw/pi-usage";
-            extensions = [];
-          }
-          {
-            source = "npm:@juicesharp/rpiv-advisor";
-            extensions = [];
-          }
-          {
-            source = "npm:pi-context-view";
-            extensions = [];
-          }
+          "npm:pi-web-access"
+          "npm:@hank-warren/pi-plan-mode"
+          "npm:@narumitw/pi-goal"
+          "npm:@narumitw/pi-usage"
+          "npm:@juicesharp/rpiv-advisor"
+          "npm:pi-context-view"
         ];
         ccHeader = {
           readOnlyConfig = true;
@@ -205,82 +173,6 @@ in {
         enableHomeDirScanning = false;
         warnOnHomeDirScan = false;
         followSymlinks = true;
-      };
-      "${configDir}/lazy.json".text = builtins.toJSON {
-        version = 1;
-        defaults = {lazy = true;};
-        auto = true;
-        autoLoadLimit = 10;
-        afterStartBatchSize = 1;
-        afterStartDelayMs = 0;
-        afterStartInitialDelayMs = 750;
-        afterStartPauseDuringTurn = true;
-        afterStartAdaptiveYield = true;
-        afterStartPrefetch = true;
-        specs = [
-          {
-            name = "subagents";
-            source = "npm:pi-subagents";
-            lazy = "after-start";
-            priority = 30;
-            description = "Subagent orchestration";
-          }
-          {
-            name = "lens";
-            source = "npm:pi-lens";
-            lazy = "after-start";
-            priority = 40;
-            description = "Code intelligence (LSP/diagnostics)";
-          }
-          {
-            name = "web";
-            source = "npm:pi-web-access";
-            lazy = "after-start";
-            priority = 50;
-          }
-          {
-            name = "token-speed";
-            source = "npm:pi-token-speed";
-            lazy = "after-start";
-            priority = 60;
-          }
-          {
-            name = "btw";
-            source = "npm:pi-btw";
-            lazy = true;
-            cmd = ["btw"];
-          }
-          {
-            name = "plan";
-            source = "npm:@hank-warren/pi-plan-mode";
-            lazy = true;
-            cmd = ["plan"];
-          }
-          {
-            name = "goal";
-            source = "npm:@narumitw/pi-goal";
-            lazy = true;
-            cmd = ["goal"];
-          }
-          {
-            name = "usage";
-            source = "npm:@narumitw/pi-usage";
-            lazy = true;
-            cmd = ["usage"];
-          }
-          {
-            name = "advisor";
-            source = "npm:@juicesharp/rpiv-advisor";
-            lazy = true;
-            cmd = ["advisor"];
-          }
-          {
-            name = "context";
-            source = "npm:pi-context-view";
-            lazy = true;
-            cmd = ["context"];
-          }
-        ];
       };
     };
   };
