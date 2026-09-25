@@ -155,22 +155,24 @@ in {
       };
       "${configDir}/extensions/pi-clear-cmd.json".text = builtins.toJSON {
         hidden = [
-          "htg"
-          "hi"
-          "hi"
-          "hc"
-          "hv"
-          "hm"
-          "hdf"
-          "hsp"
-          "hs"
-          "hcl"
-          "hps"
-          "hpcl"
-          "fff-mode"
           "fff-health"
+          "fff-mode"
           "fff-rescan"
+          "hc"
+          "hcl"
+          "hdf"
+          "hi"
+          "hm"
+          "hpcl"
+          "hps"
+          "hs"
+          "hsp"
+          "htg"
+          "hv"
           "languages"
+          "mcp-auth"
+          "permission-system"
+          "pi-mcp"
         ];
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
