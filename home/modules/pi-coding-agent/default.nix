@@ -53,6 +53,7 @@ in {
         packages = [
           "npm:pi-mcp-adapter"
           "npm:@gotgenes/pi-permission-system"
+          "npm:@gotgenes/pi-subagents"
           "npm:@snowy117/pi-dcp"
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
@@ -86,14 +87,6 @@ in {
           sloganOn = true;
           sloganColor = true;
           disabled = false;
-        };
-        subagents.agentOverrides = {
-          "cursor-agent".disabled = true;
-          "cursor-agent-writer".disabled = true;
-          "codex-exec".disabled = true;
-          "codex-exec-writer".disabled = true;
-          "claude-code".disabled = true;
-          "claude-code-writer".disabled = true;
         };
       };
 
@@ -137,7 +130,6 @@ in {
             "${piMonorepoPath}/*" = "allow";
             "${configDir}/plans" = "allow";
             "${configDir}/plans/*" = "allow";
-            "${configDir}/npm/node_modules/pi-subagents" = "allow";
             "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode" = "allow";
             "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode/*" = "allow";
           };
