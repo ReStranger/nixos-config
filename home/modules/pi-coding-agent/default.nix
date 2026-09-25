@@ -113,6 +113,7 @@ in {
             "*.env" = "deny";
             "*.env.*" = "deny";
             "*.env.example" = "allow";
+            "*auth.json" = "deny";
           };
           bash = {
             "*" = "allow";
@@ -129,10 +130,14 @@ in {
             "/nix/*" = "allow";
             "${piMonorepoPath}" = "allow";
             "${piMonorepoPath}/*" = "allow";
+            "${configDir}/extensions" = "allow";
+            "${configDir}/extensions/*" = "allow";
+            "${configDir}/git" = "allow";
+            "${configDir}/git/*" = "allow";
+            "${configDir}/npm" = "allow";
+            "${configDir}/npm/*" = "allow";
             "${configDir}/plans" = "allow";
             "${configDir}/plans/*" = "allow";
-            "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode" = "allow";
-            "${configDir}/npm/node_modules/@hank-warren/pi-plan-mode/*" = "allow";
           };
         };
       };
