@@ -53,6 +53,7 @@ in {
         packages = [
           "npm:pi-mcp-adapter"
           "npm:@gotgenes/pi-permission-system"
+          "npm:@gotgenes/pi-nocd"
           "npm:@gotgenes/pi-subagents"
           "npm:@snowy117/pi-dcp"
           "npm:@juicesharp/rpiv-todo"
