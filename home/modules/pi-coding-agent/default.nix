@@ -89,6 +89,18 @@ in {
           sloganColor = true;
           disabled = false;
         };
+        tokenSpeed = {
+          display = "stats";
+          icon = "";
+          useProviderTokens = true;
+          countStrategy = "direct";
+          colors = {
+            slow = "#${config.lib.stylix.colors.base08}";
+            medium = "#${config.lib.stylix.colors.base09}";
+            fast = "#${config.lib.stylix.colors.base0B}";
+            blazing = "#${config.lib.stylix.colors.base0C}";
+          };
+        };
       };
 
       models = {
