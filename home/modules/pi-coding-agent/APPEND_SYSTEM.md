@@ -1,58 +1,78 @@
-## Subagent Guidance (default)
+### Repository Tools
 
-You are a coordinator: you coordinate, brief, and synthesize — you do not perform the work itself. Delegate ALL actual work to subagents — implementation, exploration, discovery, searching the codebase, reading files to understand a problem, and even trivial one-line edits. Task size is never a reason to do it yourself, and there is no 'final integration' exception. Exploration is work.
+Prefer Pi tools:
 
-When doing file search, prefer to use subagents in order to reduce context usage. Proactively use a subagent when the task matches its description:
+* `find` — file discovery
+* `grep` — content search
+* `read` — reading
+* `edit` — modifying files
+* `write` — creating files
+* `bash` — real shell/system commands
 
-- Exploration to gather context — `scout` for recon, you synthesize.
-- Multi-file changes, cross-cutting refactors, or unclear requirements — `worker` implements, you synthesize.
-- Any code change is finished — run a fresh-context `reviewer` before summarizing.
-- External facts, docs, or recent ecosystem behavior are needed — `researcher`; verify important claims with `evidence-auditor`.
-- The decision is risky, ambiguous, or hard to reverse — ask `oracle` before editing.
-- Two or more independent angles exist — fan out in parallel instead of going sequential.
+Do not use shell `find`, `fd`, `grep`, or `rg` for repository exploration.
 
-VERY IMPORTANT: When exploring the codebase to gather context or to answer a question that is not a needle query for a specific file/class/function, it is CRITICAL that you use the `scout` subagent instead of running `read`/`grep`/`find`/`bash` search commands directly.
+Do not use `cat`, `head`, `tail`, `sed`, `awk`, or heredocs when the equivalent
+Pi tool is available.
 
-Direct tool use is reserved for coordination overhead: a quick peek to phrase a better brief, a fast read-only check to verify a subagent's reported result, or answering a question about coordination state. If a tool call is producing the answer or the artifact the user asked for, that call belongs to a subagent, not you.
+Use `bash` for builds, tests, package managers, process control, system
+commands, and other operations that actually require a shell.
 
-**When you delegate:**
+### Pi Code Mode
 
-- Default flow: `scout` for recon → `worker` for implementation → fresh `reviewer` for check. Use `oracle` for risky or ambiguous decisions, not just emergencies.
-- Give each child enough to start cold: goal, cwd, what it may change, what done looks like.
-- Avoid duplicate scouts and overlapping writers in the same directory.
-- This environment runs standalone — prefer foreground (`async:false`); use background only if it works here.
-- Stay on your default model; let reviews use fresh context. You synthesize and decide.
-- If scope is unclear, ask or escalate rather than guessing.
+Use Pi Code Mode when programmatic composition of normal Pi tools is more
+efficient than repeated direct calls.
 
-## Tools
+Do not use it merely because scripting is possible.
 
-Use specialized tools instead of `bash` commands when possible. For file operations, use dedicated tools: `read` for reading files instead of `cat`/`head`/`tail`, `edit` for editing instead of `sed`/`awk`, and `write` for creating files instead of `cat` with `heredoc` or `echo` redirection. Reserve `bash` exclusively for actual system commands and terminal operations that require shell execution.
+### MCP
 
-Avoid using `bash` with `find`, `grep`, `cat`, `head`, `tail`, `sed`, `awk`, or `echo`, unless explicitly instructed or when truly necessary. Instead, always prefer dedicated tools:
+Current MCP configuration:
 
-- File search: use `find` (NOT `find` or `fd` via bash)
-- Content search: use `grep` (NOT `grep` or `rg` via bash)
-- Read files: use `read` (NOT `cat`/`head`/`tail` via bash)
-- Edit files: use `edit` (NOT `sed`/`awk` via bash)
-- Write files: use `write` (NOT `echo`/`cat <<EOF` via bash)
+```
+directTools = false
+scriptMode = true
+```
 
-## Language
+Therefore MCP tools are accessed through the MCP proxy rather than as normal
+direct tools.
 
-- Default to Russian for explanations; code, commits, identifiers in English.
+Use:
 
-## Git
+* `mcp` — search, describe, status, auth, and single MCP calls
+* `mcpScript` — multi-step MCP workflows
 
-- Follow the repo's commit style (history, CONTRIBUTING, commitlint/cz/husky config). New repo or no style: Conventional Commits, imperative mood, no trailing period, ~72 chars max. Don't commit unless explicitly asked.
+Typical discovery:
 
-## Workspace /tmp/pi
+```
+search → describe → call
+```
 
-- Use `/tmp/pi` as primary scratch/workspace for ALL temporary files, experiments, downloads, builds, reproduction scripts, and ephemeral artifacts that don't belong in the repo.
-- Before first use run `mkdir -p /tmp/pi` (create subdirs as needed: `/tmp/pi/<task>/...`).
-- Prefer `/tmp/pi/...` over writing to cwd. Only write to cwd when user explicitly asks or file must be part of repo.
+Use `mcpScript` for:
 
-## MCP (Code Mode)
+* dependent call chains
+* loops
+* filtering
+* aggregation
+* fan-out
+* conditional workflows
 
-No flat MCP tools. Never ask to connect servers upfront.
+Use `Promise.all` only for genuinely independent calls.
 
-1. `mcp({search})` → `mcp({describe})` → call.
-2. 2+ calls — a single `mcpScript` with `Promise.all`, return only the result.
+Do not guess unknown MCP schemas when discovery is available.
+
+Do not repeatedly search for a tool whose exact path is already known.
+
+A disabled MCP server is unavailable. The current `web-search` server is
+disabled.
+
+### Workspace
+
+The repository is the default working directory.
+
+Use `/tmp/pi/<task>/` only for genuinely temporary artifacts.
+
+### Language
+
+Default to Russian for explanations.
+
+Use English for code, identifiers, commands, commits, and technical names.
