@@ -131,6 +131,14 @@ in {
             "*" = "allow";
             "rm -rf *" = "ask";
             "sudo *" = "ask";
+            "timeout *" = "deny";
+            "xargs *" = "deny";
+            "env *" = "deny";
+            "time *" = "deny";
+            "nohup *" = "deny";
+            "nice *" = "deny";
+            "find -exec" = "deny";
+            "fd -x" = "deny";
           };
           external_directory = {
             "*" = "ask";

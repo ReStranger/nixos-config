@@ -17,6 +17,9 @@ Pi tool is available.
 Use `bash` for builds, tests, package managers, process control, system
 commands, and other operations that actually require a shell.
 
+NEVER USE wrapper commands in bash: `timeout`, `xargs`, `env`,
+`time`, `nohup`, `nice`, `find -exec`, `fd -x`.
+
 ### Pi Code Mode
 
 Use Pi Code Mode when programmatic composition of normal Pi tools is more
