@@ -144,6 +144,13 @@
       '';
     };
   in {
+    # For nix run (.#android-env): bypasses nix-your-shell/nom devShell capture,
+    # bare `nix develop` hangs there because the wrapper injects `--command zsh`
+    # which `shellHook = "exec ..."` below hijacks.
+    packages = {
+      android-env = android-fhs-env;
+      kernel-build-env = kernel-fhs-env;
+    };
     # For nix develop
     devShells = {
       default = pkgs.mkShell {
