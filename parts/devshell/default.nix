@@ -154,6 +154,7 @@
           sops
           age
           ssh-to-age
+          nix-update
           cachix
           yazi
           git
