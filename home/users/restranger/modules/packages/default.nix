@@ -48,6 +48,7 @@ in {
 
         ## dev tools ##
         nodejs
+        bun
         vscode-js-debug
         clang-tools
         llvmPackages_latest.clang
