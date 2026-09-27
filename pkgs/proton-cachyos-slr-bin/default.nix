@@ -1,12 +1,12 @@
 {
   lib,
   fetchzip,
-  writeScript,
+  nix-update-script,
   proton-ge-bin,
   steamDisplayName ? "Proton CachyOS SLR",
 }:
 proton-ge-bin.overrideAttrs (
-  finalAttrs: {
+  finalAttrs: prevAttrs: {
     strictDeps = true;
     __structuredAttrs = true;
 
@@ -25,13 +25,17 @@ proton-ge-bin.overrideAttrs (
         --replace-fail "proton-${finalAttrs.version}-x86_64" "${steamDisplayName}"
     '';
 
-    passthru.updateScript = writeScript "update-proton-cachyos-slr" ''
-      #!/usr/bin/env nix-shell
-      #!nix-shell -i bash -p curl jq common-updater-scripts
-      repo="https://api.github.com/repos/CachyOS/proton-cachyos/releases/latest"
-      version="$(curl -sL "$repo" | jq '.tag_name' --raw-output)"
-      update-source-version proton-cachyos-slr-bin "$version"
-    '';
+    passthru =
+      prevAttrs.passthru
+      // {
+        updateScript = nix-update-script {
+          extraArgs = [
+            "--flake"
+            "--version-regex"
+            "(.*-slr)"
+          ];
+        };
+      };
 
     meta = {
       description = ''
