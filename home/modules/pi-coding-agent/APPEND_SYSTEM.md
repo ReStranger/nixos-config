@@ -67,9 +67,7 @@ disabled.
 
 ### Workspace
 
-The repository is the default working directory.
-
-Use `/tmp/pi/<task>/` only for genuinely temporary artifacts.
+Use `/tmp/pi/<task>/` in cases where you would use `/tmp`.
 
 ### Language
 
