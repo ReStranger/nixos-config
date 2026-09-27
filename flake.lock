@@ -1305,11 +1305,11 @@
       },
       "locked": {
         "dir": "packages/nix",
-        "lastModified": 1789832783,
-        "narHash": "sha256-+hhHyccCnwR3mfSixShzc2tqF3X5PpH6xf2o07f/njs=",
+        "lastModified": 1790377000,
+        "narHash": "sha256-hTlorgUGJ1npDlfJ8QOHZY0d6M+yWGx5DJz6ECeSJA4=",
         "owner": "SteamClientHomebrew",
         "repo": "Millennium",
-        "rev": "4011ee3592e07e9882b66de15f64e0fea70682d5",
+        "rev": "81c05d8aeb9a5da323492957fa43f7a87de57972",
         "type": "github"
       },
       "original": {
@@ -1429,11 +1429,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1790135968,
-        "narHash": "sha256-EnEbYkB8oac6BT/5ysUrHoVYlBhth3Nwj60Uhk7zhA8=",
+        "lastModified": 1790451247,
+        "narHash": "sha256-pGwNM4xNQfqexEwyt75ZfxriLG51G/c9sA00xKbxurA=",
         "owner": "re1n0",
         "repo": "nixos-millennium",
-        "rev": "bd797e59d5595fbd4bfdd269d6339a3847897f6f",
+        "rev": "81b39a6e45ed7d817990b7bd746d018a5de01f02",
         "type": "github"
       },
       "original": {
@@ -1664,11 +1664,11 @@
     },
     "nixpkgs_16": {
       "locked": {
-        "lastModified": 1790046670,
-        "narHash": "sha256-MYiI+CzL0tuWgRPjGsKCDHqYs2T3OzMlMQWOYWG0qso=",
+        "lastModified": 1790323409,
+        "narHash": "sha256-VVTPf+Hyd5ebpjBMHmrLMSBIeW6ls48Bqtosj7CNKLA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
+        "rev": "e94cb152ed51bd6e24eb4a41f1460252beb52cd2",
         "type": "github"
       },
       "original": {
