@@ -22,6 +22,7 @@ in {
           };
           lfs.enable = true;
           color.ui = true;
+          commit.verbose = true;
           init.defaultBranch = "main";
           safe.directory = "/etc/nixos";
           http = {
