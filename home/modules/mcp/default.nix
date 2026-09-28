@@ -12,17 +12,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets.github_token = {};
     programs.mcp = {
       enable = true;
       servers = {
-        github = {
-          type = "http";
-          url = "https://api.githubcopilot.com/mcp/";
-          headers = {
-            Authorization = "Bearer {file:${config.sops.secrets.github_token.path}}";
-          };
-        };
         mcp-nixos = {
           url = "http://localhost:3229/mcp";
         };

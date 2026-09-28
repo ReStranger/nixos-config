@@ -83,6 +83,13 @@ in {
         share = "manual";
         autoupdate = false;
         default_agent = "build";
+        mcp.servers.github = {
+          type = "remote";
+          url = "https://api.githubcopilot.com/mcp/";
+          headers = {
+            Authorization = "Bearer {file:${config.sops.secrets.github_token.path}}";
+          };
+        };
         compaction = {
           auto = true;
           keep = {

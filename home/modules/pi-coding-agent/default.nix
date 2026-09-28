@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    sops.secrets.github_token = {};
     programs.pi-coding-agent = {
       enable = true;
       package = pkgs.pi-bun;
@@ -189,7 +190,14 @@ in {
           scriptMode = true;
           idleTimeout = 10;
         };
-        mcpServers.web-search.disabled = true;
+        mcpServers = {
+          github = {
+            url = "https://api.githubcopilot.com/mcp/";
+            auth = "bearer";
+            bearerToken = "!cat ${config.sops.secrets.github_token.path}";
+          };
+          web-search.disabled = true;
+        };
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
       "${configDir}/pi-fff.json".text = builtins.toJSON {
