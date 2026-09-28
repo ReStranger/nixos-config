@@ -110,7 +110,7 @@
       name = "picture-in-picture-in-zen-beta";
       match = {
         class = "^zen-beta$";
-        title = "^Picture-in-Picture$";
+        title = "^Картинка в картинке$";
       };
       workspace = "[w]";
       float = true;
