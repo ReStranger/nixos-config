@@ -6,14 +6,14 @@ let
 
     _JAVA_AWT_WM_NONREPARENTING = 1;
     GDK_BACKEND = "wayland";
-    SDL_VIDEODRIVER = "wayland";
+    SDL_VIDEODRIVER = "wayland,x11";
     CLUTTER_BACKEND = "wayland";
 
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
 
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
     GTK_USE_PORTAL = "1";
