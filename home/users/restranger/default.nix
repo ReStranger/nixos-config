@@ -7,6 +7,7 @@
 }: {
   stylix.targets = {
     neovim.enable = false;
+    millenniumSteam.enable = false;
     zen-browser.enable = false;
   };
   module = {
