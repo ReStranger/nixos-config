@@ -42,6 +42,13 @@ in {
         ];
         terminal = {
           clearOnShrink = true;
+          hyperlinks = "auto";
+          images = "auto";
+          trueColor = "auto";
+        };
+        images = {
+          autoResize = true;
+          blockImages = false;
         };
         showCacheMissNotices = true;
         enableInstallTelemetry = false;
@@ -50,6 +57,11 @@ in {
         fullscreenCopyOnSelect = true;
         npmCommand = ["${getExe pkgs.bun}"];
         theme = "stylix";
+        collapseChangelog = true;
+        cacheWarming = "streaming";
+
+        fullscreenWheelScrollLines = "auto";
+        fullscreenScrollbar = "auto";
 
         packages = [
           "npm:@gotgenes/pi-permission-system"
