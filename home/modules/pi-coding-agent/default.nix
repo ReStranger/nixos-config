@@ -52,7 +52,6 @@ in {
         theme = "stylix";
 
         packages = [
-          "npm:pi-mcp-adapter"
           "npm:@gotgenes/pi-permission-system"
           "npm:@gotgenes/pi-nocd"
           "npm:@ff-labs/pi-fff"
@@ -179,24 +178,26 @@ in {
           "htg"
           "hv"
           "languages"
-          "mcp-auth"
           "permission-system"
-          "pi-mcp"
         ];
       };
       "${configDir}/mcp.json".text = builtins.toJSON {
-        settings = {
-          directTools = false;
-          scriptMode = true;
-          idleTimeout = 10;
-        };
         mcpServers = {
           github = {
             url = "https://api.githubcopilot.com/mcp/";
-            auth = "bearer";
-            bearerToken = "!cat ${config.sops.secrets.github_token.path}";
+            headers.Authorization = "!echo Bearer $(cat ${config.sops.secrets.github_token.path})";
           };
-          web-search.disabled = true;
+          mcp-nixos.url = "http://localhost:3229/mcp";
+          playwright.url = "http://localhost:3230/mcp";
+          web-search.url = "http://localhost:3228/mcp";
+          open-design = {
+            command = getExe pkgs.open-design;
+            args = [
+              "mcp"
+              "--daemon-url"
+              "http://127.0.0.1:7456"
+            ];
+          };
         };
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
