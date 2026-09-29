@@ -54,7 +54,6 @@ in {
         packages = [
           "npm:@gotgenes/pi-permission-system"
           "npm:@gotgenes/pi-nocd"
-          "npm:@ff-labs/pi-fff"
           "npm:@gotgenes/pi-subagents"
           "npm:pi-lens"
           "npm:pi-web-access"
@@ -163,9 +162,6 @@ in {
       };
       "${configDir}/extensions/pi-clear-cmd.json".text = builtins.toJSON {
         hidden = [
-          "fff-health"
-          "fff-mode"
-          "fff-rescan"
           "hc"
           "hcl"
           "hdf"
@@ -201,16 +197,6 @@ in {
         };
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
-      "${configDir}/pi-fff.json".text = builtins.toJSON {
-        "$schema" = "https://raw.githubusercontent.com/dmtrKovalenko/fff/main/packages/pi-fff/pi-fff.schema.json";
-        mode = "override";
-        frecencyDbPath = "${config.home.homeDirectory}/.local/state/pi/fff/frecency";
-        historyDbPath = "${config.home.homeDirectory}/.local/state/pi/fff/history";
-        enableFsRootScanning = false;
-        enableHomeDirScanning = false;
-        warnOnHomeDirScan = false;
-        followSymlinks = true;
-      };
     };
   };
 }
