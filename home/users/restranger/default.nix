@@ -8,7 +8,7 @@
   stylix.targets = {
     neovim.enable = false;
     millenniumSteam.enable = false;
-    zen-browser.enable = false;
+    zen-browser.profileNames = ["default"];
   };
   module = {
     ghostty.enable = isWorkstation;
