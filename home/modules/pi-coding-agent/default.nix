@@ -60,6 +60,10 @@ in {
         collapseChangelog = true;
         cacheWarming = "streaming";
 
+        defaultTools = ["+codemode" "+tool_search"];
+        "codemode.mode" = "on";
+        "codemode.inlineBudget" = 3000;
+
         fullscreenWheelScrollLines = "auto";
         fullscreenScrollbar = "auto";
 
