@@ -145,6 +145,8 @@ in {
           bash = {
             "*" = "allow";
             "rm -rf *" = "ask";
+            "rm -rf /tmp/pi" = "allow";
+            "rm -rf /tmp/pi/*" = "allow";
             "sudo *" = "ask";
             "timeout *" = "deny";
             "xargs *" = "deny";
