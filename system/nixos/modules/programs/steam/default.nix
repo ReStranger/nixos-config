@@ -17,7 +17,7 @@ in {
     programs.steam = {
       enable = true;
       package = pkgs.millennium-steam;
-      extraCompatPackages = with pkgs; [proton-ge-bin];
+      extraCompatPackages = with pkgs; [proton-ge-bin proton-cachyos-slr-bin];
     };
   };
 }
