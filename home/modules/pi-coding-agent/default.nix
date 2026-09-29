@@ -165,6 +165,8 @@ in {
           external_directory_read = {
             "/nix" = "allow";
             "/nix/*" = "allow";
+            "${config.home.homeDirectory}/.agents" = "allow";
+            "${config.home.homeDirectory}/.agents/*" = "allow";
             "${piMonorepoPath}" = "allow";
             "${piMonorepoPath}/*" = "allow";
             "${configDir}/extensions" = "allow";
