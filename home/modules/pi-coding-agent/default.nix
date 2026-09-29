@@ -80,7 +80,7 @@ in {
           "npm:@juicesharp/rpiv-advisor"
           "https://github.com/ReStranger/pi-bifrost-provider"
           "https://github.com/ReStranger/pi-opencode-free"
-          "https://github.com/heyhuynhgiabuu/pi-oauth-antigravity"
+          "https://github.com/ReStranger/pi-oauth-antigravity"
           "npm:@hank-warren/pi-plan-mode"
           "npm:@narumitw/pi-goal"
           "npm:pi-btw"
