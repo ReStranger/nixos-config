@@ -94,6 +94,7 @@ in {
           "npm:@narumitw/pi-usage"
           "npm:pi-context-view"
           "https://github.com/ReStranger/pi-ui-enhanced"
+          "https://github.com/ReStranger/pi-working-enhanced"
           "https://github.com/ReStranger/pi-clear-cmd"
           "https://github.com/ReStranger/pi-cc-header"
         ];
