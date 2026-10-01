@@ -100,7 +100,7 @@ in {
         ];
         ccHeader = {
           readOnlyConfig = true;
-          color = "w";
+          color = "pi";
           ver = 1;
           grad = false;
           lines = false;
