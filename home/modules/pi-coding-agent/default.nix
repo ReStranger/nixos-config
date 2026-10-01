@@ -138,6 +138,15 @@ in {
       piMonorepoPath = builtins.unsafeDiscardStringContext "${pkgs.pi-bun}/lib/node_modules/pi-monorepo";
     in {
       "${configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
+      "${configDir}/extensions/pi-lens.json".text = builtins.toJSON {
+        widget.visible = false;
+        lsp.servers.qmlls = {
+          name = "Qt QML Language Server";
+          extensions = [".qml"];
+          command = "qmlls";
+          args = [];
+        };
+      };
       "${configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
         doublePressToConfirm = false;
         permission = {
