@@ -208,18 +208,19 @@ in {
           github = {
             url = "https://api.githubcopilot.com/mcp/";
             headers.Authorization = "!echo Bearer $(cat ${config.sops.secrets.github_token.path})";
+            toolExposure = {
+              "get_*" = "direct";
+              "list_*" = "direct";
+              "search_*" = "direct";
+            };
           };
-          mcp-nixos.url = "http://localhost:3229/mcp";
+          nixos = {
+            url = "http://localhost:3229/mcp";
+            exposure = "direct";
+          };
           playwright.url = "http://localhost:3230/mcp";
           web-search.url = "http://localhost:3228/mcp";
-          open-design = {
-            command = getExe pkgs.open-design;
-            args = [
-              "mcp"
-              "--daemon-url"
-              "http://127.0.0.1:7456"
-            ];
-          };
+          open-design.url = "https://localhost:7456/mcp";
         };
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
