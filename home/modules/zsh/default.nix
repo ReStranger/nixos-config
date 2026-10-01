@@ -69,7 +69,6 @@ in {
       shellAliases = {
         "lg" = "lazygit";
         "cat" = "bat --style=plain";
-        "tmux" = "tmux -u";
         "uwufetch" = "uwufetch -i";
         ";:q" = "exit";
         "Жй" = "exit";
