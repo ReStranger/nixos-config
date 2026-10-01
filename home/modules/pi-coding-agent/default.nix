@@ -52,7 +52,6 @@ in {
         };
         showCacheMissNotices = true;
         enableInstallTelemetry = false;
-        tuiMode = "fullscreen";
         fullscreenExitOutput = "transcript";
         fullscreenCopyOnSelect = true;
         npmCommand = ["${getExe pkgs.bun}"];
