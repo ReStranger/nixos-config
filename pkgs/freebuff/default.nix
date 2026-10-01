@@ -2,6 +2,9 @@
   lib,
   buildNpmPackage,
   fetchzip,
+  nodejs,
+  nix-update,
+  writeShellApplication,
 }:
 buildNpmPackage (finalAttrs: {
   pname = "freebuff";
@@ -28,7 +31,25 @@ buildNpmPackage (finalAttrs: {
   # tarball. The tarball already contains the generated files, so skip it.
   npmPackFlags = ["--ignore-scripts"];
 
-  passthru.updateScript = ./update.sh;
+  passthru.updateScript = writeShellApplication {
+    name = "update-freebuff";
+    runtimeInputs = [
+      nodejs
+      nix-update
+    ];
+    text = ''
+      version=$(npm view freebuff version)
+      echo "freebuff: $version"
+
+      (
+        cd pkgs/freebuff
+        npm install --package-lock-only "freebuff@$version" --ignore-scripts
+        rm -f package.json
+      )
+
+      nix-update --flake freebuff --version "$version"
+    '';
+  };
 
   meta = {
     description = "The world's strongest free coding agent";
