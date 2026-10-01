@@ -63,6 +63,13 @@ in {
         "codemode.mode" = "on";
         "codemode.inlineBudget" = 3000;
 
+        compaction = {
+          enabled = true;
+          reserveTokens = 16384;
+          keepRecentTokens = 20000;
+          modelOverrides = {};
+        };
+
         fullscreenWheelScrollLines = "auto";
         fullscreenScrollbar = "auto";
 
