@@ -8,16 +8,16 @@
 }:
 buildNpmPackage (finalAttrs: {
   pname = "freebuff";
-  version = "0.0.203";
+  version = "0.2.11";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/freebuff/-/freebuff-${finalAttrs.version}.tgz";
-    hash = "sha256-G4iRIVrqn6ApZGmvjj9tAxvF/qcGBZNYWbhRgoAkDHo=";
+    hash = "sha256-VDMj5EZJEGr+PTMSAxqWklZ8IizYxYVLkTI4k1PlrIU=";
   };
 
   strictDeps = true;
 
-  npmDepsHash = "sha256-yq27mVTI+qnto7JkNgLJUHKPOol8tLqy9E4nRvH5pr0=";
+  npmDepsHash = "sha256-tBC+dz/JNNpe/oJ76/e545+ysv4lHqb0CUQL+lZZ81g=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
