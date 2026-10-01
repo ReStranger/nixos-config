@@ -112,6 +112,7 @@ in {
 
       icons = {
         nh = "󱄅";
+        nix = "󱄅";
         nom = "󱄅";
         opencode = "󰚩";
         pi = "󰏿";
