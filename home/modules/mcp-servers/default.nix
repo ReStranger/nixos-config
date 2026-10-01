@@ -73,6 +73,18 @@
           default = null;
           description = "Working directory for the server.";
         };
+
+        passEnvironment = mkOption {
+          type = listOf str;
+          default = [];
+          example = literalExpression ''[ "DISPLAY" "WAYLAND_DISPLAY" ]'';
+          description = ''
+            Names of variables copied from the systemd user manager environment
+            into the service. Use it for values that come from the graphical
+            session, so the unit follows the real socket instead of pinning a
+            literal that breaks when the display changes.
+          '';
+        };
       };
     }
   );
@@ -109,6 +121,9 @@
       }
       // optionalAttrs (serverCfg.envFile != null) {
         EnvironmentFile = serverCfg.envFile;
+      }
+      // optionalAttrs (serverCfg.passEnvironment != []) {
+        PassEnvironment = serverCfg.passEnvironment;
       }
       // optionalAttrs (serverCfg.workingDirectory != null) {
         WorkingDirectory = serverCfg.workingDirectory;
