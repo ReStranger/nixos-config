@@ -46,13 +46,7 @@ _: {
       systemd-oomd.enable = true;
       tailscale.enable = true;
       upower.enable = true;
-      zerotier-one = {
-        enable = true;
-        joinNetworks = [
-          "8bd5124fd65dec01" # re_sshd
-          "af415e486f516107" # party
-        ];
-      };
+      zerotier-one.enable = true;
       zram.enable = true;
     };
 
