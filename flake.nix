@@ -85,7 +85,10 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    millennium = {
+      url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-millennium.url = "github:re1n0/nixos-millennium/release";
 
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
