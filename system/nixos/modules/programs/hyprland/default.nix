@@ -1,12 +1,10 @@
 {
   lib,
-  inputs,
   pkgs,
   config,
   ...
 }: let
   cfg = config.module.programs.hyprland;
-  pkg = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf;
 in {
   options.module.programs.hyprland.enable = mkEnableOption "Enables hyprland";
@@ -15,8 +13,8 @@ in {
       enable = true;
       xwayland.enable = true;
       withUWSM = true;
-      package = pkg.hyprland;
-      portalPackage = pkg.xdg-desktop-portal-hyprland;
+      package = pkgs.hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
     services.libinput.enable = true;
     xdg.portal = {
