@@ -17,6 +17,7 @@ in {
         non-steam-playtimes
         protondb
         size-on-disk
+        protondb-status
       ];
     };
   };
