@@ -110,6 +110,10 @@
       thinkingText = "muted";
 
       selectedBg = "selected";
+      scrollbarTrack = "muted";
+      scrollbarThumb = "text";
+      searchMatchBg = "selected";
+      searchMatchText = "text";
       userMessageBg = "userBg";
       userMessageText = "text";
       customMessageBg = "customBg";
