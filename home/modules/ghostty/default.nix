@@ -2,8 +2,6 @@
   self,
   config,
   lib,
-  inputs,
-  pkgs,
   ...
 }: let
   cfg = config.module.ghostty;
@@ -20,7 +18,6 @@ in {
     '';
     programs.ghostty = {
       enable = true;
-      package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings = {
         font-family = mkForce "Maple Mono NF";
         background-opacity = mkForce 0.87;
