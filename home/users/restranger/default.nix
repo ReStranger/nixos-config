@@ -28,7 +28,7 @@
           };
         };
 
-        mcp-nixos = {
+        nixos = {
           enable = true;
           package = pkgs.mcp-nixos;
           env = {
