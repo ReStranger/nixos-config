@@ -184,7 +184,13 @@ in {
     runHook postInstall
   '';
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version-regex"
+      "open-design-v(\\d+\\.\\d+\\.\\d+)"
+    ];
+  };
 
   meta = with lib; {
     description = "Local-first design product — daemon (`od` CLI) + Next.js frontend for agent-native design artifacts";
