@@ -51,6 +51,7 @@
           enable = true;
           package = pkgs.playwright-mcp;
           args = ["--host" "127.0.0.1" "--port" "3230"];
+          passEnvironment = ["DISPLAY" "WAYLAND_DISPLAY"];
         };
       };
     };
