@@ -11,9 +11,39 @@
   pkg-config,
   nix-update-script,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: let
+  workspaceDirs = [
+    "packages/release"
+    "packages/contracts"
+    "packages/registry-protocol"
+    "packages/agui-adapter"
+    "packages/plugin-runtime"
+    "packages/sidecar-proto"
+    "packages/launcher-proto"
+    "packages/platform"
+    "packages/sidecar"
+    "packages/diagnostics"
+    "packages/components"
+    "packages/host"
+    "packages/download"
+    "apps/daemon"
+    "apps/web"
+  ];
+
+  # Brace glob => topological build order; workspace packages need each
+  # other's dist/*.d.ts (sidecar -> platform, contracts -> release).
+  packageFilter = "./packages/{${
+    lib.concatStringsSep "," (map (ws: lib.last (lib.splitString "/" ws))
+      (lib.filter (ws: lib.hasPrefix "packages/" ws) workspaceDirs))
+  }}";
+
+  # apps/web ships as a static export only; its build deps are not runtime.
+  runtimeWorkspaceDirs = builtins.filter (ws: ws != "apps/web") workspaceDirs;
+  runtimeWorkspaceFilter = lib.concatMapStringsSep " " (ws: "--filter ./${ws}")
+    runtimeWorkspaceDirs;
+in {
   pname = "open-design";
-  version = "0.21.1";
+  version = "0.24.1";
 
   strictDeps = true;
   __structuredAttrs = true;
@@ -22,50 +52,18 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "nexu-io";
     repo = "open-design";
     rev = "open-design-v${finalAttrs.version}";
-    hash = "sha256-0aG4hyv+HnTQBcs3SxAgPJerDv6KJNQaZm3W8xd4lx8=";
+    hash = "sha256-CJpr0JIww5XGgPqTDwaQlPBCB0Kz5GtOCOyKMfT9zyA=";
   };
 
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     pnpm = pnpm_10;
     fetcherVersion = 4;
-    pnpmWorkspaces = [
-      "./packages/release"
-      "./packages/contracts"
-      "./packages/registry-protocol"
-      "./packages/agui-adapter"
-      "./packages/plugin-runtime"
-      "./packages/sidecar-proto"
-      "./packages/launcher-proto"
-      "./packages/sidecar"
-      "./packages/platform"
-      "./packages/diagnostics"
-      "./packages/components"
-      "./packages/host"
-      "./packages/download"
-      "./apps/daemon"
-      "./apps/web"
-    ];
-    hash = "sha256-yymPSQqi4Atq8CyOy2w5upo+kihyUVwfFkXnj/q7rSo=";
+    pnpmWorkspaces = map (ws: "./${ws}") workspaceDirs;
+    hash = "sha256-s5ZUgT3xWYNUa3kKwgBNiLMowc20AyxsUe5zjqJGQLo=";
   };
 
-  pnpmWorkspaces = [
-    "./packages/release"
-    "./packages/contracts"
-    "./packages/registry-protocol"
-    "./packages/agui-adapter"
-    "./packages/plugin-runtime"
-    "./packages/sidecar-proto"
-    "./packages/launcher-proto"
-    "./packages/sidecar"
-    "./packages/platform"
-    "./packages/diagnostics"
-    "./packages/components"
-    "./packages/host"
-    "./packages/download"
-    "./apps/daemon"
-    "./apps/web"
-  ];
+  pnpmWorkspaces = map (ws: "./${ws}") workspaceDirs;
 
   nativeBuildInputs = [
     nodejs_22
@@ -88,39 +86,16 @@ stdenv.mkDerivation (finalAttrs: {
     export npm_config_build_from_source=true
     export PATH="${nodejs_22}/lib/node_modules/npm/bin/node-gyp-bin:$PATH"
 
-    bsq_dir=$(find node_modules/.pnpm -mindepth 2 -maxdepth 4 \
-      -type d -path '*/better-sqlite3@*/node_modules/better-sqlite3' \
-      -print -quit || true)
-    if [ -n "$bsq_dir" ]; then
-      echo "Building better-sqlite3 from source at $bsq_dir"
+    # fetchPnpmDeps installs with --ignore-scripts, so the addon needs a build.
+    bsq_dir=$(find node_modules/.pnpm -mindepth 2 -maxdepth 4 -type d \
+      -path '*/better-sqlite3@*/node_modules/better-sqlite3' -print -quit)
+    if [ ! -f "$bsq_dir/build/Release/better_sqlite3.node" ]; then
+      echo "Building better-sqlite3 at $bsq_dir"
       ( cd "$bsq_dir" && node-gyp rebuild --release --build-from-source )
-      if [ ! -f "$bsq_dir/build/Release/better_sqlite3.node" ]; then
-        echo "ERROR: better_sqlite3.node not produced" >&2
-        find "$bsq_dir" -name '*.node' -print >&2 || true
-        exit 1
-      fi
     fi
+    test -f "$bsq_dir/build/Release/better_sqlite3.node"
 
-    for ws in \
-      packages/release \
-      packages/contracts \
-      packages/registry-protocol \
-      packages/agui-adapter \
-      packages/plugin-runtime \
-      packages/sidecar-proto \
-      packages/launcher-proto \
-      packages/sidecar \
-      packages/platform \
-      packages/diagnostics \
-      packages/components \
-      packages/host \
-      packages/download
-    do
-      if [ -f "$ws/package.json" ]; then
-        echo "Building $ws"
-        pnpm -C "$ws" run --if-present build
-      fi
-    done
+    pnpm --filter '${packageFilter}' run --if-present build
 
     echo "Building @open-design/daemon"
     pnpm -C apps/daemon run build
@@ -136,23 +111,7 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/lib/open-design $out/bin
     cp -r . $out/lib/open-design/
 
-    for ws in \
-      packages/release \
-      packages/contracts \
-      packages/registry-protocol \
-      packages/agui-adapter \
-      packages/plugin-runtime \
-      packages/sidecar-proto \
-      packages/launcher-proto \
-      packages/sidecar \
-      packages/platform \
-      packages/diagnostics \
-      packages/components \
-      packages/host \
-      packages/download \
-      apps/daemon \
-      apps/web
-    do
+    for ws in ${lib.concatStringsSep " " workspaceDirs}; do
       if [ -d "$out/lib/open-design/$ws" ]; then
         if [ "$ws" = "apps/web" ]; then
           find "$out/lib/open-design/$ws" -mindepth 1 -maxdepth 1 \
@@ -179,22 +138,43 @@ stdenv.mkDerivation (finalAttrs: {
       fi
     done
 
-    rm -f \
-      $out/lib/open-design/node_modules/@open-design/components \
-      $out/lib/open-design/node_modules/@open-design/tools-dev \
-      $out/lib/open-design/node_modules/@open-design/tools-pack \
-      $out/lib/open-design/node_modules/@open-design/tools-release \
-      $out/lib/open-design/node_modules/@open-design/tools-serve \
-      $out/lib/open-design/node_modules/.bin/tools-dev \
-      $out/lib/open-design/node_modules/.bin/tools-pack \
-      $out/lib/open-design/node_modules/.bin/tools-release \
-      $out/lib/open-design/node_modules/.bin/tools-serve \
-      2>/dev/null || true
-    rm -rf $out/lib/open-design/e2e 2>/dev/null || true
-    rm -rf $out/lib/open-design/tools 2>/dev/null || true
-    rm -rf $out/lib/open-design/shells 2>/dev/null || true
+    # PROJECT_ROOT = <apps/daemon>/../..; these are the only top-level
+    # entries it reads (apps/daemon/dist/server.js:370-422).
+    find "$out/lib/open-design" -mindepth 1 -maxdepth 1 \
+      ! -name node_modules \
+      ! -name apps \
+      ! -name packages \
+      ! -name assets \
+      ! -name craft \
+      ! -name data \
+      ! -name design-systems \
+      ! -name design-templates \
+      ! -name plugins \
+      ! -name prompt-templates \
+      ! -name skills \
+      ! -name package.json \
+      -exec rm -rf {} +
+
+    # apps/ keeps daemon (the CLI entrypoint) and web/out (the static export).
+    find "$out/lib/open-design/apps" -mindepth 1 -maxdepth 1 \
+      ! -name web ! -name daemon -exec rm -rf {} +
+    find "$out/lib/open-design/apps/web" -mindepth 1 -maxdepth 1 ! -name out \
+      -exec rm -rf {} +
 
     chmod +x $out/lib/open-design/apps/daemon/dist/cli.js
+
+    # Fail the build, not the user: the pruning above is hand-maintained.
+    for required in \
+      "$out/lib/open-design/package.json" \
+      "$out/lib/open-design/node_modules" \
+      "$out/lib/open-design/apps/daemon/package.json" \
+      "$out/lib/open-design/apps/daemon/dist/cli.js" \
+      "$out/lib/open-design/apps/web/out" ; do
+      if [ ! -e "$required" ]; then
+        echo "ERROR: missing runtime path in \$out: $required" >&2
+        exit 1
+      fi
+    done
     makeWrapper ${lib.getExe nodejs_22} $out/bin/od \
       --add-flags $out/lib/open-design/apps/daemon/dist/cli.js \
       --set NODE_ENV production \
