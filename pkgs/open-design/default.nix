@@ -109,6 +109,28 @@ in {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/lib/open-design $out/bin
+
+    # Ship a prod-only tree: the build-time install is ~1.9G of compilers,
+    # bundlers and test tooling `od` never loads. `--prod` over the existing
+    # tree is a no-op (pnpm trusts node_modules/.modules.yaml), so wipe it to
+    # force a real resolve -- offline, from pnpm-lock.yaml.
+    find . -mindepth 1 -maxdepth 4 -type d -name node_modules -prune \
+      -exec rm -rf {} +
+    pnpm install ${runtimeWorkspaceFilter} --prod --offline --ignore-scripts \
+      --config.confirmModulesPurge=false
+
+    # --prod relinks from the store with --ignore-scripts, dropping the addon.
+    export npm_config_nodedir=${nodejs_22}
+    export npm_config_build_from_source=true
+    export PATH="${nodejs_22}/lib/node_modules/npm/bin/node-gyp-bin:$PATH"
+    bsq_dir=$(find node_modules/.pnpm -mindepth 2 -maxdepth 4 -type d \
+      -path '*/better-sqlite3@*/node_modules/better-sqlite3' -print -quit)
+    if [ ! -f "$bsq_dir/build/Release/better_sqlite3.node" ]; then
+      echo "Rebuilding better-sqlite3 at $bsq_dir"
+      ( cd "$bsq_dir" && node-gyp rebuild --release --build-from-source )
+    fi
+    test -f "$bsq_dir/build/Release/better_sqlite3.node"
+
     cp -r . $out/lib/open-design/
 
     for ws in ${lib.concatStringsSep " " workspaceDirs}; do
