@@ -17,7 +17,7 @@ in {
         mcp-nixos.url = "http://localhost:3229/mcp";
         playwright.url = "http://localhost:3230/mcp";
         web-search.url = "http://localhost:3228/mcp";
-        open-design.url = "http://127.0.0.1:7456";
+        open-design.url = "http://localhost:7456/mcp";
       };
     };
   };
