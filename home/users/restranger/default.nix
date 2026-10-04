@@ -28,6 +28,15 @@
           };
         };
 
+        open-design = {
+          command = pkgs.open-design;
+          args = [
+            "mcp"
+            "--daemon-url"
+            "http://127.0.0.1:7456"
+          ];
+        };
+
         nixos = {
           enable = true;
           package = pkgs.mcp-nixos;
