@@ -1,0 +1,68 @@
+Don't fail on unknown activity/result types
+
+nom hardcodes the activity and result type numbers of the Nix release it was
+written against. Every new type Nix emits (e.g. `10113`
+`EvaluateFlakeDerivationOutput`, added in Determinate Nix 3.23.0) makes the
+whole message fail to parse, which kills the build log rendering:
+
+    nix-output-monitor error: ParseNixJSONMessageError
+    "InternalException (DocumentError {path = \"/type\",
+    errorMsg = \"invalid activity type: 10113\"})"
+
+Parse unknown types into a catch-all constructor instead. `parseStartAction`
+already maps `UnknownType` to the `Unknown` activity, which is tracked and
+displayed without a progress bar, so start messages for brand new activity
+types keep working. Unknown result types are parsed too and then dropped by
+the catch-all `Result _other_result -> noChange` branch in `NOM.Update`.
+
+Same idea as upstream issue #320 and PR #321, extended to result types
+(issue #193) which that PR leaves broken.
+
+--- a/lib/NOM/NixMessage/JSON.hs
++++ b/lib/NOM/NixMessage/JSON.hs
+@@ -40,6 +40,9 @@
+   PostBuildHookType :: ActivityType
+   BuildWaitingType :: ActivityType
+   FetchTreeType :: ActivityType
++  -- | Activity types introduced by Nix versions newer than this one.
++  -- They are ignored instead of aborting parsing of the whole message.
++  OtherType :: Int -> ActivityType
+   deriving stock (Show, Eq)
+ 
+ -- | nix src/libutil/include/nix/util/logging.hh ActivityType
+@@ -71,6 +74,9 @@
+   SetExpected :: ActivityType -> Int -> ActivityResult
+   PostBuildLogLine :: Text -> ActivityResult
+   FetchStatus :: Text -> ActivityResult
++  -- | Result types introduced by Nix versions newer than this one.
++  -- They are ignored instead of aborting parsing of the whole message.
++  OtherResult :: Int -> ActivityResult
+   deriving stock (Show, Eq)
+ 
+ data ActivityProgress = MkActivityProgress
+--- a/lib/NOM/Parser/JSON.hs
++++ b/lib/NOM/Parser/JSON.hs
+@@ -45,7 +45,7 @@
+   110 -> pure PostBuildHookType
+   111 -> pure BuildWaitingType
+   112 -> pure FetchTreeType
+-  other -> fail ("invalid activity type: " <> show other)
++  other -> pure (OtherType other)
+ 
+ parseAction :: JSON.Decoder NixJSONMessage
+ parseAction = JSON.object $ do
+@@ -121,7 +121,7 @@
+       pure $ SetExpected activityType number
+     107 -> PostBuildLogLine <$> one txt
+     108 -> FetchStatus <$> one txt
+-    other -> fail ("invalid activity result type: " <> show other)
++    other -> pure $ OtherResult other
+   pure MkResultAction{id = idField, result}
+ 
+ parseStopAction :: JSON.FieldsDecoder StopAction
+@@ -163,4 +163,5 @@
+     PostBuildHookType -> PostBuildHook <$> (one txt >>= parseDerivation)
+     BuildWaitingType -> pure BuildWaiting
+     FetchTreeType -> pure FetchTree
++    OtherType _ -> pure Unknown
+   pure MkStartAction{id = MkId idField, text, activity, level}
