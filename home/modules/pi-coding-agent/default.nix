@@ -213,6 +213,14 @@ in {
           "permission-system"
         ];
       };
+      "${configDir}/btw.json".text = builtins.toJSON {
+        extensions = [
+          "npm:@gotgenes/pi-permission-system"
+          "git:https://github.com/ReStranger/pi-bifrost-provider"
+          "git:https://github.com/ReStranger/pi-opencode-free"
+          "git:https://github.com/ReStranger/pi-oauth-antigravity"
+        ];
+      };
       "${configDir}/mcp.json".text = builtins.toJSON {
         mcpServers = {
           github = {
@@ -233,7 +241,6 @@ in {
           open-design.url = "https://localhost:7456/mcp";
         };
       };
-      "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
       "${configDir}/subagents.json".text = builtins.toJSON {
         maxConcurrent = 50;
         abortAllOnInterrupt = false;
