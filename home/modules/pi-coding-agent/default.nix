@@ -30,15 +30,15 @@ in {
         defaultProvider = "opencode-free";
         defaultModel = "space-bunny-free:max";
         enabledModels = [
+          "opencode-free/space-bunny-free:max"
+          "opencode-free/muse-spark-1.3-contributor-free:xhight"
           "bifrost-responses/gpt-5.4"
-          "opencode/muse-spark-1.3-contributor-free"
+          "antigravity/gemini-3.8-flash"
+          "antigravity/gemini-3.8-flash"
+          "antigravity/claude-opus-4-6"
+          "antigravity/claude-sonnet-4-6"
           "bifrost-responses/deepseek-v4-flash"
-          "bifrost-responses/glm-5.2"
           "bifrost-responses/glm-5.3"
-          "bifrost-responses/gpt-5.5"
-          "opencode/nemotron-3-ultra-free"
-          "opencode/mimo-v2.5-free"
-          "opencode/hy3-free"
         ];
         terminal = {
           clearOnShrink = true;
