@@ -28,7 +28,7 @@ in {
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
         defaultProvider = "opencode-free";
-        defaultModel = "muse-spark-1.3-contributor-free";
+        defaultModel = "space-bunny-free:max";
         enabledModels = [
           "bifrost-responses/gpt-5.4"
           "opencode/muse-spark-1.3-contributor-free"
