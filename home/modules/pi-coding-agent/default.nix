@@ -234,6 +234,11 @@ in {
         };
       };
       "${configDir}/pi-btw.json".text = builtins.toJSON {thinkingLevel = "minimal";};
+      "${configDir}/subagents.json".text = builtins.toJSON {
+        maxConcurrent = 50;
+        abortAllOnInterrupt = false;
+        midRunUpdates = true;
+      };
     };
   };
 }
