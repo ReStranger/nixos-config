@@ -28,6 +28,8 @@
     unstable.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     master.url = "github:NixOS/nixpkgs/master";
 
+    davinci-nixpkgs.url = "github:NixOS/nixpkgs/2efa67fd26b6df417c33e4603185c701f260dd83";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
