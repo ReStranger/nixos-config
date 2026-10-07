@@ -11,5 +11,8 @@
   };
   services.xserver.videoDrivers = ["amdgpu"];
 
-  environment.systemPackages = with pkgs; [nvtopPackages.amd];
+  environment = {
+    systemPackages = with pkgs; [nvtopPackages.amd];
+    variables.MESA_SHADER_CACHE_MAX_SIZE = "12G";
+  };
 }
