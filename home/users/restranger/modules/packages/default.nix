@@ -73,6 +73,7 @@ in {
         vlc
         inkscape
         qbittorrent
+        davinci-resolve_20
         open-design
         freebuff
         xournalpp
