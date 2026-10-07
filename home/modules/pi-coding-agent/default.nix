@@ -74,7 +74,7 @@ in {
         fullscreenScrollbar = "auto";
 
         packages = [
-          "npm:@gotgenes/pi-permission-system"
+          "npm:@restranger/pi-permission-system"
           "npm:@gotgenes/pi-nocd"
           "npm:@gotgenes/pi-subagents"
           "npm:pi-lens"
@@ -215,7 +215,7 @@ in {
       };
       "${configDir}/btw.json".text = builtins.toJSON {
         extensions = [
-          "npm:@gotgenes/pi-permission-system"
+          "npm:@restranger/pi-permission-system"
           "git:https://github.com/ReStranger/pi-bifrost-provider"
           "git:https://github.com/ReStranger/pi-opencode-free"
           "git:https://github.com/ReStranger/pi-oauth-antigravity"
