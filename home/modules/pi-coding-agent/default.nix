@@ -77,6 +77,7 @@ in {
           "npm:@restranger/pi-permission-system"
           "npm:@gotgenes/pi-nocd"
           "npm:@gotgenes/pi-subagents"
+          "npm:pi-background-tasks"
           "npm:pi-lens"
           "npm:pi-web-access"
           "npm:@snowy117/pi-dcp"
