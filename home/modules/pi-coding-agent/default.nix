@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     sops.secrets.github_token = {};
+    home.sessionVariables.PI_PROGRAM_STATUS = 1;
     programs.pi-coding-agent = {
       enable = true;
       package = pkgs.pi-bun;
