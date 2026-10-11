@@ -225,20 +225,28 @@ in {
         mcpServers = {
           github = {
             url = "https://api.githubcopilot.com/mcp/";
+            description = "Search GitHub repositories and code, read issues and pull requests";
             headers.Authorization = "!echo Bearer $(cat ${config.sops.secrets.github_token.path})";
             toolExposure = {
-              "get_*" = "direct";
-              "list_*" = "direct";
-              "search_*" = "direct";
+              get_file_contents = "direct";
+              search_code = "direct";
+              issue_read = "direct";
+              pull_request_read = "direct";
             };
           };
           nixos = {
             url = "http://localhost:3229/mcp";
+            description = "Query Nixpkgs packages, versions, and options";
             exposure = "direct";
           };
-          playwright.url = "http://localhost:3230/mcp";
-          web-search.url = "http://localhost:3228/mcp";
-          open-design.url = "https://localhost:7456/mcp";
+          playwright = {
+            url = "http://localhost:3230/mcp";
+            description = "Drive a browser: navigate, click, snapshot, screenshot";
+          };
+          open-design = {
+            url = "http://localhost:7456/mcp";
+            description = "Open Design MCP";
+          };
         };
       };
       "${configDir}/subagents.json".text = builtins.toJSON {
