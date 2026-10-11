@@ -39,7 +39,8 @@ stdenv.mkDerivation (finalAttrs: let
 
   # apps/web ships as a static export only; its build deps are not runtime.
   runtimeWorkspaceDirs = builtins.filter (ws: ws != "apps/web") workspaceDirs;
-  runtimeWorkspaceFilter = lib.concatMapStringsSep " " (ws: "--filter ./${ws}")
+  runtimeWorkspaceFilter =
+    lib.concatMapStringsSep " " (ws: "--filter ./${ws}")
     runtimeWorkspaceDirs;
 in {
   pname = "open-design";
