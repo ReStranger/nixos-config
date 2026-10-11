@@ -32,7 +32,7 @@ in {
         defaultModel = "space-bunny-free:max";
         enabledModels = [
           "opencode-free/space-bunny-free:max"
-          "opencode-free/muse-spark-1.3-contributor-free:xhight"
+          "opencode-free/muse-spark-1.3-contributor-free:xhigh"
           "bifrost-responses/gpt-5.4"
           "antigravity/gemini-3.8-flash"
           "antigravity/gemini-3.8-flash"
