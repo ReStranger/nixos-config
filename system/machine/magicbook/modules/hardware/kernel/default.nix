@@ -17,7 +17,6 @@
     kernelParams = [
       "mitigations=off"
       "split_lock_detect=off"
-      "pci=pcie_bus_perf"
       "threadirqs"
       "usbcore.autosuspend=5"
     ];
