@@ -19,7 +19,6 @@
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
       "threadirqs"
-      "preempt=none"
     ];
     supportedFilesystems = ["ntfs"];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
