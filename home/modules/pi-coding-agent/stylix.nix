@@ -83,7 +83,7 @@
       exportInfoBg = mix 0.12 "base01" "base0A";
     };
   in {
-    "$schema" = "https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json";
+    "$schema" = "https://pi.dev/schemas/theme.schema.json";
     name = "stylix";
 
     # Pi has to be told whether the scheme is light or dark.
