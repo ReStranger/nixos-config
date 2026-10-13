@@ -15,9 +15,6 @@
       "kvm-amd"
     ];
     kernelParams = [
-      "loglevel=3"
-      "quiet"
-      "splash"
       "mitigations=off"
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
