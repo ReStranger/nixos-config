@@ -18,7 +18,13 @@
       "mitigations=off"
       "split_lock_detect=off"
       "threadirqs"
-      "usbcore.autosuspend=5"
+      "usbcore.autosuspend=2"
+      "pcie_aspm.policy=powersupersave"
+      "amdgpu.aspm=1"
+      "amdgpu.runpm=-2"
+      "nvme_core.default_ps_max_latency_us=15000"
+      "nvme_core.apst_primary_latency_tol_us=15000"
+      "nvme_core.apst_secondary_latency_tol_us=15000"
       "resume_offset=8972000"
     ];
     kernel.sysctl = {
