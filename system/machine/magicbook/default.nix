@@ -51,7 +51,6 @@ _: {
     };
 
     programs = {
-      corectrl.enable = true;
       fonts.enable = true;
       gamemode.enable = true;
       gnupg.enable = true;
