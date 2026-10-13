@@ -19,7 +19,6 @@
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
       "threadirqs"
-      "preempt=none"
       "usbcore.autosuspend=5"
     ];
     kernel.sysctl = {
