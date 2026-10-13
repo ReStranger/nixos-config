@@ -84,7 +84,6 @@
       fsType = "btrfs";
       options = [
         "defaults"
-        "discard=async"
         "space_cache=v2"
         "x-gvfs-show"
         "x-gvfs-name=HDD%201"
