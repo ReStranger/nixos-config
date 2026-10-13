@@ -19,10 +19,6 @@
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
       "threadirqs"
-      "noibrs"
-      "rootfstype=btrfs"
-      "selinux=0"
-      "raid=noautodetect"
       "preempt=none"
     ];
     supportedFilesystems = ["ntfs"];
