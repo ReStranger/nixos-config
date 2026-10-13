@@ -20,23 +20,17 @@ in {
     };
 
     services.udev.extraRules = ''
-      # Disables power saving capabilities for snd-hda-intel when device is not
-      # running on battery power. This is needed because it prevents audio cracks on
-      # some hardware.
-      ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
-          RUN+="${getExe pkgs.bash} -c 'touch /run/udev/snd-hda-intel-powersave; \
-              [[ $$(cat /sys/class/power_supply/BAT0/status 2>/dev/null) != \"Discharging\" ]] && \
-              echo $$(cat /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave && \
-              echo 0 > /sys/module/snd_hda_intel/parameters/power_save'"
+      # Disables power saving capabilities for snd-hda-intel when the machine is
+      # running on AC power. This is needed because it prevents audio cracks on
+      # some hardware. The stock value is restored when running on battery.
 
-      SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", TEST=="/sys/module/snd_hda_intel", \
-          RUN+="${getExe pkgs.bash} -c 'echo $$(cat /run/udev/snd-hda-intel-powersave 2>/dev/null || \
-              echo 10) > /sys/module/snd_hda_intel/parameters/power_save'"
+      # Each rule must fit on one line; continuations break udevadm verify.
+      # Keep snd_hda_intel detection in the shell to avoid build-sandbox issues with udev TEST{}.
+      ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", RUN+="${getExe pkgs.bash} -c '[ -e /sys/module/snd_hda_intel/parameters/power_save ] && [[ -n $$(grep -l 1 /sys/class/power_supply/A*/online 2>/dev/null) ]] && echo $$(cat /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave && echo 0 > /sys/module/snd_hda_intel/parameters/power_save'"
 
-      SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", TEST=="/sys/module/snd_hda_intel", \
-          RUN+="${getExe pkgs.bash} -c '[[ $$(cat /sys/module/snd_hda_intel/parameters/power_save) != 0 ]] && \
-              echo $$(cat /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave; \
-              echo 0 > /sys/module/snd_hda_intel/parameters/power_save'"
+      SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_TYPE}=="Mains", ENV{POWER_SUPPLY_ONLINE}=="0", RUN+="${getExe pkgs.bash} -c '[ -e /sys/module/snd_hda_intel/parameters/power_save ] && echo $$(cat /run/udev/snd-hda-intel-powersave 2>/dev/null || echo 10) > /sys/module/snd_hda_intel/parameters/power_save'"
+
+      SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_TYPE}=="Mains", ENV{POWER_SUPPLY_ONLINE}=="1", RUN+="${getExe pkgs.bash} -c '[ -e /sys/module/snd_hda_intel/parameters/power_save ] && { [[ $$(cat /sys/module/snd_hda_intel/parameters/power_save) != 0 ]] && echo $$(cat /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave; echo 0 > /sys/module/snd_hda_intel/parameters/power_save; }'"
 
       KERNEL=="rtc0", GROUP="audio"
       KERNEL=="hpet", GROUP="audio"
