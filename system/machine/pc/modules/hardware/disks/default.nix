@@ -1,6 +1,9 @@
 {username, ...}: {
   boot.initrd.luks.devices = {
-    cryptroot.device = "/dev/nvme0n1p5";
+    cryptroot = {
+      device = "/dev/nvme0n1p5";
+      allowDiscards = true;
+    };
     cryptstorage.device = "/dev/disk/by-id/wwn-0x50014ee2153e7621-part1";
   };
   fileSystems = {
