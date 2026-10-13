@@ -80,7 +80,7 @@ in {
           "npm:@gotgenes/pi-subagents"
           "npm:pi-lens"
           "npm:pi-web-access"
-          "npm:@snowy117/pi-dcp"
+          "npm:@pi-vault/pi-dcp"
           "npm:@juicesharp/rpiv-i18n"
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
@@ -213,6 +213,12 @@ in {
           "languages"
           "permission-system"
         ];
+      };
+      "${configDir}/extensions/dcp.json".text = builtins.toJSON {
+        compress = {
+          minContextLimit = "40%";
+          maxContextLimit = "70%";
+        };
       };
       "${configDir}/btw.json".text = builtins.toJSON {
         extensions = [
