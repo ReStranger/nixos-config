@@ -6,6 +6,7 @@
         "xhci_pci"
         "usb_storage"
         "sd_mod"
+        "cryptd"
       ];
       kernelModules = ["amdgpu"];
     };
