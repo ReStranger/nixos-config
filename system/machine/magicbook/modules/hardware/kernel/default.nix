@@ -9,6 +9,7 @@
         "cryptd"
       ];
     };
+    resumeDevice = "/dev/mapper/vg-nixos";
     kernelModules = [
       "amdgpu"
       "kvm-amd"
@@ -18,6 +19,7 @@
       "split_lock_detect=off"
       "threadirqs"
       "usbcore.autosuspend=5"
+      "resume_offset=8972000"
     ];
     kernel.sysctl = {
       "vm.laptop_mode" = 5;
