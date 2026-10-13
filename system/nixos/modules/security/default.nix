@@ -51,14 +51,11 @@ in {
           "tsx=off"
           "tsx_async_abort=off"
           "vsyscall=none"
+          "debugfs=off"
         ]
         ++ optionals cfg.disableIPV6 [
           # Disable ipv6
           "ipv6.disable=1"
-        ]
-        ++ optionals (!config.module.services.scx.enable) [
-          # DebugFS needed for scx
-          "debugfs=off"
         ];
 
       blacklistedKernelModules = [
