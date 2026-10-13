@@ -8,7 +8,6 @@
         "sd_mod"
         "cryptd"
       ];
-      kernelModules = ["amdgpu"];
     };
     kernelModules = [
       "amdgpu"
