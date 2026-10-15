@@ -8,11 +8,11 @@
 }:
 buildNpmPackage (finalAttrs: {
   pname = "freebuff";
-  version = "0.2.26";
+  version = "0.2.27";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/freebuff/-/freebuff-${finalAttrs.version}.tgz";
-    hash = "sha256-fKobp8G1JwQcYM9TS6yFT7SLxau98RaKYSAFsN06n7Q=";
+    hash = "sha256-lg4dTYVM3+50fzqiWrWLhmHGXXLHhIPy0jHaH4vZ7Ls=";
   };
 
   strictDeps = true;
