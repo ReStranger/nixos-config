@@ -85,6 +85,28 @@
             literal that breaks when the display changes.
           '';
         };
+
+        wantedBy = mkOption {
+          type = listOf str;
+          default = ["default.target"];
+          description = ''
+            Targets that pull this service in (Install.WantedBy).
+            Use [ "graphical-session.target" ] for servers that need the
+            graphical session environment (for example DISPLAY).
+          '';
+        };
+
+        after = mkOption {
+          type = listOf str;
+          default = [];
+          description = "Units and targets this service must be started after (Unit.After).";
+        };
+
+        partOf = mkOption {
+          type = listOf str;
+          default = [];
+          description = "Units and targets whose stop or restart propagates to this service (Unit.PartOf).";
+        };
       };
     }
   );
@@ -109,9 +131,16 @@
   enabledServers = filterAttrs (_: server: server.enable) cfg.servers;
 
   mkBaseService = name: serverCfg: {
-    Unit = {
-      Description = "MCP server ${name}";
-    };
+    Unit =
+      {
+        Description = "MCP server ${name}";
+      }
+      // optionalAttrs (serverCfg.after != []) {
+        After = serverCfg.after;
+      }
+      // optionalAttrs (serverCfg.partOf != []) {
+        PartOf = serverCfg.partOf;
+      };
 
     Service =
       {
@@ -130,7 +159,7 @@
       };
 
     Install = {
-      WantedBy = ["default.target"];
+      WantedBy = serverCfg.wantedBy;
     };
   };
 
