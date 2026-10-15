@@ -29,11 +29,11 @@ in {
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
         defaultProvider = "opencode-free";
-        defaultModel = "space-bunny-free:max";
+        defaultModel = "deepseek-v4.1-flash-free:max";
         enabledModels = [
-          "opencode-free/space-bunny-free:max"
-          "opencode-free/muse-spark-1.3-contributor-free:xhigh"
+          "opencode-free/deepseek-v4.1-flash-free:max"
           "bifrost/gpt-5.4:xhigh"
+          "opencode-free/cat-jam-free:max"
           "antigravity/gemini-3.8-flash:high"
           "antigravity/claude-opus-4-6"
           "antigravity/claude-sonnet-4-6"
