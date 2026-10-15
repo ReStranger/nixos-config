@@ -194,10 +194,10 @@ index f3e9ef6..a05a9b7 100644
  
  OTHER_FILES += qt6ct.json
 diff --git a/src/qt6ct-qtplugin/qt6ctplatformtheme.cpp b/src/qt6ct-qtplugin/qt6ctplatformtheme.cpp
-index 569b13f..78c2eae 100644
+index 569b13f..fb2fc05 100644
 --- a/src/qt6ct-qtplugin/qt6ctplatformtheme.cpp
 +++ b/src/qt6ct-qtplugin/qt6ctplatformtheme.cpp
-@@ -41,38 +41,68 @@
+@@ -41,59 +41,132 @@
  #include <QStyleFactory>
  #include <QApplication>
  #include <QWidget>
@@ -270,7 +270,29 @@ index 569b13f..78c2eae 100644
  }
  
  Qt6CTPlatformTheme::~Qt6CTPlatformTheme()
-@@ -90,10 +120,41 @@ QPlatformDialogHelper *Qt6CTPlatformTheme::createPlatformDialogHelper(DialogType
+ {}
+ 
++void Qt6CTPlatformTheme::loadThemeIfNeeded() const
++{
++    if(!m_theme && !m_dialogs.isEmpty() && m_dialogs != QLatin1String("default"))
++    {
++        QStringList keys = QPlatformThemeFactory::keys();
++        if(keys.contains(m_dialogs))
++            m_theme.reset(QPlatformThemeFactory::create(m_dialogs));
++    }
++}
++
+ bool Qt6CTPlatformTheme::usePlatformNativeDialog(DialogType type) const
+ {
++    loadThemeIfNeeded();
+     return m_theme ? m_theme->usePlatformNativeDialog(type) :
+                      QGenericUnixTheme::usePlatformNativeDialog(type);
+ }
+ 
+ QPlatformDialogHelper *Qt6CTPlatformTheme::createPlatformDialogHelper(DialogType type) const
+ {
++    loadThemeIfNeeded();
+     return m_theme ? m_theme->createPlatformDialogHelper(type) :
                       QGenericUnixTheme::createPlatformDialogHelper(type);
  }
  
@@ -314,7 +336,7 @@ index 569b13f..78c2eae 100644
      return QGenericUnixTheme::palette(type);
  }
  
-@@ -148,6 +209,13 @@ QIcon Qt6CTPlatformTheme::fileIcon(const QFileInfo &fileInfo, QPlatformTheme::Ic
+@@ -148,6 +221,13 @@ QIcon Qt6CTPlatformTheme::fileIcon(const QFileInfo &fileInfo, QPlatformTheme::Ic
      return QIcon::fromTheme(type.iconName());
  }
  
@@ -328,7 +350,7 @@ index 569b13f..78c2eae 100644
  void Qt6CTPlatformTheme::applySettings()
  {
      if(!QGuiApplication::desktopSettingsAware() || m_isIgnored)
-@@ -156,18 +224,18 @@ void Qt6CTPlatformTheme::applySettings()
+@@ -156,18 +236,18 @@ void Qt6CTPlatformTheme::applySettings()
          return;
      }
  
@@ -353,7 +375,7 @@ index 569b13f..78c2eae 100644
              Qt6CT::reloadStyleInstanceSettings();
          }
  
-@@ -193,25 +261,26 @@ void Qt6CTPlatformTheme::applySettings()
+@@ -193,25 +273,26 @@ void Qt6CTPlatformTheme::applySettings()
  
      if(m_update)
      {
@@ -388,7 +410,7 @@ index 569b13f..78c2eae 100644
  void Qt6CTPlatformTheme::createFSWatcher()
  {
      QFileSystemWatcher *watcher = new QFileSystemWatcher(this);
-@@ -230,21 +299,16 @@ void Qt6CTPlatformTheme::updateSettings()
+@@ -230,42 +311,39 @@ void Qt6CTPlatformTheme::updateSettings()
      readSettings();
      applySettings();
  }
@@ -413,19 +435,25 @@ index 569b13f..78c2eae 100644
 +    m_palette = Qt6CT::loadColorScheme(m_schemePath);
      m_iconTheme = settings.value("icon_theme"_L1).toString();
      //load dialogs
-     if(!m_update)
-@@ -252,8 +316,9 @@ void Qt6CTPlatformTheme::readSettings()
+-    if(!m_update)
+     {
          //do not mix gtk2 style and gtk3 dialogs
-         QStringList keys = QPlatformThemeFactory::keys();
+-        QStringList keys = QPlatformThemeFactory::keys();
          QString dialogs = settings.value("standard_dialogs"_L1, u"default"_s).toString();
 +        QString style = settings.value("style"_L1, u"Fusion"_s).toString();
  
 -        if(m_style.endsWith(u"gtk2"_s) && dialogs == QLatin1String("gtk3"))
 +        if(style.endsWith(u"gtk2"_s) && dialogs == QLatin1String("gtk3"))
              dialogs = u"gtk2"_s;
-         if(keys.contains(dialogs))
-             m_theme.reset(QPlatformThemeFactory::create(dialogs));
-@@ -262,10 +327,10 @@ void Qt6CTPlatformTheme::readSettings()
+-        if(keys.contains(dialogs))
+-            m_theme.reset(QPlatformThemeFactory::create(dialogs));
++        if(dialogs != m_dialogs)
++        {
++            m_dialogs = dialogs;
++            m_theme.reset();
++        }
+     }
+ 
      settings.endGroup();
  
      settings.beginGroup("Fonts"_L1);
@@ -440,7 +468,7 @@ index 569b13f..78c2eae 100644
      settings.endGroup();
  
      settings.beginGroup("Interface"_L1);
-@@ -354,3 +419,17 @@ QString Qt6CTPlatformTheme::loadStyleSheets(const QStringList &paths)
+@@ -354,3 +432,17 @@ QString Qt6CTPlatformTheme::loadStyleSheets(const QStringList &paths)
      content.replace(regExp, u"\n"_s);
      return content;
  }
@@ -459,7 +487,7 @@ index 569b13f..78c2eae 100644
 +    return QObject::eventFilter(obj, e);
 +}
 diff --git a/src/qt6ct-qtplugin/qt6ctplatformtheme.h b/src/qt6ct-qtplugin/qt6ctplatformtheme.h
-index b2a7bcf..9327ef0 100644
+index b2a7bcf..7185163 100644
 --- a/src/qt6ct-qtplugin/qt6ctplatformtheme.h
 +++ b/src/qt6ct-qtplugin/qt6ctplatformtheme.h
 @@ -43,6 +43,8 @@
@@ -515,12 +543,15 @@ index b2a7bcf..9327ef0 100644
      QFont m_generalFont, m_fixedFont;
      int m_doubleClickInterval;
      int m_cursorFlashTime;
-@@ -96,7 +104,11 @@ private:
+@@ -96,7 +104,13 @@ private:
      int m_wheelScrollLines = 3;
      bool m_showShortcutsInContextMenus = false;
      bool m_isIgnored = false;
+-    std::unique_ptr<QPlatformTheme> m_theme;
 +    mutable bool m_inColorScheme = false;
-     std::unique_ptr<QPlatformTheme> m_theme;
++    void loadThemeIfNeeded() const;
++    QString m_dialogs;
++    mutable std::unique_ptr<QPlatformTheme> m_theme;
 +#ifdef QT_WIDGETS_LIB
 +    std::unique_ptr<QStyle> m_style;
 +#endif
@@ -588,7 +619,7 @@ index 2f1faf8..0c01d4a 100644
 +    m_copyColorSchemeAction = menu->addAction(QIcon::fromTheme(u"edit-copy"_s), tr("Create a Copy"), this, &AppearancePage::copyColorScheme);
      m_renameColorSchemeAction = menu->addAction(tr("Rename"), this, &AppearancePage::renameColorScheme);
      menu->addSeparator();
-     m_removeColorSchemeAction = menu->addAction(tr("Remove"), this, &AppearancePage::removeColorScheme);
+     m_removeColorSchemeAction = menu->addAction(QIcon::fromTheme(u"edit-delete"_s), tr("Remove"), this, &AppearancePage::removeColorScheme);
 @@ -126,6 +129,15 @@ void AppearancePage::writeSettings(QSettings *settings)
      settings->endGroup();
  }
@@ -732,7 +763,7 @@ index 75de0fd..ae0f091 100644
  }
  
  void FontsPage::readSettings()
-@@ -89,8 +97,9 @@ void FontsPage::loadFont(QSettings *settings, QLabel *label, const QString &key)
+@@ -89,8 +97,9 @@ void FontsPage::readSettings()
  
  void FontsPage::loadFont(QSettings *settings, QLabel *label, const QString &key)
  {
