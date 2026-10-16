@@ -31,13 +31,13 @@ in {
         defaultProvider = "opencode-free";
         defaultModel = "deepseek-v4.1-flash-free:max";
         enabledModels = [
+          "opencode-free/glm-5.3-flash-free:max"
           "opencode-free/deepseek-v4.1-flash-free:max"
-          "bifrost/gpt-5.4:xhigh"
-          "opencode-free/cat-jam-free:max"
+          "bifrost/weegam/gpt-5.4:xhigh"
           "antigravity/gemini-3.8-flash:high"
           "antigravity/claude-opus-4-6"
           "antigravity/claude-sonnet-4-6"
-          "opencode-free/step-5-preview-free:high"
+          "opencode-free/beam-free:high"
           "bifrost/deepseek-v4-flash"
           "bifrost/glm-5.3"
         ];
