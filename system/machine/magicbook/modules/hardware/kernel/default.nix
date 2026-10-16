@@ -35,6 +35,7 @@ in {
         "resume_offset=8972000"
       ]
       (mkAfter [
+        "debugfs=on" # ath11k (Qualcomm WCN6855) fails probe without debugfs
         "page_poison=0"
         "init_on_alloc=0"
       ])
