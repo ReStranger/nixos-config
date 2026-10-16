@@ -85,12 +85,12 @@ in {
           "npm:@juicesharp/rpiv-todo"
           "npm:@juicesharp/rpiv-ask-user-question"
           "npm:@juicesharp/rpiv-advisor"
+          "npm:@juicesharp/rpiv-btw"
           "https://github.com/ReStranger/pi-bifrost-provider"
           "https://github.com/ReStranger/pi-opencode-free"
           "https://github.com/ReStranger/pi-oauth-antigravity"
           "npm:@hank-warren/pi-plan-mode"
           "npm:@narumitw/pi-goal"
-          "npm:pi-btw"
           "npm:pi-token-speed"
           "npm:@narumitw/pi-usage"
           "npm:pi-context-view"
@@ -219,14 +219,6 @@ in {
           minContextLimit = "40%";
           maxContextLimit = "70%";
         };
-      };
-      "${configDir}/btw.json".text = builtins.toJSON {
-        extensions = [
-          "npm:@restranger/pi-permission-system"
-          "git:https://github.com/ReStranger/pi-bifrost-provider"
-          "git:https://github.com/ReStranger/pi-opencode-free"
-          "git:https://github.com/ReStranger/pi-oauth-antigravity"
-        ];
       };
       "${configDir}/mcp.json".text = builtins.toJSON {
         mcpServers = {
