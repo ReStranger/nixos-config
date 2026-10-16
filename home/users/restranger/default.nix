@@ -1,10 +1,13 @@
 {
   pkgs,
+  lib,
   isWorkstation,
   isLinux,
   hyprlandEnable ? false,
   ...
-}: {
+}: let
+  inherit (lib) optionalAttrs;
+in {
   stylix.targets = {
     neovim.enable = false;
     millenniumSteam.enable = false;
@@ -47,12 +50,19 @@
             MCP_NIXOS_PATH = "/mcp";
           };
         };
-        playwright = {
-          enable = true;
-          package = pkgs.playwright-mcp;
-          args = ["--host" "127.0.0.1" "--port" "3230"];
-          passEnvironment = ["DISPLAY" "WAYLAND_DISPLAY"];
-        };
+        playwright =
+          {
+            enable = true;
+            package = pkgs.playwright-mcp;
+            args = ["--host" "127.0.0.1" "--port" "3230"];
+          }
+          // optionalAttrs isWorkstation {
+            env.PLAYWRIGHT_MCP_HEADLESS = "false";
+            passEnvironment = ["DISPLAY" "WAYLAND_DISPLAY"];
+            wantedBy = ["graphical-session.target"];
+            after = ["graphical-session.target"];
+            partOf = ["graphical-session.target"];
+          };
       };
     };
     obs-studio.enable = isWorkstation;
