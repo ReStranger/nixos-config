@@ -134,7 +134,7 @@ in {
           "zen.view.gray-out-inactive-windows" = isLinux;
           "zen.welcome-screen.seen" = true;
           "zen.widget.linux.transparency" = isLinux;
-          "browser.tabs.allow_transparent_browser" = true;
+          "browser.tabs.allow_transparent_browser" = false;
           "browser.tabs.unloadOnLowMemory" = true;
         };
         search = {
