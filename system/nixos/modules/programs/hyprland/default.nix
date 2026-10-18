@@ -27,6 +27,9 @@ in {
             pkgs.kdePackages.mkKdeDerivation (args
               // {
                 excludeDependencies = ["plasma-workspace"];
+                extraBuildInputs =
+                  (args.extraBuildInputs or [])
+                  ++ [pkgs.kdePackages.kpipewire];
               });
         })
       ];
