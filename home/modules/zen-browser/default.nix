@@ -91,7 +91,7 @@ in {
           "dom.security.https_only_mode_ever_enabled_pbm" = true;
           "dom.security.https_only_mode" = true;
           "media.peerconnection.ice.default_address_only" = true;
-          "network.captive-portal-service.enabled " = false;
+          "network.captive-portal-service.enabled" = false;
           "network.cookie.cookieBehavior" = 5;
           "network.dns.echconfig.enabled" = true;
           "network.dns.http3_echconfig.enabled" = true;
