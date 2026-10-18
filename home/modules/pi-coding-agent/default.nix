@@ -88,7 +88,7 @@ in {
           "npm:@juicesharp/rpiv-btw"
           "git:github.com/ReStranger/pi-bifrost-provider"
           "git:github.com/ReStranger/pi-opencode-free"
-          "https://github.com/ReStranger/pi-oauth-antigravity"
+          "npm:@heyhuynhgiabuu/pi-oauth-antigravity"
           "git:github.com/ReStranger/pi-roles"
           "npm:@hank-warren/pi-plan-mode"
           "npm:@narumitw/pi-goal"
