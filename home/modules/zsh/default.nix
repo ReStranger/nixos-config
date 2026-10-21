@@ -1,11 +1,12 @@
 {
   config,
   inputs,
+  pkgs,
   lib,
   ...
 }: let
   cfg = config.module.zsh;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 in {
   options.module.zsh = {
     enable = mkEnableOption "Enable zsh program";
@@ -81,6 +82,8 @@ in {
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=#${config.lib.stylix.colors.base03}";
         AUTO_NOTIFY_THRESHOLD = 300;
         KEYTIMEOUT = 1;
+        MANPAGER = "sh -c 'col -bx | ${getExe pkgs.bat} -l man -p'";
+        MANROFFOPT = "-c";
       };
       initContent = ''
         ZVM_INIT_MODE=sourcing
