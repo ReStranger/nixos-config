@@ -16,6 +16,7 @@ in {
   module = {
     ghostty.enable = isWorkstation;
     ida.enable = isWorkstation;
+    imv.enable = isWorkstation;
     mcp.enable = isWorkstation;
     mcp-servers = {
       enable = isWorkstation;

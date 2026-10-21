@@ -26,7 +26,6 @@ in {
       lsd.enable = true;
       ripgrep.enable = true;
       zoxide.enable = true;
-      imv.enable = isWorkstation;
     };
 
     home.packages = with pkgs;
