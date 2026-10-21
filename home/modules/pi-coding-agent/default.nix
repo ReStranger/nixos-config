@@ -89,7 +89,6 @@ in {
           "git:github.com/ReStranger/pi-bifrost-provider"
           "git:github.com/ReStranger/pi-opencode-free"
           "npm:@heyhuynhgiabuu/pi-oauth-antigravity"
-          "git:github.com/ReStranger/pi-roles"
           "npm:@hank-warren/pi-plan-mode"
           "npm:@narumitw/pi-goal"
           "npm:pi-token-speed"
@@ -113,7 +112,6 @@ in {
           sloganColor = true;
           disabled = false;
         };
-        pi-roles.defaultRole = "default";
         tokenSpeed = {
           display = "stats";
           icon = "";
