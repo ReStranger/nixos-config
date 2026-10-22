@@ -57,9 +57,9 @@ buildNpmPackage (finalAttrs: {
   buildPhase = ''
     runHook preBuild
 
-    npm --prefix packages/chord run build
-    npm --prefix packages/tui run build
     npm --prefix packages/telemetry run build
+    npm --prefix packages/tui run build
+    npm --prefix packages/chord run build
     npm --prefix packages/codemode run build
     npm --prefix packages/mcp run build
     npm --prefix packages/ai run build:offline
