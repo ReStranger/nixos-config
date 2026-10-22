@@ -29,12 +29,12 @@ in {
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
         defaultProvider = "opencode-free";
-        defaultModel = "deepseek-v4.1-flash-free:max";
+        defaultModel = "antigravity/gemini-3.8-flash:high";
         enabledModels = [
+          "antigravity/gemini-3.8-flash:high"
           "opencode-free/glm-5.3-flash-free:max"
           "opencode-free/deepseek-v4.1-flash-free:max"
           "bifrost/weegam/gpt-5.4:xhigh"
-          "antigravity/gemini-3.8-flash:high"
           "antigravity/claude-opus-4-6"
           "antigravity/claude-sonnet-4-6"
           "opencode-free/beam-free:high"
@@ -75,7 +75,7 @@ in {
         fullscreenScrollbar = "auto";
 
         packages = [
-          "npm:@restranger/pi-permission-system"
+          "npm:@gotgenes/pi-permission-system"
           "npm:@gotgenes/pi-nocd"
           "npm:@gotgenes/pi-subagents"
           "npm:pi-lens"
