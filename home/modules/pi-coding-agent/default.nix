@@ -75,7 +75,8 @@ in {
         fullscreenScrollbar = "auto";
 
         packages = [
-          "npm:@gotgenes/pi-permission-system"
+          "npm:@restranger/pi-permission-system"
+          "npm:@restranger/pi-permission-mode"
           "npm:@gotgenes/pi-nocd"
           "npm:@gotgenes/pi-subagents"
           "npm:pi-lens"
