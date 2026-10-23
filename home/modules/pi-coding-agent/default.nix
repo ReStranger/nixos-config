@@ -95,6 +95,7 @@ in {
           "npm:@narumitw/pi-goal"
           "npm:pi-token-speed"
           "npm:pi-context-view"
+          "npm:pi-cached-compaction"
           "git:github.com/ReStranger/pi-ui-enhanced"
           "git:github.com/ReStranger/pi-working-enhanced"
           "git:github.com/ReStranger/pi-clear-cmd"
