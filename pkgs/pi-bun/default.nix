@@ -53,6 +53,11 @@ buildNpmPackage (finalAttrs: {
     bun
   ];
 
+  postPatch = ''
+    substituteInPlace packages/coding-agent/src/core/extensions/loader.ts \
+      --replace-fail 'moduleCache: false,' 'moduleCache: false, fsCache: path.join(process.env.XDG_CACHE_HOME || path.join(process.env.HOME || "", ".cache"), "pi", "jiti"),'
+  '';
+
   # Build workspace dependencies in order, then the coding-agent.
   buildPhase = ''
     runHook preBuild
