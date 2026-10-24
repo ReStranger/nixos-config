@@ -1,5 +1,6 @@
 {
   lib,
+  stdenv,
   buildNpmPackage,
   fetchFromGitHub,
   fetchurl,
@@ -8,6 +9,8 @@
   writableTmpDirAsHomeHook,
   ripgrep,
   fd,
+  wl-clipboard,
+  xclip,
   makeBinaryWrapper,
   stdenvNoCC,
   bun,
@@ -133,10 +136,16 @@ buildNpmPackage (finalAttrs: {
 
   postFixup = ''
     wrapProgram $out/bin/pi --prefix PATH : ${
-      lib.makeBinPath [
-        ripgrep
-        fd
-      ]
+      lib.makeBinPath (
+        [
+          ripgrep
+          fd
+        ]
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
+          wl-clipboard
+          xclip
+        ]
+      )
     } \
       --set PI_PACKAGE_DIR $out/share/pi \
       --set-default PI_SKIP_VERSION_CHECK 1 \
