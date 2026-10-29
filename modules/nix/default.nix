@@ -55,7 +55,7 @@ in {
       settings = {
         eval-cores = "0";
         lazy-trees = true;
-        connect-timeout = 5;
+        connect-timeout = 30;
         warn-dirty = false;
         auto-optimise-store = true;
         builders-use-substitutes = true;
