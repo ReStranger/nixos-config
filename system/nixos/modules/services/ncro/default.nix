@@ -185,8 +185,8 @@ in {
             public_key = "re-cache.cachix.org-1:zIzN9Bp2Lwpt5qMc5XReiFsgSx6G4+wZMy9UHCDJ4X4=";
           }
           {
-            url = "https://attic.xuyh0120.win/lantian";
-            public_key = "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=";
+            url = "https://cache.lantian.pub/lantian";
+            public_key = "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ=";
           }
         ];
         fallback_cache = {
