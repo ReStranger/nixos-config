@@ -29,8 +29,8 @@ in {
           latency_alpha = 0.3;
 
           mass_query = {
-            max_concurrent_races = 64;
-            per_upstream_max_inflight = 8;
+            max_concurrent_races = 128;
+            per_upstream_max_inflight = 64;
             in_memory_negative_ttl = "5s";
             upstream_cooldown = "15s";
           };
