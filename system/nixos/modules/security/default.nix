@@ -100,9 +100,6 @@ in {
           # Prevent core dumps from being created for certain executable files
           "fs.suid_dumpable" = 0;
 
-          # Disable ftrace debugging
-          "kernel.ftrace_enabled" = false;
-
           # Disable kexc_load system call
           "kernel.kexec_load_disabled" = 1;
 
