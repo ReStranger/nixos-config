@@ -65,16 +65,7 @@ buildNpmPackage (finalAttrs: {
   buildPhase = ''
     runHook preBuild
 
-    npm --prefix packages/telemetry run build
-    npm --prefix packages/schema run build
-    npm --prefix packages/tui run build
-    npm --prefix packages/chord run build
-    npm --prefix packages/codemode run build
-    npm --prefix packages/mcp run build
-    npm --prefix packages/ai run build:offline
-    npm --prefix packages/durable run build
-    npm --prefix packages/agent run build
-    npm run build --workspace=packages/coding-agent
+    npm run build:offline
 
     pushd packages/coding-agent
     bun build --compile --no-compile-autoload-bunfig --no-compile-autoload-dotenv \
@@ -103,6 +94,8 @@ buildNpmPackage (finalAttrs: {
                 @earendil-works/pi-ai:packages/ai \
                 @earendil-works/pi-agent-core:packages/agent \
                 @earendil-works/pi-codemode:packages/codemode \
+                @earendil-works/pi-durable:packages/durable \
+                @earendil-works/pi-env:packages/env \
                 @earendil-works/pi-mcp:packages/mcp \
                 @earendil-works/pi-schema:packages/schema \
                 @earendil-works/pi-telemetry:packages/telemetry \
