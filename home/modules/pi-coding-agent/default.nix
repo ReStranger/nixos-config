@@ -87,6 +87,7 @@ in {
           "git:github.com/ReStranger/pi-opencode-free"
           "git:github.com/ReStranger/pi-oauth-antigravity"
           "npm:pi-token-speed"
+          "npm:pi-prefill"
           "npm:pi-context-view"
           "npm:pi-cached-compaction"
           "git:github.com/ReStranger/pi-clear-cmd"
