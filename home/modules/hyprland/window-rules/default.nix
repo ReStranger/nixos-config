@@ -66,7 +66,7 @@
     {
       name = "global-transparency";
       match.class = ".*";
-      opacity = "0.89 override 0.89 override";
+      opacity = "0.87 override 0.87 override";
     }
     {
       name = "disable-transparency-in-fullscreen";
