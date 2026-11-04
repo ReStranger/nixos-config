@@ -75,29 +75,20 @@ in {
         fullscreenScrollbar = "auto";
 
         packages = [
-          "npm:@restranger/pi-permission-system"
-          "npm:@restranger/pi-permission-mode"
-          "npm:@gotgenes/pi-nocd"
-          "npm:@gotgenes/pi-subagents"
-          "npm:pi-lens"
           "npm:pi-web-access"
-          "npm:@pi-vault/pi-dcp"
-          "npm:@juicesharp/rpiv-i18n"
-          "npm:@juicesharp/rpiv-todo"
-          "npm:@juicesharp/rpiv-ask-user-question"
-          "npm:@juicesharp/rpiv-advisor"
-          "npm:@juicesharp/rpiv-btw"
+          "npm:@restranger/repi-model-fallback"
+          "npm:@restranger/repi-subagents"
+          "npm:@restranger/repi-permission-system-core"
+          "npm:@restranger/repi-permission-system-modes"
+          "npm:@restranger/repi-working-enhanced"
+          "npm:@restranger/repi-advisor"
           "npm:pi-usage-core"
           "git:github.com/ReStranger/pi-bifrost-provider"
           "git:github.com/ReStranger/pi-opencode-free"
           "git:github.com/ReStranger/pi-oauth-antigravity"
-          "npm:@hank-warren/pi-plan-mode"
-          "npm:@narumitw/pi-goal"
           "npm:pi-token-speed"
           "npm:pi-context-view"
           "npm:pi-cached-compaction"
-          "git:github.com/ReStranger/pi-ui-enhanced"
-          "git:github.com/ReStranger/pi-working-enhanced"
           "git:github.com/ReStranger/pi-clear-cmd"
           "git:github.com/ReStranger/pi-cc-header"
         ];
@@ -127,78 +118,43 @@ in {
           };
         };
       };
-
-      models = {
-        providers = {
-        };
-      };
     };
-
-    xdg.configFile."rpiv-i18n/locale.json".text = builtins.toJSON {locale = "ru";};
 
     home.file = let
       configDir = config.programs.pi-coding-agent.configDir;
       piMonorepoPath = builtins.unsafeDiscardStringContext "${pkgs.pi-bun}/lib/node_modules/pi-monorepo";
     in {
       "${configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
-      "${configDir}/extensions/pi-lens.json".text = builtins.toJSON {
-        widget.visible = false;
-        lsp.servers.qmlls = {
-          name = "Qt QML Language Server";
-          extensions = [".qml"];
-          command = "qmlls";
-          args = [];
-        };
-      };
-      "${configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
+      "${configDir}/extensions/pi-permissions.json".text = builtins.toJSON {
+        askTimeoutMs = 30000;
         doublePressToConfirm = false;
-        permission = {
-          "*" = "allow";
-          path = {
-            "*" = "allow";
-            "*.env" = "deny";
-            "*.env.*" = "deny";
-            "*.env.example" = "allow";
-            "*auth.json" = "deny";
-          };
-          bash = {
-            "*" = "allow";
-            "rm -rf *" = "ask";
-            "rm -rf /tmp/pi" = "allow";
-            "rm -rf /tmp/pi/*" = "allow";
-            "sudo *" = "ask";
-            "timeout *" = "deny";
-            "xargs *" = "deny";
-            "env *" = "deny";
-            "time *" = "deny";
-            "nohup *" = "deny";
-            "nice *" = "deny";
-            "find -exec" = "deny";
-            "fd -x" = "deny";
-          };
-          external_directory = {
-            "*" = "ask";
-            "/tmp/pi" = "allow";
-            "/tmp/pi/*" = "allow";
-          };
-          external_directory_read = {
-            "/nix" = "allow";
-            "/nix/*" = "allow";
-            "${config.home.homeDirectory}/.agents" = "allow";
-            "${config.home.homeDirectory}/.agents/*" = "allow";
-            "${piMonorepoPath}" = "allow";
-            "${piMonorepoPath}/*" = "allow";
-            "${configDir}/extensions" = "allow";
-            "${configDir}/extensions/*" = "allow";
-            "${configDir}/git" = "allow";
-            "${configDir}/git/*" = "allow";
-            "${configDir}/npm" = "allow";
-            "${configDir}/npm/*" = "allow";
-            "${configDir}/plans" = "allow";
-            "${configDir}/plans/*" = "allow";
-          };
+        "*" = "ask";
+        path = {"**" = "allow";};
+        bash = {
+          "*" = "ask";
+          "npm publish*" = "deny";
+          "yarn publish*" = "deny";
+          "pnpm publish*" = "deny";
+          "cargo publish*" = "deny";
+          "git push * --force*" = "deny";
+          "git push * -f*" = "deny";
+        };
+        external_directory = {"*" = "ask";};
+        external_directory_read = {
+          "*" = "ask";
+          "/nix/store/*" = "allow";
+          "/tmp/pi/*" = "allow";
+          "${config.home.homeDirectory}/.agents" = "allow";
+          "${config.home.homeDirectory}/.agents/*" = "allow";
+          "${piMonorepoPath}" = "allow";
+          "${piMonorepoPath}/*" = "allow";
+        };
+        "external_directory_write" = {
+          "/tmp/pi/*" = "allow";
+          "*" = "deny";
         };
       };
+
       "${configDir}/extensions/pi-clear-cmd.json".text = builtins.toJSON {
         hidden = [
           "hc"
@@ -212,15 +168,7 @@ in {
           "hsp"
           "htg"
           "hv"
-          "languages"
-          "permission-system"
         ];
-      };
-      "${configDir}/extensions/dcp.json".text = builtins.toJSON {
-        compress = {
-          minContextLimit = "40%";
-          maxContextLimit = "70%";
-        };
       };
       "${configDir}/mcp.json".text = builtins.toJSON {
         mcpServers = {
@@ -249,11 +197,6 @@ in {
             description = "Open Design MCP";
           };
         };
-      };
-      "${configDir}/subagents.json".text = builtins.toJSON {
-        maxConcurrent = 50;
-        abortAllOnInterrupt = false;
-        midRunUpdates = true;
       };
     };
   };
