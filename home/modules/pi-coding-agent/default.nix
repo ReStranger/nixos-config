@@ -187,7 +187,6 @@ in {
           nixos = {
             url = "http://localhost:3229/mcp";
             description = "Query Nixpkgs packages, versions, and options";
-            exposure = "direct";
           };
           playwright = {
             url = "http://localhost:3230/mcp";
