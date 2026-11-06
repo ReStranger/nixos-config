@@ -96,7 +96,7 @@ in {
       ]
       ++ optionals hyprlandEnable [
         kdePackages.kclock
-        kdePackages.kalk
+        kdePackages.kcalc
         kdePackages.ark
         wl-clipboard
         wl-clipboard-x11
