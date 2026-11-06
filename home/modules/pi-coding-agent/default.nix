@@ -92,6 +92,7 @@ in {
           "npm:pi-cached-compaction"
           "git:github.com/ReStranger/pi-clear-cmd"
           "git:github.com/ReStranger/pi-cc-header"
+          "git:github.com/ReStranger/pi-coauthor"
         ];
         ccHeader = {
           readOnlyConfig = true;
@@ -170,6 +171,15 @@ in {
           "htg"
           "hv"
         ];
+      };
+      "${configDir}/extensions/pi-coauthor.json".text = builtins.toJSON {
+        enabled = true;
+        githubLink = true;
+        attribution = {
+          commit = "Co-Authored-By: pi.dev <{email}>";
+          pr = "🤖 Generated with pi (https://pi.dev)";
+        };
+        strict = false;
       };
       "${configDir}/mcp.json".text = builtins.toJSON {
         mcpServers = {
