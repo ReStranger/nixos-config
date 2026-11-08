@@ -31,7 +31,7 @@
     davinci-nixpkgs.url = "github:NixOS/nixpkgs/2efa67fd26b6df417c33e4603185c701f260dd83";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1.*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -41,21 +41,21 @@
     };
 
     disko = {
-      url = "github:nix-community/disko";
+      url = "https://flakehub.com/f/nix-community/disko/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
-      url = "github:nix-community/stylix";
+      url = "https://flakehub.com/f/danth/stylix/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/*";
+    treefmt-nix.url = "https://flakehub.com/f/numtide/treefmt-nix/*";
 
-    nix-topology.url = "github:oddlama/nix-topology";
-    impermanence.url = "github:/nix-community/impermanence";
-    sops-nix.url = "github:Mic92/sops-nix";
+    nix-topology.url = "https://flakehub.com/f/oddlama/nix-topology/*";
+    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/*";
+    sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/*";
     ncro = {
       url = "github:feel-co/ncro";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,13 +63,7 @@
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-qt-support.url = "github:hyprwm/hyprland-qt-support";
-
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/*";
 
     astal = {
       url = "github:aylur/astal";
