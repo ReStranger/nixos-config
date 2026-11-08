@@ -3,6 +3,7 @@
   inputs,
   lib,
   config,
+  options,
   username,
   ...
 }: let
@@ -13,6 +14,7 @@
     mkForce
     mkIf
     mkOption
+    optionalAttrs
     ;
   inherit (lib.types) bool;
 in {
@@ -45,29 +47,37 @@ in {
     nixpkgs.config.allowUnfree = true;
 
     # Nix package manager settings
-    nix = {
-      registry.s.flake = inputs.self;
+    nix =
+      {
+        registry.s.flake = inputs.self;
 
-      extraOptions = ''
-        !include ${config.sops.templates.nix-github.path}
-      '';
+        extraOptions = ''
+          !include ${config.sops.templates.nix-github.path}
+        '';
 
-      settings = {
-        eval-cores = "0";
-        lazy-trees = true;
-        connect-timeout = 30;
-        warn-dirty = false;
-        auto-optimise-store = true;
-        builders-use-substitutes = true;
+        settings = {
+          eval-cores = "0";
+          lazy-trees = true;
+          connect-timeout = 30;
+          warn-dirty = false;
+          auto-optimise-store = false;
+          builders-use-substitutes = true;
 
-        allowed-users = ["@wheel"];
+          allowed-users = ["@wheel"];
 
-        trusted-users = [username];
+          trusted-users = [username];
 
-        substituters = mkForce [
-          "http://127.0.0.1:${toString config.module.services.ncro.port}"
-        ];
+          substituters = mkForce [
+            "http://127.0.0.1:${toString config.module.services.ncro.port}"
+          ];
+        };
+      }
+      // optionalAttrs (options.nix ? optimise) {
+        optimise = {
+          automatic = true;
+          dates = ["weekly"];
+          persistent = true;
+        };
       };
-    };
   };
 }

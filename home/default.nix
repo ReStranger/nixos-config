@@ -19,7 +19,7 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
-  inherit (lib) optional readFile;
+  inherit (lib) optional;
 
   stateVersion = hmStateVersion;
   isRoot = username == "root";
@@ -39,9 +39,7 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension =
-      "backup-"
-      + readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+    backupFileExtension = "backup";
 
     extraSpecialArgs = {
       inherit
