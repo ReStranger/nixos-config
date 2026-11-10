@@ -29,6 +29,11 @@
       workspace = "3 silent";
     }
     {
+      name = "workspace-3-pin-vesktop";
+      match.class = "^vesktop$";
+      workspace = "3 silent";
+    }
+    {
       name = "workspace-3-pin-ayugram";
       match.class = "^com.ayugram.desktop$";
       workspace = "3 silent";
