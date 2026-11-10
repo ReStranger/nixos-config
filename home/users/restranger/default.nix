@@ -70,6 +70,7 @@ in {
     opencode.enable = isWorkstation;
     pi-coding-agent.enable = isWorkstation;
     thunderbird.enable = isWorkstation;
+    vesktop.enable = isWorkstation;
     zathura.enable = isWorkstation;
     zen-browser.enable = isWorkstation;
 
