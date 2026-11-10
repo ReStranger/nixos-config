@@ -11,6 +11,7 @@ in {
   stylix.targets = {
     neovim.enable = false;
     millenniumSteam.enable = false;
+    vesktop.enable = false;
     zen-browser.profileNames = ["default"];
   };
   module = {
