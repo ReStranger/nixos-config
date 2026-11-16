@@ -8,14 +8,19 @@
 in {
   options.module.services.systemd-oomd.enable = mkEnableOption "Enable systemd-oomd";
   config = mkIf cfg.enable {
-    systemd.oomd = {
-      enable = true;
-      enableRootSlice = true;
-      enableUserSlices = true;
-      enableSystemSlice = true;
-      settings.OOM = {
-        DefaultMemoryPressureLimit = "90%";
-        DefaultMemoryPressureDurationSec = "10s";
+    systemd = {
+      oomd = {
+        enable = true;
+        enableUserSlices = true;
+        extraConfig = {
+          DefaultMemoryPressureDurationSec = "30s";
+          DefaultMemoryPressureLimit = "90%";
+        };
+      };
+      slices."user".sliceConfig = {
+        ManagedOOMMemoryPressure = "kill";
+        ManagedOOMMemoryPressureLimit = "90%";
+        ManagedOOMSwap = "kill";
       };
     };
   };
