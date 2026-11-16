@@ -50,7 +50,7 @@
       opentablet.enable = true;
       polkit.enable = true;
       scx.enable = true;
-      systemd-oomd.enable = true;
+      earlyoom.enable = true;
       tailscale.enable = true;
       zerotier-one.enable = true;
       zram.enable = true;
