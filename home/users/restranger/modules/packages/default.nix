@@ -46,6 +46,7 @@ in {
         fastfetch
 
         ## dev tools ##
+        fh
         nodejs
         bun
         vscode-js-debug
