@@ -1,12 +1,13 @@
-{
-  lib,
-  config,
-  isLaptop,
-  ...
-}: let
+{ lib
+, config
+, isLaptop
+, ...
+}:
+let
   cfg = config.module.services.scx;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.services.scx.enable = mkEnableOption "Enable scx";
   config = mkIf cfg.enable {
     services.scx = {

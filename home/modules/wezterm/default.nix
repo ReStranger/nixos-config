@@ -1,18 +1,19 @@
-{
-  config,
-  lib,
-  inputs,
-  pkgs,
-  theme,
-  ...
-}: let
+{ config
+, lib
+, inputs
+, pkgs
+, theme
+, ...
+}:
+let
   cfg = config.module.wezterm;
   inherit (lib) mkEnableOption mkIf;
   font =
     if theme == "touka"
     then "Maple Mono NF"
     else config.stylix.fonts.serif.name;
-in {
+in
+{
   options.module.wezterm = {
     enable = mkEnableOption "Enable wezterm module";
   };

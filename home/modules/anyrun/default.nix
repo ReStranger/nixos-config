@@ -1,14 +1,15 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, inputs
+, ...
+}:
+let
   cfg = config.module.anyrun;
   pkg = inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkEnableOption mkIf getExe;
-in {
+in
+{
   options.module.anyrun = {
     enable = mkEnableOption "Enable anyrun program";
   };
@@ -38,77 +39,79 @@ in {
           stdin
         ];
       };
-      extraConfigFiles = let
-        uwsmPreprocess = pkgs.writeShellScript "anyrun-preprocess-exec" ''
-          mode="$1"
-          shift
+      extraConfigFiles =
+        let
+          uwsmPreprocess = pkgs.writeShellScript "anyrun-preprocess-exec" ''
+            mode="$1"
+            shift
 
-          if [ "$mode" = "term" ]; then
-            echo "nohup ${getExe pkgs.uwsm} app -T -- $* >/dev/null 2>&1 & disown"
-          else
-            echo "nohup ${getExe pkgs.uwsm} app -- $* >/dev/null 2>&1 & disown"
-          fi
-        '';
-      in {
-        "applications.ron".text = ''
-          Config(
-            desktop_actions: false,
-            max_entries: 6,
-            preprocess_exec_script: Some("${uwsmPreprocess}"),
-            terminal: Some(Terminal(
-              command: "ghostty",
-              args: "-e {}",
-            )),
-          )
-        '';
+            if [ "$mode" = "term" ]; then
+              echo "nohup ${getExe pkgs.uwsm} app -T -- $* >/dev/null 2>&1 & disown"
+            else
+              echo "nohup ${getExe pkgs.uwsm} app -- $* >/dev/null 2>&1 & disown"
+            fi
+          '';
+        in
+        {
+          "applications.ron".text = ''
+            Config(
+              desktop_actions: false,
+              max_entries: 6,
+              preprocess_exec_script: Some("${uwsmPreprocess}"),
+              terminal: Some(Terminal(
+                command: "ghostty",
+                args: "-e {}",
+              )),
+            )
+          '';
 
-        "symbols.ron".text = ''
-          Config(
-            prefix: ":emo",
+          "symbols.ron".text = ''
+            Config(
+              prefix: ":emo",
 
-            symbols: {
-              "shrug": "¯\\_(ツ)_/¯",
-            },
+              symbols: {
+                "shrug": "¯\\_(ツ)_/¯",
+              },
 
-            max_entries: 6,
-          )
-        '';
+              max_entries: 6,
+            )
+          '';
 
-        "translate.ron".text = ''
-          Config(
-            prefix: ":tr",
-            language_delimiter: ">",
-            max_entries: 1,
-          )
-        '';
+          "translate.ron".text = ''
+            Config(
+              prefix: ":tr",
+              language_delimiter: ">",
+              max_entries: 1,
+            )
+          '';
 
-        "websearch.ron".text = ''
-          Config(
-            prefix: ":s",
-            engines: [DuckDuckGo]
-          )
-        '';
+          "websearch.ron".text = ''
+            Config(
+              prefix: ":s",
+              engines: [DuckDuckGo]
+            )
+          '';
 
-        "shell.ron".text = ''
-          Config(
-            prefix: ":sh",
-            shell: zsh,
-          )
-        '';
-        "kidex.ron".text = ''
-          Config(
-            max_entries: 4,
-          )
-        '';
-        "dictionary.ron".text = ''
-          Config(
-            prefix: ":dic",
-            max_entries: 4,
-          )
-        '';
-      };
+          "shell.ron".text = ''
+            Config(
+              prefix: ":sh",
+              shell: zsh,
+            )
+          '';
+          "kidex.ron".text = ''
+            Config(
+              max_entries: 4,
+            )
+          '';
+          "dictionary.ron".text = ''
+            Config(
+              prefix: ":dic",
+              max_entries: 4,
+            )
+          '';
+        };
       extraCss = with config.lib.stylix.colors; # css
-      
+
         ''
           * {
           font-family: ${config.stylix.fonts.serif.name};

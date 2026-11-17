@@ -1,12 +1,13 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, ...
+}:
+let
   cfg = config.module.programs.hyprland;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.programs.hyprland.enable = mkEnableOption "Enables hyprland";
   config = mkIf cfg.enable {
     programs.hyprland = {
@@ -20,17 +21,17 @@ in {
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      config.common.default = ["hyprland" "kde"];
+      config.common.default = [ "hyprland" "kde" ];
       extraPortals = [
         (pkgs.kdePackages.xdg-desktop-portal-kde.override {
           mkKdeDerivation = args:
             pkgs.kdePackages.mkKdeDerivation (args
               // {
-                excludeDependencies = ["plasma-workspace"];
-                extraBuildInputs =
-                  (args.extraBuildInputs or [])
-                  ++ [pkgs.kdePackages.kpipewire];
-              });
+              excludeDependencies = [ "plasma-workspace" ];
+              extraBuildInputs =
+                (args.extraBuildInputs or [ ])
+                  ++ [ pkgs.kdePackages.kpipewire ];
+            });
         })
       ];
     };

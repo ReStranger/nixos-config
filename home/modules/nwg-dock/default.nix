@@ -1,11 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  hostname,
-  hyprlandEnable,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, hostname
+, hyprlandEnable
+, ...
+}:
+let
   cfg = config.module.nwg-dock;
   inherit (lib) mkEnableOption mkIf;
   nwg-dock-name =
@@ -16,7 +16,8 @@
     if hostname == "pc"
     then "-nolauncher -mb 5 -x"
     else "-nolauncher -mb 10 -d";
-in {
+in
+{
   options.module.nwg-dock = {
     enable = mkEnableOption "Enable nwg-dock module";
   };
@@ -35,7 +36,7 @@ in {
       then "nwg-dock-hyprland"
       else "nwg-dock"
     }/style.css".text = with config.lib.stylix.colors; # css
-    
+
       ''
         window {
           background-color: transparent;

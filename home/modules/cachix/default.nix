@@ -1,20 +1,21 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
   cfg = config.module.cachix;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.cachix = {
     enable = mkEnableOption "Enable cachix module";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.cachix];
+    home.packages = [ pkgs.cachix ];
 
-    sops.secrets."cachix_auth_token" = {};
+    sops.secrets."cachix_auth_token" = { };
 
     sops.templates."cachix-config" = {
       path = ".config/cachix/cachix.nix";

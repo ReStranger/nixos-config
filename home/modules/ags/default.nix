@@ -1,13 +1,14 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, inputs
+, ...
+}:
+let
   cfg = config.module.ags;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.ags = {
     enable = mkEnableOption "Enable ags module";
   };

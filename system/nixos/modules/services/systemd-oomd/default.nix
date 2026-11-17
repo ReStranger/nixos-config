@@ -1,11 +1,12 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{ lib
+, config
+, ...
+}:
+let
   cfg = config.module.services.systemd-oomd;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.services.systemd-oomd.enable = mkEnableOption "Enable systemd-oomd";
   config = mkIf cfg.enable {
     systemd = {

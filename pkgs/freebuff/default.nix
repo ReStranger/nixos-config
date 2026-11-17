@@ -1,10 +1,10 @@
-{
-  lib,
-  buildNpmPackage,
-  fetchzip,
-  nodejs,
-  nix-update,
-  writeShellApplication,
+{ lib
+, buildNpmPackage
+, fetchzip
+, nodejs
+, nix-update
+, writeShellApplication
+,
 }:
 buildNpmPackage (finalAttrs: {
   pname = "freebuff";
@@ -29,7 +29,7 @@ buildNpmPackage (finalAttrs: {
   # runs the package's `prepack` script, which references
   # ../../../cli/release-core/prepare-package.js — absent from the published
   # tarball. The tarball already contains the generated files, so skip it.
-  npmPackFlags = ["--ignore-scripts"];
+  npmPackFlags = [ "--ignore-scripts" ];
 
   passthru.updateScript = writeShellApplication {
     name = "update-freebuff";
@@ -56,7 +56,7 @@ buildNpmPackage (finalAttrs: {
     homepage = "https://freebuff.com/";
     downloadPage = "https://www.npmjs.com/package/freebuff";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ReStranger];
+    maintainers = with lib.maintainers; [ ReStranger ];
     mainProgram = "freebuff";
   };
 })

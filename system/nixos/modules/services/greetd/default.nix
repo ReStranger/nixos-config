@@ -1,9 +1,9 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, ...
+}:
+let
   cfg = config.module.services.greetd;
   inherit
     (lib)
@@ -12,7 +12,8 @@
     mkOption
     types
     ;
-in {
+in
+{
   options = {
     module.services.greetd = {
       enable = mkEnableOption "Enable Greetd login manager";

@@ -1,12 +1,12 @@
-{
-  self,
-  inputs,
-  lib,
-  config,
-  options,
-  username,
-  ...
-}: let
+{ self
+, inputs
+, lib
+, config
+, options
+, username
+, ...
+}:
+let
   cfg = config.module.nix-config;
   inherit
     (lib)
@@ -17,7 +17,8 @@
     optionalAttrs
     ;
   inherit (lib.types) bool;
-in {
+in
+{
   options = {
     module.nix-config = {
       enable = mkEnableOption "Enables nix-config";
@@ -63,9 +64,9 @@ in {
           auto-optimise-store = false;
           builders-use-substitutes = true;
 
-          allowed-users = ["@wheel"];
+          allowed-users = [ "@wheel" ];
 
-          trusted-users = [username];
+          trusted-users = [ username ];
 
           substituters = mkForce [
             "http://127.0.0.1:${toString config.module.services.ncro.port}"
@@ -75,7 +76,7 @@ in {
       // optionalAttrs (options.nix ? optimise) {
         optimise = {
           automatic = true;
-          dates = ["weekly"];
+          dates = [ "weekly" ];
           persistent = true;
         };
       };

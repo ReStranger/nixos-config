@@ -1,16 +1,17 @@
-{
-  lib,
-  config,
-  pkgs,
-  username,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, username
+, ...
+}:
+let
   cfg = config.module.adb;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.adb.enable = mkEnableOption "Enable android debug bridge";
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [android-tools];
-    users.users.${username}.extraGroups = ["adbusers"];
+    environment.systemPackages = with pkgs; [ android-tools ];
+    users.users.${username}.extraGroups = [ "adbusers" ];
   };
 }

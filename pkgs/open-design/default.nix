@@ -1,17 +1,18 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  fetchPnpmDeps,
-  nodejs_22,
-  pnpm_10,
-  pnpmConfigHook,
-  makeWrapper,
-  python3,
-  pkg-config,
-  nix-update-script,
+{ lib
+, stdenv
+, fetchFromGitHub
+, fetchPnpmDeps
+, nodejs_22
+, pnpm_10
+, pnpmConfigHook
+, makeWrapper
+, python3
+, pkg-config
+, nix-update-script
+,
 }:
-stdenv.mkDerivation (finalAttrs: let
+stdenv.mkDerivation (finalAttrs:
+let
   workspaceDirs = [
     "packages/release"
     "packages/contracts"
@@ -41,8 +42,9 @@ stdenv.mkDerivation (finalAttrs: let
   runtimeWorkspaceDirs = builtins.filter (ws: ws != "apps/web") workspaceDirs;
   runtimeWorkspaceFilter =
     lib.concatMapStringsSep " " (ws: "--filter ./${ws}")
-    runtimeWorkspaceDirs;
-in {
+      runtimeWorkspaceDirs;
+in
+{
   pname = "open-design";
   version = "0.24.1";
 
@@ -232,7 +234,7 @@ in {
     downloadPage = "https://github.com/nexu-io/open-design/releases";
     changelog = "https://github.com/nexu-io/open-design/blob/main/CHANGELOG.md";
     license = licenses.asl20;
-    maintainers = with maintainers; [ReStranger];
+    maintainers = with maintainers; [ ReStranger ];
     platforms = platforms.linux ++ platforms.darwin;
     mainProgram = "od";
   };

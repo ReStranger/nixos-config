@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.services.tailscale;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.services.tailscale = {
     enable = mkEnableOption "Enable tailscale service";
   };
@@ -13,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     services.tailscale = {
       enable = true;
-      extraDaemonFlags = ["--no-logs-no-support"];
+      extraDaemonFlags = [ "--no-logs-no-support" ];
     };
   };
 }

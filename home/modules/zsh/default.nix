@@ -1,13 +1,14 @@
-{
-  config,
-  inputs,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, inputs
+, pkgs
+, lib
+, ...
+}:
+let
   cfg = config.module.zsh;
   inherit (lib) mkEnableOption mkIf getExe;
-in {
+in
+{
   options.module.zsh = {
     enable = mkEnableOption "Enable zsh program";
   };

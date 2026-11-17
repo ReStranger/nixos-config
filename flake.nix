@@ -1,15 +1,16 @@
 {
   description = "ReStranger's nix system configuration";
 
-  outputs = {
-    self,
-    flake-parts,
-    ...
-  } @ inputs: let
-    hosts = import ./hosts.nix;
-    libx = import ./lib {inherit self inputs;};
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    { self
+    , flake-parts
+    , ...
+    } @ inputs:
+    let
+      hosts = import ./hosts.nix;
+      libx = import ./lib { inherit self inputs; };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = libx.forAllSystems;
 
       imports = [

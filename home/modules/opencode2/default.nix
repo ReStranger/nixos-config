@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.opencode2;
 
   inherit
@@ -27,7 +27,7 @@
   inherit (lib.hm.strings) isPathLike;
   inherit (lib.hm.mcp) renderEnv transformMcpServer;
 
-  jsonFormat = pkgs.formats.json {};
+  jsonFormat = pkgs.formats.json { };
 
   mkStylixTheme = colors: {
     theme = {
@@ -234,13 +234,15 @@
     };
   };
 
-  toOpencodeShape = server: let
-    isRemote = server ? url && server.url != null;
-    renderedEnv = renderEnv (p: "{file:${p}}") (server.env or {});
-  in
-    optionalAttrs (server.enabled or null != null) {
-      inherit (server) enabled;
-    }
+  toOpencodeShape = server:
+    let
+      isRemote = server ? url && server.url != null;
+      renderedEnv = renderEnv (p: "{file:${p}}") (server.env or { });
+    in
+    optionalAttrs (server.enabled or null != null)
+      {
+        inherit (server) enabled;
+      }
     // {
       type =
         if isRemote
@@ -253,51 +255,54 @@
         {
           inherit (server) url;
         }
-        // optionalAttrs (server.headers or {} != {}) {
+        // optionalAttrs (server.headers or { } != { }) {
           inherit (server) headers;
         }
       else
         {
-          command = [server.command] ++ (server.args or []);
+          command = [ server.command ] ++ (server.args or [ ]);
         }
-        // optionalAttrs (renderedEnv != {}) {
+        // optionalAttrs (renderedEnv != { }) {
           environment = renderedEnv;
         }
     );
 
   transformedMcpServers =
-    if cfg.enableMcpIntegration && config.programs.mcp.enable && config.programs.mcp.servers != {}
+    if cfg.enableMcpIntegration && config.programs.mcp.enable && config.programs.mcp.servers != { }
     then
-      mapAttrs (
-        _: server:
-          transformMcpServer {
-            inherit server;
-            extraTransforms = [toOpencodeShape];
-            exclude = [
-              "args"
-              "env"
-            ];
-          }
-      )
-      config.programs.mcp.servers
-    else {};
+      mapAttrs
+        (
+          _: server:
+            transformMcpServer {
+              inherit server;
+              extraTransforms = [ toOpencodeShape ];
+              exclude = [
+                "args"
+                "env"
+              ];
+            }
+        )
+        config.programs.mcp.servers
+    else { };
 
   packageWithExtraPackages =
-    if cfg.package != null && cfg.extraPackages != []
+    if cfg.package != null && cfg.extraPackages != [ ]
     then
-      pkgs.symlinkJoin {
-        inherit (cfg.package) meta;
-        name = "${getName cfg.package}-wrapped-${getVersion cfg.package}";
-        paths = [cfg.package];
-        preferLocalBuild = true;
-        nativeBuildInputs = [pkgs.makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/${cfg.package.meta.mainProgram} \
-            --suffix PATH : ${makeBinPath cfg.extraPackages}
-        '';
-      }
+      pkgs.symlinkJoin
+        {
+          inherit (cfg.package) meta;
+          name = "${getName cfg.package}-wrapped-${getVersion cfg.package}";
+          paths = [ cfg.package ];
+          preferLocalBuild = true;
+          nativeBuildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/${cfg.package.meta.mainProgram} \
+              --suffix PATH : ${makeBinPath cfg.extraPackages}
+          '';
+        }
     else cfg.package;
-in {
+in
+{
   options.module.opencode2 = {
     enable = mkEnableOption "opencode2";
 
@@ -310,7 +315,7 @@ in {
 
     extraPackages = mkOption {
       type = listOf package;
-      default = [];
+      default = [ ];
       example = literalExpression "[ pkgs.uv ]";
       description = "Extra packages available to OpenCode.";
     };
@@ -327,7 +332,7 @@ in {
 
     settings = mkOption {
       inherit (jsonFormat) type;
-      default = {};
+      default = { };
       example = {
         model = "anthropic/claude-sonnet-4-5";
         share = "manual";
@@ -343,7 +348,7 @@ in {
 
     cli = mkOption {
       inherit (jsonFormat) type;
-      default = {};
+      default = { };
       example = {
         theme = {
           name = "opencode";
@@ -366,7 +371,7 @@ in {
 
     commands = mkOption {
       type = either (attrsOf (either lines path)) path;
-      default = {};
+      default = { };
       description = ''
         Custom command markdown files for `$XDG_CONFIG_HOME/opencode/commands/`.
 
@@ -376,7 +381,7 @@ in {
 
     agents = mkOption {
       type = either (attrsOf (either lines path)) path;
-      default = {};
+      default = { };
       description = ''
         Custom agent markdown files for `$XDG_CONFIG_HOME/opencode/agents/`.
 
@@ -385,8 +390,8 @@ in {
     };
 
     skills = mkOption {
-      type = either (attrsOf (oneOf [lines path str])) path;
-      default = {};
+      type = either (attrsOf (oneOf [ lines path str ])) path;
+      default = { };
       description = ''
         Custom skills for `$XDG_CONFIG_HOME/opencode/skills/`.
 
@@ -396,7 +401,7 @@ in {
 
     themes = mkOption {
       type = either (attrsOf (either jsonFormat.type path)) path;
-      default = {};
+      default = { };
       description = ''
         Custom themes for `$XDG_CONFIG_HOME/opencode/themes/`.
 
@@ -406,7 +411,7 @@ in {
 
     tools = mkOption {
       type = either (attrsOf (either lines path)) path;
-      default = {};
+      default = { };
       description = ''
         Custom tools for `$XDG_CONFIG_HOME/opencode/tools/`.
 
@@ -439,7 +444,7 @@ in {
       }
     ];
 
-    home.packages = mkIf (packageWithExtraPackages != null) [packageWithExtraPackages];
+    home.packages = mkIf (packageWithExtraPackages != null) [ packageWithExtraPackages ];
 
     module.opencode2.themes = mkIf (config ? lib && config.lib ? stylix && config.lib.stylix ? colors) {
       stylix = mkStylixTheme config.lib.stylix.colors;
@@ -447,33 +452,34 @@ in {
 
     xdg.configFile =
       {
-        "opencode/opencode.json" = mkIf (cfg.settings != {} || transformedMcpServers != {}) {
-          source = let
-            mergedMcpServers = transformedMcpServers // (cfg.settings.mcp.servers or {});
-            mergedMcp =
-              (cfg.settings.mcp or {})
-              // optionalAttrs (mergedMcpServers != {}) {
-                servers = mergedMcpServers;
-              };
-            mergedSettings =
-              cfg.settings
-              // optionalAttrs (mergedMcp != {}) {
-                mcp = mergedMcp;
-              };
-          in
+        "opencode/opencode.json" = mkIf (cfg.settings != { } || transformedMcpServers != { }) {
+          source =
+            let
+              mergedMcpServers = transformedMcpServers // (cfg.settings.mcp.servers or { });
+              mergedMcp =
+                (cfg.settings.mcp or { })
+                // optionalAttrs (mergedMcpServers != { }) {
+                  servers = mergedMcpServers;
+                };
+              mergedSettings =
+                cfg.settings
+                // optionalAttrs (mergedMcp != { }) {
+                  mcp = mergedMcp;
+                };
+            in
             jsonFormat.generate "opencode.json" ({
-                "$schema" = "https://opencode.ai/config.json";
-              }
-              // mergedSettings);
+              "$schema" = "https://opencode.ai/config.json";
+            }
+            // mergedSettings);
         };
 
-        "opencode/cli.json" = mkIf (cfg.cli != {}) {
+        "opencode/cli.json" = mkIf (cfg.cli != { }) {
           source = jsonFormat.generate "cli.json" cfg.cli;
         };
 
         "opencode/AGENTS.md" =
           if isPath cfg.context
-          then {source = cfg.context;}
+          then { source = cfg.context; }
           else
             mkIf (cfg.context != "") {
               text = cfg.context;
@@ -505,71 +511,78 @@ in {
         };
       }
       // optionalAttrs (builtins.isAttrs cfg.commands) (
-        mapAttrs' (
-          name: content:
-            nameValuePair "opencode/commands/${name}.md" (
-              if isPath content
-              then {source = content;}
-              else {text = content;}
-            )
-        )
-        cfg.commands
+        mapAttrs'
+          (
+            name: content:
+              nameValuePair "opencode/commands/${name}.md" (
+                if isPath content
+                then { source = content; }
+                else { text = content; }
+              )
+          )
+          cfg.commands
       )
       // optionalAttrs (builtins.isAttrs cfg.agents) (
-        mapAttrs' (
-          name: content:
-            nameValuePair "opencode/agents/${name}.md" (
-              if isPath content
-              then {source = content;}
-              else {text = content;}
-            )
-        )
-        cfg.agents
+        mapAttrs'
+          (
+            name: content:
+              nameValuePair "opencode/agents/${name}.md" (
+                if isPath content
+                then { source = content; }
+                else { text = content; }
+              )
+          )
+          cfg.agents
       )
       // optionalAttrs (builtins.isAttrs cfg.tools) (
-        mapAttrs' (
+        mapAttrs'
+          (
+            name: content:
+              nameValuePair "opencode/tools/${name}.ts" (
+                if isPath content
+                then { source = content; }
+                else { text = content; }
+              )
+          )
+          cfg.tools
+      )
+      // mapAttrs'
+        (
           name: content:
-            nameValuePair "opencode/tools/${name}.ts" (
-              if isPath content
-              then {source = content;}
-              else {text = content;}
-            )
+            if isPathLike content && pathIsDirectory content
+            then
+              nameValuePair "opencode/skills/${name}"
+                {
+                  source = content;
+                  recursive = true;
+                }
+            else
+              nameValuePair "opencode/skills/${name}/SKILL.md" (
+                if isPathLike content
+                then { source = content; }
+                else { text = content; }
+              )
         )
-        cfg.tools
-      )
-      // mapAttrs' (
-        name: content:
-          if isPathLike content && pathIsDirectory content
-          then
-            nameValuePair "opencode/skills/${name}" {
-              source = content;
-              recursive = true;
-            }
-          else
-            nameValuePair "opencode/skills/${name}/SKILL.md" (
-              if isPathLike content
-              then {source = content;}
-              else {text = content;}
-            )
-      ) (
-        if builtins.isAttrs cfg.skills
-        then cfg.skills
-        else {}
-      )
+        (
+          if builtins.isAttrs cfg.skills
+          then cfg.skills
+          else { }
+        )
       // optionalAttrs (builtins.isAttrs cfg.themes) (
-        mapAttrs' (
-          name: content:
-            nameValuePair "opencode/themes/${name}.json" (
-              if isPath content
-              then {
-                source = content;
-              }
-              else {
-                source = jsonFormat.generate "opencode-${name}.json" content;
-              }
-            )
-        )
-        cfg.themes
+        mapAttrs'
+          (
+            name: content:
+              nameValuePair "opencode/themes/${name}.json" (
+                if isPath content
+                then {
+                  source = content;
+                }
+                else {
+                  source = jsonFormat.generate "opencode-${name}.json" content;
+                }
+              )
+          )
+          cfg.themes
       );
   };
 }

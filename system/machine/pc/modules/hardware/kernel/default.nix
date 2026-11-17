@@ -1,10 +1,13 @@
 {
-  pkgs,
-  lib,
-  ...
-}: let
+  # config,
+  pkgs
+, lib
+, ...
+}:
+let
   inherit (lib) mkMerge mkAfter;
-in {
+in
+{
   boot = {
     initrd = {
       availableKernelModules = [
@@ -14,14 +17,13 @@ in {
         "sd_mod"
         "cryptd"
       ];
-      kernelModules = [];
+      kernelModules = [ ];
     };
     kernelModules = [
       "amdgpu"
       "kvm-amd"
     ];
-    kernelParams = [
-      mkMerge
+    kernelParams = mkMerge [
       [
         "mitigations=off"
         "split_lock_detect=off"
@@ -33,7 +35,7 @@ in {
         "init_on_alloc=0"
       ])
     ];
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   };
 }

@@ -1,13 +1,14 @@
-{
-  lib,
-  pkgs,
-  config,
-  username,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, username
+, ...
+}:
+let
   cfg = config.module.programs.gamemode;
   inherit (lib) mkEnableOption mkIf getExe';
-in {
+in
+{
   options.module.programs.gamemode = {
     enable = mkEnableOption "Enable gamemode";
   };
@@ -24,7 +25,7 @@ in {
       };
     };
 
-    users.users.${username}.extraGroups = ["gamemode"];
+    users.users.${username}.extraGroups = [ "gamemode" ];
 
     security.polkit.extraConfig = ''
       polkit.addRule(function(action, subject) {

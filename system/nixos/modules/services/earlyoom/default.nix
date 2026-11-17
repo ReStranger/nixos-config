@@ -1,11 +1,12 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{ lib
+, config
+, ...
+}:
+let
   cfg = config.module.services.earlyoom;
   inherit (lib) mkEnableOption mkIf mkMerge;
-in {
+in
+{
   options.module.services.earlyoom.enable = mkEnableOption "Enable earlyoom";
   config = mkMerge [
     {

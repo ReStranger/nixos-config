@@ -1,10 +1,10 @@
-{
-  lib,
-  config,
-  pkgs,
-  username,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, username
+, ...
+}:
+let
   cfg = config.module.programs.corectrl;
   inherit
     (lib)
@@ -12,7 +12,8 @@
     mkIf
     getExe'
     ;
-in {
+in
+{
   options.module.programs.corectrl.enable = mkEnableOption "Enable corectrl";
 
   config = mkIf cfg.enable {
@@ -20,9 +21,9 @@ in {
 
     systemd.user.services.corectrl = {
       description = "corectrl (system tray)";
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${getExe' pkgs.corectrl "corectrl"} --minimize-systray";
@@ -32,6 +33,6 @@ in {
       };
     };
 
-    users.users.${username}.extraGroups = ["corectrl"];
+    users.users.${username}.extraGroups = [ "corectrl" ];
   };
 }

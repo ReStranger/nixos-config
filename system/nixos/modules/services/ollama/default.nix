@@ -1,13 +1,14 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, ...
+}:
+let
   cfg = config.module.services.ollama;
   inherit (lib) mkEnableOption mkIf mkOption;
   inherit (lib.types) package ints;
-in {
+in
+{
   options.module.services.ollama = {
     enable = mkEnableOption "Enable ollama daemon";
     package = mkOption {

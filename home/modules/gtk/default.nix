@@ -1,13 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  theme,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, theme
+, ...
+}:
+let
   cfg = config.module.gtk;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.gtk = {
     enable = mkEnableOption "Enable gtk module";
   };
@@ -20,7 +21,7 @@ in {
         then {
           name = "Tela-circle-dracula-dark";
           package = pkgs.tela-circle-icon-theme.override {
-            colorVariants = ["dracula"];
+            colorVariants = [ "dracula" ];
           };
         }
         else if theme == "touka"

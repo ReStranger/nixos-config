@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.services.kmscon;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.services.kmscon = {
     enable = mkEnableOption "Enable kmscon service";
   };

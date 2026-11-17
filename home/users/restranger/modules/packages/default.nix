@@ -1,16 +1,17 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  isLinux,
-  isWorkstation,
-  hyprlandEnable,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, inputs
+, isLinux
+, isWorkstation
+, hyprlandEnable
+, ...
+}:
+let
   cfg = config.module.user.packages;
   inherit (lib) mkEnableOption mkIf optionals;
-in {
+in
+{
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
   };
@@ -90,7 +91,7 @@ in {
       ++ optionals (isLinux && isWorkstation) [
         inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
         libnotify
-        (bottles.override {removeWarningPopup = true;})
+        (bottles.override { removeWarningPopup = true; })
         figma-linux
         yabridge
         yabridgectl

@@ -1,13 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, inputs
+, ...
+}:
+let
   cfg = config.module.kidex;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.kidex = {
     enable = mkEnableOption "Enable kidex service";
   };

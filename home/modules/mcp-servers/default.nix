@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.mcp-servers;
 
   inherit
@@ -24,10 +24,9 @@
   inherit (lib.types) submodule nullOr package str listOf attrsOf;
 
   serverType = submodule (
-    {
-      config,
-      name,
-      ...
+    { config
+    , name
+    , ...
     }: {
       options = {
         enable = mkEnableOption "MCP server ${name}";
@@ -46,19 +45,19 @@
 
         args = mkOption {
           type = listOf str;
-          default = [];
+          default = [ ];
           description = "Command line arguments.";
         };
 
         envSecrets = mkOption {
           type = attrsOf str;
-          default = {};
+          default = { };
           description = "Environment variables loaded from files at runtime (VAR = /path/to/secret).";
         };
 
         env = mkOption {
           type = attrsOf str;
-          default = {};
+          default = { };
           description = "Environment variables (plain text).";
         };
 
@@ -76,7 +75,7 @@
 
         passEnvironment = mkOption {
           type = listOf str;
-          default = [];
+          default = [ ];
           example = literalExpression ''[ "DISPLAY" "WAYLAND_DISPLAY" ]'';
           description = ''
             Names of variables copied from the systemd user manager environment
@@ -88,7 +87,7 @@
 
         wantedBy = mkOption {
           type = listOf str;
-          default = ["default.target"];
+          default = [ "default.target" ];
           description = ''
             Targets that pull this service in (Install.WantedBy).
             Use [ "graphical-session.target" ] for servers that need the
@@ -98,31 +97,34 @@
 
         after = mkOption {
           type = listOf str;
-          default = [];
+          default = [ ];
           description = "Units and targets this service must be started after (Unit.After).";
         };
 
         partOf = mkOption {
           type = listOf str;
-          default = [];
+          default = [ ];
           description = "Units and targets whose stop or restart propagates to this service (Unit.PartOf).";
         };
       };
     }
   );
 
-  mkExecStart = name: serverCfg: let
-    pkg =
-      if serverCfg.package == null
-      then throw "module.mcp-servers.servers.${name}.package must be set"
-      else serverCfg.package;
-    secretExports = concatStringsSep "\n" (
-      mapAttrsToList (
-        varName: secretPath: "export ${varName}=\"$(tr -d '\\n' <${escapeShellArg secretPath})\""
-      )
-      serverCfg.envSecrets
-    );
-  in "${pkgs.writeShellScript "${name}-start" ''
+  mkExecStart = name: serverCfg:
+    let
+      pkg =
+        if serverCfg.package == null
+        then throw "module.mcp-servers.servers.${name}.package must be set"
+        else serverCfg.package;
+      secretExports = concatStringsSep "\n" (
+        mapAttrsToList
+          (
+            varName: secretPath: "export ${varName}=\"$(tr -d '\\n' <${escapeShellArg secretPath})\""
+          )
+          serverCfg.envSecrets
+      );
+    in
+    "${pkgs.writeShellScript "${name}-start" ''
     set -euo pipefail
     ${secretExports}
     exec ${escapeShellArg "${pkg}/bin/${serverCfg.command}"} ${escapeShellArgs serverCfg.args}
@@ -135,10 +137,10 @@
       {
         Description = "MCP server ${name}";
       }
-      // optionalAttrs (serverCfg.after != []) {
+      // optionalAttrs (serverCfg.after != [ ]) {
         After = serverCfg.after;
       }
-      // optionalAttrs (serverCfg.partOf != []) {
+      // optionalAttrs (serverCfg.partOf != [ ]) {
         PartOf = serverCfg.partOf;
       };
 
@@ -151,7 +153,7 @@
       // optionalAttrs (serverCfg.envFile != null) {
         EnvironmentFile = serverCfg.envFile;
       }
-      // optionalAttrs (serverCfg.passEnvironment != []) {
+      // optionalAttrs (serverCfg.passEnvironment != [ ]) {
         PassEnvironment = serverCfg.passEnvironment;
       }
       // optionalAttrs (serverCfg.workingDirectory != null) {
@@ -164,13 +166,14 @@
   };
 
   mkService = name: serverCfg: nameValuePair "${name}" (mkBaseService name serverCfg);
-in {
+in
+{
   options.module.mcp-servers = {
     enable = mkEnableOption "MCP servers infrastructure";
 
     servers = mkOption {
       type = attrsOf serverType;
-      default = {};
+      default = { };
       description = "MCP server definitions.";
       example = literalExpression ''
         {
@@ -189,11 +192,12 @@ in {
 
   config = mkIf cfg.enable {
     assertions =
-      mapAttrsToList (name: serverCfg: {
-        assertion = serverCfg.package != null;
-        message = "module.services.mcp-servers.servers.${name}.package must be set";
-      })
-      enabledServers;
+      mapAttrsToList
+        (name: serverCfg: {
+          assertion = serverCfg.package != null;
+          message = "module.services.mcp-servers.servers.${name}.package must be set";
+        })
+        enabledServers;
 
     systemd.user.services = mapAttrs' mkService enabledServers;
   };

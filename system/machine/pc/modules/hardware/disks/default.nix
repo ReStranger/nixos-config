@@ -1,4 +1,4 @@
-{username, ...}: {
+{ username, ... }: {
   boot.initrd.luks.devices = {
     cryptroot = {
       device = "/dev/nvme0n1p5";
@@ -77,7 +77,7 @@
     "/boot" = {
       device = "/dev/nvme0n1p6";
       fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
     "/mnt/sda1" = {
       device = "/dev/disk/by-label/STORAGE";
@@ -117,7 +117,7 @@
     "/mnt/ccache" = {
       device = "/home/${username}/.cache/ccache";
       fsType = "none";
-      options = ["bind"];
+      options = [ "bind" ];
     };
   };
   swapDevices = [

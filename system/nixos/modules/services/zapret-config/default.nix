@@ -1,9 +1,9 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, ...
+}:
+let
   cfg = config.module.services.zapret-config;
   inherit
     (lib)
@@ -15,10 +15,11 @@
     concatStrings
     maintainers
     ;
-in {
+in
+{
   options.module.services.zapret-config = {
     enable = mkEnableOption "DPI bypass multi platform service";
-    package = mkPackageOption pkgs "zapret" {};
+    package = mkPackageOption pkgs "zapret" { };
     settings = mkOption {
       type = types.lines;
       default = ''
@@ -109,11 +110,11 @@ in {
       isSystemUser = true;
       group = "tpws";
     };
-    users.groups.tpws = {};
+    users.groups.tpws = { };
     systemd.services.zapret-config = {
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
       path = with pkgs; [
         (
           if cfg.firewallType == "iptables"
@@ -163,6 +164,6 @@ in {
         SystemCallArchitectures = "native";
       };
     };
-    meta.maintainers = with maintainers; [nishimara];
+    meta.maintainers = with maintainers; [ nishimara ];
   };
 }

@@ -1,14 +1,15 @@
-{
-  self,
-  config,
-  pkgs,
-  lib,
-  username,
-  ...
-}: let
+{ self
+, config
+, pkgs
+, lib
+, username
+, ...
+}:
+let
   cfg = config.module.sops;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.sops = {
     enable = mkEnableOption "Enable sops module";
   };

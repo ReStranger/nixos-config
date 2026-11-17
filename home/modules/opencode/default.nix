@@ -1,12 +1,12 @@
-{
-  self,
-  config,
-  inputs,
-  pkgs,
-  lib,
-  username,
-  ...
-}: let
+{ self
+, config
+, inputs
+, pkgs
+, lib
+, username
+, ...
+}:
+let
   cfg = config.module.opencode;
   inherit (lib) genAttrs mkEnableOption mkIf;
 
@@ -17,15 +17,16 @@
   ];
 
   agentsDir = ./agents;
-in {
-  imports = ["${self}/home/modules/opencode2"];
+in
+{
+  imports = [ "${self}/home/modules/opencode2" ];
 
   options.module.opencode = {
     enable = mkEnableOption "Enable opencode program";
   };
 
   config = mkIf cfg.enable {
-    sops.secrets = genAttrs secrets (_: {});
+    sops.secrets = genAttrs secrets (_: { });
     module.opencode2 = {
       enable = true;
       enableMcpIntegration = true;
@@ -76,184 +77,186 @@ in {
         };
       };
 
-      settings = let
-        secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
-      in {
-        inherit username;
-        share = "manual";
-        autoupdate = false;
-        default_agent = "build";
-        mcp.servers.github = {
-          type = "remote";
-          url = "https://api.githubcopilot.com/mcp/";
-          headers = {
-            Authorization = "Bearer {file:${config.sops.secrets.github_token.path}}";
-          };
-        };
-        compaction = {
-          auto = true;
-          keep = {
-            tokens = 8000;
-          };
-          buffer = 20000;
-        };
-
-        attachments = {
-          image = {
-            auto_resize = true;
-            max_width = 2000;
-            max_height = 2000;
-            max_base64_bytes = 5242880;
-          };
-        };
-
-        agents = {
-          build.color = "#${config.lib.stylix.colors.base0E}";
-          plan.color = "#${config.lib.stylix.colors.base0B}";
-          orchestrator.color = "#${config.lib.stylix.colors.base08}";
-          general = {
-            model = "bifrost/gpt-5.4";
-          };
-          explore = {
-            model = "opencode/deepseek-v4-flash-free";
-          };
-          advisor = {
-            model = "llama-cpp/Qwen3.6-35B-A3B-UD-Q3_K_XL";
-          };
-          title = {
-            model = "opencode/deepseek-v4-flash-free";
-          };
-          summary = {
-            model = "opencode/deepseek-v4-flash-free";
-          };
-        };
-
-        providers = {
-          bifrost = {
-            name = "Bifrost";
-            settings = {
-              apiKey = secret."bifrost/api_key";
-              baseURL = secret."bifrost/server_url";
+      settings =
+        let
+          secret = genAttrs secrets (name: "{file:${config.sops.secrets.${name}.path}}");
+        in
+        {
+          inherit username;
+          share = "manual";
+          autoupdate = false;
+          default_agent = "build";
+          mcp.servers.github = {
+            type = "remote";
+            url = "https://api.githubcopilot.com/mcp/";
+            headers = {
+              Authorization = "Bearer {file:${config.sops.secrets.github_token.path}}";
             };
-            package = "@opencode-ai/ai/providers/openai";
-            models = {
-              "gpt-5.4" = {
-                name = "GPT-5.4";
-                capabilities = {
-                  tools = true;
-                  input = ["text" "image"];
-                  output = ["text"];
-                };
-                limit = {
-                  context = 1047576;
-                  output = 65536;
-                };
-                settings = {
-                  reasoningEffort = "high";
-                  textVerbosity = "low";
-                  reasoningSummary = "auto";
-                };
-                variants = [
-                  {
-                    id = "minimal";
-                    settings = {
-                      reasoningEffort = "minimal";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                  }
-                  {
-                    id = "low";
-                    settings = {
-                      reasoningEffort = "low";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                  }
-                  {
-                    id = "medium";
-                    settings = {
-                      reasoningEffort = "medium";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                  }
-                  {
-                    id = "high";
-                    settings = {
-                      reasoningEffort = "high";
-                      textVerbosity = "low";
-                      reasoningSummary = "auto";
-                    };
-                  }
-                ];
-              };
-              "glm-5.2" = {
-                name = "GLM-5.2";
-                capabilities = {
-                  tools = true;
-                  input = ["text" "image"];
-                  output = ["text"];
-                };
-                limit = {
-                  context = 1048576;
-                  output = 32768;
-                };
-                settings = {
-                  reasoningEffort = "high";
-                };
-                variants = [
-                  {
-                    id = "high";
-                    settings = {
-                      reasoningEffort = "high";
-                    };
-                  }
-                  {
-                    id = "low";
-                    settings = {
-                      reasoningEffort = "high";
-                    };
-                  }
-                ];
-              };
+          };
+          compaction = {
+            auto = true;
+            keep = {
+              tokens = 8000;
+            };
+            buffer = 20000;
+          };
+
+          attachments = {
+            image = {
+              auto_resize = true;
+              max_width = 2000;
+              max_height = 2000;
+              max_base64_bytes = 5242880;
             };
           };
 
-          llama-cpp = {
-            name = "llama.cpp (local)";
-            package = "@opencode-ai/ai/providers/openai-compatible";
-            settings = {
-              apiKey = "llama-cpp";
-              baseURL = "http://localhost:11435/v1";
+          agents = {
+            build.color = "#${config.lib.stylix.colors.base0E}";
+            plan.color = "#${config.lib.stylix.colors.base0B}";
+            orchestrator.color = "#${config.lib.stylix.colors.base08}";
+            general = {
+              model = "bifrost/gpt-5.4";
             };
-            models = {
-              "Qwen3.6-35B-A3B-UD-Q3_K_XL" = {
-                name = "Qwen3.6-35B-A3B";
-                limit = {
-                  context = 65536;
+            explore = {
+              model = "opencode/deepseek-v4-flash-free";
+            };
+            advisor = {
+              model = "llama-cpp/Qwen3.6-35B-A3B-UD-Q3_K_XL";
+            };
+            title = {
+              model = "opencode/deepseek-v4-flash-free";
+            };
+            summary = {
+              model = "opencode/deepseek-v4-flash-free";
+            };
+          };
+
+          providers = {
+            bifrost = {
+              name = "Bifrost";
+              settings = {
+                apiKey = secret."bifrost/api_key";
+                baseURL = secret."bifrost/server_url";
+              };
+              package = "@opencode-ai/ai/providers/openai";
+              models = {
+                "gpt-5.4" = {
+                  name = "GPT-5.4";
+                  capabilities = {
+                    tools = true;
+                    input = [ "text" "image" ];
+                    output = [ "text" ];
+                  };
+                  limit = {
+                    context = 1047576;
+                    output = 65536;
+                  };
+                  settings = {
+                    reasoningEffort = "high";
+                    textVerbosity = "low";
+                    reasoningSummary = "auto";
+                  };
+                  variants = [
+                    {
+                      id = "minimal";
+                      settings = {
+                        reasoningEffort = "minimal";
+                        textVerbosity = "low";
+                        reasoningSummary = "auto";
+                      };
+                    }
+                    {
+                      id = "low";
+                      settings = {
+                        reasoningEffort = "low";
+                        textVerbosity = "low";
+                        reasoningSummary = "auto";
+                      };
+                    }
+                    {
+                      id = "medium";
+                      settings = {
+                        reasoningEffort = "medium";
+                        textVerbosity = "low";
+                        reasoningSummary = "auto";
+                      };
+                    }
+                    {
+                      id = "high";
+                      settings = {
+                        reasoningEffort = "high";
+                        textVerbosity = "low";
+                        reasoningSummary = "auto";
+                      };
+                    }
+                  ];
                 };
-                capabilities = {
-                  tools = true;
-                  input = ["text"];
-                  output = ["text"];
+                "glm-5.2" = {
+                  name = "GLM-5.2";
+                  capabilities = {
+                    tools = true;
+                    input = [ "text" "image" ];
+                    output = [ "text" ];
+                  };
+                  limit = {
+                    context = 1048576;
+                    output = 32768;
+                  };
+                  settings = {
+                    reasoningEffort = "high";
+                  };
+                  variants = [
+                    {
+                      id = "high";
+                      settings = {
+                        reasoningEffort = "high";
+                      };
+                    }
+                    {
+                      id = "low";
+                      settings = {
+                        reasoningEffort = "high";
+                      };
+                    }
+                  ];
                 };
               };
-              "Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-Q4_K" = {
-                name = "Qwythos-9B-Claude-Mythos";
-                limit = {
-                  context = 65536;
+            };
+
+            llama-cpp = {
+              name = "llama.cpp (local)";
+              package = "@opencode-ai/ai/providers/openai-compatible";
+              settings = {
+                apiKey = "llama-cpp";
+                baseURL = "http://localhost:11435/v1";
+              };
+              models = {
+                "Qwen3.6-35B-A3B-UD-Q3_K_XL" = {
+                  name = "Qwen3.6-35B-A3B";
+                  limit = {
+                    context = 65536;
+                  };
+                  capabilities = {
+                    tools = true;
+                    input = [ "text" ];
+                    output = [ "text" ];
+                  };
                 };
-                capabilities = {
-                  tools = true;
-                  input = ["text"];
-                  output = ["text"];
+                "Huihui-Qwythos-9B-Claude-Mythos-5-1M-abliterated-Q4_K" = {
+                  name = "Qwythos-9B-Claude-Mythos";
+                  limit = {
+                    context = 65536;
+                  };
+                  capabilities = {
+                    tools = true;
+                    input = [ "text" ];
+                    output = [ "text" ];
+                  };
                 };
               };
             };
           };
         };
-      };
     };
 
     xdg.configFile."opencode/agents" = {

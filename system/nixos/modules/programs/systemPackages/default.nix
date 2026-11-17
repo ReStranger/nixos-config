@@ -1,12 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   cfg = config.module.programs.systemPackages;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.programs.systemPackages.enable = mkEnableOption "Enable System Software";
 
   config = mkIf cfg.enable {

@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.vesktop;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.vesktop = {
     enable = mkEnableOption "Enable vesktop program";
   };
@@ -17,9 +18,9 @@ in {
         autoUpdate = false;
         autoUpdateNotification = false;
         useQuickCss = true;
-        themeLinks = [];
+        themeLinks = [ ];
         eagerPatches = false;
-        enabledThemes = [];
+        enabledThemes = [ ];
         enableReactDevtools = false;
         frameless = false;
         transparent = false;
@@ -258,8 +259,8 @@ in {
           WebContextMenus.enabled = true;
         };
         uiElements = {
-          chatBarButtons = {};
-          messagePopoverButtons = {};
+          chatBarButtons = { };
+          messagePopoverButtons = { };
         };
         notifications = {
           timeout = 5000;

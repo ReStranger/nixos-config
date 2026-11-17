@@ -1,12 +1,12 @@
-{
-  self,
-  lib,
-  config,
-  pkgs,
-  inputs,
-  isLaptop,
-  ...
-}: let
+{ self
+, lib
+, config
+, pkgs
+, inputs
+, isLaptop
+, ...
+}:
+let
   cfg = config.module.hyprland;
   inherit
     (lib)
@@ -28,8 +28,9 @@
 
   sessionVariables = import ./variables;
   windowRules = import ./window-rules;
-in {
-  imports = ["${self}/home/modules/hyprland/styles"];
+in
+{
+  imports = [ "${self}/home/modules/hyprland/styles" ];
 
   options.module.hyprland = {
     enable = mkEnableOption "Enable Hyprland";
@@ -56,11 +57,11 @@ in {
     systemd.user.services.polkit-kde-authentication-agent-1 = {
       Unit = {
         Description = "polkit-kde-authentication-agent-1";
-        Wants = ["graphical-session.target"];
-        After = ["graphical-session.target"];
+        Wants = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
       };
       Install = {
-        WantedBy = ["graphical-session.target"];
+        WantedBy = [ "graphical-session.target" ];
       };
       Service = {
         Type = "simple";
@@ -94,6 +95,8 @@ in {
               allow_tearing = true;
               layout = "dwindle";
             };
+
+            cursor.no_hardware_cursors = true;
 
             decoration = {
               shadow = {
@@ -200,8 +203,8 @@ in {
                 {
                   type = "bezier";
                   points = [
-                    [0.05 0.9]
-                    [0.1 1.05]
+                    [ 0.05 0.9 ]
+                    [ 0.1 1.05 ]
                   ];
                 }
               ];
@@ -248,100 +251,105 @@ in {
             }
           ];
 
-          bind = let
-            mainMod = "SUPER";
+          bind =
+            let
+              mainMod = "SUPER";
 
-            f = key: path: opts: {
-              _args =
-                [
-                  key
-                  (mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${path}")'')
-                ]
-                ++ optional (opts != {}) opts;
-            };
+              f = key: path: opts: {
+                _args =
+                  [
+                    key
+                    (mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${path}")'')
+                  ]
+                  ++ optional (opts != { }) opts;
+              };
 
-            d = key: code: opts: {
-              _args =
-                [
-                  key
-                  (mkLuaInline code)
-                ]
-                ++ optional (opts != {}) opts;
-            };
-          in
+              d = key: code: opts: {
+                _args =
+                  [
+                    key
+                    (mkLuaInline code)
+                  ]
+                  ++ optional (opts != { }) opts;
+              };
+            in
             [
               # Launchers
-              (f "${mainMod} + T" "${terminal}" {})
-              (d "${mainMod} + Q" "hl.dsp.window.close()" {})
-              (d "${mainMod} + SHIFT + Q" "hl.dsp.window.kill()" {})
-              (f "${mainMod} + E" "${fileManager}" {})
-              (f "${mainMod} + D" "${menu}" {})
-              (f "${mainMod} + C" "${getExe pkgs.hyprpicker} --autocopy" {})
-              (f "${mainMod} + ALT + R" "hyprctl reload" {})
+              (f "${mainMod} + T" "${terminal}" { })
+              (d "${mainMod} + Q" "hl.dsp.window.close()" { })
+              (d "${mainMod} + SHIFT + Q" "hl.dsp.window.kill()" { })
+              (f "${mainMod} + E" "${fileManager}" { })
+              (f "${mainMod} + D" "${menu}" { })
+              (f "${mainMod} + C" "${getExe pkgs.hyprpicker} --autocopy" { })
+              (f "${mainMod} + ALT + R" "hyprctl reload" { })
+              (d "${mainMod} + SPACE" "hl.dsp.global('qsflow:record')" { })
 
               # Window state
-              (d "${mainMod} + R" "hl.dsp.layout('togglesplit')" {})
-              (d "${mainMod} + SHIFT + F" "hl.dsp.window.float({ action = 'toggle' })" {})
-              (d "${mainMod} + F" "hl.dsp.window.fullscreen()" {})
-              (d "${mainMod} + SHIFT + P" "hl.dsp.window.pseudo()" {})
+              (d "${mainMod} + R" "hl.dsp.layout('togglesplit')" { })
+              (d "${mainMod} + SHIFT + F" "hl.dsp.window.float({ action = 'toggle' })" { })
+              (d "${mainMod} + F" "hl.dsp.window.fullscreen()" { })
+              (d "${mainMod} + SHIFT + P" "hl.dsp.window.pseudo()" { })
 
               # Clipboard / screenshots
-              (f "CTRL + Print" "${getExe pkgs.grimblast} --notify --freeze copy area" {})
-              (f "CTRL + SHIFT + Print" "${getExe pkgs.grimblast} --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png" {})
-              (d "${mainMod} + L" "hl.dsp.focus({ direction = 'right' })" {})
-              (d "${mainMod} + H" "hl.dsp.focus({ direction = 'left' })" {})
-              (d "${mainMod} + K" "hl.dsp.focus({ direction = 'up' })" {})
-              (d "${mainMod} + J" "hl.dsp.focus({ direction = 'down' })" {})
+              (f "CTRL + Print" "${getExe pkgs.grimblast} --notify --freeze copy area" { })
+              (f "CTRL + SHIFT + Print" "${getExe pkgs.grimblast} --notify --freeze copysave area $HOME/Pictures/Screenshots/$(date '+%Y-%m-%d--%H-%M-%S')-screenshot.png" { })
+              (d "${mainMod} + L" "hl.dsp.focus({ direction = 'right' })" { })
+              (d "${mainMod} + H" "hl.dsp.focus({ direction = 'left' })" { })
+              (d "${mainMod} + K" "hl.dsp.focus({ direction = 'up' })" { })
+              (d "${mainMod} + J" "hl.dsp.focus({ direction = 'down' })" { })
 
               # Window swap
-              (d "${mainMod} + SHIFT + H" "hl.dsp.window.move({ direction = 'left' })" {})
-              (d "${mainMod} + SHIFT + L" "hl.dsp.window.move({ direction = 'right' })" {})
-              (d "${mainMod} + SHIFT + K" "hl.dsp.window.move({ direction = 'up' })" {})
-              (d "${mainMod} + SHIFT + J" "hl.dsp.window.move({ direction = 'down' })" {})
+              (d "${mainMod} + SHIFT + H" "hl.dsp.window.move({ direction = 'left' })" { })
+              (d "${mainMod} + SHIFT + L" "hl.dsp.window.move({ direction = 'right' })" { })
+              (d "${mainMod} + SHIFT + K" "hl.dsp.window.move({ direction = 'up' })" { })
+              (d "${mainMod} + SHIFT + J" "hl.dsp.window.move({ direction = 'down' })" { })
 
               # Resize
-              (d "${mainMod} + CTRL + H" "hl.dsp.window.resize({ x = -20, y = 0, relative = true })" {})
-              (d "${mainMod} + CTRL + L" "hl.dsp.window.resize({ x = 20, y = 0, relative = true })" {})
-              (d "${mainMod} + CTRL + K" "hl.dsp.window.resize({ x = 0, y = -20, relative = true })" {})
-              (d "${mainMod} + CTRL + J" "hl.dsp.window.resize({ x = 0, y = 20, relative = true })" {})
+              (d "${mainMod} + CTRL + H" "hl.dsp.window.resize({ x = -20, y = 0, relative = true })" { })
+              (d "${mainMod} + CTRL + L" "hl.dsp.window.resize({ x = 20, y = 0, relative = true })" { })
+              (d "${mainMod} + CTRL + K" "hl.dsp.window.resize({ x = 0, y = -20, relative = true })" { })
+              (d "${mainMod} + CTRL + J" "hl.dsp.window.resize({ x = 0, y = 20, relative = true })" { })
 
               # Special workspace
-              (d "${mainMod} + S" "hl.dsp.workspace.toggle_special('magic')" {})
-              (d "${mainMod} + SHIFT + S" "hl.dsp.window.move({ workspace = 'special:magic', follow = false })" {})
+              (d "${mainMod} + S" "hl.dsp.workspace.toggle_special('magic')" { })
+              (d "${mainMod} + SHIFT + S" "hl.dsp.window.move({ workspace = 'special:magic', follow = false })" { })
 
               # Mouse drag
-              (d "${mainMod} + mouse:272" "hl.dsp.window.drag()" {mouse = true;})
-              (d "${mainMod} + mouse:273" "hl.dsp.window.resize()" {mouse = true;})
+              (d "${mainMod} + mouse:272" "hl.dsp.window.drag()" { mouse = true; })
+              (d "${mainMod} + mouse:273" "hl.dsp.window.resize()" { mouse = true; })
 
               # Pass through for OBS Studio
-              (d "ALT + F10" "hl.dsp.pass({ window = 'class:^(com\\\\.obsproject\\\\.Studio)$' })" {})
+              (d "ALT + F10" "hl.dsp.pass({ window = 'class:^(com\\\\.obsproject\\\\.Studio)$' })" { })
 
               # Pass through for Discord
-              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = 'class:^(discord)$' })" {})
+              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = 'class:^(discord)$' })" { })
+              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = 'class:^(vesktop)$' })" { })
             ]
             ++ (builtins.concatLists (
-              builtins.genList (
-                i: let
-                  key =
-                    if i == 9
-                    then 0
-                    else i + 1;
-                  ws = i + 1;
-                in [
-                  (d "${mainMod} + ${toString key}" "hl.dsp.focus({ workspace = ${toString ws} })" {})
-                  (d "${mainMod} + SHIFT + ${toString key}" "hl.dsp.window.move({ workspace = ${toString ws}, follow = false })" {})
-                ]
-              )
-              10
+              builtins.genList
+                (
+                  i:
+                  let
+                    key =
+                      if i == 9
+                      then 0
+                      else i + 1;
+                    ws = i + 1;
+                  in
+                  [
+                    (d "${mainMod} + ${toString key}" "hl.dsp.focus({ workspace = ${toString ws} })" { })
+                    (d "${mainMod} + SHIFT + ${toString key}" "hl.dsp.window.move({ workspace = ${toString ws}, follow = false })" { })
+                  ]
+                )
+                10
             ))
             ++ optionals isLaptop [
               # Pass through for OBS Studio
-              (d "ALT + F10" "hl.dsp.pass({ window = 'class:^(com\\\\.obsproject\\\\.Studio)$' })" {})
+              (d "ALT + F10" "hl.dsp.pass({ window = 'class:^(com\\\\.obsproject\\\\.Studio)$' })" { })
 
               # Pass through for Discord
-              (d "CTRL + SHIFT + M" "hl.dsp.pass({ window = 'class:^(discord)$' })" {})
-              (d "${mainMod} + Control_L" "hl.dsp.window.drag()" {mouse = true;})
-              (d "${mainMod} + ALT_L" "hl.dsp.window.resize()" {mouse = true;})
+              (d "${mainMod} + Control_L" "hl.dsp.window.drag()" { mouse = true; })
+              (d "${mainMod} + ALT_L" "hl.dsp.window.resize()" { mouse = true; })
 
               # Media keys
               (f "XF86AudioRaiseVolume" "${getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 5%+" {
@@ -364,9 +372,9 @@ in {
                 locked = true;
                 repeating = true;
               })
-              (f "XF86AudioPlay" "${getExe pkgs.playerctl} play-pause" {locked = true;})
-              (f "XF86AudioPrev" "${getExe pkgs.playerctl} previous" {locked = true;})
-              (f "XF86AudioNext" "${getExe pkgs.playerctl} next" {locked = true;})
+              (f "XF86AudioPlay" "${getExe pkgs.playerctl} play-pause" { locked = true; })
+              (f "XF86AudioPrev" "${getExe pkgs.playerctl} previous" { locked = true; })
+              (f "XF86AudioNext" "${getExe pkgs.playerctl} next" { locked = true; })
             ];
         }
         // windowRules;

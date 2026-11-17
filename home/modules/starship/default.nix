@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.starship;
   inherit (lib) mkEnableOption mkIf concatStrings;
-in {
+in
+{
   options.module.starship = {
     enable = mkEnableOption "Enable starship module";
   };

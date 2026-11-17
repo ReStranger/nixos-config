@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.lsd;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.lsd.enable = mkEnableOption "Enable lsd module";
 
   config = mkIf cfg.enable {

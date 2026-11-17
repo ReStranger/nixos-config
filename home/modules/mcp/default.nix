@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.mcp;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.mcp = {
     enable = mkEnableOption "Enable mcp module";
   };

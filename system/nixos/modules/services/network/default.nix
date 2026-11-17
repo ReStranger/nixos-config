@@ -1,10 +1,10 @@
-{
-  lib,
-  config,
-  pkgs,
-  hostname,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, hostname
+, ...
+}:
+let
   cfg = config.module.services.network;
   inherit
     (lib)
@@ -16,10 +16,11 @@
     mkForce
     ;
   inherit (lib.types) bool enum str;
-in {
+in
+{
   options.module.services.network = {
     enable = mkEnableOption "Enable network service configuration";
-    package = mkPackageOption pkgs "networkmanager" {};
+    package = mkPackageOption pkgs "networkmanager" { };
     firewall = mkOption {
       type = bool;
       default = false;
@@ -55,7 +56,7 @@ in {
     services.resolved.enable = true;
     systemd = {
       network.wait-online.enable = false;
-      services."NetworkManager-wait-online".wantedBy = mkForce [];
+      services."NetworkManager-wait-online".wantedBy = mkForce [ ];
     };
     networking = {
       hostName = "${hostname}";
@@ -69,7 +70,7 @@ in {
       };
       firewall.enable = cfg.firewall;
       hosts = {
-        "127.0.0.1" = ["${hostname}.local"];
+        "127.0.0.1" = [ "${hostname}.local" ];
       };
       useDHCP = mkDefault true;
     };

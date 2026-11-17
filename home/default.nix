@@ -1,22 +1,22 @@
-{
-  self,
-  pkgs,
-  lib,
-  inputs,
-  hostname,
-  username,
-  platform,
-  hmStateVersion,
-  isWorkstation ? false,
-  isLaptop ? false,
-  wm ? "",
-  theme,
-  swayEnable ? false,
-  hyprlandEnable ? false,
-  wmEnable ? false,
-  allDirs,
-  ...
-}: let
+{ self
+, pkgs
+, lib
+, inputs
+, hostname
+, username
+, platform
+, hmStateVersion
+, isWorkstation ? false
+, isLaptop ? false
+, wm ? ""
+, theme
+, swayEnable ? false
+, hyprlandEnable ? false
+, wmEnable ? false
+, allDirs
+, ...
+}:
+let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
   inherit (lib) optional;
@@ -35,7 +35,8 @@
   userModulesPathExist = builtins.pathExists userModulesPath;
   # sshModulePath = "${self}/home/modules/ssh";
   # sshModuleExistPath = builtins.pathExists sshModulePath;
-in {
+in
+{
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -65,10 +66,10 @@ in {
       imports =
         [
           (
-            {modulesPath, ...}: {
+            { modulesPath, ... }: {
               # Important! We disable home-manager's module to avoid option
               # definition collisions
-              disabledModules = ["${modulesPath}/programs/anyrun.nix"];
+              disabledModules = [ "${modulesPath}/programs/anyrun.nix" ];
             }
           )
           # inputs.impermanence.nixosModules.home-manager.impermanence

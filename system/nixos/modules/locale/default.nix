@@ -1,8 +1,8 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{ lib
+, config
+, ...
+}:
+let
   cfg = config.module.locale;
   inherit
     (lib)
@@ -11,7 +11,8 @@
     mkOption
     types
     ;
-in {
+in
+{
   options.module.locale = {
     enable = mkEnableOption "Set system locale";
     locale = mkOption {

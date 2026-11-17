@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  hyprlandEnable,
-  ...
-}: let
+{ config
+, lib
+, hyprlandEnable
+, ...
+}:
+let
   cfg = config.module.kdeconnect;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.kdeconnect.enable = mkEnableOption "Enable kdeconnect module";
 
   config = mkIf cfg.enable {

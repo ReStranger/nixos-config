@@ -1,7 +1,6 @@
-{
-  self,
-  localPackages,
-  ...
+{ self
+, localPackages
+, ...
 }: {
   nixpkgs.overlays = [
     (

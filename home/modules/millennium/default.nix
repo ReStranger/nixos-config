@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.millennium;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.millennium = {
     enable = mkEnableOption "Enable millennium module";
   };

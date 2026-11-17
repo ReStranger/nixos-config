@@ -1,9 +1,10 @@
-{
-  self,
-  allDirs,
-  ...
-}: let
+{ self
+, allDirs
+, ...
+}:
+let
   modules = "${self}/system/nixos/modules";
-in {
+in
+{
   imports = allDirs modules;
 }

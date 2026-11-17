@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.nemo;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.nemo = {
     enable = mkEnableOption "Enable nemo module";
   };

@@ -1,19 +1,20 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.performance;
   inherit (lib) mkEnableOption mkIf getExe;
-in {
+in
+{
   options.module.performance = {
     enable = mkEnableOption "Enable performance module";
   };
 
   config = mkIf cfg.enable {
     boot = {
-      kernelModules = ["ntsync"];
+      kernelModules = [ "ntsync" ];
       kernelParams = [
         "nowatchdog"
       ];

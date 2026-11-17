@@ -1,10 +1,11 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{ pkgs
+, lib
+, ...
+}:
+let
   inherit (lib) mkMerge mkAfter;
-in {
+in
+{
   boot = {
     initrd = {
       availableKernelModules = [

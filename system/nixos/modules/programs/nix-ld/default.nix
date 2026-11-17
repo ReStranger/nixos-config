@@ -1,12 +1,13 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, ...
+}:
+let
   cfg = config.module.programs.nix-ld;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.programs.nix-ld.enable = mkEnableOption "Enable nix-ld";
   config = mkIf cfg.enable {
     programs = {

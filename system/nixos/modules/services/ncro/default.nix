@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.services.ncro;
   inherit (lib) mkEnableOption mkIf mkOption;
   inherit (lib.types) port;
-in {
+in
+{
   options.module.services.ncro = {
     enable = mkEnableOption "Enable ncro service";
 

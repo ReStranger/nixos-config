@@ -1,13 +1,14 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, ...
+}:
+let
   cfg = config.module.services.llama-cpp;
   inherit (lib) mkEnableOption mkIf mkOption;
   inherit (lib.types) anything attrsOf ints package port str;
-in {
+in
+{
   options.module.services.llama-cpp = {
     enable = mkEnableOption "Enable llama.cpp inference server";
 
@@ -37,7 +38,7 @@ in {
     extraSettings = mkOption {
       type = attrsOf anything;
       description = "Extra settings passed to llama-server (see services.llama-cpp.settings)";
-      default = {};
+      default = { };
     };
   };
 

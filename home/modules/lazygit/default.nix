@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.lazygit;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.lazygit.enable = mkEnableOption "Enable lazygit module";
 
   config = mkIf cfg.enable {

@@ -1,18 +1,19 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, ...
+}:
+let
   cfg = config.module.services.zerotier-one;
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) listOf str;
-in {
+in
+{
   options.module.services.zerotier-one = {
     enable = mkEnableOption "Enable zerotier-one";
     joinNetworks = mkOption {
-      default = [];
-      example = ["a8a2c3c10c1a68de"];
+      default = [ ];
+      example = [ "a8a2c3c10c1a68de" ];
       type = listOf str;
       description = ''
         List of ZeroTier Network IDs to join on startup.
@@ -46,8 +47,8 @@ in {
 
     systemd.services.zerotier-key-sync = {
       description = "Sync zerotier keys from /etc to /var/lib";
-      before = ["zerotierone.service"];
-      wantedBy = ["zerotierone.service"];
+      before = [ "zerotierone.service" ];
+      wantedBy = [ "zerotierone.service" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.writeShellScript "zerotier-one-key-sync.sh" ''

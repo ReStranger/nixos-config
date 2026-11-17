@@ -1,30 +1,31 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.pi-coding-agent;
   inherit (lib) mkEnableOption mkIf getExe getVersion;
-in {
-  imports = [./stylix.nix];
+in
+{
+  imports = [ ./stylix.nix ];
 
   options.module.pi-coding-agent = {
     enable = mkEnableOption "Enable pi-coding-agent module";
   };
 
   config = mkIf cfg.enable {
-    sops.secrets.github_token = {};
+    sops.secrets.github_token = { };
     home.sessionVariables.PI_PROGRAM_STATUS = 1;
     programs.pi-coding-agent = {
       enable = true;
       package = pkgs.pi-bun;
       configDir = "${config.xdg.configHome}/pi/agent";
       keybindings = {
-        "tui.select.up" = ["up" "ctrl+k"];
-        "tui.select.down" = ["down" "ctrl+j"];
-        "tui.select.pageUp" = ["pageUp" "ctrl+u"];
-        "tui.select.pageDown" = ["pageDown" "ctrl+d"];
+        "tui.select.up" = [ "up" "ctrl+k" ];
+        "tui.select.down" = [ "down" "ctrl+j" ];
+        "tui.select.pageUp" = [ "pageUp" "ctrl+u" ];
+        "tui.select.pageDown" = [ "pageDown" "ctrl+d" ];
       };
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
@@ -55,12 +56,12 @@ in {
         enableInstallTelemetry = false;
         fullscreenExitOutput = "transcript";
         fullscreenCopyOnSelect = true;
-        npmCommand = ["${getExe pkgs.bun}"];
+        npmCommand = [ "${getExe pkgs.bun}" ];
         theme = "stylix";
         collapseChangelog = true;
         cacheWarming = "streaming";
 
-        defaultTools = ["+codemode" "+tool_search"];
+        defaultTools = [ "+codemode" "+tool_search" ];
         "codemode.mode" = "on";
         "codemode.inlineBudget" = 3000;
 
@@ -68,7 +69,7 @@ in {
           enabled = true;
           reserveTokens = 16384;
           keepRecentTokens = 20000;
-          modelOverrides = {};
+          modelOverrides = { };
         };
 
         fullscreenWheelScrollLines = "auto";
@@ -122,92 +123,94 @@ in {
       };
     };
 
-    home.file = let
-      configDir = config.programs.pi-coding-agent.configDir;
-      piMonorepoPath = builtins.unsafeDiscardStringContext "${pkgs.pi-bun}/lib/node_modules/pi-monorepo";
-    in {
-      "${configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
-      "${configDir}/extensions/pi-permissions.json".text = builtins.toJSON {
-        askTimeoutMs = 30000;
-        doublePressToConfirm = false;
-        "*" = "ask";
-        path = {"**" = "allow";};
-        bash = {
+    home.file =
+      let
+        configDir = config.programs.pi-coding-agent.configDir;
+        piMonorepoPath = builtins.unsafeDiscardStringContext "${pkgs.pi-bun}/lib/node_modules/pi-monorepo";
+      in
+      {
+        "${configDir}/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
+        "${configDir}/extensions/pi-permissions.json".text = builtins.toJSON {
+          askTimeoutMs = 30000;
+          doublePressToConfirm = false;
           "*" = "ask";
-          "npm publish*" = "deny";
-          "yarn publish*" = "deny";
-          "pnpm publish*" = "deny";
-          "cargo publish*" = "deny";
-          "git push * --force*" = "deny";
-          "git push * -f*" = "deny";
+          path = { "**" = "allow"; };
+          bash = {
+            "*" = "ask";
+            "npm publish*" = "deny";
+            "yarn publish*" = "deny";
+            "pnpm publish*" = "deny";
+            "cargo publish*" = "deny";
+            "git push * --force*" = "deny";
+            "git push * -f*" = "deny";
+          };
+          external_directory = { "*" = "ask"; };
+          external_directory_read = {
+            "*" = "ask";
+            "/nix/store/*" = "allow";
+            "/tmp/pi/*" = "allow";
+            "${config.home.homeDirectory}/.agents" = "allow";
+            "${config.home.homeDirectory}/.agents/*" = "allow";
+            "${piMonorepoPath}" = "allow";
+            "${piMonorepoPath}/*" = "allow";
+          };
+          "external_directory_write" = {
+            "/tmp/pi/*" = "allow";
+            "*" = "deny";
+          };
         };
-        external_directory = {"*" = "ask";};
-        external_directory_read = {
-          "*" = "ask";
-          "/nix/store/*" = "allow";
-          "/tmp/pi/*" = "allow";
-          "${config.home.homeDirectory}/.agents" = "allow";
-          "${config.home.homeDirectory}/.agents/*" = "allow";
-          "${piMonorepoPath}" = "allow";
-          "${piMonorepoPath}/*" = "allow";
-        };
-        "external_directory_write" = {
-          "/tmp/pi/*" = "allow";
-          "*" = "deny";
-        };
-      };
 
-      "${configDir}/extensions/pi-clear-cmd.json".text = builtins.toJSON {
-        hidden = [
-          "hc"
-          "hcl"
-          "hdf"
-          "hi"
-          "hm"
-          "hpcl"
-          "hps"
-          "hs"
-          "hsp"
-          "htg"
-          "hv"
-        ];
-      };
-      "${configDir}/extensions/pi-coauthor.json".text = builtins.toJSON {
-        enabled = true;
-        githubLink = true;
-        attribution = {
-          commit = "Co-Authored-By: pi.dev <{email}>";
-          pr = "🤖 Generated with pi (https://pi.dev)";
+        "${configDir}/extensions/pi-clear-cmd.json".text = builtins.toJSON {
+          hidden = [
+            "hc"
+            "hcl"
+            "hdf"
+            "hi"
+            "hm"
+            "hpcl"
+            "hps"
+            "hs"
+            "hsp"
+            "htg"
+            "hv"
+          ];
         };
-        strict = false;
-      };
-      "${configDir}/mcp.json".text = builtins.toJSON {
-        mcpServers = {
-          github = {
-            url = "https://api.githubcopilot.com/mcp/";
-            description = "Search GitHub repositories and code, read issues and pull requests";
-            headers.Authorization = "!echo Bearer $(cat ${config.sops.secrets.github_token.path})";
-            toolExposure = {
-              get_file_contents = "direct";
-              search_code = "direct";
-              issue_read = "direct";
-              pull_request_read = "direct";
+        "${configDir}/extensions/pi-coauthor.json".text = builtins.toJSON {
+          enabled = true;
+          githubLink = true;
+          attribution = {
+            commit = "Co-Authored-By: pi.dev <{email}>";
+            pr = "🤖 Generated with pi (https://pi.dev)";
+          };
+          strict = false;
+        };
+        "${configDir}/mcp.json".text = builtins.toJSON {
+          mcpServers = {
+            github = {
+              url = "https://api.githubcopilot.com/mcp/";
+              description = "Search GitHub repositories and code, read issues and pull requests";
+              headers.Authorization = "!echo Bearer $(cat ${config.sops.secrets.github_token.path})";
+              toolExposure = {
+                get_file_contents = "direct";
+                search_code = "direct";
+                issue_read = "direct";
+                pull_request_read = "direct";
+              };
+            };
+            nixos = {
+              url = "http://localhost:3229/mcp";
+              description = "Query Nixpkgs packages, versions, and options";
+            };
+            playwright = {
+              url = "http://localhost:3230/mcp";
+              description = "Drive a browser: navigate, click, snapshot, screenshot";
+            };
+            open-design = {
+              url = "http://localhost:7456/mcp";
+              description = "Open Design MCP";
             };
           };
-          nixos = {
-            url = "http://localhost:3229/mcp";
-            description = "Query Nixpkgs packages, versions, and options";
-          };
-          playwright = {
-            url = "http://localhost:3230/mcp";
-            description = "Drive a browser: navigate, click, snapshot, screenshot";
-          };
-          open-design = {
-            url = "http://localhost:7456/mcp";
-            description = "Open Design MCP";
-          };
         };
       };
-    };
   };
 }

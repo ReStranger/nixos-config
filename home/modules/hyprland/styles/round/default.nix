@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.hyprland.styles.round;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options = {
     module.hyprland.styles.round.enable = mkEnableOption "Enable round style in Hyprland";
   };

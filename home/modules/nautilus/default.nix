@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.nautilus;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.nautilus = {
     enable = mkEnableOption "Enable nautilus module";
   };

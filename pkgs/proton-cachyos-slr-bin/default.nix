@@ -1,9 +1,9 @@
-{
-  lib,
-  fetchzip,
-  nix-update-script,
-  proton-ge-bin,
-  steamDisplayName ? "Proton CachyOS SLR",
+{ lib
+, fetchzip
+, nix-update-script
+, proton-ge-bin
+, steamDisplayName ? "Proton CachyOS SLR"
+,
 }:
 proton-ge-bin.overrideAttrs (
   finalAttrs: prevAttrs: {
@@ -46,9 +46,9 @@ proton-ge-bin.overrideAttrs (
       '';
       homepage = "https://github.com/CachyOS/proton-cachyos";
       license = lib.licenses.bsd3;
-      maintainers = with lib.maintainers; [ReStranger];
-      platforms = ["x86_64-linux"];
-      sourceProvenance = [lib.sourceTypes.binaryNativeCode];
+      maintainers = with lib.maintainers; [ ReStranger ];
+      platforms = [ "x86_64-linux" ];
+      sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     };
   }
 )

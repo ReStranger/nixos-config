@@ -1,8 +1,8 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.alacritty;
   inherit
     (lib)
@@ -12,7 +12,8 @@
     mkIf
     ;
   inherit (lib.types) str;
-in {
+in
+{
   options.module.alacritty = {
     enable = mkEnableOption "Enable alacritty module";
     font = mkOption {

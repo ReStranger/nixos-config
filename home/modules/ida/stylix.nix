@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.ida;
   inherit
     (lib)
@@ -19,9 +19,11 @@
 
   channel = name: axis: colors."${name}-rgb-${axis}";
 
-  rgba = alpha: name: let
-    rgb = axis: channel name axis;
-  in "rgba(${rgb "r"}, ${rgb "g"}, ${rgb "b"}, ${alpha})";
+  rgba = alpha: name:
+    let
+      rgb = axis: channel name axis;
+    in
+    "rgba(${rgb "r"}, ${rgb "g"}, ${rgb "b"}, ${alpha})";
 
   slots = {
     rosewater = "base05";
@@ -77,15 +79,18 @@
 
   themeDir = "${config.home.homeDirectory}/.idapro/themes/stylix";
 
-  themedIcon = file: let
-    accent = withHashtag.base0D;
-  in
-    pkgs.runCommandLocal "ida-${removeSuffix ".png" (baseNameOf file)}-icon" {
-      nativeBuildInputs = [pkgs.imagemagick];
-    } ''
+  themedIcon = file:
+    let
+      accent = withHashtag.base0D;
+    in
+    pkgs.runCommandLocal "ida-${removeSuffix ".png" (baseNameOf file)}-icon"
+      {
+        nativeBuildInputs = [ pkgs.imagemagick ];
+      } ''
       magick ${file} -alpha set -channel RGB -fill '${accent}' -colorize 100% $out
     '';
-in {
+in
+{
   config = mkIf cfg.enable {
     home.file = {
       "${themeDir}/theme.css".text = theme;

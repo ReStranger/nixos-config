@@ -1,13 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  isLinux,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, isLinux
+, ...
+}:
+let
   cfg = config.module.obs-studio;
   inherit (lib) mkEnableOption mkIf optionals;
-in {
+in
+{
   options.module.obs-studio = {
     enable = mkEnableOption "Enable obs-studio module";
   };

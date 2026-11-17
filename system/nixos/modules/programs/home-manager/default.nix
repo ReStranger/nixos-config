@@ -1,13 +1,14 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ inputs
+, lib
+, pkgs
+, config
+, ...
+}:
+let
   cfg = config.module.programs.home-manager;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.programs.home-manager.enable = mkEnableOption "Enable Home Manager";
 
   config = mkIf cfg.enable {

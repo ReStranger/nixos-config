@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.dolphin;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.dolphin = {
     enable = mkEnableOption "Enable dolphin module";
   };

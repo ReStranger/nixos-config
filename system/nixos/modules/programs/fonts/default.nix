@@ -1,12 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   cfg = config.module.programs.fonts;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.programs.fonts.enable = mkEnableOption "Enable System fonts";
 
   config = mkIf cfg.enable {

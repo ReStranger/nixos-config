@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.fzf;
   inherit (lib) mkEnableOption mkIf mkForce getExe;
-in {
+in
+{
   options.module.fzf = {
     enable = mkEnableOption "Enable fzf module";
   };
@@ -15,7 +16,7 @@ in {
     programs.fzf = {
       enable = true;
       colors.bg = mkForce "-1";
-      defaultOptions = ["--border"];
+      defaultOptions = [ "--border" ];
       fileWidget.options = [
         "--preview '${getExe pkgs.bat} --color=always --style=numbers --line-range=:500 {}'"
       ];

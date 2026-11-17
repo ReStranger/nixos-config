@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.nix-your-shell;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.nix-your-shell = {
     enable = mkEnableOption "Enable nix-your-shell module";
   };

@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.direnv;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.direnv = {
     enable = mkEnableOption "Enable direnv program";
   };

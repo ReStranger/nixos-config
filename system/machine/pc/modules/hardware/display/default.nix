@@ -1,4 +1,5 @@
-{username, ...}: let
+{ username, ... }:
+let
   settings = {
     fontSize = 10;
     hyprland = {
@@ -56,7 +57,8 @@
       ];
     };
   };
-in {
+in
+{
   stylix.fonts.sizes = with settings; {
     applications = fontSize;
     terminal = fontSize;

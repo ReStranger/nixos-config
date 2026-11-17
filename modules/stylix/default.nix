@@ -1,11 +1,11 @@
-{
-  pkgs,
-  lib,
-  config,
-  theme,
-  stateVersion,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, theme
+, stateVersion
+, ...
+}:
+let
   inherit
     (lib)
     mkEnableOption
@@ -20,11 +20,11 @@
 
   terminessPackage =
     if stateVersion == "24.11"
-    then pkgs.nerdfonts.override {fonts = ["Terminess"];}
+    then pkgs.nerdfonts.override { fonts = [ "Terminess" ]; }
     else pkgs.nerd-fonts.terminess-ttf;
   jbPackage =
     if stateVersion == "24.11"
-    then pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];}
+    then pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }
     else pkgs.nerd-fonts.iosevka;
 
   themes = {
@@ -115,7 +115,8 @@
       };
     };
   };
-in {
+in
+{
   options = {
     module.stylix = {
       enable = mkEnableOption "Enables stylix";

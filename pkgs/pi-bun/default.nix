@@ -1,19 +1,20 @@
-{
-  lib,
-  stdenv,
-  buildNpmPackage,
-  fetchFromGitHub,
-  fetchurl,
-  nix-update-script,
-  versionCheckHook,
-  writableTmpDirAsHomeHook,
-  ripgrep,
-  fd,
-  wl-clipboard,
-  xclip,
-  makeBinaryWrapper,
-  stdenvNoCC,
-  bun,
+{ lib
+, stdenv
+, buildNpmPackage
+, fetchFromGitHub
+, fetchurl
+, nix-update-script
+, versionCheckHook
+, writableTmpDirAsHomeHook
+, ripgrep
+, fd
+, wl-clipboard
+, xclip
+, makeBinaryWrapper
+, stdenvNoCC
+, bun
+, installShellFiles
+,
 }:
 buildNpmPackage (finalAttrs: {
   pname = "pi-coding-agent";
@@ -49,11 +50,12 @@ buildNpmPackage (finalAttrs: {
   npmWorkspace = "packages/coding-agent";
 
   # Skip native module rebuild for unneeded workspaces (e.g. canvas from web-ui)
-  npmRebuildFlags = ["--ignore-scripts"];
+  npmRebuildFlags = [ "--ignore-scripts" ];
 
   nativeBuildInputs = [
     makeBinaryWrapper
     bun
+    installShellFiles
   ];
 
   postPatch = ''
@@ -154,7 +156,7 @@ buildNpmPackage (finalAttrs: {
     writableTmpDirAsHomeHook
     versionCheckHook
   ];
-  versionCheckKeepEnvironment = ["HOME"];
+  versionCheckKeepEnvironment = [ "HOME" ];
   versionCheckProgram = "${placeholder "out"}/bin/pi";
   versionCheckProgramArg = "--version";
 

@@ -62,7 +62,7 @@ in {
         prettierd
         cmake-format
         black
-        alejandra
+        nixpkgs-fmt
 
         # Debuggers
         llvmPackages_latest.lldb

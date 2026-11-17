@@ -1,12 +1,13 @@
-{
-  lib,
-  config,
-  username,
-  ...
-}: let
+{ lib
+, config
+, username
+, ...
+}:
+let
   cfg = config.module.services.polkit;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.services.polkit.enable = mkEnableOption "Enable polkit";
   config = mkIf cfg.enable {
     security.polkit.extraConfig = ''

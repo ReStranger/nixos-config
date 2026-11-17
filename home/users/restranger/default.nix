@@ -1,18 +1,19 @@
-{
-  pkgs,
-  lib,
-  isWorkstation,
-  isLinux,
-  hyprlandEnable ? false,
-  ...
-}: let
+{ pkgs
+, lib
+, isWorkstation
+, isLinux
+, hyprlandEnable ? false
+, ...
+}:
+let
   inherit (lib) optionalAttrs;
-in {
+in
+{
   stylix.targets = {
     neovim.enable = false;
     millenniumSteam.enable = false;
     vesktop.enable = false;
-    zen-browser.profileNames = ["default"];
+    zen-browser.profileNames = [ "default" ];
   };
   module = {
     ghostty.enable = isWorkstation;
@@ -56,14 +57,14 @@ in {
           {
             enable = true;
             package = pkgs.playwright-mcp;
-            args = ["--host" "127.0.0.1" "--port" "3230"];
+            args = [ "--host" "127.0.0.1" "--port" "3230" ];
           }
           // optionalAttrs isWorkstation {
             env.PLAYWRIGHT_MCP_HEADLESS = "false";
-            passEnvironment = ["DISPLAY" "WAYLAND_DISPLAY"];
-            wantedBy = ["graphical-session.target"];
-            after = ["graphical-session.target"];
-            partOf = ["graphical-session.target"];
+            passEnvironment = [ "DISPLAY" "WAYLAND_DISPLAY" ];
+            wantedBy = [ "graphical-session.target" ];
+            after = [ "graphical-session.target" ];
+            partOf = [ "graphical-session.target" ];
           };
       };
     };

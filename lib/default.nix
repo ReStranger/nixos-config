@@ -1,8 +1,8 @@
-{
-  self,
-  inputs,
-  ...
-}: let
+{ self
+, inputs
+, ...
+}:
+let
   defaultStateVersion = "26.05";
 
   constructors = [
@@ -10,34 +10,38 @@
     "${self}/system"
   ];
   allDirs = dirName:
-    builtins.filter (
-      module: ((builtins.pathExists module) && ((builtins.readFileType module) == "directory"))
-    ) (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
+    builtins.filter
+      (
+        module: ((builtins.pathExists module) && ((builtins.readFileType module) == "directory"))
+      )
+      (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
 
-  localPackages = {
-    lib,
-    callPackage,
-    directory,
-  }:
+  localPackages =
+    { lib
+    , callPackage
+    , directory
+    ,
+    }:
     builtins.mapAttrs (_: value: value.default) (lib.packagesFromDirectoryRecursive {
       inherit callPackage directory;
     });
 
-  mkHost = machineDir: {
-    username ? "user",
-    stateVersion ? defaultStateVersion,
-    hmStateVersion ? stateVersion,
-    platform ? "x86_64-linux",
-    hostname ? machineDir,
-    isWorkstation ? false,
-    isLaptop ? false,
-    wm ? null,
-    theme ? "catppuccin-mocha",
-    hostType ? "nixos",
-  }: let
-    hyprlandEnable = wm == "hyprland";
-    deEnable = hyprlandEnable;
-  in
+  mkHost = machineDir: { username ? "user"
+                       , stateVersion ? defaultStateVersion
+                       , hmStateVersion ? stateVersion
+                       , platform ? "x86_64-linux"
+                       , hostname ? machineDir
+                       , isWorkstation ? false
+                       , isLaptop ? false
+                       , wm ? null
+                       , theme ? "catppuccin-mocha"
+                       , hostType ? "nixos"
+                       ,
+                       }:
+    let
+      hyprlandEnable = wm == "hyprland";
+      deEnable = hyprlandEnable;
+    in
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit
@@ -75,21 +79,22 @@
         ]
         ++ constructors;
     };
-  mkHostDarwin = machineDir: {
-    username ? "user",
-    stateVersion ? 6,
-    hmStateVersion ? defaultStateVersion,
-    hostname ? machineDir,
-    platform ? "aarch64-darwin",
-    isWorkstation ? false,
-    isLaptop ? true,
-    wm ? null,
-    theme ? "catppuccin-mocha",
-    hostType ? "darwin",
-  }: let
-    hyprlandEnable = wm == "hyprland";
-    deEnable = hyprlandEnable;
-  in
+  mkHostDarwin = machineDir: { username ? "user"
+                             , stateVersion ? 6
+                             , hmStateVersion ? defaultStateVersion
+                             , hostname ? machineDir
+                             , platform ? "aarch64-darwin"
+                             , isWorkstation ? false
+                             , isLaptop ? true
+                             , wm ? null
+                             , theme ? "catppuccin-mocha"
+                             , hostType ? "darwin"
+                             ,
+                             }:
+    let
+      hyprlandEnable = wm == "hyprland";
+      deEnable = hyprlandEnable;
+    in
     inputs.darwin.lib.darwinSystem {
       specialArgs = {
         inherit
@@ -124,11 +129,11 @@
         ]
         ++ constructors;
     };
-  mkHostAndroid = hostname: {
-    username ? "user",
-    # , stateVersion ? 6
-    platform ? "aarch64",
-  }:
+  mkHostAndroid = hostname: { username ? "user"
+                            , # , stateVersion ? 6
+                              platform ? "aarch64"
+                            ,
+                            }:
     inputs.nix-on-droid.lib.nixOnDroidConfiguration {
       specialArgs = {
         inherit
@@ -146,7 +151,8 @@
       modules = [
       ];
     };
-in {
+in
+{
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
   genNixos = builtins.mapAttrs mkHost;

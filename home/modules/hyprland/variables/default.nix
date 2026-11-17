@@ -26,4 +26,4 @@ let
     NIXOS_OZONE_WL = "1";
   };
 in
-  commonSessionVariables // hostSpecificVariables
+commonSessionVariables // hostSpecificVariables

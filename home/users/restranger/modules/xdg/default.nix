@@ -1,10 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, inputs
+, ...
+}:
+let
   inherit (lib) mkEnableOption mkIf;
 
   browser = "${inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta}/share/applications/zen-beta.desktop";
@@ -94,11 +94,12 @@
 
   mkAssociations = names: desktopFile:
     builtins.listToAttrs (
-      map (name: {
-        inherit name;
-        value = desktopFile;
-      })
-      names
+      map
+        (name: {
+          inherit name;
+          value = desktopFile;
+        })
+        names
     );
 
   associationRules = [
@@ -157,11 +158,14 @@
   ];
 
   associations =
-    builtins.foldl' (
-      acc: rule: acc // (mkAssociations rule.mimes rule.desktopFile)
-    ) {}
-    associationRules;
-in {
+    builtins.foldl'
+      (
+        acc: rule: acc // (mkAssociations rule.mimes rule.desktopFile)
+      )
+      { }
+      associationRules;
+in
+{
   options.module.user.xdg.enable = mkEnableOption "Enable xdg";
 
   config = mkIf config.module.user.xdg.enable {

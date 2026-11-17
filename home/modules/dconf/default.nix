@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.dconf;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.dconf = {
     enable = mkEnableOption "Enable dconf module";
   };

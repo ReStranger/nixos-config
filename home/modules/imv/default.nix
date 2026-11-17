@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   cfg = config.module.imv;
   inherit (lib) mkEnableOption mkIf;
   inherit (config.lib.stylix.colors.withHashtag) base00;
-in {
+in
+{
   options.module.imv = {
     enable = mkEnableOption "Enable imv module";
   };

@@ -1,11 +1,12 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, ...
+}:
+let
   inherit (lib) mkDefault;
-in {
+in
+{
   # Extra drivers settings
   hardware = {
     enableAllFirmware = true;
@@ -27,5 +28,5 @@ in {
     '';
   };
 
-  environment.systemPackages = with pkgs; [powertop];
+  environment.systemPackages = with pkgs; [ powertop ];
 }

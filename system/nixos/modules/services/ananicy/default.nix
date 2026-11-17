@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.module.services.ananicy;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.module.services.ananicy = {
     enable = mkEnableOption "Enable ananicy service";
   };

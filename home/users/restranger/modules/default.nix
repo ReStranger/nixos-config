@@ -1,10 +1,11 @@
-{
-  self,
-  username,
-  allDirs,
-  ...
-}: let
+{ self
+, username
+, allDirs
+, ...
+}:
+let
   userModules = "${self}/home/users/${username}/modules";
-in {
+in
+{
   imports = allDirs userModules;
 }
