@@ -124,6 +124,10 @@ buildNpmPackage (finalAttrs: {
       cp -r packages/coding-agent/dist/modes/interactive/theme $out/share/pi/theme 2>/dev/null || true
       cp -r packages/coding-agent/dist/modes/interactive/assets $out/share/pi/assets 2>/dev/null || true
       cp -r packages/coding-agent/dist/core/export-html $out/share/pi/export-html 2>/dev/null || true
+
+      installShellCompletion --cmd pi \
+        --bash ${./completion/pi.bash} \
+        --zsh ${./completion/pi.zsh}
     ''
     + lib.optionalString stdenvNoCC.hostPlatform.isDarwin ''
       # Remove foreign Linux binaries that make audit-tmpdir try to inspect ELF
