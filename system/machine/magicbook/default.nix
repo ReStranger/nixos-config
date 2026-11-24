@@ -18,7 +18,7 @@ _: {
     users.enable = true;
     virtualisation = {
       enable = true;
-      docker.enable = true;
+      podman.enable = true;
     };
 
     services = {
