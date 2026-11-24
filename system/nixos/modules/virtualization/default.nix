@@ -2,6 +2,7 @@
 , config
 , username
 , pkgs
+, isWorkstation
 , ...
 }:
 let
@@ -22,13 +23,10 @@ in
   config = mkIf cfg.enable {
     users.extraGroups.vboxusers.members = [ username ];
 
-    programs.virt-manager.enable = cfg.libvirtd.enable;
+    programs.virt-manager.enable = cfg.libvirtd.enable && isWorkstation;
 
     virtualisation = {
-      docker = {
-        inherit (cfg.docker) enable;
-        enableOnBoot = false;
-      };
+      docker.enable = cfg.docker.enable;
       podman.enable = cfg.podman.enable;
       libvirtd = {
         inherit (cfg.libvirtd) enable;
