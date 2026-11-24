@@ -1,7 +1,6 @@
 { isWorkstation, ... }: {
   stylix.targets = {
     neovim.enable = false;
-    zen-browser.enable = false;
   };
   module = {
     stylix.enable = isWorkstation;
