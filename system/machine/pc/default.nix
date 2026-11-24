@@ -49,7 +49,7 @@
       openssh.enable = true;
       opentablet.enable = true;
       polkit.enable = true;
-      scx.enable = true;
+      scx-loader.enable = true;
       earlyoom.enable = true;
       tailscale.enable = true;
       zerotier-one.enable = true;

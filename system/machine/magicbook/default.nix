@@ -42,7 +42,7 @@ _: {
       opentablet.enable = true;
       polkit.enable = true;
       power-profiles-daemon.enable = true;
-      scx.enable = true;
+      scx-loader.enable = true;
       earlyoom.enable = true;
       tailscale.enable = true;
       upower.enable = true;
