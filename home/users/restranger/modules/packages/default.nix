@@ -69,7 +69,7 @@ in
         nerd-fonts.ubuntu
       ]
       ++ optionals isWorkstation [
-        onlyoffice-desktopeditors
+        libreoffice-qt
         krita
         vlc
         inkscape
