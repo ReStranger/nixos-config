@@ -1,6 +1,8 @@
+{ self, ... }:
 {
   perSystem = { pkgs, ... }:
     let
+      pkgs' = pkgs.extend self.overlays.default;
       # Warning (from forked gist, was added August 1st 2018):
       # The hardened NixOS kernel disables 32 bit emulation, which made me run into multiple "Exec format error" errors.
       # To fix, use the default kernel, or enable "IA32_EMULATION y" in the kernel config.
@@ -155,11 +157,11 @@
       };
       # For nix develop
       devShells = {
-        default = pkgs.mkShell {
+        default = pkgs'.mkShell {
           name = "flake-template";
           meta.description = "DevShell for Flake";
 
-          packages = with pkgs; [
+          packages = with pkgs'; [
             sops
             age
             ssh-to-age

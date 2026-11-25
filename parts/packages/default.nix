@@ -1,15 +1,12 @@
-{ self
-, localPackages
-, ...
-}: {
+{ self, ... }: {
   perSystem = { pkgs, ... }:
     let
-      selfPkgsUnwrapped = localPackages {
-        inherit (pkgs) lib callPackage;
-        directory = "${self}/pkgs";
-      };
+      pkgs' = pkgs.extend self.overlays.default;
+      packageDirs = pkgs'.lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${self}/pkgs");
     in
     {
-      packages = selfPkgsUnwrapped;
+      packages = pkgs'.lib.genAttrs
+        (builtins.attrNames packageDirs)
+        (name: pkgs'.${name});
     };
 }

@@ -16,16 +16,6 @@ let
       )
       (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
 
-  localPackages =
-    { lib
-    , callPackage
-    , directory
-    ,
-    }:
-    builtins.mapAttrs (_: value: value.default) (lib.packagesFromDirectoryRecursive {
-      inherit callPackage directory;
-    });
-
   mkHost = machineDir: { username ? "user"
                        , stateVersion ? defaultStateVersion
                        , hmStateVersion ? stateVersion
@@ -48,7 +38,6 @@ let
           inputs
           self
           allDirs
-          localPackages
           hostname
           username
           stateVersion
@@ -101,7 +90,6 @@ let
           inputs
           self
           allDirs
-          localPackages
           hostname
           username
           platform
@@ -140,7 +128,6 @@ let
           inputs
           self
           allDirs
-          localPackages
           hostname
           username
           platform
@@ -159,5 +146,5 @@ in
   genDarwin = builtins.mapAttrs mkHostDarwin;
   genAndroid = builtins.mapAttrs mkHostAndroid;
 
-  inherit allDirs localPackages;
+  inherit allDirs;
 }

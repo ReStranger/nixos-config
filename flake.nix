@@ -18,6 +18,7 @@
         # ./docs
       ];
       flake = {
+        overlays = import ./overlays { inherit self inputs; };
         nixosConfigurations = libx.genNixos hosts.nixos;
       };
     };

@@ -19,7 +19,6 @@ in
   imports =
     [
       "${self}/modules"
-      "${self}/overlays"
       "${self}/system/${hostType}/modules"
     ]
     ++ optional machineConfigurationPathExist machineConfigurationPath
@@ -32,6 +31,8 @@ in
     hostPlatform = platform;
 
     overlays = [
+      self.overlays.default
+
       inputs.nix-cachyos-kernel.overlays.pinned
       inputs.millennium.overlays.default
     ];

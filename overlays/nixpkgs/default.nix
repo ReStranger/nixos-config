@@ -1,15 +1,6 @@
-{ self
-, localPackages
-, ...
-}: {
-  nixpkgs.overlays = [
-    (
-      final: prev:
-        localPackages {
-          inherit (prev) lib;
-          inherit (final) callPackage;
-          directory = "${self}/pkgs";
-        }
-    )
-  ];
-}
+{ self, ... }:
+final: prev:
+builtins.mapAttrs (_: value: value.default) (prev.lib.packagesFromDirectoryRecursive {
+  inherit (final) callPackage;
+  directory = "${self}/pkgs";
+})
