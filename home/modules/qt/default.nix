@@ -175,8 +175,13 @@ let
 
   qtSettings = {
     Appearance = {
+      style = "breeze";
       icon_theme = iconTheme;
       standard_dialogs = mkForce "xdgdesktopportal";
+    };
+    Fonts = {
+      fixed = ''"${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"'';
+      general = ''"${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"'';
     };
   };
 
@@ -199,10 +204,12 @@ in
       "qt6ct/colors/stylix.colors".source = stylixQtColorScheme;
     };
 
+    stylix.targets.qt.enable = false;
+
     qt = {
       enable = true;
       platformTheme.name = "qtct";
-      style.name = "kvantum";
+      style.name = "breeze";
       qt5ctSettings = qtSettings;
       qt6ctSettings = qt6Settings;
     };
