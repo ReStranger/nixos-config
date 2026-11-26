@@ -13,13 +13,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.steam = {
-      plugins = with pkgs.millenniumPlugins; [
-        non-steam-playtimes
-        protondb
-        size-on-disk
-        protondb-status
-      ];
-    };
+    programs.steam.plugins = with pkgs.millenniumPlugins; [
+      non-steam-playtimes
+      protondb
+      size-on-disk
+      protondb-status
+    ];
   };
 }

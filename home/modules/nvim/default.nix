@@ -1,12 +1,13 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{ lib
+, config
+, pkgs
+, ...
+}:
+let
   cfg = config.module.nvim;
   inherit (lib) mkEnableOption mkIf mkOverride;
-in {
+in
+{
   options = {
     module.nvim = {
       enable = mkEnableOption "Enable re:nvim module";

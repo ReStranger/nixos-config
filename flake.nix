@@ -80,9 +80,7 @@
     kidex.url = "github:Kirottu/kidex";
     matugen.url = "github:InioX/Matugen";
     wezterm.url = "github:wez/wezterm?dir=nix";
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
+    ghostty.url = "github:ghostty-org/ghostty";
     millennium = {
       url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
       inputs.nixpkgs.follows = "nixpkgs";

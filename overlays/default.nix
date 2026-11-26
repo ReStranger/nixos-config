@@ -1,4 +1,4 @@
-args@{ self, inputs, ... }:
+args@{ inputs, ... }:
 let
   inherit (inputs.nixpkgs.lib) filterAttrs composeManyExtensions;
 

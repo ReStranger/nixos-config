@@ -1,19 +1,20 @@
-{
-  self,
-  config,
-  lib,
-  ...
-}: let
+{ self
+, config
+, lib
+, ...
+}:
+let
   cfg = config.module.ghostty;
   inherit (lib) mkEnableOption mkIf mkForce;
   inherit (lib.hm.dag) entryAfter;
-in {
+in
+{
   options.module.ghostty = {
     enable = mkEnableOption "Enable ghostty module";
   };
 
   config = mkIf cfg.enable {
-    home.activation.linkGhosttyShader = entryAfter ["writeBoundary"] ''
+    home.activation.linkGhosttyShader = entryAfter [ "writeBoundary" ] ''
       ln -fs ${self}/home/modules/ghostty/cursor_smear.glsl ${config.xdg.configHome}/ghostty/cursor_smear.glsl
     '';
     programs.ghostty = {
