@@ -6,12 +6,12 @@
 }:
 let
   cfg = config.module.qt;
-  inherit (lib) mkEnableOption mkIf mkForce;
+  inherit (lib) mkEnableOption mkIf mkForce optionalAttrs isBool concatStrings mapAttrsToList partition isString optional flatten isAttrs last concatStringsSep toHexString range;
 
   stylixEnabled = config.stylix.base16Scheme != null;
 
   formatValue = value:
-    if lib.isBool value
+    if isBool value
     then
       if value
       then "true"
@@ -20,26 +20,26 @@ let
 
   formatSection = path: data:
     let
-      header = lib.concatStrings (map (p: "[${p}]") path);
+      header = concatStrings (map (p: "[${p}]") path);
       formatChild = name: formatLines (path ++ [ name ]);
-      children = lib.mapAttrsToList formatChild data;
-      partitioned = lib.partition lib.isString children;
+      children = mapAttrsToList formatChild data;
+      partitioned = partition isString children;
       directChildren = partitioned.right;
       indirectChildren = partitioned.wrong;
     in
-    lib.optional (directChildren != [ ]) header
+    optional (directChildren != [ ]) header
     ++ directChildren
-    ++ lib.flatten indirectChildren;
+    ++ flatten indirectChildren;
 
   formatLines = path: data:
-    if lib.isAttrs data
+    if isAttrs data
     then formatSection path data
-    else "${lib.last path}=${formatValue data}";
+    else "${last path}=${formatValue data}";
 
-  formatConfig = data: lib.concatStringsSep "\n" (formatLines [ ] data);
+  formatConfig = data: concatStringsSep "\n" (formatLines [ ] data);
 
   mkColorTriple = colors: name:
-    lib.concatStringsSep "," (
+    concatStringsSep "," (
       map (color: colors."${name}-rgb-${color}") [
         "r"
         "g"
@@ -74,14 +74,14 @@ let
 
       mkColorMapping = num:
         let
-          hex = "base0${lib.toHexString num}";
+          hex = "base0${toHexString num}";
         in
         {
           name = hex;
           value = mkColorTriple colors hex;
         };
 
-      colors' = builtins.listToAttrs (map mkColorMapping (lib.range 0 15));
+      colors' = builtins.listToAttrs (map mkColorMapping (range 0 15));
 
       kdecolors = with colors'; {
         BackgroundNormal = base00;
@@ -185,19 +185,17 @@ let
     // {
       Appearance =
         qtSettings.Appearance
-        // lib.optionalAttrs stylixEnabled {
+        // optionalAttrs stylixEnabled {
           custom_palette = true;
           color_scheme_path = qt6ColorSchemePath;
         };
     };
 in
 {
-  options.module.qt = {
-    enable = mkEnableOption "Enable qt module";
-  };
+  options.module.qt.enable = mkEnableOption "Enable qt module";
 
   config = mkIf cfg.enable {
-    xdg.configFile = lib.optionalAttrs stylixEnabled {
+    xdg.configFile = optionalAttrs stylixEnabled {
       "qt6ct/colors/stylix.colors".source = stylixQtColorScheme;
     };
 
