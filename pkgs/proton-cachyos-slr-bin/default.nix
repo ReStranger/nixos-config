@@ -13,11 +13,11 @@ proton-ge-bin.overrideAttrs (
     inherit steamDisplayName;
 
     pname = "proton-cachyos-slr-bin";
-    version = "cachyos-11.0-20260703-slr";
+    version = "cachyos-11.0-20261015-slr";
 
     src = fetchzip {
       url = "https://github.com/CachyOS/proton-cachyos/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-x86_64.tar.xz";
-      hash = "sha256-jOcPeEkBBPPNqyjXBoHm1Nk8AexPiLhx5+385NjUPT0=";
+      hash = "sha256-Vb1AvDQLIpgxr3ABPMstM3DFRN1tfUD+6OnhQirMnAQ=";
     };
 
     preFixup = ''
