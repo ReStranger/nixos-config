@@ -31,6 +31,8 @@ proton-ge-bin.overrideAttrs (
         updateScript = nix-update-script {
           extraArgs = [
             "--flake"
+            "--override-filename"
+            "pkgs/proton-cachyos-slr-bin/default.nix"
             "--version-regex"
             "(.*-slr)"
           ];
