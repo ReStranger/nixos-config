@@ -21,6 +21,7 @@
     systemPackages = with pkgs; [ nvtopPackages.amd ];
     variables = {
       RUSTICL_ENABLE = "radeonsi";
+      MESA_SHADER_CACHE_MAX_SIZE = "12G";
     };
   };
 }
