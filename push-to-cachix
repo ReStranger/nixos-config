@@ -1,7 +1,25 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-pkgs2push=(quickshell csgo-vulkan-fix opencode xdg-desktop-portal-kde ncro millennium minizip-ng nlohmann_json)
+CACHE="re-cache"
 
-for i in "${pkgs2push[@]}"; do
-    CACHE=re-cache nix path-info --recursive /run/current-system | grep -F "${i}" | cachix push re-cache
-done
+pkgs2push=(
+  quickshell
+  opencode
+  xdg-desktop-portal-kde
+  ncro
+  millennium
+  protondb
+  protondb-status
+  size-on-disk
+  open-design
+  qt6ct
+  proton-cachyos-slr-bin
+)
+
+pattern=$(IFS=\|; echo "${pkgs2push[*]}")
+
+nix path-info --recursive /run/current-system \
+  | grep -E "^/nix/store/[a-z0-9]{32}-(${pattern})(-wrapped)?-" \
+  | grep -v -E "(\.(json|conf|toml|service|md)|-config)$" \
+  | cachix push "$CACHE"
