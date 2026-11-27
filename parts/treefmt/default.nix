@@ -30,7 +30,12 @@
         nixpkgs-fmt.enable = true;
         statix.enable = true;
         terraform.enable = true;
-        shellcheck.enable = true;
+        shellcheck = {
+          enable = true;
+          excludes = [
+            "**/completion/**"
+          ];
+        };
       };
     };
   };
