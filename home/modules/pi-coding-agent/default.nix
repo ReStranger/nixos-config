@@ -30,9 +30,9 @@ in
       settings = {
         lastChangelogVersion = getVersion pkgs.pi-bun;
         defaultProvider = "opencode-free";
-        defaultModel = "antigravity/gemini-3.8-flash:high";
+        defaultModel = "antigravity/gemini-4-hydrogen:xhigh";
         enabledModels = [
-          "antigravity/gemini-3.8-flash:high"
+          "antigravity/gemini-4-hydrogen:xhigh"
           "opencode-free/glm-5.3-flash-free:max"
           "opencode-free/deepseek-v4.1-flash-free:max"
           "bifrost/weegam/gpt-5.4:xhigh"
